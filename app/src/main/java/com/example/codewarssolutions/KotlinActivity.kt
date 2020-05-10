@@ -1,9 +1,10 @@
 package com.example.codewarssolutions
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import kotlin.math.max
 
 class KotlinActivity : AppCompatActivity() {
 
@@ -11,12 +12,38 @@ class KotlinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Toast.makeText(
-                this,
-                getRoot(456).toString(),
-                Toast.LENGTH_LONG
+            this,
+            getRoot(456).toString(),
+            Toast.LENGTH_LONG
         ).show()
     }
 
+    //6 kyu Convert string to camel case
+    fun toCamelCase(str: String): String {
+        val builder = StringBuilder()
+        var isUpperCase = false
+
+        str.map {
+            if (it == '_' || it == '-') {
+                isUpperCase = true
+            } else {
+                if (isUpperCase) {
+                    if (it.isLowerCase()) {
+                        builder.append(it.toUpperCase())
+                    } else {
+                        builder.append(it)
+                    }
+                    isUpperCase = false
+                } else {
+                    builder.append(it)
+                }
+            }
+        }
+
+        return builder.toString()
+    }
+
+    //6 kyu Sum of Digits / Digital Root
     private fun getRoot(number: Int): Int {
         val array = number.toString().toCharArray()
         var ints = array.map { it.toString().toInt() }
@@ -36,8 +63,8 @@ class KotlinActivity : AppCompatActivity() {
 
     private fun fibonacciNumbers(): List<Int> {
         val s = generateSequence(
-                Pair(0, 1),
-                { Pair(it.second, it.first + it.second) }
+            Pair(0, 1),
+            { Pair(it.second, it.first + it.second) }
         ).map { it.first }
 
         val ten = s.take(10).toList()
@@ -177,6 +204,7 @@ class KotlinActivity : AppCompatActivity() {
         return builder.toString()
     }
 
+    //6 kyu Stop gninnipS My sdroW!
     fun spinWords(sentence: String): String {
         val words = sentence.split(" ")
         val resultList = mutableListOf<String>()
