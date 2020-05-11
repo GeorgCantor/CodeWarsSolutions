@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.math.max
+import kotlin.math.sign
 
 class KotlinActivity : AppCompatActivity() {
 
@@ -13,9 +13,96 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            getRoot(456).toString(),
+            noSpace("8 j 8   mBliB8g  imjB8B8  jl  B"),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // Reversed sequence
+    fun reverseSeq(n: Int): List<Int> {
+        var temp = n
+        val list = mutableListOf<Int>()
+
+        for (i in 0 until n) {
+            list.add(temp)
+            temp -= 1
+        }
+
+        return list
+    }
+
+    // Count of positives / sum of negatives
+    fun countPositivesSumNegatives(input: Array<Int>?): Array<Int> {
+        var positiveCounter = 0
+        var negativeSum = 0
+
+        if (input.isNullOrEmpty()) return arrayOf()
+
+        input.map {
+            when (it.sign) {
+                -1 -> negativeSum += it
+                1 -> positiveCounter++
+                0 -> {
+                }
+                else -> {
+                }
+            }
+        }
+
+        return arrayOf(positiveCounter, negativeSum)
+    }
+
+    // Convert number to reversed array of digits
+    fun digitize(n: Long): IntArray {
+        val str = n.toString()
+        val list = mutableListOf<Int>()
+
+        str.map {
+            list.add(it.toString().toInt())
+        }
+        list.reverse()
+
+        return list.toIntArray()
+    }
+
+    // Remove String Spaces
+    fun noSpace(x: String): String {
+        val builder = StringBuilder()
+
+        x.map {
+            if (it != ' ') builder.append(it)
+        }
+
+        return builder.toString()
+    }
+
+    // String repeat
+    fun repeatStr(r: Int, str: String): String {
+        val builder = StringBuilder()
+
+        for (i in 0 until r) {
+            builder.append(str)
+        }
+
+        return builder.toString()
+    }
+
+    // Remove First and Last Character
+    fun removeChar(str: String): String {
+        val list = str.toCharArray().toMutableList()
+        list.removeAt(0)
+
+        list.reverse()
+        list.removeAt(0)
+        list.reverse()
+
+        val builder = StringBuilder()
+
+        list.map {
+            builder.append(it)
+        }
+
+        return builder.toString()
     }
 
     //6 kyu Convert string to camel case
