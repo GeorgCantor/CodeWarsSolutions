@@ -13,9 +13,73 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            noSpace("8 j 8   mBliB8g  imjB8B8  jl  B"),
+            alphabetWar("z"),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    //7 kyu Alphabet war
+    fun alphabetWar(fight: String): String {
+        val mapL = HashMap<Char, Int>()
+        mapL['w'] = 4
+        mapL['p'] = 3
+        mapL['b'] = 2
+        mapL['s'] = 1
+
+        val mapR = HashMap<Char, Int>()
+        mapR['m'] = 4
+        mapR['q'] = 3
+        mapR['d'] = 2
+        mapR['z'] = 1
+
+        var lCounter = 0
+        var rCounter = 0
+
+        fight.map {
+            if (mapL.containsKey(it)) lCounter += mapL.getValue(it)
+            if (mapR.containsKey(it)) rCounter += mapR.getValue(it)
+        }
+
+        return when {
+            lCounter == rCounter -> "Let's fight again!"
+            lCounter > rCounter -> "Left side wins!"
+            rCounter > lCounter -> "Right side wins!"
+            else -> ""
+        }
+    }
+
+    // Sum Mixed Array
+    fun sum(mixed: List<Any>): Int {
+        val list = mutableListOf<Int>()
+
+        mixed.map {
+            list.add(it.toString().toInt())
+        }
+
+        var sum = 0
+
+        list.map {
+            sum += it
+        }
+
+        return sum
+    }
+
+    // Invert values
+    fun invert(arr: IntArray): IntArray {
+        val list = mutableListOf<Int>()
+
+        if (arr.isEmpty()) return intArrayOf()
+
+        arr.map {
+            when (it.sign) {
+                -1 -> list.add(it * -1)
+                1 -> list.add(-it)
+                else -> list.add(0)
+            }
+        }
+
+        return list.toIntArray()
     }
 
     // Reversed sequence
