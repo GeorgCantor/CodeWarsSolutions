@@ -18,6 +18,54 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Even numbers in an array
+    fun evenNumbers(array: List<Int>, number: Int): List<Int> {
+        val evenList = mutableListOf<Int>()
+        array.reversed().map {
+            if (it % 2 == 0 && evenList.size < number) evenList.add(it)
+        }
+
+        return evenList.reversed()
+    }
+
+    // 7 kyu Simple beads count
+    fun countRedBeads(nBlue: Int): Int {
+        when (nBlue) {
+            0, 1 -> return 0
+        }
+
+        return (nBlue - 1) * 2
+    }
+
+    // 7 kyu Small enough? - Beginner
+    fun smallEnough(a: IntArray, limit: Int): Boolean {
+        a.map {
+            if (it > limit) return false
+        }
+
+        return true
+    }
+
+    // Opposites Attract
+    fun loveFun(flowerA: Int, flowerB: Int): Boolean {
+        val a = flowerA % 2
+        val b = flowerB % 2
+
+        return when {
+            b == 0 && a == 0 -> false
+            b != 0 && a == 0 -> true
+            b == 0 && a != 0 -> true
+            else -> false
+        }
+    }
+
+    // Reversed Words
+    fun reverseWords(str: String): String {
+        val words = str.split(" ")
+
+        return words.reversed().toString().replace(",", "").replace("[", "").replace("]", "")
+    }
+
     //7 kyu Alphabet war
     fun alphabetWar(fight: String): String {
         val mapL = HashMap<Char, Int>()
