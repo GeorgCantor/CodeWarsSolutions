@@ -13,9 +13,101 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            alphabetWar("z"),
+            inviteMoreWomen(listOf(1, -1, 1)).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 7 kyu Invite More Women?
+    fun inviteMoreWomen(list: List<Int>): Boolean {
+        var mens = 0
+        var womens = 0
+
+        list.map {
+            when (it) {
+                1 -> mens++
+                -1 -> womens++
+                else -> null
+            }
+        }
+
+        return mens > womens
+    }
+
+    // 7 kyu Find all pairs
+    fun duplicates(array: IntArray): Int {
+        val map = HashMap<Int, Int>()
+
+        array.map {
+            when (map.containsKey(it)) {
+                true -> map.put(it, map[it]!! + 1)
+                false -> map.put(it, 1)
+            }
+        }
+
+        var pairsCounter = 0
+
+        map.map {
+            if (it.value > 1) {
+                pairsCounter += if (it.value % 2 == 0) {
+                    it.value
+                } else {
+                    (it.value - 1)
+                }
+            }
+        }
+
+        return pairsCounter / 2
+    }
+
+    // 6 kyu Highest Scoring Word
+    fun high(str: String): String {
+        val map: MutableMap<Char, Int> = HashMap()
+        map['a'] = 1
+        map['b'] = 2
+        map['c'] = 3
+        map['d'] = 4
+        map['e'] = 5
+        map['f'] = 6
+        map['g'] = 7
+        map['h'] = 8
+        map['i'] = 9
+        map['j'] = 10
+        map['k'] = 12
+        map['l'] = 13
+        map['m'] = 14
+        map['n'] = 15
+        map['o'] = 16
+        map['p'] = 17
+        map['q'] = 18
+        map['r'] = 19
+        map['s'] = 20
+        map['t'] = 21
+        map['u'] = 22
+        map['v'] = 23
+        map['w'] = 24
+        map['x'] = 25
+        map['y'] = 26
+        map['z'] = 27
+
+        var length = 0
+        var maxLength = 0
+        var word = ""
+
+        val words = str.split(" ")
+        words.map {
+            for (i in it.indices) {
+                length += map[it[i]] ?: 0
+
+                if (length > maxLength) {
+                    maxLength = length
+                    word = it
+                }
+            }
+            length = 0
+        }
+
+        return word
     }
 
     // 7 kyu Even numbers in an array
