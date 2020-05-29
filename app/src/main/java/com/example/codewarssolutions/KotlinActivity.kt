@@ -18,6 +18,47 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 6 kyu Which are in?
+    fun inArray(array1: Array<String>, array2: Array<String>): Array<String> {
+        val set = mutableSetOf<String>()
+
+        array1.map { a1 ->
+            array2.map { a2 ->
+                if (a2.contains(a1)) set.add(a1)
+            }
+        }
+
+        return set.sorted().toTypedArray()
+    }
+
+    // 7 kyu Double Sort
+    fun dbSort(array: Array<Any>): Array<Any> {
+        val strings = mutableListOf<String>()
+        val ints = mutableListOf<Int>()
+
+        array.map {
+            when (it) {
+                is String -> strings.add(it)
+                is Int -> ints.add(it)
+                else -> null
+            }
+        }
+
+        val sortedArray = ints.sorted().toTypedArray()
+        val sortedArray2 = strings.sorted().toTypedArray()
+
+        val list = mutableListOf<Any>()
+
+        sortedArray.map {
+            list.add(it)
+        }
+        sortedArray2.map {
+            list.add(it)
+        }
+
+        return list.toTypedArray()
+    }
+
     // 7 kyu Invite More Women?
     fun inviteMoreWomen(list: List<Int>): Boolean {
         var mens = 0
