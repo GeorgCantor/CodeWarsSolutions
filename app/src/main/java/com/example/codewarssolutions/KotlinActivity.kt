@@ -13,9 +13,26 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            inviteMoreWomen(listOf(1, -1, 1)).toString(),
+            whoLikesIt(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 6 kyu Who likes it?
+    fun whoLikesIt(vararg names: String?): String? {
+        val namesList = names.toList()
+
+        when (names.size) {
+            1 -> return "${namesList.first()} likes this"
+            2 -> return "${namesList.first()} and ${namesList.last()} like this"
+            3 -> return "${namesList[0]}, ${namesList[1]} and ${namesList.last()} like this"
+            in 4..99999999 -> {
+                val others = namesList.size - 2
+                return "${namesList[0]}, ${namesList[1]} and $others others like this"
+            }
+        }
+
+        return "no one likes this"
     }
 
     // 6 kyu Which are in?

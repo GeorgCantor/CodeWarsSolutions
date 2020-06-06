@@ -33,7 +33,33 @@ public class AlgoActivity extends AppCompatActivity {
         int[] arr = {1, 2, 3, 4, 6, 7, 8};
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
 
-        Toast.makeText(this, Boolean.toString(isPermutation("abcdm", "bmadc")), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, reverseString("abcdef"), Toast.LENGTH_LONG).show();
+    }
+
+    public static String whoLikesIt(String... names) {
+        String[] namesArray = names;
+        String result = "";
+
+//        switch (names.length) {
+//            case 0:
+//                result = "no one likes this";
+//                break;
+//            case 1:
+//                result =
+//        }
+
+        return result;
+    }
+
+    private String reverseString(String word) {
+        StringBuilder builder = new StringBuilder();
+        char[] chars = word.toCharArray();
+
+        for (int i = chars.length - 1; i >= 0; i--) {
+            builder.append(chars[i]);
+        }
+
+        return builder.toString();
     }
 
     public static int digital_root(int n) {
