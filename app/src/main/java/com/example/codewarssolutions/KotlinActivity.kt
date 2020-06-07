@@ -20,19 +20,13 @@ class KotlinActivity : AppCompatActivity() {
 
     // 6 kyu Who likes it?
     fun whoLikesIt(vararg names: String?): String? {
-        val namesList = names.toList()
-
-        when (names.size) {
-            1 -> return "${namesList.first()} likes this"
-            2 -> return "${namesList.first()} and ${namesList.last()} like this"
-            3 -> return "${namesList[0]}, ${namesList[1]} and ${namesList.last()} like this"
-            in 4..99999999 -> {
-                val others = namesList.size - 2
-                return "${namesList[0]}, ${namesList[1]} and $others others like this"
-            }
+        return when (names.size) {
+            0 -> "no one likes this"
+            1 -> "${names[0]} likes this"
+            2 -> "${names[0]} and ${names[1]} like this"
+            3 -> "${names[0]}, ${names[1]} and ${names[2]} like this"
+            else -> "${names[0]}, ${names[1]} and ${names.size - 2} others like this"
         }
-
-        return "no one likes this"
     }
 
     // 6 kyu Which are in?

@@ -36,19 +36,20 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, reverseString("abcdef"), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu Who likes it?
     public static String whoLikesIt(String... names) {
-        String[] namesArray = names;
-        String result = "";
-
-//        switch (names.length) {
-//            case 0:
-//                result = "no one likes this";
-//                break;
-//            case 1:
-//                result =
-//        }
-
-        return result;
+        switch (names.length) {
+            case 0:
+                return "no one likes this";
+            case 1:
+                return String.format("%s likes this", names[0]);
+            case 2:
+                return String.format("%s and %s like this", names[0], names[1]);
+            case 3:
+                return String.format("%s, %s and %s like this", names[0], names[1], names[2]);
+            default:
+                return String.format("%s, %s and %d others like this", names[0], names[1], names.length - 2);
+        }
     }
 
     private String reverseString(String word) {
