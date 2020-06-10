@@ -18,6 +18,9 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Printer Errors
+    fun printerError(s: String) = "${s.count { it !in 'a'..'m' }}/${s.length}"
+
     // 6 kyu Who likes it?
     fun whoLikesIt(vararg names: String?): String? {
         return when (names.size) {
@@ -30,17 +33,13 @@ class KotlinActivity : AppCompatActivity() {
     }
 
     // 6 kyu Which are in?
-    fun inArray(array1: Array<String>, array2: Array<String>): Array<String> {
-        val set = mutableSetOf<String>()
-
-        array1.map { a1 ->
-            array2.map { a2 ->
-                if (a2.contains(a1)) set.add(a1)
-            }
+    fun inArray(array1: Array<String>, array2: Array<String>) = array1
+        .filter { substring ->
+            array2.any { substring in it }
         }
-
-        return set.sorted().toTypedArray()
-    }
+        .distinct()
+        .sorted()
+        .toTypedArray()
 
     // 7 kyu Double Sort
     fun dbSort(array: Array<Any>): Array<Any> {
