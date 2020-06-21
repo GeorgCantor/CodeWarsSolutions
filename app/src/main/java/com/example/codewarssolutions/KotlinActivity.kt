@@ -11,11 +11,19 @@ class KotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Toast.makeText(
-            this,
-            whoLikesIt(),
-            Toast.LENGTH_LONG
-        ).show()
+        Toast.makeText(this, detectDuplicates(listOf(1, 2, 3, 4, 5, 9)).toString(), Toast.LENGTH_LONG).show()
+    }
+
+    fun detectDuplicates(list: List<Int>): Boolean {
+        with(list) {
+            for (i in 0 until size) {
+                for (j in 0 until size) {
+                    if (i != j && get(i) == get(j)) return true
+                }
+            }
+        }
+
+        return false
     }
 
     // 7 kyu Printer Errors
