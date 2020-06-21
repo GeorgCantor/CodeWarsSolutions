@@ -11,7 +11,35 @@ class KotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Toast.makeText(this, detectDuplicates(listOf(1, 2, 3, 4, 5, 9)).toString(), Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            this,
+            century(300).toString(),
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    // Century From Year
+    fun century(number: Int): Int {
+        val chars = number.toString().toCharArray()
+
+        return when (chars.size) {
+            2 -> 1
+            3 -> {
+                if (chars[1] == '0' && chars[2] == '0') {
+                    chars[0].toString().toInt()
+                } else {
+                    chars[0].toString().toInt() + 1
+                }
+            }
+            4 -> {
+                if (chars[2] == '0' && chars[3] == '0') {
+                    ("${chars[0]}${chars[1]}").toInt()
+                } else {
+                    ("${chars[0]}${chars[1]}").toInt() + 1
+                }
+            }
+            else -> 0
+        }
     }
 
     fun detectDuplicates(list: List<Int>): Boolean {
