@@ -18,6 +18,32 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    fun getMiddle(word: String): String {
+        if (word.length == 1) return word
+
+        val arr = word.toCharArray()
+        val c = word.length / 2
+        val c2 = (word.length - 1) / 2
+
+        return when (word.length % 2 == 0) {
+            true -> "${arr[c - 1]}${arr[c]}"
+            false -> "${arr[c2]}"
+        }
+    }
+
+    fun grow(arr: IntArray): Int {
+        var result = arr[0]
+        val array = arr.drop(1)
+
+        array.map {
+            result *= it
+        }
+
+        return result
+    }
+
+    fun isDivisible(n: Int, x: Int, y: Int) = n % x == 0 && n % y == 0
+
     // Century From Year
     fun century(number: Int): Int {
         val chars = number.toString().toCharArray()
