@@ -13,10 +13,52 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            century(300).toString(),
+            accum("ZpglnRxqenU"),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 7 kyu Mumbling
+    fun accum(s: String): String {
+        val array = s.toCharArray()
+        val builder = StringBuilder()
+
+        for (i in array.indices) {
+            for (j in 0..i) {
+                if (j == 0) {
+                    builder.append(array[i].toUpperCase())
+                } else {
+                    builder.append(array[i].toLowerCase())
+                }
+            }
+            builder.append("-")
+        }
+        builder.deleteCharAt(builder.length - 1)
+
+        return builder.toString()
+    }
+
+    var counter = 0
+
+    fun persistence(num: Int): Int {
+        if (num < 10) return 0
+
+        counter++
+        val arr = num.toString().toCharArray()
+        var result = arr[0].toString().toInt()
+        val array = arr.drop(1)
+        array.map {
+            result *= it.toString().toInt()
+        }
+
+        if (result > 9) {
+            persistence(result)
+        }
+
+        return counter
+    }
+
+    fun summation(n: Int) = (1..n).sum()
 
     fun getMiddle(word: String): String {
         if (word.length == 1) return word
@@ -582,30 +624,6 @@ class KotlinActivity : AppCompatActivity() {
         }
 
         return "$max $min"
-    }
-
-    fun accum(s: String): String {
-        var counter = -1
-        var charUpperCase = true
-        val map = HashMap<Char, Int>()
-
-        s.map {
-            map.put(it, ++counter)
-        }
-
-        val builder = StringBuilder()
-
-        map.entries.map {
-            for (i in 0..it.value) {
-                builder.append(if (charUpperCase) it.key.toUpperCase() else it.key.toLowerCase())
-                charUpperCase = false
-            }
-            if (counter > it.value) builder.append("-")
-            charUpperCase = true
-        }
-
-        Log.d("sss", builder.toString())
-        return builder.toString()
     }
 
     //6 kyu Stop gninnipS My sdroW!
