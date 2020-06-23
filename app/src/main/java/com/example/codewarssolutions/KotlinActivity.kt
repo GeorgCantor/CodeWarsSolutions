@@ -20,6 +20,10 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    fun maps(x: IntArray) = x.map { it * 2 }.toIntArray()
+
+    fun litres(time: Double) = (time / 2).toInt()
+
     // 6 kyu Delete occurrences of an element if it occurs more than n times
     fun deleteNth(elements: IntArray, maxOcurrences: Int): IntArray {
         val new = mutableListOf<Int>()
