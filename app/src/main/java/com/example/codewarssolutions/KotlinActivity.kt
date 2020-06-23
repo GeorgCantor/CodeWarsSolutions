@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+import kotlin.collections.HashMap
 import kotlin.math.sign
 
 class KotlinActivity : AppCompatActivity() {
@@ -13,9 +15,20 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            findMissingLetter(charArrayOf('a', 'b', 'c', 'd', 'f')).toString(),
+            deleteNth(intArrayOf(1, 1, 3, 3, 7, 2, 2, 2, 2), 3).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 6 kyu Delete occurrences of an element if it occurs more than n times
+    fun deleteNth(elements: IntArray, maxOcurrences: Int): IntArray {
+        val new = mutableListOf<Int>()
+
+        elements.map {
+           if (Collections.frequency(new.toCollection(mutableListOf()), it) < maxOcurrences) new.add(it)
+        }
+
+        return new.toIntArray()
     }
 
     // 6 kyu Find the missing letter
