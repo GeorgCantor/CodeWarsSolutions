@@ -13,10 +13,13 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            accum("ZpglnRxqenU"),
+            findMissingLetter(charArrayOf('a', 'b', 'c', 'd', 'f')).toString(),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 6 kyu Find the missing letter
+    fun findMissingLetter(array: CharArray) = (array[0]..array[array.size - 1]).find { !array.contains(it) }
 
     // 7 kyu Mumbling
     fun accum(s: String): String {
