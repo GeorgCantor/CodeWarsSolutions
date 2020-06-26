@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.sign
+import kotlin.math.sqrt
 
 class KotlinActivity : AppCompatActivity() {
 
@@ -19,6 +20,35 @@ class KotlinActivity : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 7 kyu Predict your age!
+    fun predictAge(vararg age: Int) = (sqrt((age.map { it * it }.sum().toDouble())) / 2).toInt()
+
+    // 7 kyu Clean up after your dog
+    fun crap(
+        x: Array<CharArray>,
+        bags: Int,
+        cap: Int
+    ): String {
+        var crapCounter = 0
+        val capacity = bags * cap
+
+        x.map {
+            if (it.contains('D')) return "Dog!!"
+
+            it.forEach {
+                if (it == '@') crapCounter++
+            }
+        }
+
+        return when (capacity > crapCounter) {
+            true -> "Clean"
+            false -> "Cr@p"
+        }
+    }
+
+    // 7 kyu Holiday III - Fire on the boat
+    fun fireFight(s: String) = s.replace("Fire", "~~")
 
     fun maps(x: IntArray) = x.map { it * 2 }.toIntArray()
 
