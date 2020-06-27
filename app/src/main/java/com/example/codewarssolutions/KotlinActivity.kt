@@ -20,6 +20,17 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    fun twiceAsOld(dadYearsOld: Int, sonYearsOld: Int) = when (val result = dadYearsOld - (sonYearsOld * 2)) {
+        in 0..Int.MAX_VALUE -> result
+        else -> (sonYearsOld * 2) - dadYearsOld
+    }
+
+    // 7 kyu The Office I - Outed
+    fun outed(
+        meet: Map<String, Int>,
+        boss: String
+    ) = if ((meet.values + (meet[boss]!!)).average() < 5.5) "Get Out Now!" else "Nice Work Champ!"
+
     // 6 kyu Multiples of 3 or 5
     fun solution(number: Int): Int {
         var sum = 0
