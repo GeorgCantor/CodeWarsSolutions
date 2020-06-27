@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
-import kotlin.collections.HashMap
+import java.util.Collections.frequency
 import kotlin.math.sign
 import kotlin.math.sqrt
 
@@ -16,10 +15,22 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            deleteNth(intArrayOf(1, 1, 3, 3, 7, 2, 2, 2, 2), 3).toString(),
+            solution(10).toString(),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 6 kyu Multiples of 3 or 5
+    fun solution(number: Int): Int {
+        var sum = 0
+        for (i in 0 until number) {
+            if (i % 3 == 0 || i % 5 == 0) sum += i
+        }
+
+        return sum
+    }
+
+    fun replace(s: String) = s.map { if (it in "aeiouAEIOU") "!" else it }.joinToString("")
 
     // 7 kyu Predict your age!
     fun predictAge(vararg age: Int) = (sqrt((age.map { it * it }.sum().toDouble())) / 2).toInt()
@@ -59,14 +70,15 @@ class KotlinActivity : AppCompatActivity() {
         val new = mutableListOf<Int>()
 
         elements.map {
-           if (Collections.frequency(new.toCollection(mutableListOf()), it) < maxOcurrences) new.add(it)
+            if (frequency(new.toCollection(mutableListOf()), it) < maxOcurrences) new.add(it)
         }
 
         return new.toIntArray()
     }
 
     // 6 kyu Find the missing letter
-    fun findMissingLetter(array: CharArray) = (array[0]..array[array.size - 1]).find { !array.contains(it) }
+    fun findMissingLetter(array: CharArray) =
+        (array[0]..array[array.size - 1]).find { !array.contains(it) }
 
     // 7 kyu Mumbling
     fun accum(s: String): String {
