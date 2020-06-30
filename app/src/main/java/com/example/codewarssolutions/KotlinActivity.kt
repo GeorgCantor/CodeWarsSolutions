@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 import java.util.Collections.frequency
 import kotlin.math.sign
 import kotlin.math.sqrt
@@ -15,9 +16,56 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            subtractSum(10),
+            babyCount("Why the hell are there so many babies?!").toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun checkForFactor(base: Int, factor: Int) = base % factor == 0
+
+    fun babyCount(x: String): Int? {
+        var bCounter = 0
+        var aCounter = 0
+        var yCounter = 0
+
+        var wordCounter = 0
+
+        x.map {
+            when (it) {
+                'b' -> bCounter++
+                'a' -> aCounter++
+                'y' -> yCounter++
+                else -> null
+            }
+        }
+
+        for (i in 0 until (bCounter + aCounter + yCounter) - 1) {
+            if (bCounter > 1 && aCounter > 0 && yCounter > 0) {
+                bCounter -= 2
+                aCounter--
+                yCounter--
+                wordCounter++
+            }
+        }
+
+        return when (wordCounter) {
+            0 -> null
+            else -> wordCounter
+        }
+    }
+
+    // 7 kyu Growing Plant
+    fun growingPlant(upSpeed: Int, downSpeed: Int, desiredHeight: Int): Int {
+        var days = 0
+        var height = 0
+        do {
+            days++
+            height += upSpeed
+            if (height >= desiredHeight) return days
+            height -= downSpeed
+        } while (height < desiredHeight)
+
+        return days
     }
 
     fun subtractSum(n: Int): String {
