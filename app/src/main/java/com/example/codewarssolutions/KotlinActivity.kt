@@ -16,9 +16,23 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            babyCount("Why the hell are there so many babies?!").toString(),
+            nbYear(1000, 2.0, 50, 1200).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 7 kyu Growth of a Population
+    fun nbYear(pp0: Int, percent: Double, aug: Int, p: Int): Int {
+        var inhabitants = pp0
+        var counter = 0
+
+        while (inhabitants < p) {
+            val s = inhabitants + (inhabitants * (percent / 100)) + aug
+            inhabitants = s.toInt()
+            counter++
+        }
+
+        return counter
     }
 
     fun checkForFactor(base: Int, factor: Int) = base % factor == 0
