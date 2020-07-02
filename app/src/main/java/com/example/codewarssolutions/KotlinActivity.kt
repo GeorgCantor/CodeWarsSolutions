@@ -21,6 +21,22 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Number of People in the Bus
+    fun people(busStops: Array<Pair<Int, Int>>) = busStops.sumBy { it.first - it.second }
+
+    // 7 kyu Deodorant Evaporator
+    fun evaporator(content: Double, evap_per_day: Double, threshold: Double): Int {
+        var days = 0
+        var cont = content
+
+        while (cont > ((content / 100) * threshold)) {
+            cont -= ((cont / 100) * evap_per_day)
+            days++
+        }
+
+        return days
+    }
+
     // 7 kyu Growth of a Population
     fun nbYear(pp0: Int, percent: Double, aug: Int, p: Int): Int {
         var inhabitants = pp0
