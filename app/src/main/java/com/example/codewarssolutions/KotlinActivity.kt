@@ -21,6 +21,28 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Maximum Length Difference
+    fun mxdiflg(a1: Array<String>, a2: Array<String>): Int {
+        if (a1.isNullOrEmpty() || a2.isNullOrEmpty()) return -1
+
+        var maxLength1 = 0
+        var minLength1 = Integer.MAX_VALUE
+        var maxLength2 = 0
+        var minLength2 = Integer.MAX_VALUE
+
+        a1.map {
+            if (it.length > maxLength1) maxLength1 = it.length
+            if (it.length < minLength1) minLength1 = it.length
+        }
+
+        a2.map {
+            if (it.length > maxLength2) maxLength2 = it.length
+            if (it.length < minLength2) minLength2 = it.length
+        }
+
+        return kotlin.math.max((maxLength1 - minLength2), (maxLength2 - minLength1))
+    }
+
     // 7 kyu Number of People in the Bus
     fun people(busStops: Array<Pair<Int, Int>>) = busStops.sumBy { it.first - it.second }
 
