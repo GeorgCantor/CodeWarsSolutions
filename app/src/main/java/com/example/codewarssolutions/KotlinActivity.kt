@@ -21,6 +21,26 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu All Inclusive?
+    fun containAllRots(string: String, arr: ArrayList<String>): Boolean {
+        val variants = mutableListOf(string)
+        val builder = StringBuilder()
+        var word = string
+
+        for (i in 1 until string.length) {
+            val ch = word[0]
+            val s = word.substring(1)
+            word = builder.append(s + ch).toString()
+            builder.clear()
+            variants.add(word)
+        }
+
+        return arr.containsAll(variants)
+    }
+
+    // 7 kyu Reverse Letter
+    fun reverseLetter(str: String) = str.reversed().filter { it.isLetter() }
+
     // 7 kyu Maximum Length Difference
     fun mxdiflg(a1: Array<String>, a2: Array<String>): Int {
         if (a1.isNullOrEmpty() || a2.isNullOrEmpty()) return -1
