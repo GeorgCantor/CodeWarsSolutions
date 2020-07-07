@@ -21,6 +21,18 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Maximum Multiple
+    fun maxMultiple(d: Int, b: Int): Int {
+        for (i in b downTo 0) {
+            if (i % d == 0) return i
+        }
+
+        return 0
+    }
+
+    // 7 kyu
+    fun catMouse(s: String) = if (s.length < 5) "Caught!" else "Escaped!"
+
     // 7 kyu Leap Years
     fun isLeapYear(year: Int): Boolean {
         if (year % 4 == 0) return true
