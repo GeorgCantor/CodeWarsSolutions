@@ -21,6 +21,21 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Leap Years
+    fun isLeapYear(year: Int): Boolean {
+        if (year % 4 == 0) return true
+        if (year % 100 == 0) return false
+        if (year % 400 == 0) return true
+
+        return false
+    }
+
+    // 7 kyu First Reverse Try
+    fun firstReverseTry(arr: IntArray) = when (arr.size) {
+        0, 1 -> arr
+        else -> arr.copyOf().apply { this[0] = arr[lastIndex]; this[lastIndex] = arr[0] }
+    }
+
     // 7 kyu All Inclusive?
     fun containAllRots(string: String, arr: ArrayList<String>): Boolean {
         val variants = mutableListOf(string)
