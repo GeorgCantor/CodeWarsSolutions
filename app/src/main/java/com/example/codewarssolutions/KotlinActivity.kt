@@ -16,9 +16,36 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            nbYear(1000, 2.0, 50, 1200).toString(),
+            getXO("zssddd").toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 7 kyu Exes and Ohs
+    fun getXO(str: String): Boolean {
+        val s = str.toLowerCase()
+
+        return s.replace("x", "").length == s.replace("o", "").length
+    }
+
+    // 7 kyu Plus - minus - plus - plus - ... - Count
+    fun catchSignChange(arr: Array<Int>): Int {
+        if (arr.isNullOrEmpty()) return 0
+        var counter = 0
+        var isNegative = arr[0] < 0
+
+        arr.map {
+            if (it < 0 && !isNegative) {
+                counter++
+                isNegative = true
+            }
+            if (it >= 0 && isNegative) {
+                counter++
+                isNegative = false
+            }
+        }
+
+        return counter
     }
 
     // 7 kyu Maximum Multiple

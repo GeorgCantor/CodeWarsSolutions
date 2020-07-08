@@ -36,6 +36,13 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, reverseString("abcdef"), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Exes and Ohs
+    public static boolean getXO(String str) {
+        str = str.toLowerCase();
+
+        return str.replace("o", "").length() == str.replace("x", "").length();
+    }
+
     // 6 kyu Who likes it?
     public static String whoLikesIt(String... names) {
         switch (names.length) {
