@@ -16,9 +16,27 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            getXO("zssddd").toString(),
+            persistence(39).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 6 kyu Persistent Bugger.
+    fun persistence(num: Int): Int {
+        if (num < 10) return 0
+        var counter = 0
+        var number = num
+
+        while (number > 9) {
+            var nextNum = number.toString().toCharArray()[0].toString().toInt()
+            number.toString().toCharArray().drop(1).map {
+                nextNum *= it.toString().toInt()
+            }
+            number = nextNum
+            counter++
+        }
+
+        return counter
     }
 
     // 7 kyu Exes and Ohs
@@ -414,26 +432,6 @@ class KotlinActivity : AppCompatActivity() {
         builder.deleteCharAt(builder.length - 1)
 
         return builder.toString()
-    }
-
-    var counter = 0
-
-    fun persistence(num: Int): Int {
-        if (num < 10) return 0
-
-        counter++
-        val arr = num.toString().toCharArray()
-        var result = arr[0].toString().toInt()
-        val array = arr.drop(1)
-        array.map {
-            result *= it.toString().toInt()
-        }
-
-        if (result > 9) {
-            persistence(result)
-        }
-
-        return counter
     }
 
     fun summation(n: Int) = (1..n).sum()
