@@ -16,9 +16,47 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            persistence(39).toString(),
+            sortDesc(136436852).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun sortDesc(num: Int): Int {
+        val list = mutableListOf<Int>()
+        num.toString().toCharArray().map {
+            list.add(it.toString().toInt())
+        }
+        list.sortDescending()
+
+        return list.joinToString("").toInt()
+    }
+
+    // 7 kyu Square Every Digit
+    fun squareDigits(n: Int): Int {
+        val builder = StringBuilder()
+        n.toString().toCharArray().map {
+            builder.append((it.toString().toInt() * it.toString().toInt()).toString())
+        }
+
+        return builder.toString().toInt()
+    }
+
+    fun toJadenCase(phrase: String) =
+        phrase.split(" ").joinToString(separator = "") { it.capitalize() }
+
+    fun comp(a: IntArray?, b: IntArray?): Boolean {
+        if (a == null || b == null) return false
+        if (a.isEmpty() || b.isEmpty()) return false
+
+        b.map { bInt ->
+            var isFind = false
+            a.map {
+                if (it * it == bInt) isFind = true
+            }
+            if (!isFind) return false
+        }
+
+        return true
     }
 
     // 6 kyu Persistent Bugger.

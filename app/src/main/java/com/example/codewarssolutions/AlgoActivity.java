@@ -36,6 +36,16 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, reverseString("abcdef"), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Square Every Digit
+    public int squareDigits(int n) {
+        StringBuilder builder = new StringBuilder();
+        for (char ch : String.valueOf(n).toCharArray()) {
+            builder.append(Integer.parseInt(String.valueOf(ch)) * Integer.parseInt(String.valueOf(ch)));
+        }
+
+        return Integer.parseInt(builder.toString());
+    }
+
     // 7 kyu Exes and Ohs
     public static boolean getXO(String str) {
         str = str.toLowerCase();
