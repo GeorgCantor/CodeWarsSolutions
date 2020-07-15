@@ -16,10 +16,37 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            sortDesc(136436852).toString(),
+            findEvenIndex(intArrayOf(20, 10, -80, 10, 10, 15, 35)).toString(),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 6 kyu Equal Sides Of An Array
+    fun findEvenIndex(arr: IntArray) =
+        arr.indices.indexOfFirst { arr.take(it).sum() == arr.drop(it + 1).sum() }
+
+    // 6 kyu Sum consecutives
+    fun sumConsecutives(s: List<Int>): List<Int> {
+        val list = mutableListOf<Int>()
+        var sum = 0
+        var lastInt: Int? = null
+        s.map {
+            when (it) {
+                lastInt -> sum += it
+                else -> {
+                    if (lastInt != null) list.add(sum)
+                    sum = it
+                }
+            }
+            lastInt = it
+        }
+        list.add(sum)
+
+        return list
+    }
+
+    fun findNeedle(haystack: Array<Any?>?) =
+        "found the needle at position ${haystack?.indexOfFirst { it == "needle" }}"
 
     fun sortDesc(num: Int): Int {
         val list = mutableListOf<Int>()

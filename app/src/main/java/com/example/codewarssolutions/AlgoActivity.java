@@ -32,8 +32,39 @@ public class AlgoActivity extends AppCompatActivity {
         int[] oddTimeArray = {20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5};
         int[] arr = {1, 2, 3, 4, 6, 7, 8};
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
+        Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, reverseString("abcdef"), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, findNeedle(haystack1), Toast.LENGTH_LONG).show();
+    }
+
+    // 6 kyu Sum consecutives
+    public static List<Integer> sumConsecutives(List<Integer> s) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int sum = 0;
+        int lastInt = -1000000;
+
+        for (int value : s) {
+            if (value == lastInt) {
+                sum += value;
+            } else {
+                if (lastInt != -1000000) {
+                    list.add(sum);
+                }
+                sum = value;
+            }
+            lastInt = value;
+        }
+        list.add(sum);
+
+        return list;
+    }
+
+    public static String boolToWord(boolean b) {
+        return b ? "Yes" : "No";
+    }
+
+    public static String findNeedle(Object[] haystack) {
+        return "found the needle at position " + Arrays.asList(haystack).indexOf("needle");
     }
 
     // 7 kyu Square Every Digit
