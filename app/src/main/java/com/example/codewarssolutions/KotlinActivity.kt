@@ -21,6 +21,25 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 6 kyu Meeting
+    fun meeting2(s: String) = s.toUpperCase().split(';')
+        .map { it.split(':').let { "(${it[1]}, ${it[0]})" } }.sorted().joinToString("")
+
+    // 6 kyu Meeting
+    fun meeting(s: String): String {
+        val list = s.split(";").map {
+            it.replace(':', ' ').toUpperCase()
+        }
+        val pairs = mutableListOf<String>()
+        list.map {
+            val parts = it.split(' ')
+            pairs.add("(${parts[1]}, ${parts[0]})")
+        }
+        pairs.sort()
+
+        return pairs.joinToString("")
+    }
+
     // 6 kyu Equal Sides Of An Array
     fun findEvenIndex(arr: IntArray) =
         arr.indices.indexOfFirst { arr.take(it).sum() == arr.drop(it + 1).sum() }
