@@ -37,6 +37,26 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, findNeedle(haystack1), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu extract file name
+    public static String extractFileName(String name) {
+        return name.substring(name.indexOf('_') + 1, name.lastIndexOf('.'));
+    }
+
+    // 6 kyu extract file name
+    public static String extractFileName2(String dirtyFileName) {
+        StringBuilder builder = new StringBuilder();
+        boolean isSave = false;
+        int dotCounter = 0;
+        for (char ch : dirtyFileName.toCharArray()) {
+            if (ch == '.') dotCounter++;
+            if (dotCounter == 2) isSave = false;
+            if (isSave) builder.append(ch);
+            if (ch == '_') isSave = true;
+        }
+
+        return builder.toString();
+    }
+
     // 6 kyu Sum consecutives
     public static List<Integer> sumConsecutives(List<Integer> s) {
         ArrayList<Integer> list = new ArrayList<>();

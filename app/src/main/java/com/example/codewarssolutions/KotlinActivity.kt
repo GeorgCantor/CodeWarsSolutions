@@ -21,6 +21,24 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 6 kyu extract file name
+    fun extractFileName(name: String) = name.substringAfter('_').substringBeforeLast('.')
+
+    // 6 kyu extract file name
+    fun extractFileName2(dirtyFileName: String): String {
+        val builder = StringBuilder()
+        var isSave = false
+        var dotCounter = 0
+        dirtyFileName.toCharArray().map {
+            if (it == '.') dotCounter++
+            if (dotCounter == 2) isSave = false
+            if (isSave) builder.append(it)
+            if (it == '_') isSave = true
+        }
+
+        return builder.toString()
+    }
+
     // 6 kyu Meeting
     fun meeting2(s: String) = s.toUpperCase().split(';')
         .map { it.split(':').let { "(${it[1]}, ${it[0]})" } }.sorted().joinToString("")
