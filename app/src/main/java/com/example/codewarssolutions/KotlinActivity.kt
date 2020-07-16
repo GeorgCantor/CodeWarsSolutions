@@ -1,7 +1,6 @@
 package com.example.codewarssolutions
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
@@ -16,10 +15,32 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            findEvenIndex(intArrayOf(20, 10, -80, 10, 10, 15, 35)).toString(),
+            maxRot(38458215).toString(),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 7 kyu Rotate for a Max
+    fun maxRot(n: Long): Long {
+        var counter = 0
+        val nList = n.toString().toMutableList()
+        val list = mutableListOf(n)
+        (n.toString().indices - 1).map {
+            val s = nList.removeAt(counter)
+            nList.add(nList.size, s)
+            list.add(nList.joinToString("").toLong())
+            counter++
+        }
+
+        return list.max() ?: 0
+    }
+
+    // 7 kyu Count the Digit
+    fun nbDig(n: Int, d: Int) =
+        (0..n).map { it * it }.sumBy { it.toString().count { it == d.toString()[0] } }
+
+    fun orderWeight(string: String) = string.split(" ").map { it.toInt() }
+        .sortedBy { it.toString().toCharArray().maxBy { it.toString().toInt() } }.joinToString(" ")
 
     // 6 kyu extract file name
     fun extractFileName(name: String) = name.substringAfter('_').substringBeforeLast('.')
@@ -1029,28 +1050,6 @@ class KotlinActivity : AppCompatActivity() {
         }
 
         return builder.toString().toLong()
-    }
-
-    fun orderWeight(string: String): String {
-        val strings = string.split(" ")
-        val map = HashMap<String, Int>()
-
-        strings.map {
-            var sum = 0
-            it.forEach {
-                sum += Character.getNumericValue(it)
-            }
-            map.put(it, sum)
-        }
-
-        val builder = StringBuilder()
-        val sortedMap = map.toList().sortedBy { (_, value) -> value }.toMap()
-        sortedMap.map {
-            builder.append("${it.key} ")
-        }
-
-        Log.d("sss", builder.toString().substring(0, builder.toString().length - 1))
-        return builder.toString().substring(0, builder.toString().length - 1)
     }
 
     fun duplicateCount(text: String): Int {
