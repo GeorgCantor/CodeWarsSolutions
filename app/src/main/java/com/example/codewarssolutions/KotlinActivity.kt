@@ -15,9 +15,123 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            maxRot(38458215).toString(),
+            playPass(" I LOVE YOU!!!", 1),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun playPass(s: String, n: Int): String {
+        val alphabet = mutableListOf("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+        val builder = StringBuilder()
+
+        if (n == 1) {
+            s.toCharArray().map {
+                if (it.isLetter()) {
+                    try {
+                        builder.append(alphabet[alphabet.indexOf(it.toString().toLowerCase()) + 1])
+                    } catch (e: IndexOutOfBoundsException) {
+                        builder.append(alphabet[0])
+                    }
+                } else {
+                    builder.append(it)
+                }
+            }
+        } else {
+            builder.append(s)
+        }
+
+        val rBuilder = StringBuilder()
+        var counter = 0
+
+        builder.map {
+            if (it.isLetter()) {
+                if (counter % 2 == 0) {
+                    rBuilder.append(it.toUpperCase())
+                    counter++
+                } else {
+                    rBuilder.append(it.toLowerCase())
+                    counter++
+                }
+            } else {
+                rBuilder.append(it)
+                counter++
+            }
+        }
+        rBuilder.reverse()
+
+        return rBuilder.toString()
+    }
+
+    fun sumParts(ls: IntArray): IntArray {
+        if (ls.isEmpty()) return intArrayOf(0)
+
+        val list = mutableListOf(ls)
+        var lsList = ls.toMutableList()
+
+        ls.map {
+            if (lsList.size > 1) {
+                lsList = lsList.subList(1, lsList.size)
+                list.add(lsList.toIntArray())
+            }
+        }
+
+        val resultList = mutableListOf<Int>()
+
+        list.map {
+            resultList.add(it.sum())
+        }
+
+        resultList.add(0)
+
+        return resultList.toIntArray()
+    }
+
+    fun calculateYears(years: Int): Array<Int> {
+        var catY = 0
+        var dogY = 0
+
+        for (i in 1..years) {
+            when (i) {
+                1 -> {
+                    catY += 15
+                    dogY += 15
+                }
+                2 -> {
+                    catY += 9
+                    dogY += 9
+                }
+                else -> {
+                    catY += 4
+                    dogY += 5
+                }
+            }
+        }
+
+        return arrayOf(years, catY, dogY)
+    }
+
+    fun tribonacci(signature: DoubleArray, n: Int): DoubleArray {
+        var prev: Double
+        var first = signature[0]
+        var second = signature[1]
+        var third = signature[2]
+        val list = mutableListOf(first, second, third)
+
+        when (signature.size) {
+            0 -> return doubleArrayOf()
+            1 -> return doubleArrayOf(first)
+            2 -> return doubleArrayOf(first, second)
+        }
+
+        while (list.size < n) {
+            prev = third
+            third += first + second
+            first = second
+            second = prev
+            list.add(third)
+        }
+
+        return list.toDoubleArray()
     }
 
     // 7 kyu Rotate for a Max
