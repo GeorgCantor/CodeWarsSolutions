@@ -15,10 +15,29 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            playPass(" I LOVE YOU!!!", 1),
+            countBits(1234).toString(),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    fun countBits(n: Int): Int {
+        var sum = 0
+        n.toUInt().toString(radix = 2).map {
+            sum += it.toString().toInt()
+        }
+
+        return sum
+    }
+
+    fun isIsogram(str: String?): Boolean {
+        str?.map {
+            if (str.toLowerCase().replaceFirst(it, ' ').contains(it)) return false
+        }
+
+        return true
+    }
+
+    fun disemvowel(str: String?) = str?.filter { !listOf('a', 'e', 'i', 'o', 'u').contains(it.toLowerCase()) }
 
     fun playPass(s: String, n: Int): String {
         val alphabet = mutableListOf("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")

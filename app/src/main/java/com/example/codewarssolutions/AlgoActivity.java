@@ -37,6 +37,27 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, findNeedle(haystack1), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu Bit Counting
+    public static int countBits(int n) {
+        return Integer.bitCount(n);
+    }
+
+    // 6 kyu Bit Counting
+    public static int countBits2(int n) {
+        int sum = 0;
+
+        for (char ch : Integer.toBinaryString(n).toCharArray()) {
+            sum += Integer.valueOf(Character.toString(ch));
+        }
+
+        return sum;
+    }
+
+    // 7 kyu Disemvowel Trolls
+    public static String disemvowel(String str) {
+        return str.replaceAll("[aAeEiIoOuU]", "");
+    }
+
     // 6 kyu extract file name
     public static String extractFileName(String name) {
         return name.substring(name.indexOf('_') + 1, name.lastIndexOf('.'));
