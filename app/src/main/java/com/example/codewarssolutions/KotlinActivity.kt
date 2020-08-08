@@ -15,9 +15,35 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            countBits(1234).toString(),
+            createPhoneNumber(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 6 kyu Create Phone Number
+    fun createPhoneNumber(numbers: IntArray) = StringBuilder().apply {
+        numbers.forEach {
+            when (length) {
+                0 -> append("($it")
+                3 -> append("$it) ")
+                8 -> append("$it-")
+                else -> append(it)
+            }
+        }
+    }.toString()
+
+    // 6 kyu Duplicate Encoder
+    fun encode(word: String?): String? {
+        val builder = StringBuilder()
+
+        word?.map {
+            when (word.toLowerCase().replaceFirst(it, ' ').contains(it)) {
+                true -> builder.append(")")
+                false -> builder.append("(")
+            }
+        }
+
+        return builder.toString()
     }
 
     fun countBits(n: Int): Int {

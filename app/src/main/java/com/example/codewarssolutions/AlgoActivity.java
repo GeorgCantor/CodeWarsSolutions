@@ -34,7 +34,31 @@ public class AlgoActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, findNeedle(haystack1), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}), Toast.LENGTH_LONG).show();
+    }
+
+    // 6 kyu Create Phone Number
+    public static String createPhoneNumber(int[] numbers) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int value : numbers) {
+            switch (builder.length()) {
+                case 0:
+                    builder.append("(" + value);
+                    break;
+                case 3:
+                    builder.append(value + ") ");
+                    break;
+                case 8:
+                    builder.append(value + "-");
+                    break;
+                default:
+                    builder.append(value);
+                    break;
+            }
+        }
+
+        return builder.toString();
     }
 
     // 6 kyu Bit Counting
