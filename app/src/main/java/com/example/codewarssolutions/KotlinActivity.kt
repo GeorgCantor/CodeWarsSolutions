@@ -15,9 +15,36 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            createPhoneNumber(intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)),
+            order("4of Fo1r pe6ople g3ood th5e the2"),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // more elegant way)
+    //6 kyu Your order, please
+    fun order(words: String) = words.split(" ").sortedBy { it.find { it.isDigit() } }.joinToString(" ")
+
+    //6 kyu Your order, please
+    fun order2(words: String): String {
+        if (words.isEmpty()) return ""
+
+        val numList = mutableListOf<Int>()
+
+        words.split(" ").map {
+            it.forEach {
+                if (it.isDigit()) numList.add(it.toString().toInt())
+            }
+        }
+
+        val resList = mutableListOf<String>()
+
+        numList.sorted().map { num ->
+            words.split(" ").forEach {
+                if (it.contains(num.toString())) resList.add(it)
+            }
+        }
+
+        return resList.joinToString(" ")
     }
 
     // 6 kyu Create Phone Number

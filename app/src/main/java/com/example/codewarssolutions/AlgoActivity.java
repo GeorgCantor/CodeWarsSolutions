@@ -1,9 +1,11 @@
 package com.example.codewarssolutions;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AlgoActivity extends AppCompatActivity {
 
     @Override
@@ -34,7 +37,38 @@ public class AlgoActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, order("4of Fo1r pe6ople g3ood th5e the2"), Toast.LENGTH_LONG).show();
+    }
+
+    // 6 kyu Your order, please
+    public static String order(String words) {
+        if (words.isEmpty()) {
+            return "";
+        }
+
+        ArrayList<Integer> numList = new ArrayList<>();
+
+        for (String str : words.split(" ")) {
+            for (char ch : str.toCharArray()) {
+                if (Character.isDigit(ch)) {
+                    numList.add(Integer.parseInt(String.valueOf(ch)));
+                }
+            }
+        }
+
+        ArrayList<String> sortedList = new ArrayList<>();
+
+        Collections.sort(numList);
+
+        for (int num : numList) {
+            for (String str : words.split(" ")) {
+                if (str.contains(String.valueOf(num))) {
+                    sortedList.add(str);
+                }
+            }
+        }
+
+        return String.join(" ", sortedList);
     }
 
     // 6 kyu Create Phone Number
