@@ -15,9 +15,34 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            order("4of Fo1r pe6ople g3ood th5e the2"),
+            sortDesc(42145).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun tickets(peopleInLine: IntArray): String {
+        var pocket = 0
+        peopleInLine.map {
+            if ((it - 25) > pocket) {
+                return "NO"
+            } else {
+                pocket += 25
+            }
+        }
+
+        return "YES"
+    }
+
+    fun maskify(str: String) = when (str.length) {
+        0 -> ""
+        in 1..4 -> str
+        else -> {
+            val signs = mutableListOf<Char>()
+            str.dropLast(4).map {
+                signs.add('#')
+            }
+            "${signs.joinToString("")}${str.takeLast(4)}"
+        }
     }
 
     // more elegant way)

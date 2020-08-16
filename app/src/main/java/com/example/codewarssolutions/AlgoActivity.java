@@ -37,7 +37,59 @@ public class AlgoActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, order("4of Fo1r pe6ople g3ood th5e the2"), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
+    }
+
+    // 7 kyu Descending Order
+    public static int sortDesc(final int num) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (char ch : String.valueOf(num).toCharArray()) {
+            list.add(Character.getNumericValue(ch));
+        }
+        Collections.sort(list);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            int numb = list.get(i);
+            sb.append(numb);
+        }
+
+        return Integer.parseInt(sb.toString());
+    }
+
+    // 6 kyu Vasya - Clerk
+    public static String Tickets(int[] peopleInLine) {
+        int pocket = 0;
+
+        for (int value : peopleInLine) {
+            if ((value - 25) > pocket) {
+                return "NO";
+            } else {
+                pocket += 25;
+            }
+        }
+
+        return "YES";
+    }
+
+    // 7 kyu Credit Card Mask
+    public static String maskify(String str) {
+        switch (str.length()) {
+            case 0:
+                return "";
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                return str;
+            default:
+                ArrayList<String> charList = new ArrayList<>();
+                for (char ch : str.substring(0, str.length() - 4).toCharArray()) {
+                    charList.add("#");
+                }
+
+                return String.join("", charList) + str.substring(str.length() - 4);
+        }
     }
 
     // 6 kyu Your order, please
