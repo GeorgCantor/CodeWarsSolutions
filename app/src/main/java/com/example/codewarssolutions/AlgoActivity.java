@@ -40,6 +40,35 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu Sort the odd
+    public static int[] sortArray(int[] array) {
+        ArrayList oddList = new ArrayList<Integer>();
+        for (int it : array) {
+            if (it % 2 != 0) oddList.add(it);
+        }
+        Collections.sort(oddList);
+
+        ArrayList resultList = new ArrayList<Integer>();
+        int counter = 0;
+        for (int it : array) {
+            if (it % 2 == 0) {
+                resultList.add(it);
+            } else {
+                resultList.add(oddList.get(counter));
+                counter++;
+            }
+        }
+
+        int[] ar = new int[resultList.size()];
+        int count = 0;
+        for (Object it : resultList) {
+            ar[count] = (int) it;
+            count++;
+        }
+
+        return ar;
+    }
+
     // 7 kyu Isograms
     public static boolean isIsogram(String str) {
         return str.length() == str.toLowerCase().chars().distinct().count();

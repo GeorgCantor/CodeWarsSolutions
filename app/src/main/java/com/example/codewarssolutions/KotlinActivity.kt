@@ -16,9 +16,30 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            sortDesc(42145).toString(),
+            sortArray(intArrayOf(5, 3, 2, 8, 1, 4)).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 6 kyu Sort the odd
+    fun sortArray(array: IntArray): IntArray {
+        val oddList = mutableListOf<Int>()
+        array.map {
+            if (it % 2 != 0) oddList.add(it)
+        }
+
+        val resultList = mutableListOf<Int>()
+        var counter = 0
+        array.map {
+            if (it % 2 == 0) {
+                resultList.add(it)
+            } else {
+                resultList.add(oddList.sorted()[counter])
+                counter++
+            }
+        }
+
+        return resultList.toIntArray()
     }
 
     // 7 kyu Regex validate PIN code
