@@ -40,6 +40,33 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Isograms
+    public static boolean isIsogram(String str) {
+        return str.length() == str.toLowerCase().chars().distinct().count();
+    }
+
+    public static boolean isIsogram2(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (Character ch : str.toLowerCase().toCharArray()) {
+            if (map.containsKey(ch)) {
+                map.put(ch, map.get(ch) + 1);
+            } else {
+                map.put(ch, 1);
+            }
+        }
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) return false;
+        }
+
+        return true;
+    }
+
+    // 7 kyu Regex validate PIN code
+    public static boolean validatePin(String pin) {
+        return pin.matches("[0-9]+") && (pin.length() == 4 || pin.length() == 6);
+    }
+
     // 7 kyu Descending Order
     public static int sortDesc(final int num) {
         ArrayList<Integer> list = new ArrayList<>();

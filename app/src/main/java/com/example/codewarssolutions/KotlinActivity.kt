@@ -3,6 +3,7 @@ package com.example.codewarssolutions
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.isDigitsOnly
 import java.util.*
 import java.util.Collections.frequency
 import kotlin.math.sign
@@ -19,6 +20,9 @@ class KotlinActivity : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 7 kyu Regex validate PIN code
+    fun validatePin(pin: String) = with(pin) { isDigitsOnly() && (length == 4 || length == 6) }
 
     fun tickets(peopleInLine: IntArray): String {
         var pocket = 0
