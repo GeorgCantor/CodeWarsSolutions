@@ -40,6 +40,31 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu Count the smiley faces!
+    public static int countSmileys(List<String> arr) {
+        int counter = 0;
+        for (String it : arr) {
+            switch (it) {
+                case ":)":
+                case ";)":
+                case ":D":
+                case ";D":
+                case ";-D":
+                case ":-D":
+                case ":~D":
+                case ";~D":
+                case ";~)":
+                case ":~)":
+                case ";-)":
+                case ":-)":
+                    counter++;
+                    break;
+            }
+        }
+
+        return counter;
+    }
+
     // 6 kyu Sort the odd
     public static int[] sortArray(int[] array) {
         ArrayList oddList = new ArrayList<Integer>();

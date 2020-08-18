@@ -21,6 +21,19 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 6 kyu Count the smiley faces!
+    fun countSmileys(arr: List<String>): Int {
+        var counter = 0
+        arr.map {
+            when (it) {
+                ":)", ";)", ":D", ";D", ";-D", ":-D", ":~D", ";~D", ";~)", ":~)", ";-)", ":-)" -> counter++
+                else -> null
+            }
+        }
+
+        return counter
+    }
+
     // 6 kyu Sort the odd
     fun sortArray(array: IntArray): IntArray {
         val oddList = mutableListOf<Int>()
