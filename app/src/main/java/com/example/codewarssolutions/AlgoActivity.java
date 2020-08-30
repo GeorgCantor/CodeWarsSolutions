@@ -40,6 +40,52 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Sorting the Odd way!
+    public static Double[] sortItOut(Double[] array) {
+        ArrayList<Double> odds = new ArrayList<>();
+        ArrayList<Double> evens = new ArrayList<>();
+
+        for (Double d : array) {
+            if (d.intValue() % 2 == 0) {
+                evens.add(d);
+            } else {
+                odds.add(d);
+            }
+        }
+        Collections.sort(odds);
+        Collections.sort(evens);
+        Collections.reverse(evens);
+        odds.addAll(evens);
+
+        int counter = 0;
+
+        Double[] resArr = new Double[odds.size()];
+        for (Double d : odds) {
+            resArr[counter] = d;
+            counter++;
+        }
+
+        return resArr;
+    }
+
+    //count number of trailing zeros in factorial of n
+    public static int zeros(int n) {
+        long sum = 1;
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 != 0) {
+                sum *= i * (i + 1);
+            }
+        }
+
+        String s = String.valueOf(sum);
+        int counter = 0;
+        while (counter < s.length() && s.charAt(s.length() - 1 - counter) == '0') {
+            counter++;
+        }
+
+        return counter;
+    }
+
     // 6 kyu Count the smiley faces!
     public static int countSmileys(List<String> arr) {
         int counter = 0;

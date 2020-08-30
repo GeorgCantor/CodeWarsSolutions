@@ -16,9 +16,34 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            sortArray(intArrayOf(5, 3, 2, 8, 1, 4)).toString(),
+            sortItOut(arrayOf(19.0, 65.0, 88.0, 112.0, 60.0, 14.0, 33.0, 49.0, 88.0)).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun sortItOut(array: Array<Double>): Array<Double> {
+        val evens = mutableListOf<Double>()
+        val odds = mutableListOf<Double>()
+
+        array.map {
+            if (it.toInt() % 2 == 0) {
+                evens.add(it)
+            } else {
+                odds.add(it)
+            }
+        }
+
+        return odds.sorted().toTypedArray() + evens.sortedDescending().toTypedArray()
+    }
+
+    //count number of trailing zeros in factorial of n
+    fun zeros(n: Int): Int {
+        var sum = 1
+        for (i in 1..n step 2) {
+            sum *= i * (i + 1)
+        }
+
+        return sum.toString().takeLastWhile { it == '0' }.length
     }
 
     // 6 kyu Count the smiley faces!
@@ -156,7 +181,34 @@ class KotlinActivity : AppCompatActivity() {
     fun disemvowel(str: String?) = str?.filter { !listOf('a', 'e', 'i', 'o', 'u').contains(it.toLowerCase()) }
 
     fun playPass(s: String, n: Int): String {
-        val alphabet = mutableListOf("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+        val alphabet = mutableListOf(
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+        )
         val builder = StringBuilder()
 
         if (n == 1) {
