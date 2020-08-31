@@ -16,10 +16,31 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            sortItOut(arrayOf(19.0, 65.0, 88.0, 112.0, 60.0, 14.0, 33.0, 49.0, 88.0)).toString(),
+            solve("your code rocks"),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    fun solve(s: String): String {
+        val reversed = s.reversed().replace(" ","")
+        val builder = StringBuilder()
+        var counter = 0
+
+        s.map {
+            when (it) {
+                ' ' -> builder.append(it)
+                else -> {
+                    builder.append(reversed[counter])
+                    counter++
+                }
+            }
+        }
+
+        return builder.toString()
+    }
+
+    fun alternateCase(string: String) =
+        string.map { if (it.isLowerCase()) it.toUpperCase() else it.toLowerCase() }.joinToString("")
 
     fun sortItOut(array: Array<Double>): Array<Double> {
         val evens = mutableListOf<Double>()
@@ -110,7 +131,8 @@ class KotlinActivity : AppCompatActivity() {
 
     // more elegant way)
     //6 kyu Your order, please
-    fun order(words: String) = words.split(" ").sortedBy { it.find { it.isDigit() } }.joinToString(" ")
+    fun order(words: String) =
+        words.split(" ").sortedBy { it.find { it.isDigit() } }.joinToString(" ")
 
     //6 kyu Your order, please
     fun order2(words: String): String {
@@ -178,7 +200,8 @@ class KotlinActivity : AppCompatActivity() {
         return true
     }
 
-    fun disemvowel(str: String?) = str?.filter { !listOf('a', 'e', 'i', 'o', 'u').contains(it.toLowerCase()) }
+    fun disemvowel(str: String?) =
+        str?.filter { !listOf('a', 'e', 'i', 'o', 'u').contains(it.toLowerCase()) }
 
     fun playPass(s: String, n: Int): String {
         val alphabet = mutableListOf(

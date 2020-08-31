@@ -40,6 +40,40 @@ public class AlgoActivity extends AppCompatActivity {
         Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Simple string reversal
+    public static String solve(String s) {
+        String reversed = new StringBuilder(s).reverse().toString().replace(" ","");
+        int counter = 0;
+
+        StringBuilder builder = new StringBuilder();
+
+        for (char ch : s.toCharArray()) {
+            if (ch == ' ') {
+                builder.append(ch);
+            } else {
+                builder.append(reversed.toCharArray()[counter]);
+                counter++;
+            }
+        }
+
+        return builder.toString();
+    }
+
+    // 7 kyu Alternate case
+    static String alternateCase(final String string) {
+        StringBuilder builder = new StringBuilder();
+
+        for (char ch : string.toCharArray()) {
+            if (Character.isLowerCase(ch)) {
+                builder.append(Character.toUpperCase(ch));
+            } else {
+                builder.append(Character.toLowerCase(ch));
+            }
+        }
+
+        return builder.toString();
+    }
+
     // 7 kyu Sorting the Odd way!
     public static Double[] sortItOut(Double[] array) {
         ArrayList<Double> odds = new ArrayList<>();
