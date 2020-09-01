@@ -16,13 +16,55 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            solve("your code rocks"),
+            reverseWords("The quick brown fox jumps over the lazy dog."),
             Toast.LENGTH_LONG
         ).show()
     }
 
+    fun reverseWords(original: String): String {
+        val list = mutableListOf<String>()
+        original.split(" ").map {
+            if (it.length > 1) list.add(it.reversed()) else list.add(it)
+        }
+
+        return list.joinToString(" ")
+    }
+
+    fun sum(numbers: IntArray): Int? {
+        var removed = numbers.toMutableList()
+        removed[removed.indexOf(removed.max() ?: 0)] = 0
+        removed.removeIf { it == 0 }
+        removed[removed.indexOf(removed.min() ?: 0)] = 0
+
+        return removed.sum()
+    }
+
+    fun getOrder(input: String): String {
+        val menuList = listOf(
+            "Burger",
+            "Fries",
+            "Chicken",
+            "Pizza",
+            "Sandwich",
+            "Onionrings",
+            "Milkshake",
+            "Coke"
+        )
+        val orders = mutableListOf<String>()
+        var tempInput = input
+
+        menuList.map {
+            while (tempInput.contains(it.toLowerCase())) {
+                orders.add(it)
+                tempInput = tempInput.replaceFirst(it.toLowerCase(), "")
+            }
+        }
+
+        return orders.joinToString(" ")
+    }
+
     fun solve(s: String): String {
-        val reversed = s.reversed().replace(" ","")
+        val reversed = s.reversed().replace(" ", "")
         val builder = StringBuilder()
         var counter = 0
 
@@ -1130,7 +1172,7 @@ class KotlinActivity : AppCompatActivity() {
     }
 
     // Reversed Words
-    fun reverseWords(str: String): String {
+    fun reverseWords2(str: String): String {
         val words = str.split(" ")
 
         return words.reversed().toString().replace(",", "").replace("[", "").replace("]", "")

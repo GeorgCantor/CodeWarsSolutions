@@ -37,12 +37,72 @@ public class AlgoActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, String.valueOf(sortDesc(1234567)), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Arrays.toString(monkeyCount(10)), Toast.LENGTH_LONG).show();
+    }
+
+    // 7 kyu Reverse words
+    public static String reverseWords(final String original) {
+        if (original.trim().equals("")) {
+            StringBuilder builder = new StringBuilder();
+            int counter = 0;
+            while (counter < original.length()) {
+                builder.append(original.toCharArray()[counter]);
+                counter++;
+            }
+            return builder.toString();
+        }
+
+        ArrayList<String> list = new ArrayList<>();
+        for (String s : original.split(" ")) {
+            if (s.length() > 1) {
+                list.add(new StringBuilder(s).reverse().toString());
+            } else {
+                list.add(s);
+            }
+        }
+
+        return String.join(" ", list);
+    }
+
+    public static int[] monkeyCount(final int n) {
+        int[] arr = new int[n];
+        int counter = 0;
+        while (counter < n) {
+            arr[counter] = counter + 1;
+            counter++;
+        }
+
+        return arr;
+    }
+
+    public static String getOrder(String input) {
+        ArrayList<String> menuList = new ArrayList<>();
+        menuList.add("Burger");
+        menuList.add("Fries");
+        menuList.add("Chicken");
+        menuList.add("Pizza");
+        menuList.add("Sandwich");
+        menuList.add("Onionrings");
+        menuList.add("Milkshake");
+        menuList.add("Coke");
+
+        ArrayList<String> orders = new ArrayList<>();
+
+        String tempInput = input;
+
+        for (String str : menuList) {
+            while (tempInput.contains(str.toLowerCase())) {
+                orders.add(str);
+                tempInput = tempInput.replaceFirst(str.toLowerCase(), "");
+            }
+        }
+
+        return String.join(" ", orders);
     }
 
     // 7 kyu Simple string reversal
     public static String solve(String s) {
-        String reversed = new StringBuilder(s).reverse().toString().replace(" ","");
+        String reversed = new StringBuilder(s).reverse().toString().replace(" ", "");
         int counter = 0;
 
         StringBuilder builder = new StringBuilder();
@@ -906,7 +966,7 @@ public class AlgoActivity extends AppCompatActivity {
             }
         }
 
-        return (ArrayList<Integer>) new ArrayList(map.keySet());
+        return new ArrayList(map.keySet());
     }
 
     private int getLongestOnes(int[] array) {
@@ -1357,7 +1417,7 @@ public class AlgoActivity extends AppCompatActivity {
     }
 
     private ArrayList<Integer> getSorted(int[] array) {
-        ArrayList sortedArray = new ArrayList<Integer>();
+        ArrayList<Integer> sortedArray = new ArrayList<Integer>();
 
         for (int i = 0; i < array.length - 1; i++) {
             sortedArray.add(findBiggest(array));
