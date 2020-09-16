@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.Stack;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class AlgoActivity extends AppCompatActivity {
+public class JavaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,51 @@ public class AlgoActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, Arrays.toString(monkeyCount(10)), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+    }
+
+    public static String howMuchILoveYou(int nb_petals) {
+        int result = nb_petals;
+        while (result > 6) {
+            result -= 6;
+        }
+
+        switch (result){
+            case 1:return "I love you";
+            case 2:return "a little";
+            case 3:return "a lot";
+            case 4:return "passionately";
+            case 5:return "madly";
+            case 6:return "not at all";
+            default:return "";
+        }
+    }
+
+    public static boolean betterThanAverage(int[] classPoints, int yourPoints) {
+        int sum = 0;
+        for (int val : classPoints) {
+            sum += val;
+        }
+
+        return yourPoints > (sum / classPoints.length);
+    }
+
+    public static double find_average(int[] array) {
+        double sum = 0.0;
+        for (int val : array) {
+            sum += (double) val;
+        }
+
+        return sum / (double) array.length;
+    }
+
+    public static String countingSheep(int num) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 1; i <= num; i++) {
+            builder.append(i).append(" sheep...");
+        }
+
+        return builder.toString();
     }
 
     // 7 kyu Reverse words
