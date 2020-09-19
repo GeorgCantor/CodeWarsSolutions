@@ -40,20 +40,70 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, "", Toast.LENGTH_LONG).show();
     }
 
+    //6 kyu Dashatize it
+    public static String dashatize(int num) {
+        boolean first = true;
+        StringBuilder builder = new StringBuilder();
+        boolean isLastOdd = false;
+        if (Character.isDigit(String.valueOf(num).toCharArray()[0])) {
+            isLastOdd = Integer.parseInt(String.valueOf(String.valueOf(num).toCharArray()[0])) % 2 != 0;
+        }
+
+        for (char ch : String.valueOf(num).toCharArray()) {
+            if (Character.isDigit(ch)) {
+                if (isLastOdd) {
+                    if (Integer.parseInt(String.valueOf(ch)) % 2 == 0) {
+                        builder.append(ch);
+                        isLastOdd = false;
+                    } else {
+                        builder.append(ch);
+                        builder.append("-");
+                        isLastOdd = true;
+                    }
+                } else {
+                    if (Integer.parseInt(String.valueOf(ch)) % 2 == 0) {
+                        builder.append(ch);
+                        isLastOdd = false;
+                    } else {
+                        if (!first) {
+                            builder.append("-");
+                        }
+                        builder.append(ch);
+                        builder.append("-");
+                        isLastOdd = true;
+                    }
+                }
+                first = false;
+            }
+        }
+        if (builder.charAt(builder.length() - 1) == '-') {
+            builder.deleteCharAt(builder.length() - 1);
+        }
+
+        return builder.toString();
+    }
+
     public static String howMuchILoveYou(int nb_petals) {
         int result = nb_petals;
         while (result > 6) {
             result -= 6;
         }
 
-        switch (result){
-            case 1:return "I love you";
-            case 2:return "a little";
-            case 3:return "a lot";
-            case 4:return "passionately";
-            case 5:return "madly";
-            case 6:return "not at all";
-            default:return "";
+        switch (result) {
+            case 1:
+                return "I love you";
+            case 2:
+                return "a little";
+            case 3:
+                return "a lot";
+            case 4:
+                return "passionately";
+            case 5:
+                return "madly";
+            case 6:
+                return "not at all";
+            default:
+                return "";
         }
     }
 
