@@ -37,7 +37,54 @@ public class JavaActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, solve("lu1j8qbbb85"), Toast.LENGTH_LONG).show();
+    }
+
+    // 7 kyu Numbers in strings
+    public static int solve2(String s) {
+        if (s.isEmpty()) return 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        StringBuilder builder = new StringBuilder();
+        for (char ch : s.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                builder.append(ch);
+            } else {
+                if (builder.length() > 0) {
+                    list.add(Integer.parseInt(builder.toString()));
+                    builder.setLength(0);
+                }
+            }
+        }
+        if (builder.length() > 0) {
+            list.add(Integer.parseInt(builder.toString()));
+        }
+        Collections.sort(list);
+
+        return list.get(list.size() - 1);
+    }
+
+    // 6 kyu String array duplicates
+    public static String[] dup(String[] arr) {
+        String[] resArr = new String[arr.length];
+        StringBuilder builder = new StringBuilder();
+        int counter = 0;
+
+        for (String word : arr) {
+            for (char ch : word.toCharArray()) {
+                if (builder.length() > 0) {
+                    if (ch != builder.charAt(builder.length() - 1)) {
+                        builder.append(ch);
+                    }
+                } else {
+                    builder.append(ch);
+                }
+            }
+            resArr[counter] = builder.toString();
+            builder.setLength(0);
+            counter++;
+        }
+
+        return resArr;
     }
 
     //6 kyu Dashatize it
