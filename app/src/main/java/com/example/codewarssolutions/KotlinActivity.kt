@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.isDigitsOnly
 import java.util.*
 import java.util.Collections.frequency
+import java.util.Collections.max
 import kotlin.math.sign
 import kotlin.math.sqrt
 
@@ -20,6 +21,10 @@ class KotlinActivity : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
     }
+
+    fun expressionsMatter(a: Int, b: Int, c: Int) =
+        max(listOf(a * b * c, a * (b + c), a + b * c, (a + b) * c, a + b + c))
+
 
     fun reverseWords(original: String): String {
         val list = mutableListOf<String>()

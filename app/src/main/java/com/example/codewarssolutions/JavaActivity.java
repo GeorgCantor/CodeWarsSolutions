@@ -40,6 +40,29 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, solve("lu1j8qbbb85"), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Hungarian Vowel Harmony
+    public static String dative(String word) {
+        String front = "eéiíöőüű";
+        String back = "aáoóuú";
+        boolean isFront = false;
+        boolean isBack = false;
+        for (char ch : word.toCharArray()) {
+            if (front.contains(String.valueOf(ch))) {
+                isFront = true;
+                isBack = false;
+            }
+            if (back.contains(String.valueOf(ch))) {
+                isBack = true;
+                isFront = false;
+            }
+        }
+
+        if (isFront) return word + "nek";
+        if (isBack) return word + "nak";
+
+        return "";
+    }
+
     // 7 kyu Numbers in strings
     public static int solve2(String s) {
         if (s.isEmpty()) return 0;
