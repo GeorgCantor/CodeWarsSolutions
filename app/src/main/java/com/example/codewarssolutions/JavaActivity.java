@@ -40,6 +40,21 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, solve("lu1j8qbbb85"), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Largest 5 digit number in a series
+    public static int solve3(final String digits) {
+        int max = 0;
+        char[] chars = digits.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            try {
+                String sum = String.valueOf(chars[i]) + chars[i + 1] + chars[i + 2] + chars[i + 3] + chars[i + 4];
+                if (Integer.parseInt(sum) > max) max = Integer.parseInt(sum);
+            } catch (ArrayIndexOutOfBoundsException e) {
+            }
+        }
+
+        return max;
+    }
+
     // 7 kyu Hungarian Vowel Harmony
     public static String dative(String word) {
         String front = "eéiíöőüű";
