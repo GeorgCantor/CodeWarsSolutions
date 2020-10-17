@@ -26,18 +26,38 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        int[] array = {1, 2, 3, 4, 5, 6, 7};
-        int[] array2 = {2, 1, 7, 4, 6, 5, 3};
-        int[] arrayOddTimes = {2, 5, 5, 6, 6, 7, 2, 2, 7};
-        int[] arrayZerosOnes = {1, 0, 0, 1, 1, 0, 1, 0, 1};
-        int[] arrayFrequency = {1, 0, 0, 2, 1, 1, 0, 1, 0, 1, 2};
-        int[] arrayOnesZeros = {1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1};
-        int[] oddTimeArray = {20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5};
-        int[] arr = {1, 2, 3, 4, 6, 7, 8};
-        String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
-        Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
+        Toast.makeText(this, formatWords(new String[]{""}), Toast.LENGTH_LONG).show();
+    }
 
-        Toast.makeText(this, Boolean.toString(solution("abc", "abcd")), Toast.LENGTH_LONG).show();
+    //6 kyu Format words into a sentence
+    public static String formatWords(String[] words) {
+        if (words == null) return "";
+        ArrayList<String> list = new ArrayList<>();
+        for (String s : words) {
+            if (!s.equals("")) list.add(s);
+        }
+        if (list.size() == 1) return list.get(0);
+        if (words.length == 0) {
+            return "";
+        } else {
+            String[] arr = new String[list.size()];
+            arr = list.toArray(arr);
+
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < arr.length; i++) {
+                if (i != arr.length - 1) {
+                    builder.append(arr[i]).append(", ");
+                } else {
+                    int index = builder.lastIndexOf(",");
+                    if (index != -1) {
+                        builder.replace(index, index + 1, "");
+                    }
+                    builder.append("and ").append(arr[i]);
+                }
+            }
+
+            return builder.toString();
+        }
     }
 
     // 7 kyu Sort the Gift Code
