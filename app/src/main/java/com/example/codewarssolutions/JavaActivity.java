@@ -37,7 +37,20 @@ public class JavaActivity extends AppCompatActivity {
         String[] words = {"dog", "dark", "random", "cat", "door", "dodge"};
         Object[] haystack1 = {"3", "123124234", null, "needle", "world", "hay", 2, "3", true, false};
 
-        Toast.makeText(this, solve("lu1j8qbbb85"), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Boolean.toString(solution("abc", "abcd")), Toast.LENGTH_LONG).show();
+    }
+
+    // 7 kyu Sort the Gift Code
+    public String sortGiftCode(String code) {
+        char[] chars = code.toCharArray();
+        java.util.Arrays.sort(chars);
+
+        return new String(chars);
+    }
+
+    // 7 kyu String ends with?
+    public static boolean solution(String str, String ending) {
+        return str.endsWith(ending);
     }
 
     // 7 kyu Largest 5 digit number in a series
