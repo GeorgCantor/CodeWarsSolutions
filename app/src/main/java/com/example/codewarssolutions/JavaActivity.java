@@ -26,7 +26,50 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, formatWords(new String[]{""}), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Arrays.toString(parse("iiisdoso")), Toast.LENGTH_LONG).show();
+    }
+
+    // 6 kyu Split Strings
+    public static String[] solution(String s) {
+        StringBuilder builder = new StringBuilder();
+        ArrayList<String> list = new ArrayList<>();
+        for (char ch : s.toCharArray()) {
+            builder.append(ch);
+            if (builder.length() == 2) {
+                list.add(builder.toString());
+                builder.setLength(0);
+            }
+        }
+        if (builder.length() == 1) {
+            builder.append('_');
+            list.add(builder.toString());
+        }
+
+        return list.toArray(new String[0]);
+    }
+
+    // 6 kyu Make the Deadfish swim
+    public static int[] parse(String data) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int sum = 0;
+        for (char ch : data.toCharArray()) {
+            switch (ch) {
+                case 'i':
+                    sum++;
+                    break;
+                case 'd':
+                    sum--;
+                    break;
+                case 's':
+                    sum *= sum;
+                    break;
+                case 'o':
+                    list.add(sum);
+                    break;
+            }
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
     //6 kyu Format words into a sentence
