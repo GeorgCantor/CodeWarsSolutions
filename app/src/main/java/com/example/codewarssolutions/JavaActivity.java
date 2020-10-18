@@ -29,6 +29,40 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Arrays.toString(parse("iiisdoso")), Toast.LENGTH_LONG).show();
     }
 
+    //6 kyu Valid Phone Number
+    public static boolean validPhoneNumber(String phoneNumber) {
+        char[] arr = phoneNumber.toCharArray();
+        if (phoneNumber.length() != 14) return false;
+        if (arr[0] != '(') return false;
+        if (!Character.isDigit(arr[1])) return false;
+        if (!Character.isDigit(arr[2])) return false;
+        if (!Character.isDigit(arr[3])) return false;
+        if (!Character.isDigit(arr[6])) return false;
+        if (!Character.isDigit(arr[7])) return false;
+        if (!Character.isDigit(arr[8])) return false;
+        if (!Character.isDigit(arr[10])) return false;
+        if (!Character.isDigit(arr[11])) return false;
+        if (!Character.isDigit(arr[12])) return false;
+        if (!Character.isDigit(arr[13])) return false;
+        if (arr[4] != ')') return false;
+        if (arr[5] != ' ') return false;
+        return arr[9] == '-';
+    }
+
+    // 6 kyu Break camelCase
+    public static String camelCase(String input) {
+        StringBuilder builder = new StringBuilder();
+        for (char ch : input.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                builder.append(' ').append(ch);
+            } else {
+                builder.append(ch);
+            }
+        }
+
+        return builder.toString();
+    }
+
     // 6 kyu Split Strings
     public static String[] solution(String s) {
         StringBuilder builder = new StringBuilder();
