@@ -17,10 +17,14 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            reverseWords("The quick brown fox jumps over the lazy dog."),
+            solve("CODe"),
             Toast.LENGTH_LONG
         ).show()
     }
+
+    // 7 kyu Fix string case
+    fun solve(s: String) =
+        if (s.filter { it.isUpperCase() }.length > s.filter { it.isLowerCase() }.length) s.toUpperCase() else s.toLowerCase()
 
     fun expressionsMatter(a: Int, b: Int, c: Int) =
         max(listOf(a * b * c, a * (b + c), a + b * c, (a + b) * c, a + b + c))
@@ -68,7 +72,7 @@ class KotlinActivity : AppCompatActivity() {
         return orders.joinToString(" ")
     }
 
-    fun solve(s: String): String {
+    fun solve1(s: String): String {
         val reversed = s.reversed().replace(" ", "")
         val builder = StringBuilder()
         var counter = 0

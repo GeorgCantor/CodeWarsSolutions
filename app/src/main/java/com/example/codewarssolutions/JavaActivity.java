@@ -29,6 +29,22 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Arrays.toString(parse("iiisdoso")), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Fix string case
+    public static String solve(final String str) {
+        return str.chars().filter(Character::isUpperCase).count() > str.chars().filter(Character::isLowerCase).count()
+                ? str.toUpperCase() : str.toLowerCase();
+    }
+
+    // 7 kyu Ones and Zeros
+    public static int ConvertBinaryArrayToInt(List<Integer> binary) {
+        StringBuilder builder = new StringBuilder();
+        for (int i : binary) {
+            builder.append(i);
+        }
+
+        return Integer.parseInt(builder.toString(), 2);
+    }
+
     //6 kyu Valid Phone Number
     public static boolean validPhoneNumber(String phoneNumber) {
         char[] arr = phoneNumber.toCharArray();
@@ -390,7 +406,7 @@ public class JavaActivity extends AppCompatActivity {
     }
 
     // 7 kyu Simple string reversal
-    public static String solve(String s) {
+    public static String solve4(String s) {
         String reversed = new StringBuilder(s).reverse().toString().replace(" ", "");
         int counter = 0;
 
