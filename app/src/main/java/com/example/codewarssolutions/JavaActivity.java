@@ -29,6 +29,30 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Arrays.toString(parse("iiisdoso")), Toast.LENGTH_LONG).show();
     }
 
+    public static String rps(String p1, String p2) {
+        if (p1.equals("rock") && p2.equals("scissors")) return "Player 1 won!";
+        if (p1.equals("scissors") && p2.equals("rock")) return "Player 2 won!";
+        if (p1.length() > p2.length()) {
+            return "Player 1 won!";
+        } else if (p2.length() > p1.length()) {
+            return "Player 2 won!";
+        }
+        return "Draw!";
+    }
+
+    public static String tripleTrouble(String one, String two, String three) {
+        StringBuilder builder = new StringBuilder();
+        int counter = 0;
+        while (builder.length() != one.length() + two.length() + three.length()) {
+            builder.append(one.toCharArray()[counter]);
+            builder.append(two.toCharArray()[counter]);
+            builder.append(three.toCharArray()[counter]);
+            counter++;
+        }
+
+        return builder.toString();
+    }
+
     // 7 kyu Fix string case
     public static String solve(final String str) {
         return str.chars().filter(Character::isUpperCase).count() > str.chars().filter(Character::isLowerCase).count()
