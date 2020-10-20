@@ -26,7 +26,47 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, Arrays.toString(parse("iiisdoso")), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Boolean.toString(isAnagram("foefet", "toffee")), Toast.LENGTH_LONG).show();
+    }
+
+    // 7 kyu Remove Duplicates
+    public static int[] unique2(int[] integers) {
+        return Arrays.stream(integers).distinct().toArray();
+    }
+
+    // 7 kyu Remove Duplicates
+    public static int[] unique(int[] integers) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i : integers) {
+            if (!list.contains(i)) list.add(i);
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    // 7 kyu Odd or Even?
+    public static String oddOrEven(int[] array) {
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+
+        return sum % 2 == 0 ? "even" : "odd";
+    }
+
+    // 7 kyu Anagram Detection
+    public static boolean isAnagram(String test, String original) {
+        if (test.length() != original.length()) return false;
+        ArrayList<Character> list = new ArrayList<>();
+        for (char ch : test.toCharArray()) {
+            list.add(Character.toLowerCase(ch));
+        }
+        for (char ch : original.toCharArray()) {
+            if (list.contains(Character.toLowerCase(ch)))
+                list.remove(list.indexOf(Character.toLowerCase(ch)));
+        }
+
+        return list.isEmpty();
     }
 
     public static String rps(String p1, String p2) {
