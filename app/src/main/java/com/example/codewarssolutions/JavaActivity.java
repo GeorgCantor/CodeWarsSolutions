@@ -29,6 +29,56 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Boolean.toString(isAnagram("foefet", "toffee")), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu Simple card game
+    public String winner(String[] deckSteve, String[] deckJosh) {
+        ArrayList<Integer> steveList = new ArrayList<>();
+        ArrayList<Integer> joshList = new ArrayList<>();
+        for (String s : deckSteve) {
+            switch (s) {
+                case "T": steveList.add(10); break;
+                case "J": steveList.add(11); break;
+                case "Q": steveList.add(12); break;
+                case "K": steveList.add(13); break;
+                case "A": steveList.add(14); break;
+                default: steveList.add(Integer.parseInt(s)); break;
+            }
+        }
+        for (String s : deckJosh) {
+            switch (s) {
+                case "T": joshList.add(10); break;
+                case "J": joshList.add(11); break;
+                case "Q": joshList.add(12); break;
+                case "K": joshList.add(13); break;
+                case "A": joshList.add(14); break;
+                default: joshList.add(Integer.parseInt(s)); break;
+            }
+        }
+        int steveScore = 0;
+        int joshScore = 0;
+        for (int i = 0; i < steveList.size(); i++) {
+            if (steveList.get(i) > joshList.get(i)) steveScore++;
+            if (joshList.get(i) > steveList.get(i)) joshScore++;
+        }
+        if (steveScore > joshScore) return "Steve wins " + steveScore + " to " + joshScore;
+        if (joshScore > steveScore) return "Josh wins " + joshScore + " to " + steveScore;
+
+        return "Tie";
+    }
+
+    // 6 kyu Sequences and Series
+    public static long getScore(long n) {
+        long counter = 0;
+        long sum = 50;
+        long result = 0;
+        while (counter != n) {
+            result += sum;
+            sum += 50;
+            counter++;
+        }
+
+        return result;
+    }
+
     // 7 kyu Remove Duplicates
     public static int[] unique2(int[] integers) {
         return Arrays.stream(integers).distinct().toArray();
