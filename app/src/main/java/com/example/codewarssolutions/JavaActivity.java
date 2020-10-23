@@ -29,28 +29,80 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Boolean.toString(isAnagram("foefet", "toffee")), Toast.LENGTH_LONG).show();
     }
 
+    // 5 kyu Simple Pig Latin
+    public static String pigIt(String str) {
+        String[] arr = str.split(" ");
+        StringBuilder builder = new StringBuilder();
+        ArrayList<String> list = new ArrayList<>();
+        char first = 0;
+        for (String s : arr) {
+            if (s.length() == 1 && !Character.isDigit(s.toCharArray()[0]) && !Character.isLetter(s.toCharArray()[0])) {
+                list.add(s);
+            } else {
+                for (char ch : s.toCharArray()) {
+                    if (first == 0) {
+                        first = ch;
+                    } else {
+                        builder.append(ch);
+                    }
+                }
+                builder.append(first);
+                builder.append("ay");
+                first = 0;
+                list.add(builder.toString());
+                builder.setLength(0);
+            }
+        }
+
+        return String.join(" ", list);
+    }
+
     // 6 kyu Simple card game
     public String winner(String[] deckSteve, String[] deckJosh) {
         ArrayList<Integer> steveList = new ArrayList<>();
         ArrayList<Integer> joshList = new ArrayList<>();
         for (String s : deckSteve) {
             switch (s) {
-                case "T": steveList.add(10); break;
-                case "J": steveList.add(11); break;
-                case "Q": steveList.add(12); break;
-                case "K": steveList.add(13); break;
-                case "A": steveList.add(14); break;
-                default: steveList.add(Integer.parseInt(s)); break;
+                case "T":
+                    steveList.add(10);
+                    break;
+                case "J":
+                    steveList.add(11);
+                    break;
+                case "Q":
+                    steveList.add(12);
+                    break;
+                case "K":
+                    steveList.add(13);
+                    break;
+                case "A":
+                    steveList.add(14);
+                    break;
+                default:
+                    steveList.add(Integer.parseInt(s));
+                    break;
             }
         }
         for (String s : deckJosh) {
             switch (s) {
-                case "T": joshList.add(10); break;
-                case "J": joshList.add(11); break;
-                case "Q": joshList.add(12); break;
-                case "K": joshList.add(13); break;
-                case "A": joshList.add(14); break;
-                default: joshList.add(Integer.parseInt(s)); break;
+                case "T":
+                    joshList.add(10);
+                    break;
+                case "J":
+                    joshList.add(11);
+                    break;
+                case "Q":
+                    joshList.add(12);
+                    break;
+                case "K":
+                    joshList.add(13);
+                    break;
+                case "A":
+                    joshList.add(14);
+                    break;
+                default:
+                    joshList.add(Integer.parseInt(s));
+                    break;
             }
         }
         int steveScore = 0;

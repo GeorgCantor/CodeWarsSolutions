@@ -10,6 +10,7 @@ import java.util.Collections.max
 import kotlin.math.sign
 import kotlin.math.sqrt
 
+
 class KotlinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,9 +18,66 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            solve("CODe"),
+            Interval(intArrayOf(1, 2, 3, 4, 5), "[2,5)").toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    fun Interval(arr: IntArray, str: String): IntArray {
+        val list = mutableListOf<Int>()
+        val min = str.toCharArray()[1].toString().toInt()
+        val max = str.toCharArray()[3].toString().toInt()
+        arr.map {
+            if (it in min..max) list.add(it)
+        }
+        if (str.toCharArray()[0] == '(') list.removeAt(0)
+        if (str.toCharArray()[4] == ')') list.removeAt(list.size - 1)
+
+        return list.toIntArray()
+    }
+
+    // 7 kyu Word values
+    fun nameValue(arr: Array<String>): IntArray {
+        val map: MutableMap<Char, Int> = HashMap()
+        map['a'] = 1
+        map['b'] = 2
+        map['c'] = 3
+        map['d'] = 4
+        map['e'] = 5
+        map['f'] = 6
+        map['g'] = 7
+        map['h'] = 8
+        map['i'] = 9
+        map['j'] = 10
+        map['k'] = 11
+        map['l'] = 12
+        map['m'] = 13
+        map['n'] = 14
+        map['o'] = 15
+        map['p'] = 16
+        map['q'] = 17
+        map['r'] = 18
+        map['s'] = 19
+        map['t'] = 20
+        map['u'] = 21
+        map['v'] = 22
+        map['w'] = 23
+        map['x'] = 24
+        map['y'] = 25
+        map['z'] = 26
+
+        var counter = 1
+        val list = mutableListOf<Int>()
+        arr.map {
+            var sum = 0;
+            it.toCharArray().map {
+                if (it.isLetter()) sum += map[it]!!
+            }
+            list.add(sum * counter)
+            counter++
+        }
+
+        return list.toIntArray()
     }
 
     // 7 kyu Fix string case
