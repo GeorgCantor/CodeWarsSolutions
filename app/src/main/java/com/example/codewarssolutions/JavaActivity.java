@@ -29,6 +29,32 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Boolean.toString(isAnagram("foefet", "toffee")), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Basic Sequence Practice
+    public static int[] sumOfN(int n) {
+        if (n == 0) return new int[]{0};
+        int size = n;
+        if (size < 0) size = Integer.parseInt(String.valueOf(n).substring(1));
+        int[] arr = new int[size + 1];
+        ArrayList<Integer> sums = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            sums.add(i);
+            int sum = 0;
+            for (int val : sums) {
+                sum += val;
+            }
+            arr[i] = sum;
+        }
+
+        if (n < 0) {
+            for (int i = 1; i < arr.length; i++) {
+                arr[i] = Integer.parseInt("-" + arr[i]);
+            }
+        }
+
+        return arr;
+    }
+
     // 5 kyu Simple Pig Latin
     public static String pigIt(String str) {
         String[] arr = str.split(" ");

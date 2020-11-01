@@ -10,7 +10,6 @@ import java.util.Collections.max
 import kotlin.math.sign
 import kotlin.math.sqrt
 
-
 class KotlinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,9 +17,41 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            Interval(intArrayOf(1, 2, 3, 4, 5), "[2,5)").toString(),
+            fizzBuzz(10).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 7 kyu Fizz Buzz
+    fun fizzBuzz(n: Int): Array<String> {
+        val list = mutableListOf<String>()
+        (1..n).map {
+            if (it % 3 == 0 && it % 5 == 0) {
+                list.add("FizzBuzz")
+                return@map
+            }
+            if (it % 3 == 0) {
+                list.add("Fizz")
+                return@map
+            }
+            if (it % 5 == 0) {
+                list.add("Buzz")
+                return@map
+            }
+            list.add(it.toString())
+        }
+
+        return list.toTypedArray()
+    }
+
+    fun deleteNth2(elements: IntArray, maxOcurrences: Int): IntArray {
+        val list = mutableListOf<Int>()
+        elements.map { el ->
+            val count = list.count { it == el }
+            if (count < maxOcurrences) list.add(el)
+        }
+
+        return list.toIntArray()
     }
 
     fun Interval(arr: IntArray, str: String): IntArray {
