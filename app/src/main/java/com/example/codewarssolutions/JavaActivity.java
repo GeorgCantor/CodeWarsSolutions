@@ -26,7 +26,61 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, Boolean.toString(isAnagram("foefet", "toffee")), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, numberOfTickets(100000, 999999), Toast.LENGTH_LONG).show();
+    }
+
+    // 6 kyu Lucky Tickets
+    public int numberOfTickets(int from, int to) {
+        int counter = 0;
+        for (int i = from; i <= to; i++) {
+            char[] firstChars = String.valueOf(i).substring(0, 3).toCharArray();
+            int fSum = 0;
+            for (char ch : firstChars) {
+                fSum += Integer.parseInt(String.valueOf(ch));
+            }
+            char[] lastChars = new StringBuilder(String.valueOf(i)).reverse().toString().substring(0, 3).substring(0, 3).toCharArray();
+            int lSum = 0;
+            for (char ch : lastChars) {
+                lSum += Integer.parseInt(String.valueOf(ch));
+            }
+            if (fSum == lSum) counter++;
+        }
+
+        return counter;
+    }
+
+//    public static int[] Interval(int[] arr, String str) {
+//        System.out.println(str);
+//        if (arr.length == 0 || str.equals("")) return new int[]{};
+//        ArrayList<Integer> list = new ArrayList<>();
+//        int min = Integer.parseInt(String.valueOf(str.toCharArray()[1]));
+//        int max = Integer.parseInt(String.valueOf(str.toCharArray()[3]));
+//        for (int i : arr) {
+//            if (i >= min && i <= max) list.add(i);
+//        }
+//        if (str.toCharArray()[0] == '(') list.remove(0);
+//        if (str.toCharArray()[4] == ')') list.remove(list.size() - 1);
+//
+//        return list.stream().mapToInt(Integer::intValue).toArray();
+//    }
+
+    public static int[] divisibleBy(int[] numbers, int divider) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i : numbers) {
+            if (i % divider == 0) list.add(i);
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    // 7 kyu Don't give me five!
+    public static int dontGiveMeFive(int start, int end) {
+        int counter = 0;
+        for (int i = start; i <= end; i++) {
+            if (!String.valueOf(i).contains("5")) counter++;
+        }
+
+        return counter;
     }
 
     // 7 kyu Basic Sequence Practice
