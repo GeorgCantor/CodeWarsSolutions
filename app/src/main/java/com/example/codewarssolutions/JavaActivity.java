@@ -29,6 +29,45 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, numberOfTickets(100000, 999999), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Alphabet symmetry
+    public static int[] solve(String[] arr) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        ArrayList<Integer> list = new ArrayList<>();
+        for (String s : arr) {
+            System.out.println(s);
+            int counter = 0;
+            char[] array = s.toCharArray();
+            for (int i = 0; i < alphabet.toCharArray().length; i++) {
+                try {
+                    if (Character.toLowerCase(array[i]) == alphabet.toCharArray()[i]) counter++;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                }
+            }
+            list.add(counter);
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    // 7 kyu Sum of array singles
+    public static int repeats(int[] arr) {
+        int sum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : arr) {
+            if (map.containsKey(i)) {
+                map.put(i, map.get(i) + 1);
+            } else {
+                map.put(i, 1);
+            }
+        }
+
+        for (Integer i : map.keySet()) {
+            if (map.get(i) == 1) sum += i;
+        }
+
+        return sum;
+    }
+
     // 6 kyu Lucky Tickets
     public int numberOfTickets(int from, int to) {
         int counter = 0;
@@ -38,7 +77,7 @@ public class JavaActivity extends AppCompatActivity {
             for (char ch : firstChars) {
                 fSum += Integer.parseInt(String.valueOf(ch));
             }
-            char[] lastChars = new StringBuilder(String.valueOf(i)).reverse().toString().substring(0, 3).substring(0, 3).toCharArray();
+            char[] lastChars = new StringBuilder(String.valueOf(i)).reverse().toString().substring(0, 3).toCharArray();
             int lSum = 0;
             for (char ch : lastChars) {
                 lSum += Integer.parseInt(String.valueOf(ch));

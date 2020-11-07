@@ -7,6 +7,7 @@ import androidx.core.text.isDigitsOnly
 import java.util.*
 import java.util.Collections.frequency
 import java.util.Collections.max
+import kotlin.collections.HashMap
 import kotlin.math.sign
 import kotlin.math.sqrt
 
@@ -20,6 +21,25 @@ class KotlinActivity : AppCompatActivity() {
             fizzBuzz(10).toString(),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 7 kyu Sum of array singles
+    fun repeats(arr: IntArray): Int {
+        var sum = 0
+        val map = HashMap<Int, Int>()
+        arr.map {
+            if (map.containsKey(it)) {
+                map[it] = map.getValue(it) + 1
+            } else {
+                map[it] = 1
+            }
+        }
+
+        map.map {
+            if (it.value == 1) sum += it.key
+        }
+
+        return sum
     }
 
     // 7 kyu Fizz Buzz
