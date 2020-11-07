@@ -26,7 +26,49 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, solve("abracadabra", 6), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Arrays.toString(twoSum(new int[]{1, 2, 3}, 4)), Toast.LENGTH_LONG).show();
+    }
+
+    // 6 kyu Two Sum
+    public static int[] twoSum(int[] numbers, int target) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i : numbers) {
+            list.add(i);
+        }
+        int[] indices = new int[2];
+        for (int number : list) {
+            for (int j = 1; j < list.size(); j++) {
+                if (number + list.get(j) == target && number != list.get(j)) {
+                    indices[0] = list.indexOf(number);
+                    indices[1] = list.indexOf(list.get(j));
+                }
+            }
+        }
+
+        return indices;
+    }
+
+    // 7 kyu Consecutive letters
+    public static boolean solve(String s) {
+        char[] chars = s.toCharArray();
+        Arrays.sort(chars);
+
+        return "abcdefghijklmnopqrstuvwxyz".contains(new String(chars));
+    }
+
+    // 7 kyu Consecutive letters
+    public static boolean solve7(String s) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        char[] chars = s.toCharArray();
+        Arrays.sort(chars);
+        int index = alphabet.indexOf(chars[0]);
+        int counter = 0;
+        for (int i = index; i < chars.length; i++) {
+            if (chars[counter] != alphabet.toCharArray()[i]) return false;
+            counter++;
+        }
+
+        return true;
     }
 
     // 7 kyu Simple letter removal
@@ -48,7 +90,7 @@ public class JavaActivity extends AppCompatActivity {
     }
 
     // 7 kyu Alphabet symmetry
-    public static int[] solve(String[] arr) {
+    public static int[] solve5(String[] arr) {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         ArrayList<Integer> list = new ArrayList<>();
         for (String s : arr) {
@@ -333,7 +375,7 @@ public class JavaActivity extends AppCompatActivity {
     }
 
     // 7 kyu Fix string case
-    public static String solve(final String str) {
+    public static String solve6(final String str) {
         return str.chars().filter(Character::isUpperCase).count() > str.chars().filter(Character::isLowerCase).count()
                 ? str.toUpperCase() : str.toLowerCase();
     }
