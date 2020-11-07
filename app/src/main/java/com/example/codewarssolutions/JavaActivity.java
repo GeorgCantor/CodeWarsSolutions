@@ -26,7 +26,25 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, numberOfTickets(100000, 999999), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, solve("abracadabra", 6), Toast.LENGTH_LONG).show();
+    }
+
+    // 7 kyu Simple letter removal
+    public static String solve(String s, int k) {
+        if (k > s.length()) return "";
+        String start = s;
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        char[] chars = alphabet.toCharArray();
+        int counter = 0;
+        while (s.length() > start.length() - k) {
+            if (s.indexOf(chars[counter]) != -1) {
+                s = s.replaceFirst(String.valueOf(chars[counter]), "");
+            } else {
+                counter++;
+            }
+        }
+
+        return s;
     }
 
     // 7 kyu Alphabet symmetry
