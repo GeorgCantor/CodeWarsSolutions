@@ -29,6 +29,40 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, Arrays.toString(twoSum(new int[]{1, 2, 3}, 4)), Toast.LENGTH_LONG).show();
     }
 
+    // 7 kyu Excessively Abundant Numbers
+    public static boolean abundantNumber(int num) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i < num; i++) {
+            if (num % i == 0) list.add(i);
+        }
+
+        return list.stream().mapToInt(a -> a).sum() > num;
+    }
+
+    // 7 kyu Where is THB?
+    public static String testing(String initial) {
+        if (initial == null) return "";
+        StringBuilder builder = new StringBuilder();
+        for (char ch : initial.toCharArray()) {
+            if (Character.toLowerCase(ch) == 't') builder.append(ch);
+            if (Character.toLowerCase(ch) == 'h') builder.append(ch);
+            if (Character.toLowerCase(ch) == 'b') builder.append(ch);
+        }
+
+        return builder.toString();
+    }
+
+    // 7 kyu Greet Me
+    public static String greet(String name) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(Character.toUpperCase(name.toCharArray()[0]));
+        for (int i = 1; i < name.length(); i++) {
+            builder.append(Character.toLowerCase(name.toCharArray()[i]));
+        }
+
+        return "Hello " + builder + "!";
+    }
+
     // 6 kyu Two Sum
     public static int[] twoSum(int[] numbers, int target) {
         ArrayList<Integer> list = new ArrayList<>();
