@@ -18,9 +18,96 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Toast.makeText(
             this,
-            fizzBuzz(10).toString(),
+            incrementString("bs97700"),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    // 5 kyu String incrementer
+    fun incrementString(str: String): String {
+        if (str.isEmpty()) return "1"
+        val result = StringBuilder()
+        var zeroCounter = 0
+        val sum: Int
+        var zero = '0'
+        val builder = StringBuilder()
+        if (str.all { it.isLetter() }) return "${str}1"
+        if (str.all { it.isDigit() }) {
+            builder.append(str)
+            if (builder.all { it == '0' }) {
+                builder.append('1')
+                builder.deleteCharAt(0)
+                return builder.toString()
+            }
+
+            builder.map {
+                if (it == '0' && zero == '0') {
+                    zeroCounter++
+                } else {
+                    zero = it
+                }
+            }
+            while (builder.first() == '0' && builder.length > 1) {
+                val temp = builder.toString()
+                builder.clear()
+                builder.append(temp.removePrefix("0"))
+            }
+            if ((builder.toString()
+                    .toInt() + 1).toString().length > builder.toString().length
+            ) zeroCounter--
+            sum = builder.toString().toInt() + 1
+
+            if (zeroCounter > 0) {
+                (1..zeroCounter).map {
+                    result.append('0')
+                }
+            }
+
+            result.append(sum)
+        } else {
+            val letters = StringBuilder()
+            str.map {
+                if (it.isDigit()) {
+                    builder.append(it)
+                } else {
+                    letters.append(it)
+                }
+            }
+            if (builder.all { it == '0' }) {
+                builder.append('1')
+                builder.deleteCharAt(0)
+                return "${letters}${builder}"
+            }
+            if (builder.startsWith('0')) {
+                builder.map {
+                    if (it == '0' && zero == '0') {
+                        zeroCounter++
+                    } else {
+                        zero = it
+                    }
+                }
+            }
+            while (builder.first() == '0' && builder.length > 1) {
+                val temp = builder.toString()
+                builder.clear()
+                builder.append(temp.removePrefix("0"))
+            }
+            if ((builder.toString().toInt() + 1).toString().length > builder.toString().length
+            ) zeroCounter--
+            sum = builder.toString().toInt() + 1
+
+            result.append(letters)
+
+            if (zeroCounter > 0) {
+                (1..zeroCounter).map {
+                    result.append('0')
+                }
+            }
+
+            result.append(sum)
+        }
+
+        return result.toString()
     }
 
     // 7 kyu Sum of array singles
