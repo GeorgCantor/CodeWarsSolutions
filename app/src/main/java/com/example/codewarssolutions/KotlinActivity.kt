@@ -610,9 +610,6 @@ class KotlinActivity : AppCompatActivity() {
     fun nbDig(n: Int, d: Int) =
         (0..n).map { it * it }.sumBy { it.toString().count { it == d.toString()[0] } }
 
-    fun orderWeight(string: String) = string.split(" ").map { it.toInt() }
-        .sortedBy { it.toString().toCharArray().maxBy { it.toString().toInt() } }.joinToString(" ")
-
     // 6 kyu extract file name
     fun extractFileName(name: String) = name.substringAfter('_').substringBeforeLast('.')
 

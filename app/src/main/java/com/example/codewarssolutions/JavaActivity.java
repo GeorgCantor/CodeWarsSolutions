@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.regex.Pattern;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class JavaActivity extends AppCompatActivity {
@@ -26,8 +27,62 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, Arrays.toString(twoSum(new int[]{1, 2, 3}, 4)), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, singlePermutations("aabb").toString(), Toast.LENGTH_LONG).show();
     }
+
+    // 4 kyu Permutations
+    public static List<String> singlePermutations(String s) {
+        Set<String> set = new HashSet<>();
+        if (s.length() == 1) {
+            set.add(s);
+        } else {
+            for (int i = 0; i < s.length(); i++) {
+                List<String> temp = singlePermutations(s.substring(0, i) + s.substring(i + 1));
+                for (String string : temp) {
+                    set.add(s.charAt(i) + string);
+                }
+            }
+        }
+
+        return new ArrayList<>(set);
+    }
+
+    // 6 kyu Duplicate Encoder
+    static String encode(String word) {
+        String lowWord = word.toLowerCase();
+        StringBuilder builder = new StringBuilder();
+        for (char ch : lowWord.toCharArray()) {
+            String s = lowWord.replaceFirst(Pattern.quote(Character.toString(ch)), "");
+            if (s.contains(Character.toString(ch))) {
+                builder.append(")");
+            } else {
+                builder.append("(");
+            }
+        }
+
+        return builder.toString();
+    }
+
+//    public static int strongestEven(int n, int m) {
+//        int result = 0;
+//        int counter = 0;
+//        int res = 0;
+//        for (int i = n; i <= m; i++) {
+//            int div = n;
+//            int count = 0;
+//            while (res % 2 == 0) {
+//                res = div / 2;
+//                div = res;
+//                count++;
+//            }
+//            if (count > counter) {
+//                result = n;
+//                counter = count;
+//            }
+//        }
+//
+//        return result;
+//    }
 
     // 7 kyu Excessively Abundant Numbers
     public static boolean abundantNumber(int num) {
