@@ -23,6 +23,49 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Alphabetical Addition
+    fun addLetters(arr: List<Char>): Char {
+        if (arr.isEmpty()) return 'z'
+        val map: MutableMap<Char, Int> = HashMap()
+        map['a'] = 1
+        map['b'] = 2
+        map['c'] = 3
+        map['d'] = 4
+        map['e'] = 5
+        map['f'] = 6
+        map['g'] = 7
+        map['h'] = 8
+        map['i'] = 9
+        map['j'] = 10
+        map['k'] = 11
+        map['l'] = 12
+        map['m'] = 13
+        map['n'] = 14
+        map['o'] = 15
+        map['p'] = 16
+        map['q'] = 17
+        map['r'] = 18
+        map['s'] = 19
+        map['t'] = 20
+        map['u'] = 21
+        map['v'] = 22
+        map['w'] = 23
+        map['x'] = 24
+        map['y'] = 25
+        map['z'] = 26
+
+        var result = 0
+        arr.map {
+            result += map[it] ?: 0
+        }
+        while (result > 26){
+            result -= 26
+        }
+        val d = map.filterValues { it == result }.keys
+
+        return if (d.isNotEmpty()) d.first() else arr[0]
+    }
+
     // 5 kyu String incrementer
     fun incrementString(str: String): String {
         if (str.isEmpty()) return "1"
@@ -1295,22 +1338,22 @@ class KotlinActivity : AppCompatActivity() {
         map['h'] = 8
         map['i'] = 9
         map['j'] = 10
-        map['k'] = 12
-        map['l'] = 13
-        map['m'] = 14
-        map['n'] = 15
-        map['o'] = 16
-        map['p'] = 17
-        map['q'] = 18
-        map['r'] = 19
-        map['s'] = 20
-        map['t'] = 21
-        map['u'] = 22
-        map['v'] = 23
-        map['w'] = 24
-        map['x'] = 25
-        map['y'] = 26
-        map['z'] = 27
+        map['k'] = 11
+        map['l'] = 12
+        map['m'] = 13
+        map['n'] = 14
+        map['o'] = 15
+        map['p'] = 16
+        map['q'] = 17
+        map['r'] = 18
+        map['s'] = 19
+        map['t'] = 20
+        map['u'] = 21
+        map['v'] = 22
+        map['w'] = 23
+        map['x'] = 24
+        map['y'] = 25
+        map['z'] = 26
 
         var length = 0
         var maxLength = 0

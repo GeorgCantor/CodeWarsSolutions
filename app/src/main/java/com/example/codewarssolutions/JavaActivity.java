@@ -27,7 +27,76 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, singlePermutations("aabb").toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, wordPattern("hello"), Toast.LENGTH_LONG).show();
+    }
+
+    public static String getOrder2(String input) {
+        ArrayList<String> menuList = new ArrayList<>();
+        menuList.add("Burger");
+        menuList.add("Fries");
+        menuList.add("Chicken");
+        menuList.add("Pizza");
+        menuList.add("Sandwich");
+        menuList.add("Onionrings");
+        menuList.add("Milkshake");
+        menuList.add("Coke");
+
+        ArrayList<String> orders = new ArrayList<>();
+
+        String tempInput = input;
+
+        for (String str : menuList) {
+            if (tempInput.contains(str.toLowerCase())) {
+                orders.add(str);
+                tempInput = tempInput.replaceFirst(str.toLowerCase(), "");
+            }
+        }
+
+        return String.join(" ", orders);
+    }
+
+    // 7 kyu Cryptanalysis Word Patterns
+    public static String wordPattern(final String word) {
+        ArrayList<Character> list = new ArrayList<>();
+        for (Character ch : word.toCharArray()) {
+            char lowCh = Character.toLowerCase(ch);
+            if (!list.contains(lowCh)) list.add(lowCh);
+        }
+        StringBuilder builder = new StringBuilder();
+        for (Character ch : word.toCharArray()) {
+            builder.append(list.indexOf(Character.toLowerCase(ch))).append('.');
+        }
+        builder.setLength(builder.length() - 1);
+
+        return builder.toString();
+    }
+
+    // 7 kyu Count the Characters
+    public static int charCount(String str, char c) {
+        int counter = 0;
+        for (char ch : str.toCharArray()) {
+            if (Character.toLowerCase(ch) == Character.toLowerCase(c)) counter++;
+        }
+
+        return counter;
+    }
+
+    // 7 kyu Name Array Capping
+    public static String[] capMe(String[] strings) {
+        ArrayList<String> list = new ArrayList<>();
+        for (String s : strings) {
+            StringBuilder builder = new StringBuilder();
+            for (char ch : s.toCharArray()) {
+                if (builder.length() == 0) {
+                    builder.append(Character.toUpperCase(ch));
+                } else {
+                    builder.append(Character.toLowerCase(ch));
+                }
+            }
+            list.add(builder.toString());
+        }
+
+        return list.toArray(new String[list.size()]);
     }
 
     // 4 kyu Permutations
@@ -812,31 +881,6 @@ public class JavaActivity extends AppCompatActivity {
         }
 
         return arr;
-    }
-
-    public static String getOrder(String input) {
-        ArrayList<String> menuList = new ArrayList<>();
-        menuList.add("Burger");
-        menuList.add("Fries");
-        menuList.add("Chicken");
-        menuList.add("Pizza");
-        menuList.add("Sandwich");
-        menuList.add("Onionrings");
-        menuList.add("Milkshake");
-        menuList.add("Coke");
-
-        ArrayList<String> orders = new ArrayList<>();
-
-        String tempInput = input;
-
-        for (String str : menuList) {
-            while (tempInput.contains(str.toLowerCase())) {
-                orders.add(str);
-                tempInput = tempInput.replaceFirst(str.toLowerCase(), "");
-            }
-        }
-
-        return String.join(" ", orders);
     }
 
     // 7 kyu Simple string reversal
