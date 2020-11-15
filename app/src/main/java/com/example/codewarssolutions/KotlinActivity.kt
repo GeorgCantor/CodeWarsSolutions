@@ -23,6 +23,24 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 7 kyu Ultimate Array Reverser
+    fun reverse(a: List<String>): List<String> {
+        val word = a.joinToString("").reversed()
+        val list = mutableListOf<String>()
+        var counter = 0
+        a.map {
+            val builder = StringBuilder()
+            (it.indices).map {
+                builder.append(word[counter])
+                counter++
+            }
+            list.add(builder.toString())
+            builder.clear()
+        }
+
+        return list
+    }
+
     // 7 kyu Alphabetical Addition
     fun addLetters(arr: List<Char>): Char {
         if (arr.isEmpty()) return 'z'
@@ -58,7 +76,7 @@ class KotlinActivity : AppCompatActivity() {
         arr.map {
             result += map[it] ?: 0
         }
-        while (result > 26){
+        while (result > 26) {
             result -= 26
         }
         val d = map.filterValues { it == result }.keys

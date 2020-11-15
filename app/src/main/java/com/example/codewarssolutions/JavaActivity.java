@@ -30,29 +30,149 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, wordPattern("hello"), Toast.LENGTH_LONG).show();
     }
 
-    public static String getOrder2(String input) {
-        ArrayList<String> menuList = new ArrayList<>();
-        menuList.add("Burger");
-        menuList.add("Fries");
-        menuList.add("Chicken");
-        menuList.add("Pizza");
-        menuList.add("Sandwich");
-        menuList.add("Onionrings");
-        menuList.add("Milkshake");
-        menuList.add("Coke");
+    // 7 kyu Ultimate Array Reverser
+    public static String[] reverse(String[] a) {
+        StringBuilder builder = new StringBuilder(String.join("", a)).reverse();
+        ArrayList<String> list = new ArrayList<>();
+        int counter = 0;
+        for (String s : a) {
+            StringBuilder b = new StringBuilder();
+            try {
+                for (int i = 0; i < s.length(); i++) {
+                    b.append(builder.toString().toCharArray()[counter]);
+                    counter++;
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+            }
+            list.add(b.toString());
+            b.setLength(b.length() - 1);
+        }
 
-        ArrayList<String> orders = new ArrayList<>();
+        return list.toArray(new String[list.size()]);
+    }
 
-        String tempInput = input;
-
-        for (String str : menuList) {
-            if (tempInput.contains(str.toLowerCase())) {
-                orders.add(str);
-                tempInput = tempInput.replaceFirst(str.toLowerCase(), "");
+    public static int consecutiveSum(int num) {
+        int counter = 1;
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= num; i++) {
+            list.add(i);
+        }
+        for (int i : list) {
+            int sum = i;
+            for (int j = i + 1; j < num; j++) {
+                sum += j;
+                if (sum == num) {
+                    counter++;
+                    break;
+                }
             }
         }
 
-        return String.join(" ", orders);
+        return counter;
+    }
+
+    public static int strongestEven(int n, int m) {
+        int result = 0;
+        int counter = 0;
+        for (int i = n; i <= m; i++) {
+            int div = i;
+            int count = 0;
+            while (div % 2 == 0) {
+                div = div / 2;
+                count++;
+            }
+            if (count > counter) {
+                counter = count;
+                result = i;
+            }
+        }
+
+        return result;
+    }
+
+    public static String getOrder(String input) {
+        String[] arr = new String[]{"Burger", "Fries", "Chicken", "Pizza", "Sandwich", "Onionrings", "Milkshake", "Coke"};
+        ArrayList<String> list = new ArrayList<>();
+        for (String s : arr) {
+            while (input.contains(s.toLowerCase())) {
+                list.add(s);
+                input = input.replaceFirst(s.toLowerCase(), "");
+            }
+        }
+
+        return String.join(" ", list);
+    }
+
+    public static String correct(String string) {
+        return string.replace("5", "S").replace("0", "O").replace("1", "I");
+    }
+
+    // 7 kyu Simple string characters
+    public static int[] Solve(String word) {
+        int upCounter = 0;
+        int lowCounter = 0;
+        int numCounter = 0;
+        int charCounter = 0;
+        for (char ch : word.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                upCounter++;
+            } else if (Character.isLowerCase(ch)) {
+                lowCounter++;
+            } else if (Character.isDigit(ch)) {
+                numCounter++;
+            } else {
+                charCounter++;
+            }
+        }
+
+        return new int[]{upCounter, lowCounter, numCounter, charCounter};
+    }
+
+    // 7 kyu Alphabetical Addition
+    public static String addLetters(String... letters) {
+        if (letters.length == 0) return "z";
+        Map<String, Integer> map = new HashMap<>();
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
+        map.put("d", 4);
+        map.put("e", 5);
+        map.put("f", 6);
+        map.put("g", 7);
+        map.put("h", 8);
+        map.put("i", 9);
+        map.put("j", 10);
+        map.put("k", 11);
+        map.put("l", 12);
+        map.put("m", 13);
+        map.put("n", 14);
+        map.put("o", 15);
+        map.put("p", 16);
+        map.put("q", 17);
+        map.put("r", 18);
+        map.put("s", 19);
+        map.put("t", 20);
+        map.put("u", 21);
+        map.put("v", 22);
+        map.put("w", 23);
+        map.put("x", 24);
+        map.put("y", 25);
+        map.put("z", 26);
+
+        int result = 0;
+        for (String s : letters) {
+            result += map.get(s);
+        }
+        while (result > 26) {
+            result -= 26;
+        }
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue().equals(result)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     // 7 kyu Cryptanalysis Word Patterns
@@ -131,27 +251,6 @@ public class JavaActivity extends AppCompatActivity {
 
         return builder.toString();
     }
-
-//    public static int strongestEven(int n, int m) {
-//        int result = 0;
-//        int counter = 0;
-//        int res = 0;
-//        for (int i = n; i <= m; i++) {
-//            int div = n;
-//            int count = 0;
-//            while (res % 2 == 0) {
-//                res = div / 2;
-//                div = res;
-//                count++;
-//            }
-//            if (count > counter) {
-//                result = n;
-//                counter = count;
-//            }
-//        }
-//
-//        return result;
-//    }
 
     // 7 kyu Excessively Abundant Numbers
     public static boolean abundantNumber(int num) {
