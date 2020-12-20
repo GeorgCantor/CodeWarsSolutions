@@ -30,6 +30,23 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, wordPattern("hello"), Toast.LENGTH_LONG).show();
     }
 
+    //7 kyu Sum of Numbers
+    public int GetSum(int a, int b) {
+        if (a == b) return a;
+        int sum = 0;
+        if (a < b) {
+            for (int i = a; i <= b; i++) {
+                sum += i;
+            }
+        } else {
+            for (int i = a; i >= b; i--) {
+                sum += i;
+            }
+        }
+
+        return sum;
+    }
+
     // 7 kyu Ultimate Array Reverser
     public static String[] reverse(String[] a) {
         StringBuilder builder = new StringBuilder(String.join("", a)).reverse();

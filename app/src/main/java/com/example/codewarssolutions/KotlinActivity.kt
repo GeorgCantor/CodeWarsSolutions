@@ -23,6 +23,29 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 5 kyu Gap in Primes
+    fun gap(g: Int, m: Long, n: Long): LongArray {
+        var prime = 0L
+        (m..n).forEach {
+            if (isPrime(it)) {
+                if ((it - prime).compareTo(g) == 0) {
+                    return longArrayOf(prime, it)
+                }
+                prime = it
+            }
+        }
+
+        return longArrayOf()
+    }
+
+    private fun isPrime(n: Long): Boolean {
+        (2..sqrt(n.toDouble()).toLong()).forEach {
+            if ((n % it).compareTo(0) == 0) return false
+        }
+
+        return true
+    }
+
     // 7 kyu Ultimate Array Reverser
     fun reverse(a: List<String>): List<String> {
         val word = a.joinToString("").reversed()
