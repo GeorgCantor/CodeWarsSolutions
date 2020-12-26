@@ -30,6 +30,46 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, wordPattern("hello"), Toast.LENGTH_LONG).show();
     }
 
+    // 6 kyu Find next higher number with same Bits (1's)
+    public static int nextHigher(int n) {
+        int rightOne;
+        int nextHigherOneBit;
+        int rightOnesPattern;
+        int next = 0;
+
+        if (n > 0) {
+            rightOne = n & -n;
+            nextHigherOneBit = n + rightOne;
+            rightOnesPattern = n ^ nextHigherOneBit;
+            rightOnesPattern = (rightOnesPattern) / rightOne;
+            rightOnesPattern >>= 2;
+            next = nextHigherOneBit | rightOnesPattern;
+        }
+
+        return next;
+    }
+
+    // 5 kyu Maximum subarray sum
+    public static int sequence(int[] arr) {
+        int length = arr.length;
+        if (length == 0) return 0;
+        if (length == 1) return Math.max(arr[0], 0);
+
+        int dp = Math.max(arr[0], 0);
+        int max = Math.max(arr[0], 0);
+
+        for (int i = 1; i < length; i++) {
+            if (arr[i] > 0) {
+                dp += arr[i];
+            } else {
+                max = Math.max(max, dp);
+                dp = Math.max(dp + arr[i], 0);
+            }
+        }
+
+        return Math.max(max, dp);
+    }
+
     //7 kyu Sum of Numbers
     public int GetSum(int a, int b) {
         if (a == b) return a;

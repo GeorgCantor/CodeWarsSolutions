@@ -23,6 +23,26 @@ class KotlinActivity : AppCompatActivity() {
         ).show()
     }
 
+    // 6 kyu Highest Scoring Word
+    fun high(str: String): String {
+        var result = 0
+        var resultIndex = 0
+        val words = str.split(" ")
+
+        for (i in words.indices) {
+            var r = 0
+            for (token in words[i]) {
+                r += (token.toInt() - 96)
+                if (result < r) {
+                    result = r
+                    resultIndex = i
+                }
+            }
+        }
+
+        return words[resultIndex]
+    }
+
     // 5 kyu Gap in Primes
     fun gap(g: Int, m: Long, n: Long): LongArray {
         var prime = 0L
@@ -1367,7 +1387,7 @@ class KotlinActivity : AppCompatActivity() {
     }
 
     // 6 kyu Highest Scoring Word
-    fun high(str: String): String {
+    fun high2(str: String): String {
         val map: MutableMap<Char, Int> = HashMap()
         map['a'] = 1
         map['b'] = 2
