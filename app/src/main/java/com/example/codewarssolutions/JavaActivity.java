@@ -30,6 +30,117 @@ public class JavaActivity extends AppCompatActivity {
         Toast.makeText(this, wordPattern("hello"), Toast.LENGTH_LONG).show();
     }
 
+    // 4 kyu Human readable duration format
+    public static String formatDuration(int s) {
+        int time = s;
+        int years = s / 31536000;
+        s -= years * 31536000;
+        int days = s / 86400;
+        s -= days * 86400;
+        int hours = s / 3600;
+        s -= hours * 3600;
+        int minutes = s / 60;
+        s -= minutes * 60;
+        int seconds = s;
+
+        StringBuilder builder = new StringBuilder();
+        if (time == 0) builder.append("now");
+        time = processYears(time, years, builder);
+        time = processDays(time, days, builder);
+        time = processHours(time, hours, builder);
+        processMinutes(time, minutes, builder);
+        processSeconds(seconds, builder);
+
+        if (builder.indexOf(",") > 0) {
+            builder.replace(builder.lastIndexOf(","), builder.lastIndexOf(",") + 1, " and");
+        }
+
+        return builder.toString().trim();
+    }
+
+    private static int processYears(int time, int years, StringBuilder sb) {
+        if (years > 0) {
+            sb.append(years).append(" year");
+            appendS(years, sb);
+            time -= years * 31536000;
+            postfix(time, sb);
+        }
+        return time;
+    }
+
+    private static int processDays(int time, int days, StringBuilder sb) {
+        if (days > 0) {
+            sb.append(days).append(" day");
+            appendS(days, sb);
+            time -= days * 86400;
+            postfix(time, sb);
+        }
+        return time;
+    }
+
+    private static int processHours(int time, int hours, StringBuilder sb) {
+        if (hours > 0) {
+            sb.append(hours).append(" hour");
+            appendS(hours, sb);
+            time -= hours * 3600;
+            postfix(time, sb);
+        }
+        return time;
+    }
+
+    private static void processMinutes(int time, int minutes, StringBuilder sb) {
+        if (minutes > 0) {
+            sb.append(minutes).append(" minute");
+            appendS(minutes, sb);
+            time -= minutes * 60;
+            postfix(time, sb);
+        }
+    }
+
+    private static void processSeconds(int seconds, StringBuilder sb) {
+        if (seconds > 0) {
+            sb.append(seconds).append(" second");
+            appendS(seconds, sb);
+        }
+    }
+
+    private static void appendS(int count, StringBuilder sb) {
+        if (count > 1) sb.append("s");
+    }
+
+    private static void postfix(int time, StringBuilder sb) {
+        if (time > 0) sb.append(", ");
+        else sb.append(" ");
+    }
+
+
+    // 6 kyu Take a Ten Minute Walk
+    public static boolean isValid(char[] walk) {
+        if (walk.length != 10) return false;
+
+        int northSouth = 0;
+        int westEast = 0;
+
+        for (char ch : walk) {
+            switch (ch) {
+                case 'n':
+                    northSouth++;
+                    break;
+                case 'e':
+                    westEast++;
+                    break;
+                case 's':
+                    northSouth--;
+                    break;
+                case 'w':
+                    westEast--;
+                    break;
+            }
+        }
+
+        return northSouth == 0 && westEast == 0;
+    }
+
     // 6 kyu Find next higher number with same Bits (1's)
     public static int nextHigher(int n) {
         int rightOne;
