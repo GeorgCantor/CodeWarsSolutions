@@ -12,6 +12,31 @@ public class Java2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
+
+        TripleDouble(666789L, 12345667L);
+    }
+
+    // 6 kyu Triple trouble
+    public static int TripleDouble(long num1, long num2) {
+        char[] arr1 = String.valueOf(num1).toCharArray();
+        char[] arr2 = String.valueOf(num2).toCharArray();
+        char ch;
+
+        for (int i = 2; i < arr1.length; i++) {
+            if (arr1[i - 2] == arr1[i - 1] && arr1[i] == arr1[i - 1]) {
+                ch = arr1[i];
+                for (int j = 1; j < arr2.length; j++) {
+                    if (arr2[j] == arr2[j - 1] && arr2[j] == ch) return 1;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    // 6 kyu Dubstep
+    public static String SongDecoder(String song) {
+        return song.replaceAll("(WUB)+", " ").trim();
     }
 
     // 7 kyu Money, Money, Money
