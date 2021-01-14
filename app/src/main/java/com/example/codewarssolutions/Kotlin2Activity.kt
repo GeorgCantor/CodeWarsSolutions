@@ -10,6 +10,15 @@ class Kotlin2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin2)
     }
 
+    // 6 kyu Equal Sides Of An Array
+    fun findEvenIndex(arr: IntArray): Int {
+        for (i in arr.indices) {
+            if (arr.sliceArray(0..i).sum() == arr.sliceArray(i until arr.size).sum()) return i
+        }
+
+        return -1
+    }
+
     // 6 kyu Decode the Morse code
     fun decodeMorse(code: String): String {
         val map: MutableMap<String, String> = HashMap()

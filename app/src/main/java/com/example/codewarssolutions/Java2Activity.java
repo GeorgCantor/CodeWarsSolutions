@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class Java2Activity extends AppCompatActivity {
 
@@ -14,6 +17,13 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
 
         TripleDouble(666789L, 12345667L);
+    }
+
+    // 6 kyu Your order, please
+    public static String order(String words) {
+        return Arrays.stream(words.split(" "))
+                .sorted(Comparator.comparing(s -> s.replaceAll("\\D+", "")))
+                .collect(Collectors.joining(" "));
     }
 
     // 6 kyu Triple trouble
