@@ -12,6 +12,29 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    fun detectCapitalUse(word: String) = word.all { it.isLowerCase() }
+            || word.all { it.isUpperCase() }
+            || word.takeLast(word.length - 1).all { it.isLowerCase() }
+
+    fun isUgly(num: Int): Boolean {
+        if (num == 1) return true
+        if (num <= 0) return false
+        if (num % 2 == 0) return (isUgly(num / 2))
+        if (num % 3 == 0) return (isUgly(num / 3))
+        if (num % 5 == 0) return (isUgly(num / 5))
+
+        return false
+    }
+
+    fun addDigits(num: Int): Int {
+        var result = num
+        while (result.toString().length > 1) {
+            result = result.toString().sumBy { it.toString().toInt() }
+        }
+
+        return result
+    }
+
     fun containsDuplicate(nums: IntArray) = nums.size > nums.toSet().size
 
     fun reverseString(s: CharArray): Unit {
