@@ -10,6 +10,54 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        fib(2)
+    }
+
+    fun fib(n: Int): Int {
+        var one = 0
+        var two = 1
+        (1..n).forEach {
+            val sum = one + two
+            one = two
+            two = sum
+        }
+
+        return one
+    }
+
+    fun thirdMax(nums: IntArray): Int {
+        val set = nums.toSet()
+        if (set.size == 2) return set.max()!!
+        if (set.size == 1) return set.first()
+
+        val list = set.toMutableList()
+        list.removeIf { it == list.max() }
+        list.removeIf { it == list.max() }
+
+        return list.max() ?: nums.first()
+    }
+
+    fun fizzBuzz(n: Int): List<String> {
+        val list = mutableListOf<String>()
+        (1..n).forEach {
+            when {
+                it % 3 == 0 && it % 5 == 0 -> list.add("FizzBuzz")
+                it % 3 == 0 -> list.add("Fizz")
+                it % 5 == 0 -> list.add("Buzz")
+                else -> list.add(it.toString())
+            }
+        }
+
+        return list
+    }
+
+    fun findTheDifference(s: String, t: String): Char {
+        val arr = t.toCharArray()
+        s.forEach {
+            if (t.contains(it)) arr[arr.indexOf(it)] = ' '
+        }
+
+        return arr.find { it.isLetter() }!!
     }
 
     fun detectCapitalUse(word: String) = word.all { it.isLowerCase() }
