@@ -10,7 +10,58 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        fib(2)
+    }
+
+    fun isPalindrome(x: Int) = x.toString() == x.toString().reversed()
+
+    fun reverse(x: Int): Int = when (x >= 0) {
+        true -> {
+            try {
+                x.toString().reversed().toInt()
+            } catch (e: NumberFormatException) {
+                0
+            }
+        }
+        false -> {
+            try {
+                var num = x.toString().drop(1).reversed().toInt()
+                num -= num * 2
+                num
+            } catch (e: NumberFormatException) {
+                0
+            }
+        }
+    }
+
+    fun findWords(words: Array<String>): Array<String> {
+        val result = mutableListOf<String>()
+        val q = "qwertyuiop"
+        val a = "asdfghjkl"
+        val z = "zxcvbnm"
+        words.forEach { word ->
+            var qCounter = 0
+            var aCounter = 0
+            var zCounter = 0
+            word.forEach {
+                if (q.contains(it)) qCounter++
+                if (a.contains(it)) aCounter++
+                if (z.contains(it)) zCounter++
+            }
+            when {
+                qCounter > 0 && aCounter == 0 && zCounter == 0 -> result.add(word)
+                qCounter == 0 && aCounter > 0 && zCounter == 0 -> result.add(word)
+                qCounter == 0 && aCounter == 0 && zCounter > 0 -> result.add(word)
+            }
+        }
+
+        return result.toTypedArray()
+    }
+
+    fun firstUniqChar(s: String): Int {
+        s.forEach {
+            if (s.indexOf(it) == s.lastIndexOf(it)) return s.indexOf(it)
+        }
+        return -1
     }
 
     fun fib(n: Int): Int {
