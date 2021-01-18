@@ -12,6 +12,66 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    fun strStr(haystack: String, needle: String): Int {
+        var i = 0
+        while (true) {
+            var j = 0
+            while (true) {
+                if (j == needle.length) return i
+                if (i + j == haystack.length) return -1
+                if (needle[j] != haystack[i + j]) break
+                j++
+            }
+            i++
+        }
+    }
+
+    fun removeDuplicates(nums: IntArray): Int {
+        var dupes = 0
+        for (i in 1 until nums.size) {
+            if (nums[i] == nums[i - 1]) dupes++
+            nums[i - dupes] = nums[i]
+        }
+
+        return nums.size - dupes
+    }
+
+    fun plusOne(digits: IntArray): IntArray {
+        for (i in digits.size - 1 downTo 0) {
+            digits[i] += 1
+            if (digits[i] <= 9) return digits
+            digits[i] = 0
+        }
+        val arr = IntArray(digits.size + 1)
+        arr[0] = 1
+
+        return arr
+    }
+
+    fun lengthOfLastWord(s: String): Int = s.trim().split(' ').last().length
+
+    fun lengthOfLastWord2(s: String): Int {
+        val list = mutableListOf<String>()
+        val sb = StringBuilder()
+        s.forEach {
+            when (it) {
+                ' ' -> {
+                    if (sb.isNotEmpty()) {
+                        list.add(sb.toString())
+                        sb.setLength(0)
+                    }
+                }
+                else -> sb.append(it)
+            }
+        }
+        if (sb.isNotEmpty()) list.add(sb.toString())
+
+        return when (list.size) {
+            0 -> 0
+            else -> list.last().length
+        }
+    }
+
     fun isPalindrome(x: Int) = x.toString() == x.toString().reversed()
 
     fun reverse(x: Int): Int = when (x >= 0) {
