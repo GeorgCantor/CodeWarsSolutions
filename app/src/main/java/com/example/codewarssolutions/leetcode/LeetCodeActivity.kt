@@ -12,6 +12,58 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    fun missingNumber(nums: IntArray): Int {
+        val sorted = nums.sorted()
+        for (i in 1 until nums.size) {
+            if (sorted[i] - sorted[i - 1] > 1) return sorted[i] - 1
+        }
+
+        return if (sorted.first() == 0) sorted[sorted.size - 1] + 1 else sorted.first() - 1
+    }
+
+    fun moveZeroes(nums: IntArray): Unit {
+        val numbers = mutableListOf<Int>()
+        val zeros = mutableListOf<Int>()
+        nums.forEach {
+            when (it) {
+                0 -> zeros.add(it)
+                else -> numbers.add(it)
+            }
+        }
+        val sorted = numbers + zeros
+        (sorted).indices.forEach {
+            nums[it] = sorted[it]
+        }
+    }
+
+    private fun calculate(char: Char, string: String): Int {
+        var counter = 0
+        string.forEach {
+            if (it == char) counter++
+        }
+
+        return counter
+    }
+
+    fun reverseVowels(s: String): String {
+        val vowels = "aeiouAEIOU"
+        val v = mutableListOf<Char>()
+        s.forEach {
+            if (vowels.contains(it)) v.add(it)
+        }
+        val vArray = v.reversed().toCharArray()
+        val array = s.toCharArray()
+        var counter = 0
+        array.indices.forEach {
+            if (vowels.contains(array[it].toLowerCase())) {
+                array[it] = vArray[counter]
+                counter++
+            }
+        }
+
+        return array.joinToString("")
+    }
+
     fun strStr(haystack: String, needle: String): Int {
         var i = 0
         while (true) {
