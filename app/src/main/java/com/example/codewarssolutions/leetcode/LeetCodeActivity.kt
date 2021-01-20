@@ -12,7 +12,33 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
-    fun missingNumber(nums: IntArray): Int {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+        nums.indices.forEach {
+            var counter = 0
+            val num = nums[it]
+            while (counter < nums.size) {
+                if (counter != it) {
+                    if (num + nums[counter] == target) {
+                        return intArrayOf(nums.indexOf(num), nums.lastIndexOf(nums[counter]))
+                    }
+                }
+                counter++
+            }
+        }
+
+        return intArrayOf()
+    }
+
+    fun isPalindrome(s: String): Boolean {
+        val sb = StringBuilder()
+        s.forEach { if (it.isLetterOrDigit()) sb.append(it.toLowerCase()) }
+
+        return sb.toString() == sb.toString().reversed()
+    }
+
+    fun missingNumber(nums: IntArray) = ((0..nums.size) - nums.toList()).first()
+
+    fun missingNumber2(nums: IntArray): Int {
         val sorted = nums.sorted()
         for (i in 1 until nums.size) {
             if (sorted[i] - sorted[i - 1] > 1) return sorted[i] - 1
@@ -274,7 +300,10 @@ class LeetCodeActivity : AppCompatActivity() {
         return list.isEmpty()
     }
 
-    fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
+    fun intersection(nums1: IntArray, nums2: IntArray) =
+        nums1.toList().intersect(nums2.toList()).toIntArray()
+
+    fun intersection2(nums1: IntArray, nums2: IntArray): IntArray {
         val list = mutableSetOf<Int>()
         nums1.forEach { if (nums2.contains(it)) list.add(it) }
 
