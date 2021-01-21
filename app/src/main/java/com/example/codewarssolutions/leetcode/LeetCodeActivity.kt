@@ -6,10 +6,51 @@ import com.example.codewarssolutions.R
 
 class LeetCodeActivity : AppCompatActivity() {
 
+    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+    }
+
+    fun intToRoman(num: Int): String {
+        val ints = intArrayOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+        val romans = arrayOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+        val sb = StringBuilder()
+        var number = num
+        (ints.indices).forEach {
+            while (number >= ints[it]) {
+                number -= ints[it]
+                sb.append(romans[it])
+            }
+        }
+
+        return sb.toString()
+    }
+
+    fun lengthOfLongestSubstring(s: String): Int {
+        if (s.isEmpty()) return 0
+        var start = 0
+        var max = 0
+        val map = mutableMapOf<Char, Int>()
+        s.toCharArray().forEachIndexed { index, char ->
+            if (map.contains(char)) {
+                start = maxOf(start, map.getValue(char) + 1)
+            }
+            map[char] = index
+            max = maxOf(max, index - start + 1)
+        }
+
+        return max
+    }
+
+    fun merge(nums1: IntArray, m: Int, nums2: IntArray, n: Int): Unit {
+        var counter = 0
+        (m until m + n).forEach {
+            nums1[it] = nums2[counter]
+            counter++
+        }
+        nums1.sort()
     }
 
     fun twoSum(nums: IntArray, target: Int): IntArray {
