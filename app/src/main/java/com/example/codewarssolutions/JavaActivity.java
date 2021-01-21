@@ -1328,21 +1328,6 @@ public class JavaActivity extends AppCompatActivity {
         return Integer.parseInt(sb.toString());
     }
 
-    // 6 kyu Vasya - Clerk
-    public static String Tickets(int[] peopleInLine) {
-        int pocket = 0;
-
-        for (int value : peopleInLine) {
-            if ((value - 25) > pocket) {
-                return "NO";
-            } else {
-                pocket += 25;
-            }
-        }
-
-        return "YES";
-    }
-
     // 7 kyu Credit Card Mask
     public static String maskify(String str) {
         switch (str.length()) {

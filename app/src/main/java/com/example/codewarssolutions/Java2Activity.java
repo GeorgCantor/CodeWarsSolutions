@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -16,7 +18,59 @@ public class Java2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
 
-        TripleDouble(666789L, 12345667L);
+    }
+
+    // 6 kyu Vasya - Clerk
+    public static String Tickets(int[] peopleInLine) {
+        ArrayList<Integer> pocket = new ArrayList<>();
+        for (int value : peopleInLine) {
+            switch (value) {
+                case 25:
+                    pocket.add(value);
+                    break;
+                case 50:
+                    if (pocket.contains(25)) {
+                        pocket.remove(Integer.valueOf(25));
+                        pocket.add(50);
+                    } else {
+                        return "NO";
+                    }
+                    break;
+                case 100:
+                    if (pocket.contains(50) && pocket.contains(25)) {
+                        pocket.remove(Integer.valueOf(25));
+                        pocket.remove(Integer.valueOf(50));
+                        pocket.add(100);
+                        break;
+                    }
+                    if (Collections.frequency(pocket, 25) > 2) {
+                        pocket.remove(Integer.valueOf(25));
+                        pocket.remove(Integer.valueOf(25));
+                        pocket.remove(Integer.valueOf(25));
+                        pocket.add(100);
+                        break;
+                    } else {
+                        return "NO";
+                    }
+            }
+        }
+
+        return "YES";
+    }
+
+    // 6 kyu Roman Numerals Encoder
+    public String solution(int n) {
+        int[] nums = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romans = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nums.length; i++) {
+            while (n >= nums[i]) {
+                n -= nums[i];
+                sb.append(romans[i]);
+            }
+        }
+
+        return sb.toString();
     }
 
     // 6 kyu Your order, please
