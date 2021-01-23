@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class Java2Activity extends AppCompatActivity {
@@ -18,6 +20,74 @@ public class Java2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
 
+    }
+
+    // 6 kyu Message Validator
+    public static boolean isAValidMessage(String message) {
+        if (message.isEmpty()) return true;
+        if (!Character.isDigit(message.toCharArray()[0])) return false;
+        if (Character.isDigit(message.toCharArray()[message.length() - 1]) && message.toCharArray()[message.length() - 1] != 0) return false;
+        Map<Integer, String> map = new HashMap<>();
+        int key = -1;
+        StringBuilder sb = new StringBuilder();
+        for (char ch : message.toCharArray()) {
+            if (key != -1) {
+                if (Character.isDigit(ch) && sb.length() > 0) {
+                    map.put(key, sb.toString());
+                    sb.setLength(0);
+                    key = Integer.parseInt(String.valueOf(ch));
+                } else if (Character.isDigit(ch) && sb.length() == 0) {
+                    key = Integer.parseInt(key + String.valueOf(ch));
+                }
+                if (Character.isLetter(ch)) {
+                    sb.append(ch);
+                }
+            } else {
+                if (Character.isDigit(ch)) key = Integer.parseInt(String.valueOf(ch));
+            }
+        }
+        if (sb.length() > 0) map.put(key, sb.toString());
+
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (entry.getKey() != entry.getValue().toCharArray().length) return false;
+        }
+
+        return true;
+    }
+
+    // 6 kyu Valid Braces
+    public boolean isValid(String braces) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = braces.length() - 1; i >= 0; i--) {
+            switch (braces.toCharArray()[i]) {
+                case '(':
+                    if (!stack.empty() && stack.peek() == ')') {
+                        stack.pop();
+                    } else {
+                        stack.push(braces.toCharArray()[i]);
+                    }
+                    break;
+                case '[':
+                    if (!stack.empty() && stack.peek() == ']') {
+                        stack.pop();
+                    } else {
+                        stack.push(braces.toCharArray()[i]);
+                    }
+                    break;
+                case '{':
+                    if (!stack.empty() && stack.peek() == '}') {
+                        stack.pop();
+                    } else {
+                        stack.push(braces.toCharArray()[i]);
+                    }
+                    break;
+                default:
+                    stack.push(braces.toCharArray()[i]);
+                    break;
+            }
+        }
+
+        return stack.empty();
     }
 
     // 6 kyu Vasya - Clerk

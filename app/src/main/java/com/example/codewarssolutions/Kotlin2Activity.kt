@@ -10,6 +10,34 @@ class Kotlin2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin2)
     }
 
+    // 6 kyu Character with longest consecutive repetition
+    fun longestRepetition(s: String): Pair<Char?, Int> {
+        val list = mutableListOf<String>()
+        val sb = StringBuilder()
+        s.forEach {
+            if (sb.isEmpty()) {
+                sb.append(it)
+            } else {
+                if (it == sb.last()) {
+                    sb.append(it)
+                    return@forEach
+                } else {
+                    list.add(sb.toString())
+                    sb.clear()
+                    sb.append(it)
+                }
+            }
+        }
+        if (sb.isNotEmpty()) list.add(sb.toString())
+
+        var maxPair = Pair<Char?, Int>(null, 0)
+        list.forEach {
+            if (it.length > maxPair.second) maxPair = Pair(it.first(), it.length)
+        }
+
+        return maxPair
+    }
+
     // 6 kyu Equal Sides Of An Array
     fun findEvenIndex(arr: IntArray): Int {
         for (i in arr.indices) {

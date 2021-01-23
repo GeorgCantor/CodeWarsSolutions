@@ -6,11 +6,46 @@ import com.example.codewarssolutions.R
 
 class LeetCodeActivity : AppCompatActivity() {
 
-    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+//        findRestaurant(
+//            arrayOf("Shogun", "Tapioca Express", "Burger King", "KFC"),
+//            arrayOf("Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun")
+//        )
+    }
+
+//    fun findRestaurant(list1: Array<String>, list2: Array<String>): Array<String> {
+//        val intersects = list1.intersect(list2.toList()).toTypedArray()
+//        return when (intersects.size) {
+//            1, list1.size, list2.size -> intersects
+//            else -> {
+//
+//            }
+//        }
+//    }
+
+    fun nextGreatestLetter(letters: CharArray, target: Char): Char {
+        letters.forEach {
+            if (it > target) return it
+        }
+
+        return letters[0]
+    }
+
+    fun findErrorNums(nums: IntArray): IntArray {
+        val numArray = IntArray(2)
+        val tempArray = IntArray(nums.size + 1)
+        nums.indices.forEach {
+            tempArray[nums[it]] += 1
+        }
+        for (i in 1..nums.size) {
+            if (tempArray[i] == 0) numArray[1] = i
+            if (tempArray[i] > 1) numArray[0] = i
+        }
+
+        return numArray
     }
 
     fun intToRoman(num: Int): String {

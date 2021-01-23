@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.leetcode
+package com.example.codewarssolutions.leetcode.ds
 
 class MyHashMap {
 
