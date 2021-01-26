@@ -3,6 +3,7 @@ package com.example.codewarssolutions.leetcode
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
+import java.util.*
 
 class LeetCodeActivity : AppCompatActivity() {
 
@@ -10,21 +11,59 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-//        findRestaurant(
-//            arrayOf("Shogun", "Tapioca Express", "Burger King", "KFC"),
-//            arrayOf("Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun")
-//        )
     }
 
-//    fun findRestaurant(list1: Array<String>, list2: Array<String>): Array<String> {
-//        val intersects = list1.intersect(list2.toList()).toTypedArray()
-//        return when (intersects.size) {
-//            1, list1.size, list2.size -> intersects
-//            else -> {
-//
-//            }
-//        }
-//    }
+    // https://leetcode.com/problems/reverse-only-letters/
+    fun reverseOnlyLetters(S: String): String {
+        val list = S.filter { it in 'a'..'z' || it in 'A'..'Z' }.reversed().toMutableList()
+        S.forEachIndexed { i, ch ->
+            if (ch !in 'a'..'z' && ch !in 'A'..'Z') list.add(i, ch)
+        }
+
+        return list.joinToString("")
+    }
+
+    // https://leetcode.com/problems/reverse-words-in-a-string-iii/
+    fun reverseWords(s: String) = s.split(" ").joinToString(" ") { it.reversed() }
+
+    // https://leetcode.com/problems/house-robber/
+    fun rob(nums: IntArray): Int {
+        val numArr = intArrayOf(0, 0, 0) + nums
+        (3 until numArr.size).forEach {
+            numArr[it] = maxOf(numArr[it] + numArr[it - 2], numArr[it] + numArr[it - 3])
+        }
+
+        return maxOf(numArr[numArr.size - 1], numArr[numArr.size - 2])
+    }
+
+    // https://leetcode.com/problems/backspace-string-compare/
+    fun backspaceCompare(S: String, T: String): Boolean {
+        val stackS = Stack<Char>()
+        S.reversed().forEach {
+            if (stackS.isNotEmpty() && stackS.peek() == '#') {
+                if (it.isLetter()) stackS.pop() else stackS.push(it)
+            } else {
+                stackS.push(it)
+            }
+        }
+
+        val stackT = Stack<Char>()
+        T.reversed().forEach {
+            if (stackT.isNotEmpty() && stackT.peek() == '#') {
+                if (it.isLetter()) stackT.pop() else stackT.push(it)
+            } else {
+                stackT.push(it)
+            }
+        }
+        while (stackS.isNotEmpty() && stackS.peek() == '#') {
+            stackS.pop()
+        }
+        while (stackT.isNotEmpty() && stackT.peek() == '#') {
+            stackT.pop()
+        }
+
+        return stackS == stackT
+    }
 
     fun nextGreatestLetter(letters: CharArray, target: Char): Char {
         letters.forEach {

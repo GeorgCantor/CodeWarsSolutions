@@ -20,13 +20,31 @@ public class Java2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
 
+        removeParentheses("example(unwanted thing)example");
+    }
+
+    public static String removeParentheses(final String str) {
+        StringBuilder sb1 = new StringBuilder();
+        for (char ch : str.toCharArray()) {
+            if (ch == '(') break;
+            sb1.append(ch);
+        }
+        StringBuilder sb2 = new StringBuilder();
+        for (int i = str.length() - 1; i >= 0; i--) {
+            char ch = str.toCharArray()[i];
+            if (ch == ')') break;
+            sb2.append(ch);
+        }
+
+        return sb1.toString() + sb2.reverse().toString();
     }
 
     // 6 kyu Message Validator
     public static boolean isAValidMessage(String message) {
         if (message.isEmpty()) return true;
         if (!Character.isDigit(message.toCharArray()[0])) return false;
-        if (Character.isDigit(message.toCharArray()[message.length() - 1]) && message.toCharArray()[message.length() - 1] != 0) return false;
+        if (Character.isDigit(message.toCharArray()[message.length() - 1]) && message.toCharArray()[message.length() - 1] != 0)
+            return false;
         Map<Integer, String> map = new HashMap<>();
         int key = -1;
         StringBuilder sb = new StringBuilder();
