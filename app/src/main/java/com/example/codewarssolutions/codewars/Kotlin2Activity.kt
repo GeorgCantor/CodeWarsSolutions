@@ -1,7 +1,8 @@
-package com.example.codewarssolutions
+package com.example.codewarssolutions.codewars
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.codewarssolutions.R
 
 class Kotlin2Activity : AppCompatActivity() {
 

@@ -1,12 +1,13 @@
-package com.example.codewarssolutions;
+package com.example.codewarssolutions.codewars;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.codewarssolutions.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,6 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algo);
 
-        Toast.makeText(this, wordPattern("hello"), Toast.LENGTH_LONG).show();
     }
 
     // 4 kyu Human readable duration format

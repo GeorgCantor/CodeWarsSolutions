@@ -1,9 +1,9 @@
-package com.example.codewarssolutions
+package com.example.codewarssolutions.codewars
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.isDigitsOnly
+import com.example.codewarssolutions.R
 import java.util.*
 import java.util.Collections.frequency
 import java.util.Collections.max
@@ -16,11 +16,6 @@ class KotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Toast.makeText(
-            this,
-            incrementString("bs97700"),
-            Toast.LENGTH_LONG
-        ).show()
     }
 
     // 6 kyu Highest Scoring Word

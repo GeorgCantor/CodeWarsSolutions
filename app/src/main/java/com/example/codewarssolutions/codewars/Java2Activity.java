@@ -1,8 +1,10 @@
-package com.example.codewarssolutions;
+package com.example.codewarssolutions.codewars;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.codewarssolutions.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,24 +22,23 @@ public class Java2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
 
-        removeParentheses("example(unwanted thing)example");
     }
 
-    public static String removeParentheses(final String str) {
-        StringBuilder sb1 = new StringBuilder();
-        for (char ch : str.toCharArray()) {
-            if (ch == '(') break;
-            sb1.append(ch);
-        }
-        StringBuilder sb2 = new StringBuilder();
-        for (int i = str.length() - 1; i >= 0; i--) {
-            char ch = str.toCharArray()[i];
-            if (ch == ')') break;
-            sb2.append(ch);
-        }
-
-        return sb1.toString() + sb2.reverse().toString();
-    }
+//    public static String removeParentheses(final String str) {
+//        StringBuilder sb1 = new StringBuilder();
+//        for (char ch : str.toCharArray()) {
+//            if (ch == '(') break;
+//            sb1.append(ch);
+//        }
+//        StringBuilder sb2 = new StringBuilder();
+//        for (int i = str.length() - 1; i >= 0; i--) {
+//            char ch = str.toCharArray()[i];
+//            if (ch == ')') break;
+//            sb2.append(ch);
+//        }
+//
+//        return sb1.toString() + sb2.reverse().toString();
+//    }
 
     // 6 kyu Message Validator
     public static boolean isAValidMessage(String message) {

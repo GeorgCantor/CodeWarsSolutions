@@ -13,6 +13,74 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/add-strings/
+    fun addStrings(num1: String, num2: String) = (num1.toBigInteger() + num2.toBigInteger()).toString()
+
+    fun quickSort(items: List<Int>): List<Int> {
+        if (items.count() < 2) return items
+        val pivot = items[items.count() / 2]
+        val equal = items.filter { it == pivot }
+        val less = items.filter { it < pivot }
+        val greater = items.filter { it > pivot }
+
+        return quickSort(less) + equal + quickSort(greater)
+    }
+
+    // https://leetcode.com/problems/valid-parentheses/
+    fun isValid(s: String): Boolean {
+        val stack = Stack<Char>()
+        s.reversed().forEach {
+            when (it) {
+                '(' -> if (stack.isNotEmpty() && stack.peek() == ')') stack.pop() else stack.push(it)
+                '[' -> if (stack.isNotEmpty() && stack.peek() == ']') stack.pop() else stack.push(it)
+                '{' -> if (stack.isNotEmpty() && stack.peek() == '}') stack.pop() else stack.push(it)
+                else -> stack.push(it)
+            }
+        }
+
+        return stack.isEmpty()
+    }
+
+    // https://leetcode.com/problems/longest-palindromic-substring/
+    fun longestPalindrome(s: String): String {
+        if (s.isBlank() || s.length == 1) return s
+        var range = s.length
+        while (range > 1) {
+            var start = 0
+            var end = range - 1
+            while (end < s.length) {
+                if (isPalindrome(s, start, end)) return s.substring(start..end)
+                start++
+                end++
+            }
+            range--
+        }
+
+        return s.first().toString()
+    }
+
+    private fun isPalindrome(word: String, start: Int, end: Int): Boolean {
+        var l = start
+        var r = end
+        while (l < r) {
+            if (word[l++] != word[r--]) return false
+        }
+
+        return true
+    }
+
+    // https://leetcode.com/problems/search-insert-position/
+    fun searchInsert(nums: IntArray, target: Int): Int {
+        var i = 0
+        while (i < nums.size) {
+            if (nums[i] == target) return i
+            if (i == 0 && target < nums[i]) return i
+            if (i > 0 && target > nums[i - 1] && target < nums[i]) return i
+            i++
+        }
+        return i
+    }
+
     // https://leetcode.com/problems/reverse-only-letters/
     fun reverseOnlyLetters(S: String): String {
         val list = S.filter { it in 'a'..'z' || it in 'A'..'Z' }.reversed().toMutableList()

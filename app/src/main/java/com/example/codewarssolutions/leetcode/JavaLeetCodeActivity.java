@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.codewarssolutions.R;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
@@ -21,6 +22,40 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
+    }
+
+    // // https://leetcode.com/problems/add-strings/
+    public String addStrings(String num1, String num2) {
+        BigInteger sum = new BigInteger(num1).add(new BigInteger(num2));
+        return sum.toString();
+    }
+
+    public void quickSort(int[] array, int low, int high) {
+        if (array == null || array.length == 0) return;
+        if (low >= high) return;
+        int middle = low + (high - low) / 2;
+        int pivot = array[middle];
+
+        int i = low;
+        int j = high;
+
+        while (i <= j) {
+            while (array[i] <= pivot) i++;
+            while (array[j] >= pivot) j--;
+            if (i <= j) {
+                swap(array, i, j);
+                i++;
+                j--;
+            }
+        }
+        if (low < j) quickSort(array, low, j);
+        if (high > i) quickSort(array, i, high);
+    }
+
+    private void swap(int[] array, int x, int y) {
+        int temp = array[x];
+        array[x] = array[y];
+        array[y] = temp;
     }
 
     // https://leetcode.com/problems/reverse-only-letters/
