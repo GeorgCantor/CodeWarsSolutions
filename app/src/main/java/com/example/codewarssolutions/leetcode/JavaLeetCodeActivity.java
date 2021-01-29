@@ -10,7 +10,13 @@ import com.example.codewarssolutions.R;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -24,7 +30,55 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
-    // // https://leetcode.com/problems/add-strings/
+    // https://leetcode.com/problems/4sum/
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Set<List<Integer>> set = new HashSet<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 3; i++) {
+            for (int j = i + 1; j < nums.length - 2; j++) {
+                int left = j + 1;
+                int right = nums.length - 1;
+                while (left < right) {
+                    int sum = nums[i] + nums[j] + nums[left] + nums[right];
+                    if (sum == target) {
+                        set.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+                        left++;
+                        right--;
+                    } else if (sum < target) {
+                        left++;
+                    } else if (sum > target) {
+                        right--;
+                    }
+                }
+            }
+        }
+
+        return new ArrayList<>(set);
+    }
+
+    // https://leetcode.com/problems/two-sum/submissions/
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) return new int[]{i, j};
+            }
+        }
+        throw new IllegalArgumentException("Not found");
+    }
+
+    public int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        throw new IllegalArgumentException("Not found");
+    }
+
+    // https://leetcode.com/problems/add-strings/
     public String addStrings(String num1, String num2) {
         BigInteger sum = new BigInteger(num1).add(new BigInteger(num2));
         return sum.toString();

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
 import java.util.*
+import kotlin.collections.HashSet
 
 class LeetCodeActivity : AppCompatActivity() {
 
@@ -11,10 +12,51 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        fourSum(intArrayOf(1, 0, -1, 0, -2, 2), 0)
+    }
+
+    // https://leetcode.com/problems/4sum/
+    fun fourSum(nums: IntArray, target: Int): List<List<Int>> {
+        val set = HashSet<List<Int>>()
+        nums.sort()
+        for (i in 0 until nums.size - 3) {
+            for (j in i + 1 until nums.size - 2) {
+                var left = j + 1
+                var right = nums.size - 1
+                while (left < right) {
+                    val sum = nums[i] + nums[j] + nums[left] + nums[right]
+                    when {
+                        sum == target -> {
+                            set.add(listOf(nums[i], nums[j], nums[left], nums[right]))
+                            left++
+                            right--
+                        }
+                        sum < target -> left++
+                        sum > target -> right--
+                    }
+                }
+            }
+        }
+
+        return set.toList()
+    }
+
+    // https://leetcode.com/problems/number-of-segments-in-a-string/
+    fun countSegments(s: String): Int {
+        var i = 0
+        var counter = 0
+        while (i < s.length) {
+            if (s[i] != ' ') counter++
+            while (i < s.length && s[i] != ' ') i++
+            if (i < s.length && s[i] == ' ') i++
+        }
+
+        return counter
     }
 
     // https://leetcode.com/problems/add-strings/
-    fun addStrings(num1: String, num2: String) = (num1.toBigInteger() + num2.toBigInteger()).toString()
+    fun addStrings(num1: String, num2: String) =
+        (num1.toBigInteger() + num2.toBigInteger()).toString()
 
     fun quickSort(items: List<Int>): List<Int> {
         if (items.count() < 2) return items
