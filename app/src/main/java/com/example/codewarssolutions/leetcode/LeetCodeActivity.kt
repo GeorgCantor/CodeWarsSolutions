@@ -12,7 +12,64 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        fourSum(intArrayOf(1, 0, -1, 0, -2, 2), 0)
+        intersect(intArrayOf(4, 9, 5), intArrayOf(9, 4, 9, 8, 4))
+    }
+
+    // https://leetcode.com/problems/min-stack/
+    class MinStack() {
+
+        var list = mutableListOf<Int>()
+
+        fun push(x: Int) = list.add(x)
+
+        fun pop() = list.removeAt(list.size - 1)
+
+        fun top() = list.last()
+
+        fun getMin() = list.min()
+    }
+
+    // https://leetcode.com/problems/intersection-of-two-arrays-ii/
+    fun intersect(nums1: IntArray, nums2: IntArray): IntArray {
+        val list = mutableListOf<Int>()
+        val map = mutableMapOf<Int, Int>()
+        nums2.forEach {
+            map[it] = map.getOrDefault(it, 0) + 1
+        }
+        nums1.forEach {
+            val v = map.getOrDefault(it, 0)
+            if (v > 0) {
+                list.add(it)
+                map[it] = v - 1
+            }
+        }
+
+        return list.toIntArray()
+    }
+
+    // https://leetcode.com/problems/3sum/
+    fun threeSum(nums: IntArray): List<List<Int>> {
+        val set = HashSet<List<Int>>()
+        if (nums.size <= 2) return set.toList()
+        nums.sort()
+        for (i in 0 until nums.size - 2) {
+            var left = i + 1
+            var right = nums.size - 1
+            while (left < right) {
+                val sum = nums[i] + nums[left] + nums[right]
+                when {
+                    sum == 0 -> {
+                        set.add(listOf(nums[i], nums[left], nums[right]))
+                        left++
+                        right--
+                    }
+                    sum < 0 -> left++
+                    else -> right--
+                }
+            }
+        }
+
+        return set.toList()
     }
 
     // https://leetcode.com/problems/4sum/
