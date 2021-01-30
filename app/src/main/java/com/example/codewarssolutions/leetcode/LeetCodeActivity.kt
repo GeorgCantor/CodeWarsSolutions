@@ -12,7 +12,68 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        intersect(intArrayOf(4, 9, 5), intArrayOf(9, 4, 9, 8, 4))
+        removeElement(intArrayOf(0, 1, 2, 2, 3, 0, 4, 2), 2)
+    }
+
+    // https://leetcode.com/problems/single-number/
+    fun singleNumber(nums: IntArray): Int {
+        val map = mutableMapOf<Int, Int>()
+        nums.forEach {
+            when {
+                map.containsKey(it) -> map[it] = map.getValue(it) + 1
+                else -> map[it] = 1
+            }
+        }
+
+        return map.filter { it.value == 1 }.keys.first()
+    }
+
+    // https://leetcode.com/problems/remove-element/
+    fun removeElement(nums: IntArray, `val`: Int): Int {
+        var size = 0
+        nums.forEachIndexed { i, _ ->
+            if (nums[i] != `val`) {
+                nums[size] = nums[i]
+                size++
+            }
+        }
+
+        return size
+    }
+
+    // https://leetcode.com/problems/longest-substring-without-repeating-characters/
+    fun lengthOfLongestSubstring(s: String): Int {
+        var start = 0
+        var end = 0
+        var max = 0
+        val set = mutableSetOf<Char>()
+        while (end < s.length) {
+            when {
+                !set.contains(s[end]) -> {
+                    set.add(s[end])
+                    end++
+                    max = maxOf(set.size, max)
+                }
+                else -> {
+                    set.remove(s[start])
+                    start++
+                }
+            }
+        }
+
+        return max
+    }
+
+    // https://leetcode.com/problems/relative-sort-array/
+    fun relativeSortArray(arr1: IntArray, arr2: IntArray): IntArray {
+        val list = mutableListOf<Int>()
+        arr2.forEach { it2 ->
+            arr1.forEach { it1 ->
+                if (it2 == it1) list.add(it1)
+            }
+        }
+
+        return list.toIntArray() + arr1.filter { !list.contains(it) }.sorted()
     }
 
     // https://leetcode.com/problems/min-stack/
@@ -267,22 +328,6 @@ class LeetCodeActivity : AppCompatActivity() {
         }
 
         return sb.toString()
-    }
-
-    fun lengthOfLongestSubstring(s: String): Int {
-        if (s.isEmpty()) return 0
-        var start = 0
-        var max = 0
-        val map = mutableMapOf<Char, Int>()
-        s.toCharArray().forEachIndexed { index, char ->
-            if (map.contains(char)) {
-                start = maxOf(start, map.getValue(char) + 1)
-            }
-            map[char] = index
-            max = maxOf(max, index - start + 1)
-        }
-
-        return max
     }
 
     fun merge(nums1: IntArray, m: Int, nums2: IntArray, n: Int): Unit {

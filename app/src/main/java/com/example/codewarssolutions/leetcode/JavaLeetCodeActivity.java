@@ -28,6 +28,76 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
+        singleNumber(new int[]{4, 1, 2, 1, 2});
+    }
+
+    // https://leetcode.com/problems/single-number/
+    public int singleNumber(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : nums) {
+            if (map.containsKey(i)) {
+                map.put(i, map.get(i) + 1);
+            } else {
+                map.put(i, 1);
+            }
+        }
+
+        return map.entrySet().stream()
+                .filter(e -> e.getValue() == 1)
+                .mapToInt(Map.Entry::getKey)
+                .findFirst()
+                .getAsInt();
+    }
+
+    // https://leetcode.com/problems/remove-element/
+    public int removeElement(int[] nums, int val) {
+        int size = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[size] = nums[i];
+                size++;
+            }
+        }
+
+        return size;
+    }
+
+    // https://leetcode.com/problems/longest-substring-without-repeating-characters/
+    public int lengthOfLongestSubstring(String s) {
+        int start = 0;
+        int end = 0;
+        int max = 0;
+        Set<Character> set = new HashSet<>();
+        while (end < s.length()) {
+            if (!set.contains(s.charAt(end))) {
+                set.add(s.charAt(end));
+                end++;
+                max = Math.max(set.size(), max);
+            } else {
+                set.remove(s.charAt(start));
+                start++;
+            }
+        }
+
+        return max;
+    }
+
+    // https://leetcode.com/problems/relative-sort-array/
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i1 : arr2) {
+            for (int i2 : arr1) {
+                if (i1 == i2) list.add(i2);
+            }
+        }
+        ArrayList<Integer> uniques = new ArrayList<>();
+        for (int i : arr1) {
+            if (!list.contains(i)) uniques.add(i);
+        }
+        Collections.sort(uniques);
+        list.addAll(uniques);
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
     // https://leetcode.com/problems/min-stack/
