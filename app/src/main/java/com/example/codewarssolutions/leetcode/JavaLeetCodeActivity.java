@@ -31,6 +31,46 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         singleNumber(new int[]{4, 1, 2, 1, 2});
     }
 
+    // https://leetcode.com/problems/implement-queue-using-stacks/
+    class MyQueue {
+
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+
+        public void push(int x) {
+            while (!stack1.isEmpty()) stack2.push(stack1.pop());
+            stack1.push(x);
+            while (!stack2.isEmpty()) stack1.push(stack2.pop());
+        }
+
+        public int pop() {
+            return stack1.pop();
+        }
+
+        public int peek() {
+            return stack1.peek();
+        }
+
+        public boolean empty() {
+            return stack1.isEmpty();
+        }
+    }
+
+    // https://leetcode.com/problems/longest-palindrome/
+    public int longestPalindrome(String s) {
+        Set<Character> set = new HashSet<>();
+        int counter = 0;
+        for (Character ch : s.toCharArray()) {
+            if (set.remove(ch)) {
+                counter++;
+            } else {
+                set.add(ch);
+            }
+        }
+
+        return set.isEmpty() ? counter * 2 : counter * 2 + 1;
+    }
+
     // https://leetcode.com/problems/single-number/
     public int singleNumber(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();

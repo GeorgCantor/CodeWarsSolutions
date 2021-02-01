@@ -12,7 +12,67 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        removeElement(intArrayOf(0, 1, 2, 2, 3, 0, 4, 2), 2)
+    }
+
+    // https://leetcode.com/problems/majority-element/
+    fun majorityElement(nums: IntArray): Int = nums.sorted()[nums.size / 2]
+
+    // https://leetcode.com/problems/implement-queue-using-stacks/
+    class MyQueue() {
+
+        private val stack1 = Stack<Int>()
+        private val stack2 = Stack<Int>()
+
+        fun push(x: Int) {
+            while (!stack1.isEmpty()) stack2.push(stack1.pop())
+            stack1.push(x)
+            while (!stack2.empty()) stack1.push(stack2.pop())
+        }
+
+        fun pop() = stack1.pop()
+
+        fun peek() = stack1.peek()
+
+        fun empty() = stack1.isEmpty()
+    }
+
+    // https://leetcode.com/problems/longest-palindrome/
+    fun longestPalindrome(s: String): Int {
+        val set = mutableSetOf<Char>()
+        var counter = 0
+        s.forEach {
+            if (set.remove(it)) counter++ else set.add(it)
+        }
+
+        return if (set.isEmpty()) counter * 2 else counter * 2 + 1
+    }
+
+    // https://leetcode.com/problems/longest-palindromic-substring/
+    fun longestPalindrome2(s: String): String {
+        if (s.isBlank() || s.length == 1) return s
+        var range = s.length
+        while (range > 1) {
+            var start = 0
+            var end = range - 1
+            while (end < s.length) {
+                if (isPalindrome(s, start, end)) return s.substring(start..end)
+                start++
+                end++
+            }
+            range--
+        }
+
+        return s.first().toString()
+    }
+
+    private fun isPalindrome(word: String, start: Int, end: Int): Boolean {
+        var l = start
+        var r = end
+        while (l < r) {
+            if (word[l++] != word[r--]) return false
+        }
+
+        return true
     }
 
     // https://leetcode.com/problems/single-number/
@@ -199,34 +259,6 @@ class LeetCodeActivity : AppCompatActivity() {
         }
 
         return stack.isEmpty()
-    }
-
-    // https://leetcode.com/problems/longest-palindromic-substring/
-    fun longestPalindrome(s: String): String {
-        if (s.isBlank() || s.length == 1) return s
-        var range = s.length
-        while (range > 1) {
-            var start = 0
-            var end = range - 1
-            while (end < s.length) {
-                if (isPalindrome(s, start, end)) return s.substring(start..end)
-                start++
-                end++
-            }
-            range--
-        }
-
-        return s.first().toString()
-    }
-
-    private fun isPalindrome(word: String, start: Int, end: Int): Boolean {
-        var l = start
-        var r = end
-        while (l < r) {
-            if (word[l++] != word[r--]) return false
-        }
-
-        return true
     }
 
     // https://leetcode.com/problems/search-insert-position/
