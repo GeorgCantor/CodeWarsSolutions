@@ -12,7 +12,34 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        maxPower("abbcccddddeeeeedcba")
+        countConsistentStrings("ab", arrayOf("ad", "bd", "aaab", "baa", "badab"))
+    }
+
+    // https://leetcode.com/problems/count-the-number-of-consistent-strings/
+    fun countConsistentStrings(allowed: String, words: Array<String>): Int {
+        var counter = 0
+        words.forEach {
+            if (it.all { allowed.contains(it) }) counter++
+        }
+
+        return counter
+    }
+
+    // https://leetcode.com/problems/top-k-frequent-elements/
+    fun topKFrequent(nums: IntArray, k: Int): IntArray {
+        val map = mutableMapOf<Int, Int>()
+        nums.forEach { map[it] = map.getOrDefault(it, 0) + 1 }
+
+        val uniques = mutableListOf<Int>()
+        val pairs = map.toList().sortedByDescending { it.second }
+        pairs.forEach {
+            while (uniques.size < k) {
+                uniques.add(it.first)
+                break
+            }
+        }
+
+        return uniques.toIntArray()
     }
 
     // https://leetcode.com/problems/consecutive-characters/

@@ -12,6 +12,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +29,34 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
-        singleNumber(new int[]{4, 1, 2, 1, 2});
+        countConsistentStrings("ab", new String[]{"ad", "bd", "aaab", "baa", "badab"});
+    }
+
+    // https://leetcode.com/problems/count-the-number-of-consistent-strings/
+    public int countConsistentStrings(String allowed, String[] words) {
+        int counter = 0;
+        for (String s : words) {
+            boolean isValid = true;
+            for (char ch : s.toCharArray()) {
+                if (!allowed.contains(String.valueOf(ch))) {
+                    isValid = false;
+                }
+            }
+            if (isValid) counter++;
+        }
+
+        return counter;
+    }
+
+    // https://leetcode.com/problems/top-k-frequent-elements/
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        return map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .limit(k).mapToInt(Map.Entry::getKey).toArray();
     }
 
     // https://leetcode.com/problems/consecutive-characters/
