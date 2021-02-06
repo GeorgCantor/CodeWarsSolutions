@@ -12,6 +12,70 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        maxPower("abbcccddddeeeeedcba")
+    }
+
+    // https://leetcode.com/problems/consecutive-characters/
+    fun maxPower(s: String): Int {
+        var max = 0
+        var counter = 0
+        var lastChar = s.first()
+        s.forEach {
+            when (it) {
+                lastChar -> counter++
+                else -> {
+                    max = Math.max(counter, max)
+                    counter = 1
+                    lastChar = it
+                }
+            }
+        }
+
+        return Math.max(counter, max)
+    }
+
+    // https://leetcode.com/problems/max-consecutive-ones/
+    fun findMaxConsecutiveOnes(nums: IntArray): Int {
+        var max = 0
+        var counter = 0
+        nums.forEach {
+            when (it) {
+                1 -> counter++
+                else -> {
+                    max = Math.max(counter, max)
+                    counter = 0
+                }
+            }
+        }
+
+        return Math.max(counter, max)
+    }
+
+    // https://leetcode.com/problems/word-pattern/
+    fun wordPattern(pattern: String, s: String): Boolean {
+        val list = s.split(" ")
+        if (list.size != pattern.length) return false
+
+        val map = mutableMapOf<Char, String>()
+        pattern.forEachIndexed { i, ch ->
+            when (map.containsKey(ch)) {
+                true -> if (map[ch] != list[i]) return false
+                false -> {
+                    if (map.containsValue(list[i])) return false
+                    map[ch] = list[i]
+                }
+            }
+        }
+
+        return true
+    }
+
+    // https://leetcode.com/problems/shuffle-string/
+    fun restoreString(s: String, indices: IntArray): String {
+        val array = CharArray(s.length)
+        indices.forEachIndexed { i, num -> array[num] = s[i] }
+
+        return String(array)
     }
 
     // https://leetcode.com/problems/majority-element/

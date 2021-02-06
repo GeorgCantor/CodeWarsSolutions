@@ -31,6 +31,59 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         singleNumber(new int[]{4, 1, 2, 1, 2});
     }
 
+    // https://leetcode.com/problems/consecutive-characters/
+    public int maxPower(String s) {
+        int max = 0;
+        int counter = 0;
+        char lastChar = s.toCharArray()[0];
+        for (char ch : s.toCharArray()) {
+            if (ch == lastChar) {
+                counter++;
+            } else {
+                max = Math.max(max, counter);
+                counter = 1;
+                lastChar = ch;
+            }
+        }
+
+        return Math.max(max, counter);
+    }
+
+    // https://leetcode.com/problems/max-consecutive-ones/
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int max = 0;
+        int counter = 0;
+        for (int num : nums) {
+            if (num == 1) {
+                counter++;
+            } else {
+                max = Math.max(max, counter);
+                counter = 0;
+            }
+        }
+
+        return Math.max(max, counter);
+    }
+
+    // https://leetcode.com/problems/word-pattern/
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+        if (words.length != pattern.length()) return false;
+
+        Map<Character, String> map = new HashMap<>();
+        for (int i = 0; i < pattern.length(); i++) {
+            char ch = pattern.toCharArray()[i];
+            if (map.containsKey(ch)) {
+                if (!map.get(ch).equals(words[i])) return false;
+            } else {
+                if (map.containsValue(words[i])) return false;
+                map.put(ch, words[i]);
+            }
+        }
+
+        return true;
+    }
+
     // https://leetcode.com/problems/implement-queue-using-stacks/
     class MyQueue {
 
