@@ -12,7 +12,36 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        countConsistentStrings("ab", arrayOf("ad", "bd", "aaab", "baa", "badab"))
+        threeSumClosest(intArrayOf(-1, 2, 1, -4), 1)
+    }
+
+    // https://leetcode.com/problems/3sum-closest/
+    fun threeSumClosest(nums: IntArray, target: Int): Int {
+        var closest = nums.first() + nums[1] + nums.last()
+        val list = nums.sorted()
+        (0..list.size - 2).forEach {
+            var second = it + 1
+            var end = list.size - 1
+            while (second < end) {
+                var sum = list[it] + list[second] + list[end]
+                if (sum > target) end-- else second++
+                if (Math.abs(sum - target) < Math.abs(closest - target)) closest = sum
+            }
+        }
+
+        return closest
+    }
+
+    // https://leetcode.com/problems/group-anagrams/
+    fun groupAnagrams(strs: Array<String>): List<List<String>> {
+        val map = mutableMapOf<String, MutableList<String>>()
+        strs.forEach {
+            val key = it.toCharArray().sorted().joinToString("")
+            if (!map.containsKey(key)) map[key] = mutableListOf()
+            map[key]?.add(it)
+        }
+
+        return map.values.toList()
     }
 
     // https://leetcode.com/problems/count-the-number-of-consistent-strings/
