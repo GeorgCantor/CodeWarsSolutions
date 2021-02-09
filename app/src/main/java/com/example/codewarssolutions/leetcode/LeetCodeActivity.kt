@@ -12,7 +12,67 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        threeSumClosest(intArrayOf(-1, 2, 1, -4), 1)
+        replaceWords(listOf("cat", "bat", "rat"), "the cattle was rattled by the battery")
+    }
+
+    // https://leetcode.com/problems/basic-calculator-ii/
+    fun calculate(s: String): Int {
+        var sum = 0
+        var temp = 0
+        var num = 0
+        var last = '+'
+
+        s.forEachIndexed { i, ch ->
+            if (ch.isDigit()) num = num * 10 + ch.toInt() - '0'.toInt()
+            if (i == s.lastIndex || !ch.isDigit() && ch != ' ') {
+                when (last) {
+                    '+' -> {
+                        sum += temp
+                        temp = num
+                    }
+                    '-' -> {
+                        sum += temp
+                        temp = -num
+                    }
+                    '*' -> temp *= num
+                    '/' -> temp /= num
+                }
+                last = ch
+                num = 0
+            }
+        }
+        sum += temp
+
+        return sum
+    }
+
+    // https://leetcode.com/problems/replace-words/
+    fun replaceWords(dictionary: List<String>, sentence: String): String {
+        val list = sentence.split(" ").toMutableList()
+        dictionary.sorted().forEach {
+            list.forEachIndexed { i, s ->
+                if (s.startsWith(it) && s.length > it.length) list[i] = it
+            }
+        }
+
+        return list.joinToString(" ")
+    }
+
+    // https://leetcode.com/problems/roman-to-integer/
+    fun romanToInt(s: String): Int {
+        val map = mutableMapOf(
+            'I' to 1, 'V' to 5, 'X' to 10, 'L' to 50, 'C' to 100, 'D' to 500, 'M' to 1000
+        )
+        var number = 0
+        var last = 1000
+        s.forEach {
+            val value = map[it] ?: 0
+            if (value > last) number -= last * 2
+            number += value
+            last = value
+        }
+
+        return number
     }
 
     // https://leetcode.com/problems/3sum-closest/
@@ -23,7 +83,7 @@ class LeetCodeActivity : AppCompatActivity() {
             var second = it + 1
             var end = list.size - 1
             while (second < end) {
-                var sum = list[it] + list[second] + list[end]
+                val sum = list[it] + list[second] + list[end]
                 if (sum > target) end-- else second++
                 if (Math.abs(sum - target) < Math.abs(closest - target)) closest = sum
             }
