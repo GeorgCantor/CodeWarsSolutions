@@ -448,10 +448,6 @@ class LeetCodeActivity : AppCompatActivity() {
         return counter
     }
 
-    // https://leetcode.com/problems/add-strings/
-    fun addStrings(num1: String, num2: String) =
-        (num1.toBigInteger() + num2.toBigInteger()).toString()
-
     fun quickSort(items: List<Int>): List<Int> {
         if (items.count() < 2) return items
         val pivot = items[items.count() / 2]

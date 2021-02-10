@@ -24,21 +24,21 @@ public class Java2Activity extends AppCompatActivity {
 
     }
 
-//    public static String removeParentheses(final String str) {
-//        StringBuilder sb1 = new StringBuilder();
-//        for (char ch : str.toCharArray()) {
-//            if (ch == '(') break;
-//            sb1.append(ch);
-//        }
-//        StringBuilder sb2 = new StringBuilder();
-//        for (int i = str.length() - 1; i >= 0; i--) {
-//            char ch = str.toCharArray()[i];
-//            if (ch == ')') break;
-//            sb2.append(ch);
-//        }
-//
-//        return sb1.toString() + sb2.reverse().toString();
-//    }
+    // https://www.codewars.com/kata/5ff50f64c0afc50008861bf0
+    public static int fourSeven(int n) {
+        while (n == 4) return 7;
+        while (n == 7) return 4;
+        return 0;
+    }
+
+    // https://www.codewars.com/kata/54b81566cd7f51408300022d
+    static String[] findWord(String x, String[] y) {
+        if (x.trim().isEmpty()) return new String[]{"Empty"};
+        ArrayList<String> list = new ArrayList<>();
+        for (String s : y) if (s.toLowerCase().contains(x.toLowerCase())) list.add(s);
+
+        return list.toArray(new String[list.size()]);
+    }
 
     // 6 kyu Message Validator
     public static boolean isAValidMessage(String message) {

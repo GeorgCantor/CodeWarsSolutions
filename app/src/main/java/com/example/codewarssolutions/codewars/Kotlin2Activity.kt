@@ -11,6 +11,45 @@ class Kotlin2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin2)
     }
 
+    // https://www.codewars.com/kata/5848565e273af816fb000449
+    fun encryptThis(text: String): String {
+        val list = mutableListOf<String>()
+        text.split(" ").forEach {
+            if (it.length == 1) {
+                list.add(it.first().toInt().toString())
+            } else {
+                val sb = StringBuilder()
+                sb.append(it.first().toInt())
+                val chars = it.drop(1).toCharArray()
+                val temp = chars.first()
+                chars[0] = chars.last()
+                chars[chars.lastIndex] = temp
+
+                sb.append(chars)
+                list.add(sb.toString())
+            }
+        }
+
+        return list.joinToString(" ")
+    }
+
+    // https://www.codewars.com/kata/57cf50a7eca2603de0000090
+    fun moveTen(s: String): String {
+        val abc = "abcdefghijklmnopqrstuvwxyz"
+        val sb = StringBuilder()
+        s.forEach {
+            var counter = 0
+            var temp = abc[abc.indexOf(it)]
+            while (counter < 10) {
+                temp = if (temp == 'z') 'a' else abc[abc.indexOf(temp) + 1]
+                counter++
+            }
+            sb.append(temp)
+        }
+
+        return sb.toString()
+    }
+
     // 6 kyu Character with longest consecutive repetition
     fun longestRepetition(s: String): Pair<Char?, Int> {
         val list = mutableListOf<String>()
