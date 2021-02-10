@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
 import java.util.*
+import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
 class LeetCodeActivity : AppCompatActivity() {
@@ -12,7 +13,42 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        replaceWords(listOf("cat", "bat", "rat"), "the cattle was rattled by the battery")
+        findLHS(intArrayOf(1, 2, 1, 3, 0, 0, 2, 2, 1, 3, 3))
+    }
+
+    // https://leetcode.com/problems/longest-harmonious-subsequence/
+    fun findLHS(nums: IntArray): Int {
+        val map = mutableMapOf<Int, Int>()
+        var max = 0
+        nums.forEach { map[it] = map.getOrDefault(it, 0) + 1 }
+        map.keys.forEach {
+            if (map.containsKey(it + 1)) max = maxOf(max, map[it]!! + map[it + 1]!!)
+        }
+
+        return max
+    }
+
+    // https://leetcode.com/problems/maximum-subarray/
+    fun maxSubArray(nums: IntArray): Int {
+        var max = Int.MIN_VALUE
+        var current = 0
+        nums.forEach {
+            current = maxOf(current + it, it)
+            max = maxOf(max, current)
+        }
+
+        return max
+    }
+
+    // https://leetcode.com/problems/contains-duplicate-ii/
+    fun containsNearbyDuplicate(nums: IntArray, k: Int): Boolean {
+        val map = HashMap<Int, Int>()
+        nums.forEachIndexed { i, num ->
+            if (map.containsKey(num) && i - map[num]!! <= k) return true
+            map[num] = i
+        }
+
+        return false
     }
 
     // https://leetcode.com/problems/basic-calculator-ii/

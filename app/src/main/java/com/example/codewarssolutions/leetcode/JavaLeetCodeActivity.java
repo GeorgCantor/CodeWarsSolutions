@@ -29,7 +29,43 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
-        countConsistentStrings("ab", new String[]{"ad", "bd", "aaab", "baa", "badab"});
+        findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7});
+    }
+
+    // https://leetcode.com/problems/longest-harmonious-subsequence/
+    public int findLHS(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int max = 0;
+        for (int num : nums) map.put(num, map.getOrDefault(num, 0) + 1);
+
+        for (int key : map.keySet()) {
+            if (map.containsKey(key + 1)) max = Math.max(max, map.get(key) + map.get(key + 1));
+        }
+
+        return max;
+    }
+
+    // https://leetcode.com/problems/maximum-subarray/
+    public int maxSubArray(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int current = 0;
+        for (int num : nums) {
+            current = Math.max(current + num, num);
+            max = Math.max(max, current);
+        }
+
+        return max;
+    }
+
+    // https://leetcode.com/problems/contains-duplicate-ii/
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i]) && i - map.get(nums[i]) <= k) return true;
+            map.put(nums[i], i);
+        }
+
+        return false;
     }
 
     // https://leetcode.com/problems/count-the-number-of-consistent-strings/
