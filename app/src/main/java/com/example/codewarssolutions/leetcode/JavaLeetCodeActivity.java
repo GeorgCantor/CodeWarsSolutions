@@ -29,7 +29,20 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
-        findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7});
+    }
+
+    // https://leetcode.com/problems/valid-palindrome/
+    public boolean isPalindrome(String s) {
+        List<String> list = new ArrayList<>();
+        for (char ch : s.toCharArray()) {
+            if (Character.isDigit(ch) || Character.isLetter(ch)) {
+                list.add(String.valueOf(Character.toLowerCase(ch)));
+            }
+        }
+        List<String> list2 = new ArrayList<>(list);
+        Collections.reverse(list2);
+
+        return String.join("", list).equals(String.join("", list2));
     }
 
     // https://leetcode.com/problems/longest-harmonious-subsequence/

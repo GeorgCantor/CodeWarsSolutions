@@ -13,7 +13,6 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        findLHS(intArrayOf(1, 2, 1, 3, 0, 0, 2, 2, 1, 3, 3))
     }
 
     // https://leetcode.com/problems/longest-harmonious-subsequence/
@@ -583,17 +582,13 @@ class LeetCodeActivity : AppCompatActivity() {
         nums1.sort()
     }
 
+    // https://leetcode.com/problems/two-sum/
     fun twoSum(nums: IntArray, target: Int): IntArray {
-        nums.indices.forEach {
-            var counter = 0
-            val num = nums[it]
-            while (counter < nums.size) {
-                if (counter != it) {
-                    if (num + nums[counter] == target) {
-                        return intArrayOf(nums.indexOf(num), nums.lastIndexOf(nums[counter]))
-                    }
+        nums.forEachIndexed { i, num ->
+            for (j in i + 1 until nums.size) {
+                if (num + nums[j] == target) {
+                    return intArrayOf(nums.indexOf(num), nums.lastIndexOf(nums[j]))
                 }
-                counter++
             }
         }
 
