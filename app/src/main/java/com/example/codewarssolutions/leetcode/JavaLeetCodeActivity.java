@@ -31,6 +31,14 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/remove-element/
+    public int removeElement(int[] nums, int val) {
+        int counter = 0;
+        for (int i = 0; i < nums.length; i++) if (nums[i] != val) nums[counter++] = nums[i];
+
+        return counter;
+    }
+
     // https://leetcode.com/problems/valid-palindrome/
     public boolean isPalindrome(String s) {
         List<String> list = new ArrayList<>();
@@ -217,19 +225,6 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
                 .mapToInt(Map.Entry::getKey)
                 .findFirst()
                 .getAsInt();
-    }
-
-    // https://leetcode.com/problems/remove-element/
-    public int removeElement(int[] nums, int val) {
-        int size = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
-                nums[size] = nums[i];
-                size++;
-            }
-        }
-
-        return size;
     }
 
     // https://leetcode.com/problems/longest-substring-without-repeating-characters/

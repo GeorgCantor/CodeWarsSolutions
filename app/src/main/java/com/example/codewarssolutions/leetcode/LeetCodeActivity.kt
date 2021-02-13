@@ -15,6 +15,43 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/longest-substring-without-repeating-characters/
+    fun lengthOfLongestSubstring(s: String): Int {
+        var max = if (s.isEmpty()) 0 else 1
+        val list = mutableListOf<Char>()
+        (0..s.length - 2).forEach { start ->
+            loop@ for (i in start until s.length) {
+                when (list.contains(s[i])) {
+                    true -> {
+                        max = maxOf(max, list.size)
+                        list.clear()
+                        break@loop
+                    }
+                    false -> list.add(s[i])
+                }
+            }
+            max = maxOf(max, list.size)
+        }
+
+        return max
+    }
+
+    // https://leetcode.com/problems/remove-element/
+    fun removeElement(nums: IntArray, num: Int): Int {
+        var counter = 0
+        nums.forEach { if (it != num) nums[counter++] = it }
+
+        return counter
+    }
+
+    // https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+    fun removeDuplicates(nums: IntArray): Int {
+        var j = 0
+        for (i in nums.indices) if (nums[i] != nums[j]) nums[++j] = nums[i]
+
+        return ++j
+    }
+
     // https://leetcode.com/problems/longest-harmonious-subsequence/
     fun findLHS(nums: IntArray): Int {
         val map = mutableMapOf<Int, Int>()
@@ -232,10 +269,11 @@ class LeetCodeActivity : AppCompatActivity() {
     // https://leetcode.com/problems/majority-element/
     fun majorityElement(nums: IntArray): Int = nums.sorted()[nums.size / 2]
 
+
     // https://leetcode.com/problems/implement-queue-using-stacks/
     class MyQueue() {
-
         private val stack1 = Stack<Int>()
+
         private val stack2 = Stack<Int>()
 
         fun push(x: Int) {
@@ -247,7 +285,6 @@ class LeetCodeActivity : AppCompatActivity() {
         fun pop() = stack1.pop()
 
         fun peek() = stack1.peek()
-
         fun empty() = stack1.isEmpty()
     }
 
@@ -303,21 +340,8 @@ class LeetCodeActivity : AppCompatActivity() {
         return map.filter { it.value == 1 }.keys.first()
     }
 
-    // https://leetcode.com/problems/remove-element/
-    fun removeElement(nums: IntArray, `val`: Int): Int {
-        var size = 0
-        nums.forEachIndexed { i, _ ->
-            if (nums[i] != `val`) {
-                nums[size] = nums[i]
-                size++
-            }
-        }
-
-        return size
-    }
-
     // https://leetcode.com/problems/longest-substring-without-repeating-characters/
-    fun lengthOfLongestSubstring(s: String): Int {
+    fun lengthOfLongestSubstring2(s: String): Int {
         var start = 0
         var end = 0
         var max = 0
@@ -668,16 +692,6 @@ class LeetCodeActivity : AppCompatActivity() {
             }
             i++
         }
-    }
-
-    fun removeDuplicates(nums: IntArray): Int {
-        var dupes = 0
-        for (i in 1 until nums.size) {
-            if (nums[i] == nums[i - 1]) dupes++
-            nums[i - dupes] = nums[i]
-        }
-
-        return nums.size - dupes
     }
 
     fun plusOne(digits: IntArray): IntArray {
