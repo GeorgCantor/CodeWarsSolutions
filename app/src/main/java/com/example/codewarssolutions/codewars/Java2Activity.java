@@ -22,6 +22,15 @@ public class Java2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
 
+        tribonacci(new double[]{1, 1, 1}, 10);
+    }
+
+    // https://www.codewars.com/kata/556deca17c58da83c00002db
+    public double[] tribonacci(double[] s, int n) {
+        double[] arr = Arrays.copyOf(s, n);
+        for (int i = 3; i < n; i++) arr[i] = arr[i - 1] + arr[i - 2] + arr[i - 3];
+
+        return arr;
     }
 
     // https://www.codewars.com/kata/5ff50f64c0afc50008861bf0

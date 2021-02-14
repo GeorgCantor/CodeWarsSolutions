@@ -3,12 +3,54 @@ package com.example.codewarssolutions.codewars
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
+import java.util.*
+import kotlin.collections.HashMap
 
 class Kotlin2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin2)
+
+    }
+
+    // https://www.codewars.com/kata/559536379512a64472000053
+    fun playPass(s: String, n: Int): String {
+        val abc = "abcdefghijklmnopqrstuvwxyz"
+        val sb = StringBuilder()
+        s.forEachIndexed { i, ch ->
+            when {
+                ch.isLetter() -> {
+                    var num = abc.indexOf(ch.toLowerCase())
+                    (0 until n).map { if (num == abc.lastIndex) num = 0 else num++ }
+                    sb.append(if (i % 2 == 0) abc[num].toUpperCase() else abc[num].toLowerCase())
+                }
+                ch.isDigit() -> sb.append(9 - ch.toString().toInt())
+                else -> sb.append(ch)
+            }
+        }
+
+        return sb.reversed().toString()
+    }
+
+    // https://www.codewars.com/kata/550f22f4d758534c1100025a
+    fun dirReduc(arr: Array<String>): Array<String> {
+        val s = Stack<String>()
+        arr.forEach {
+            when (it) {
+                "NORTH" -> if (s.isNotEmpty() && s.peek() == "SOUTH") s.pop() else s.push(it)
+                "SOUTH" -> if (s.isNotEmpty() && s.peek() == "NORTH") s.pop() else s.push(it)
+                "EAST" -> if (s.isNotEmpty() && s.peek() == "WEST") s.pop() else s.push(it)
+                "WEST" -> if (s.isNotEmpty() && s.peek() == "EAST") s.pop() else s.push(it)
+            }
+        }
+
+        return s.toList().toTypedArray()
+    }
+
+    // https://www.codewars.com/kata/556deca17c58da83c00002db
+    fun tribonacci(signature: DoubleArray, n: Int) = signature.copyOf(n).apply {
+        (3 until n).forEach { this[it] = this[it - 1] + this[it - 2] + this[it - 3] }
     }
 
     // https://www.codewars.com/kata/5848565e273af816fb000449

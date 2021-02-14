@@ -666,30 +666,6 @@ class KotlinActivity : AppCompatActivity() {
         return arrayOf(years, catY, dogY)
     }
 
-    fun tribonacci(signature: DoubleArray, n: Int): DoubleArray {
-        var prev: Double
-        var first = signature[0]
-        var second = signature[1]
-        var third = signature[2]
-        val list = mutableListOf(first, second, third)
-
-        when (signature.size) {
-            0 -> return doubleArrayOf()
-            1 -> return doubleArrayOf(first)
-            2 -> return doubleArrayOf(first, second)
-        }
-
-        while (list.size < n) {
-            prev = third
-            third += first + second
-            first = second
-            second = prev
-            list.add(third)
-        }
-
-        return list.toDoubleArray()
-    }
-
     // 7 kyu Rotate for a Max
     fun maxRot(n: Long): Long {
         var counter = 0
