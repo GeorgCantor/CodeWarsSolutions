@@ -13,8 +13,31 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        numIdenticalPairs(intArrayOf(1, 2, 3, 1, 1, 3))
     }
+
+    // https://leetcode.com/problems/longest-word-in-dictionary/
+    fun longestWord(words: Array<String>): String {
+        val set = mutableSetOf<String>()
+        words.sorted().forEach {
+            if (it.length == 1 || set.contains(it.dropLast(1))) set.add(it)
+        }
+
+        return set.maxBy { it.length }!!
+    }
+
+    // https://leetcode.com/problems/defanging-an-ip-address/
+    fun defangIPaddr(address: String) = address.replace(".", "[.]")
+
+    // https://leetcode.com/problems/sum-of-unique-elements/
+    fun sumOfUnique(nums: IntArray): Int {
+        val list = mutableListOf<Int>()
+        nums.forEach { n -> if (nums.count { it == n } < 2) list.add(n) }
+
+        return list.sum()
+    }
+
+    // https://leetcode.com/problems/jewels-and-stones/
+    fun numJewelsInStones(j: String, s: String) = s.count { j.contains(it) }
 
     // https://leetcode.com/problems/number-of-good-pairs/
     fun numIdenticalPairs(nums: IntArray): Int {

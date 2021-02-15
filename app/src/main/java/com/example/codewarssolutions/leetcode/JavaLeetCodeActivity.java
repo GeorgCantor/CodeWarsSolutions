@@ -31,6 +31,30 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/longest-word-in-dictionary/
+    public String longestWord(String[] words) {
+        Arrays.sort(words);
+        Set<String> set = new HashSet<>();
+        for (String s : words) {
+            if (s.length() == 1 || set.contains(s.substring(0, s.length() - 1))) set.add(s);
+        }
+
+        return set.stream().sorted(Comparator.comparing(String::new)).max(Comparator.comparing(String::length)).get();
+    }
+
+    // https://leetcode.com/problems/defanging-an-ip-address/
+    public String defangIPaddr(String address) {
+        return address.replace(".", "[.]");
+    }
+
+    // https://leetcode.com/problems/sum-of-unique-elements/
+    public int sumOfUnique(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : nums) map.put(n, map.getOrDefault(n, 0) + 1);
+
+        return map.entrySet().stream().filter(e -> e.getValue() < 2).mapToInt(Map.Entry::getKey).sum();
+    }
+
     // https://leetcode.com/problems/number-of-good-pairs/
     public int numIdenticalPairs(int[] nums) {
         int counter = 0;
