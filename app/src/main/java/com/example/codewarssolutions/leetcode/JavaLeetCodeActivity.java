@@ -31,6 +31,27 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/number-of-good-pairs/
+    public int numIdenticalPairs(int[] nums) {
+        int counter = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) if (nums[i] == nums[j]) counter++;
+        }
+
+        return counter;
+    }
+
+    // https://leetcode.com/problems/shuffle-the-array/
+    public int[] shuffle(int[] nums, int n) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(nums[i]);
+            list.add(nums[i + n]);
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
     // https://leetcode.com/problems/remove-element/
     public int removeElement(int[] nums, int val) {
         int counter = 0;

@@ -13,6 +13,47 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        numIdenticalPairs(intArrayOf(1, 2, 3, 1, 1, 3))
+    }
+
+    // https://leetcode.com/problems/number-of-good-pairs/
+    fun numIdenticalPairs(nums: IntArray): Int {
+        var counter = 0
+        nums.forEachIndexed { i, num -> for (j in i + 1 until nums.size) if (num == nums[j]) counter++ }
+
+        return counter
+    }
+
+    // https://leetcode.com/problems/number-of-good-pairs/
+    fun numIdenticalPairs2(nums: IntArray): Int {
+        val map = HashMap<Int, Int>()
+        var counter = 0
+        nums.forEach {
+            if (map.containsKey(it)) counter += map[it]!!
+            map[it] = map.getOrDefault(it, 0) + 1
+        }
+
+        return counter
+    }
+
+    // https://leetcode.com/problems/shuffle-the-array/
+    fun shuffle(nums: IntArray, n: Int) = mutableListOf<Int>().apply {
+        (0 until n).forEach {
+            add(nums[it])
+            add(nums[it + n])
+        }
+    }.toIntArray()
+
+    // https://leetcode.com/problems/largest-substring-between-two-equal-characters/
+    fun maxLengthBetweenEqualCharacters(s: String): Int {
+        var max = -1
+        s.forEachIndexed { i, ch ->
+            if (s.drop(i + 1).contains(ch)) {
+                max = maxOf(max, s.substring(s.indexOf(ch) + 1, s.lastIndexOf(ch)).length)
+            }
+        }
+
+        return max
     }
 
     // https://leetcode.com/problems/longest-substring-without-repeating-characters/
