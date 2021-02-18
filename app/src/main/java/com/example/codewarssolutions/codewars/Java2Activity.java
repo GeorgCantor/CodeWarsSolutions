@@ -22,7 +22,22 @@ public class Java2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
 
-        tribonacci(new double[]{1, 1, 1}, 10);
+    }
+
+    // https://www.codewars.com/kata/55d410c492e6ed767000004f
+    public static String vowel2Index(String s) {
+        String vowels = "aeiouy";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.toCharArray()[i];
+            if (vowels.contains(String.valueOf(ch))) {
+                sb.append(i + 1);
+            } else {
+                sb.append(ch);
+            }
+        }
+
+        return sb.toString();
     }
 
     // https://www.codewars.com/kata/556deca17c58da83c00002db

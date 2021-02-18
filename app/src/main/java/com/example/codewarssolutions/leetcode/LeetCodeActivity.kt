@@ -13,6 +13,47 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        topKFrequent(arrayOf("i", "love", "leetcode", "i", "love", "coding"), 3)
+    }
+
+    // https://leetcode.com/problems/top-k-frequent-words/
+    fun topKFrequent(words: Array<String>, k: Int) = words.groupingBy { it }.eachCount()
+        .toList()
+        .sortedBy { (s, _) -> s }
+        .sortedByDescending { (_, v) -> v }
+        .map { it.first }
+        .take(k)
+
+    // https://leetcode.com/problems/top-k-frequent-words/
+    fun topKFrequent2(words: Array<String>, k: Int): List<String> {
+        val map = words.groupingBy { it }.eachCount()
+
+        val q = PriorityQueue<String> { w1, w2 ->
+            if (map[w1] == map[w2]) w2.compareTo(w1) else map[w1]!! - map[w2]!!
+        }
+
+        map.keys.forEach {
+            q.add(it)
+            if (q.size > k) q.poll()
+        }
+
+        return mutableListOf<String>().apply { while (q.isNotEmpty()) this += q.poll() }.reversed()
+    }
+
+    // https://leetcode.com/problems/find-common-characters/
+    class Solution {
+        fun commonChars(arr: Array<String>): List<String> {
+            val map = arr.drop(1).fold(arr.first().groupingBy { it }.eachCount()) { m, str ->
+                m.keys.associateWith {
+                    minOf(
+                        m.getOrDefault(it, 0),
+                        str.groupingBy { it }.eachCount().getOrDefault(it, 0)
+                    )
+                }
+            }
+
+            return map.flatMap { entry -> List(entry.value) { entry.key.toString() } }
+        }
     }
 
     // https://leetcode.com/problems/longest-word-in-dictionary/
