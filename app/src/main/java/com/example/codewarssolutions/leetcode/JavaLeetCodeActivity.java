@@ -31,6 +31,14 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/unique-number-of-occurrences/
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : arr) map.put(i, map.getOrDefault(i, 0) + 1);
+
+        return map.values().stream().distinct().count() == map.size();
+    }
+
     // https://leetcode.com/problems/longest-word-in-dictionary/
     public String longestWord(String[] words) {
         Arrays.sort(words);

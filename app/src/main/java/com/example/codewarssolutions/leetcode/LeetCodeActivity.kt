@@ -13,7 +13,51 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        topKFrequent(arrayOf("i", "love", "leetcode", "i", "love", "coding"), 3)
+        uniqueOccurrences(intArrayOf(1, 2, 2, 1, 1, 3))
+    }
+
+    // https://leetcode.com/problems/unique-number-of-occurrences/
+    fun uniqueOccurrences(arr: IntArray): Boolean {
+        val map = arr.associateBy({ it }, { n -> arr.count { it == n } })
+
+        return map.values.size == map.values.distinct().count()
+    }
+
+    // https://leetcode.com/problems/goal-parser-interpretation/
+    fun interpret(command: String): String {
+        val sb = StringBuilder(command.length)
+        var i = 0
+        while (i < command.length) {
+            if (command[i] == 'G') sb.append('G')
+            if (command[i] == '(') {
+                if (command[i + 1] == ')') {
+                    sb.append('o')
+                    i++
+                } else {
+                    sb.append("al")
+                    i += 3
+                }
+            }
+            i++
+        }
+
+        return sb.toString()
+    }
+
+    // https://leetcode.com/problems/goal-parser-interpretation/
+    fun interpret2(command: String) = command.replace("()", "o").replace("(al)", "al")
+
+    // https://leetcode.com/problems/shifting-letters/
+    fun shiftingLetters(str: String, shifts: IntArray): String {
+        val chars = str.toCharArray()
+        var c = 0
+        for (i in chars.indices.reversed()) {
+            c += shifts[i]
+            c %= 26
+            chars[i] = ((chars[i] - 'a' + c) % 26 + 'a'.toInt()).toChar()
+        }
+
+        return String(chars)
     }
 
     // https://leetcode.com/problems/top-k-frequent-words/
@@ -37,7 +81,8 @@ class LeetCodeActivity : AppCompatActivity() {
             if (q.size > k) q.poll()
         }
 
-        return mutableListOf<String>().apply { while (q.isNotEmpty()) this += q.poll() }.reversed()
+        return mutableListOf<String>().apply { while (q.isNotEmpty()) this += q.poll() }
+            .reversed()
     }
 
     // https://leetcode.com/problems/find-common-characters/
@@ -591,9 +636,15 @@ class LeetCodeActivity : AppCompatActivity() {
         val stack = Stack<Char>()
         s.reversed().forEach {
             when (it) {
-                '(' -> if (stack.isNotEmpty() && stack.peek() == ')') stack.pop() else stack.push(it)
-                '[' -> if (stack.isNotEmpty() && stack.peek() == ']') stack.pop() else stack.push(it)
-                '{' -> if (stack.isNotEmpty() && stack.peek() == '}') stack.pop() else stack.push(it)
+                '(' -> if (stack.isNotEmpty() && stack.peek() == ')') stack.pop() else stack.push(
+                    it
+                )
+                '[' -> if (stack.isNotEmpty() && stack.peek() == ']') stack.pop() else stack.push(
+                    it
+                )
+                '{' -> if (stack.isNotEmpty() && stack.peek() == '}') stack.pop() else stack.push(
+                    it
+                )
                 else -> stack.push(it)
             }
         }
@@ -689,7 +740,8 @@ class LeetCodeActivity : AppCompatActivity() {
 
     fun intToRoman(num: Int): String {
         val ints = intArrayOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
-        val romans = arrayOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+        val romans =
+            arrayOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
         val sb = StringBuilder()
         var number = num
         (ints.indices).forEach {
