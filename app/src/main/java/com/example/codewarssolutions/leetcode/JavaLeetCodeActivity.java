@@ -31,6 +31,40 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/can-place-flowers/
+    public boolean canPlaceFlowers(int[] bed, int n) {
+        int counter = 0;
+        for (int i = 0; i < bed.length; i++) {
+            int left = i == 0 ? 0 : bed[i - 1];
+            int right = i == bed.length - 1 ? 0 : bed[i + 1];
+            if (left == 0 && right == 0 && bed[i] == 0) {
+                bed[i] = 1;
+                counter++;
+            }
+        }
+
+        return counter >= n;
+    }
+
+    // https://leetcode.com/problems/goal-parser-interpretation/
+    public String interpret(String command) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < command.length(); i++) {
+            if (command.charAt(i) == 'G') sb.append('G');
+            if (command.charAt(i) == '(') {
+                if (command.charAt(i + 1) == ')') {
+                    sb.append('o');
+                    i++;
+                } else {
+                    sb.append("al");
+                    i += 3;
+                }
+            }
+        }
+
+        return sb.toString();
+    }
+
     // https://leetcode.com/problems/unique-number-of-occurrences/
     public boolean uniqueOccurrences(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();

@@ -13,7 +13,61 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        uniqueOccurrences(intArrayOf(1, 2, 2, 1, 1, 3))
+    }
+
+    // https://leetcode.com/problems/employee-importance/
+    class Solution {
+        var counter = 0
+
+        fun getImportance(employees: List<Employee?>, id: Int): Int {
+            employees.forEach {
+                if (it?.id == id) {
+                    counter += it.importance
+                    if (it.subordinates.isEmpty()) return counter
+                    for (i in it.subordinates.indices) {
+                        getImportance(employees, it.subordinates[i])
+                    }
+                }
+            }
+
+            return counter
+        }
+    }
+
+    data class Employee(
+        var id: Int = 0,
+        var importance: Int = 0,
+        var subordinates: List<Int> = listOf()
+    )
+
+    // https://leetcode.com/problems/can-place-flowers/
+    fun canPlaceFlowers(bed: IntArray, n: Int): Boolean {
+        var counter = 0
+        for (i in bed.indices) {
+            val left = if (i == 0) 0 else bed[i - 1]
+            val right = if (i == bed.lastIndex) 0 else bed[i + 1]
+            if (left == 0 && right == 0 && bed[i] == 0) {
+                bed[i] = 1
+                counter++
+            }
+        }
+
+        return counter >= n
+    }
+
+    // https://leetcode.com/problems/encode-and-decode-tinyurl/
+    class Codec() {
+        private val map = mutableMapOf<Int, String>()
+        private val s = "http://tinyurl.com/"
+
+        fun encode(longUrl: String): String {
+            val key = longUrl.hashCode()
+            map[key] = longUrl
+
+            return s + longUrl
+        }
+
+        fun decode(shortUrl: String) = map[shortUrl.replace(s, "").hashCode()]!!
     }
 
     // https://leetcode.com/problems/unique-number-of-occurrences/
@@ -86,7 +140,7 @@ class LeetCodeActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/find-common-characters/
-    class Solution {
+    class Solution2 {
         fun commonChars(arr: Array<String>): List<String> {
             val map = arr.drop(1).fold(arr.first().groupingBy { it }.eachCount()) { m, str ->
                 m.keys.associateWith {
