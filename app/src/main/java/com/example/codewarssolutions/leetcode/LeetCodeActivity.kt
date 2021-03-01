@@ -13,6 +13,39 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        sortedSquares(intArrayOf(-7, -3, 2, 3, 11))
+    }
+
+    // https://leetcode.com/problems/squares-of-a-sorted-array/
+    fun sortedSquares(nums: IntArray): IntArray {
+        val arr = IntArray(nums.size)
+        var l = 0
+        var r = nums.lastIndex
+        var i = arr.lastIndex
+        while (l <= r) {
+            if (nums[l] * nums[l] > nums[r] * nums[r]) {
+                arr[i] = nums[l] * nums[l]
+                l++
+            } else {
+                arr[i] = nums[r] * nums[r]
+                r--
+            }
+            i--
+        }
+        arr[0] = nums[l] * nums[l]
+
+        return arr
+    }
+
+    // https://leetcode.com/problems/uncommon-words-from-two-sentences/
+    fun uncommonFromSentences(a: String, b: String): Array<String> {
+        val uncList = mutableListOf<String>()
+        val aList = a.split(" ")
+        val bList = b.split(" ")
+        aList.forEach { w -> if (!bList.contains(w) && aList.count { it == w } < 2) uncList.add(w) }
+        bList.forEach { w -> if (!aList.contains(w) && bList.count { it == w } < 2) uncList.add(w) }
+
+        return uncList.toTypedArray()
     }
 
     // https://leetcode.com/problems/employee-importance/

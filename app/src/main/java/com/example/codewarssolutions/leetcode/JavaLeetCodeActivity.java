@@ -31,6 +31,28 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/squares-of-a-sorted-array/
+    public int[] sortedSquares(int[] nums) {
+        int[] arr = new int[nums.length];
+        int l = 0;
+        int r = nums.length - 1;
+        int i = nums.length - 1;
+
+        while (l <= r) {
+            if (nums[l] * nums[l] > nums[r] * nums[r]) {
+                arr[i] = nums[l] * nums[l];
+                l++;
+            } else {
+                arr[i] = nums[r] * nums[r];
+                r--;
+            }
+            i--;
+        }
+        arr[0] = nums[l] * nums[l];
+
+        return arr;
+    }
+
     // https://leetcode.com/problems/can-place-flowers/
     public boolean canPlaceFlowers(int[] bed, int n) {
         int counter = 0;

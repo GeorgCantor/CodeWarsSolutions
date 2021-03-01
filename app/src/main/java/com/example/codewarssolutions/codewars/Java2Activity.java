@@ -23,6 +23,18 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/odd-even-string-sort
+    public static String sortMyString(String s) {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (i % 2 == 0) sb1.append(s.toCharArray()[i]);
+            else sb2.append(s.toCharArray()[i]);
+        }
+
+        return sb1.toString() + " " + sb2.toString();
+    }
+
     // https://www.codewars.com/kata/5a420163b6cfd7cde5000077
     public static String nbaCup(String resultSheet, String toFind) {
         if (toFind.equals("")) return "";
