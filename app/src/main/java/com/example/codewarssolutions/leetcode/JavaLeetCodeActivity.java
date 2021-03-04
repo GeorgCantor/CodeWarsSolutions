@@ -29,6 +29,32 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
+        smallerNumbersThanCurrent(new int[]{8, 1, 2, 2, 3});
+    }
+
+    // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        int[] arr = new int[nums.length];
+        for (int i = 0; i < arr.length; i++) {
+            int c = 0;
+            for (int j = 0; j < arr.length; j++) if (nums[i] > nums[j]) c++;
+            arr[i] = c;
+        }
+
+        return arr;
+    }
+
+    // https://leetcode.com/problems/unique-morse-code-words/
+    public int uniqueMorseRepresentations(String[] words) {
+        String[] arr = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        Set<String> set = new HashSet<>();
+        for (String s : words) {
+            StringBuilder sb = new StringBuilder();
+            for (char ch : s.toCharArray()) sb.append(arr[ch - 'a']);
+            set.add(sb.toString());
+        }
+
+        return set.size();
     }
 
     // https://leetcode.com/problems/squares-of-a-sorted-array/

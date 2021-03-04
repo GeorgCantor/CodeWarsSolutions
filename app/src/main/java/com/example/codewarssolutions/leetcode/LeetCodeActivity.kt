@@ -13,7 +13,33 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        sortedSquares(intArrayOf(-7, -3, 2, 3, 11))
+        shortestCompletingWord("Pep9436", arrayOf("per","paper","strategy","watch","somebody","third"))
+    }
+
+    // https://leetcode.com/problems/shortest-completing-word/
+    fun shortestCompletingWord(plate: String, words: Array<String>): String {
+        val list = mutableListOf<Triple<String, Int, Int>>()
+        words.forEach { w ->
+            var counter = 0
+            var word = w
+            plate.forEach {
+                if (word.contains(it, true)) {
+                    counter++
+                    word = word.replaceFirst(it.toLowerCase().toString(), "")
+                }
+            }
+            list.add(Triple(w, counter, w.length))
+        }
+
+        return list.sortedWith(compareByDescending<Triple<String, Int, Int>> { it.second }.thenBy { it.third }).first().first
+    }
+
+    // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+    fun smallerNumbersThanCurrent(nums: IntArray): IntArray {
+        val arr = IntArray(nums.size)
+        for (i in nums.indices) arr[i] = nums.count { it < nums[i] }
+
+        return arr
     }
 
     // https://leetcode.com/problems/squares-of-a-sorted-array/
