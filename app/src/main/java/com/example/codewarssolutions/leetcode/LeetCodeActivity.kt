@@ -13,7 +13,41 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        shortestCompletingWord("Pep9436", arrayOf("per","paper","strategy","watch","somebody","third"))
+        removePalindromeSub("ababa")
+    }
+
+    // https://leetcode.com/problems/remove-palindromic-subsequences/
+    fun removePalindromeSub(s: String): Int {
+        if (s.isEmpty()) return 0
+        var start = 0
+        var end = s.lastIndex
+        while (start < end) {
+            if (s[start++] != s[end--]) return 2
+        }
+
+        return 1
+    }
+
+    // https://leetcode.com/problems/maximum-number-of-balloons
+    fun maxNumberOfBalloons(text: String): Int {
+        val map = mutableMapOf('b' to 0, 'a' to 0, 'l' to 0, 'o' to 0, 'n' to 0)
+        text.forEach {
+            when (it) {
+                'b', 'a', 'l', 'o', 'n' -> map[it] = map.getOrDefault(it, 0) + 1
+            }
+        }
+        var c = 0
+        while (map.values.all { it > 0 }) {
+            map.forEach {
+                when (it.key) {
+                    'b', 'a', 'n' -> if (it.value > 0) map[it.key] = map[it.key]!! - 1 else return c
+                    'l', 'o' -> if (it.value > 1) map[it.key] = map[it.key]!! - 2 else return c
+                }
+            }
+            c++
+        }
+
+        return c
     }
 
     // https://leetcode.com/problems/shortest-completing-word/
@@ -31,7 +65,8 @@ class LeetCodeActivity : AppCompatActivity() {
             list.add(Triple(w, counter, w.length))
         }
 
-        return list.sortedWith(compareByDescending<Triple<String, Int, Int>> { it.second }.thenBy { it.third }).first().first
+        return list.sortedWith(compareByDescending<Triple<String, Int, Int>> { it.second }.thenBy { it.third })
+            .first().first
     }
 
     // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/

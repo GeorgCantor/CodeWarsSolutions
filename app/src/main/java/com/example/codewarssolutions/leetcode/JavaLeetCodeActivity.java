@@ -32,6 +32,18 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         smallerNumbersThanCurrent(new int[]{8, 1, 2, 2, 3});
     }
 
+    // https://leetcode.com/problems/remove-palindromic-subsequences/
+    public int removePalindromeSub(String s) {
+        if (s == null || s.isEmpty()) return 0;
+        int start = 0;
+        int end = s.length() - 1;
+        while (start < end) {
+            if (s.charAt(start++) != s.charAt(end--)) return 2;
+        }
+
+        return 1;
+    }
+
     // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
     public int[] smallerNumbersThanCurrent(int[] nums) {
         int[] arr = new int[nums.length];

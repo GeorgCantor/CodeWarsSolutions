@@ -23,6 +23,20 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/52774a314c2333f0a7000688
+    public static boolean validParentheses(String parens) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : new StringBuilder(parens).reverse().toString().toCharArray()) {
+            if (ch == ')') stack.push(ch);
+            if (ch == '(') {
+                if (!stack.isEmpty() && stack.peek() == ')') stack.pop();
+                else stack.push(ch);
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
     // https://www.codewars.com/kata/odd-even-string-sort
     public static String sortMyString(String s) {
         StringBuilder sb1 = new StringBuilder();
