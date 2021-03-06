@@ -13,7 +13,6 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        removePalindromeSub("ababa")
     }
 
     // https://leetcode.com/problems/remove-palindromic-subsequences/

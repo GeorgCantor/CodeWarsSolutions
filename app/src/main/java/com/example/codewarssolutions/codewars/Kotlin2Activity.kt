@@ -14,6 +14,31 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/5868b2de442e3fb2bb000119
+    fun closest(s: String): Array<IntArray> {
+        val map = mutableMapOf<Int, Pair<String, Int>>()
+        s.split(" ").forEachIndexed { i, w ->
+            map[i] = Pair(w, w.map { it.toString().toInt() }.sum())
+        }
+        var pair: Pair<MutableMap.MutableEntry<Int, Pair<String, Int>>, MutableMap.MutableEntry<Int, Pair<String, Int>>>? =
+            null
+        var min = Int.MAX_VALUE
+        val ens = map.entries.sortedBy { it.value.second }
+
+        for (i in 1 until map.size) {
+            val dif = ens[i].value.second - ens[i - 1].value.second
+            if (dif < min) {
+                min = dif
+                pair = Pair(ens[i - 1], ens[i])
+            }
+        }
+
+        return arrayOf(
+            intArrayOf(pair!!.first.value.second, pair.first.key, pair.first.value.first.toInt()),
+            intArrayOf(pair.second.value.second, pair.second.key, pair.second.value.first.toInt())
+        )
+    }
+
     // https://www.codewars.com/kata/559536379512a64472000053
     fun playPass(s: String, n: Int): String {
         val abc = "abcdefghijklmnopqrstuvwxyz"

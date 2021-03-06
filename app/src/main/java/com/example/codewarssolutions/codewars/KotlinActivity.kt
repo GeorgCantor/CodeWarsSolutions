@@ -1671,30 +1671,6 @@ class KotlinActivity : AppCompatActivity() {
         return quickSort(less) + equal + quickSort(greater)
     }
 
-    fun nextBiggerNumber(n: Long): Long {
-        val s = n.toString()
-        val oldChars = s.toCharArray()
-        val chars = s.toCharArray()
-        if (chars.size > 1) {
-            val temp = chars[chars.size - 1]
-            chars[chars.size - 1] = chars[chars.size - 2]
-            chars[chars.size - 2] = temp
-
-            if (chars.contentEquals(oldChars)) {
-                val temp2 = chars[chars.size - 2]
-                chars[chars.size - 2] = chars[chars.size - 3]
-                chars[chars.size - 3] = temp2
-            }
-        }
-
-        val builder = StringBuilder()
-        chars.map {
-            builder.append(it)
-        }
-
-        return builder.toString().toLong()
-    }
-
     fun duplicateCount(text: String): Int {
         val map = HashMap<Char, Int>()
 
