@@ -15,6 +15,9 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
+    fun findNumbers(nums: IntArray) = nums.map { it.toString() }.count { it.length % 2 == 0 }
+
     // https://leetcode.com/problems/remove-palindromic-subsequences/
     fun removePalindromeSub(s: String): Int {
         if (s.isEmpty()) return 0

@@ -1,7 +1,9 @@
 package com.example.codewarssolutions.codewars;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.codewarssolutions.R;
@@ -15,12 +17,31 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Java2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
+    }
+
+    // https://www.codewars.com/kata/5842df8ccbd22792a4000245
+    public static String expandedForm(int num) {
+        ArrayList<String> list = new ArrayList<>();
+        String s = String.valueOf(num);
+        for (int i = 0; i < s.length(); i++) {
+            StringBuilder sb = new StringBuilder();
+            if (s.charAt(i) != '0') {
+                for (int j = i; j < s.length(); j++) {
+                    if (sb.length() == 0) sb.append(s.charAt(j));
+                    else sb.append('0');
+                }
+                list.add(sb.toString());
+            }
+        }
+
+        return String.join(" + ", list);
     }
 
     // https://www.codewars.com/kata/52774a314c2333f0a7000688

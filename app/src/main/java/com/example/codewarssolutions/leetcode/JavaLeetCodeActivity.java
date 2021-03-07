@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.codewarssolutions.R;
+import com.example.codewarssolutions.leetcode.ds.QuickSort;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -29,7 +30,14 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
-        smallerNumbersThanCurrent(new int[]{8, 1, 2, 2, 3});
+        int[] arr = new int[]{2, 5, 4, 3, 7, 9, 1};
+        QuickSort.quickSort(arr, 0, 6);
+        int s = arr.length;
+    }
+
+    // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
+    public int findNumbers(int[] nums) {
+        return (int) Arrays.stream(nums).filter(n -> String.valueOf(n).length() % 2 == 0).count();
     }
 
     // https://leetcode.com/problems/remove-palindromic-subsequences/
