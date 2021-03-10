@@ -13,7 +13,44 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+        minSteps("leetcode", "practice")
     }
+
+    // https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/
+    fun minSteps(s: String, t: String): Int {
+        val map = mutableMapOf<Char, Int>()
+        var counter = 0
+        s.forEach { map[it] = map.getOrDefault(it, 0) + 1 }
+        t.forEach {
+            if (map.containsKey(it) && map[it]!! > 0) map[it] = map[it]!! - 1
+            else counter++
+        }
+
+        return counter
+    }
+
+    // https://leetcode.com/problems/goat-latin/
+    fun toGoatLatin(s: String): String {
+        val list = mutableListOf<String>()
+        s.split(" ").forEachIndexed { i, w ->
+            val sb = StringBuilder()
+            when ("aeiouAEIOU".contains(w.first())) {
+                true -> sb.append(w).append("ma")
+                false -> {
+                    if (w.length > 1) sb.append(w.drop(1)).append(w.first()).append("ma")
+                    else sb.append(w.first()).append("ma")
+                }
+            }
+            (0..i).forEach { sb.append('a') }
+            list.add(sb.toString())
+        }
+
+        return list.joinToString(" ")
+    }
+
+    // https://leetcode.com/problems/richest-customer-wealth/
+    fun maximumWealth(arr: Array<IntArray>) = arr.maxBy { it.sum() }!!.sum()
+    fun maximumWealth2(arr: Array<IntArray>) = arr.map { it.sum() }.max()!!
 
     // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
     fun findNumbers(nums: IntArray) = nums.map { it.toString() }.count { it.length % 2 == 0 }
@@ -112,7 +149,7 @@ class LeetCodeActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/employee-importance/
-    class Solution {
+    class Solution3 {
         var counter = 0
 
         fun getImportance(employees: List<Employee?>, id: Int): Int {

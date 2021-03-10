@@ -35,6 +35,31 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         int s = arr.length;
     }
 
+    // https://leetcode.com/problems/goat-latin/
+    public String toGoatLatin(String s) {
+        String[] arr = s.split(" ");
+        String[] res = new String[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            StringBuilder sb = new StringBuilder();
+            if ("aeiouAEIOU".contains(String.valueOf(arr[i].charAt(0)))) {
+                sb.append(arr[i]);
+            } else {
+                if (arr[i].length() > 1) sb.append(arr[i].substring(1)).append(arr[i].charAt(0));
+                else sb.append(arr[i].charAt(0));
+            }
+            sb.append("ma");
+            for (int j = 0; j <= i; j++) sb.append('a');
+            res[i] = sb.toString();
+        }
+
+        return String.join(" ", res);
+    }
+
+    // https://leetcode.com/problems/richest-customer-wealth/
+    public int maximumWealth(int[][] arr) {
+        return Arrays.stream(arr).mapToInt(ar -> Arrays.stream(ar).sum()).max().getAsInt();
+    }
+
     // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
     public int findNumbers(int[] nums) {
         return (int) Arrays.stream(nums).filter(n -> String.valueOf(n).length() % 2 == 0).count();

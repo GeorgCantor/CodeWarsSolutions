@@ -17,6 +17,10 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+import static java.util.function.UnaryOperator.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class Java2Activity extends AppCompatActivity {
 
@@ -24,6 +28,29 @@ public class Java2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
+    }
+
+    // https://www.codewars.com/kata/585d7d5adb20cf33cb000235
+    public static double findUniq(double arr[]) {
+        return Arrays.stream(arr)
+                .boxed()
+                .collect(groupingBy(identity(), counting()))
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue() == 1)
+                .mapToDouble(Map.Entry::getKey)
+                .findFirst()
+                .getAsDouble();
+    }
+
+    // https://www.codewars.com/kata/585d7d5adb20cf33cb000235
+    public static double findUniq2(double arr[]) {
+        Map<Double, Integer> map = new HashMap<>();
+        for (double d : arr) {
+            map.put(d, map.getOrDefault(d, 0) + 1);
+        }
+
+        return map.entrySet().stream().filter(e -> e.getValue() == 1).mapToDouble(Map.Entry::getKey).findFirst().getAsDouble();
     }
 
     // https://www.codewars.com/kata/5842df8ccbd22792a4000245
