@@ -35,6 +35,54 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         int s = arr.length;
     }
 
+    // https://leetcode.com/problems/count-number-of-teams/
+    public int numTeams(int[] ar) {
+        int c = 0;
+        for (int i = 0; i < ar.length - 2; i++) {
+            for (int j = i + 1; j < ar.length - 1; j++) {
+                if (ar[i] < ar[j]) for (int k = j + 1; k < ar.length; k++) if (ar[j] < ar[k]) c++;
+                if (ar[i] > ar[j]) for (int k = j + 1; k < ar.length; k++) if (ar[j] > ar[k]) c++;
+            }
+        }
+
+        return c;
+    }
+
+    // https://leetcode.com/problems/design-hashmap/
+    class MyHashMap {
+        int[] arr;
+
+        public MyHashMap() {
+            arr = new int[1000001];
+            Arrays.fill(arr, -1);
+        }
+
+        public void put(int key, int value) {
+            arr[key] = value;
+        }
+
+        public int get(int key) {
+            return arr[key];
+        }
+
+        public void remove(int key) {
+            arr[key] = -1;
+        }
+    }
+
+    // https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/
+    public int minSteps(String s, String t) {
+        Map<Character, Integer> map = new HashMap<>();
+        int counter = 0;
+        for (char ch : s.toCharArray()) map.put(ch, map.getOrDefault(ch, 0) + 1);
+        for (char ch : t.toCharArray()) {
+            if (map.containsKey(ch) && map.get(ch) > 0) map.put(ch, map.get(ch) - 1);
+            else counter++;
+        }
+
+        return counter;
+    }
+
     // https://leetcode.com/problems/goat-latin/
     public String toGoatLatin(String s) {
         String[] arr = s.split(" ");

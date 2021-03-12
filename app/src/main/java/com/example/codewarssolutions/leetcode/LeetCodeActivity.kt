@@ -13,7 +13,69 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        minSteps("leetcode", "practice")
+        sortArrayByParity(intArrayOf(3, 1, 2, 4))
+    }
+
+    // https://leetcode.com/problems/count-number-of-teams/
+    fun numTeams(ar: IntArray): Int {
+        var c = 0
+        for (i in 0 until ar.size - 2) {
+            for (j in i + 1 until ar.size - 1) {
+                if (ar[i] < ar[j]) for (k in j + 1 until ar.size) {
+                    if (ar[j] < ar[k]) c++
+                }
+                if (ar[i] > ar[j]) for (k in j + 1 until ar.size) {
+                    if (ar[j] > ar[k]) c++
+                }
+            }
+        }
+
+        return c
+    }
+
+    // https://leetcode.com/problems/sort-array-by-parity/
+    fun sortArrayByParity(a: IntArray): IntArray {
+        val arr = IntArray(a.size)
+        var l = 0
+        var r = a.lastIndex
+        a.forEach { if (it % 2 == 0) arr[l++] = it else arr[r--] = it }
+
+        return arr
+    }
+
+    fun sortArrayByParity2(a: IntArray) = a.sortedBy { it % 2 != 0 }.toIntArray()
+
+    // https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+    fun maxProduct(nums: IntArray): Int {
+        var max = 0
+        var sMax = 0
+        nums.forEach {
+            if (it >= max) {
+                sMax = max
+                max = it
+            } else if (it > sMax) {
+                sMax = it
+            }
+        }
+
+        return (max - 1) * (sMax - 1)
+    }
+
+    fun maxProduct2(nums: IntArray) = (nums.max()!! - 1) * (nums.sortedDescending()[1] - 1)
+
+    // https://leetcode.com/problems/design-hashmap/
+    class MyHashMap() {
+        private val arr = arrayOfNulls<Int>(1000001)
+
+        fun put(key: Int, value: Int) {
+            arr[key] = value
+        }
+
+        fun get(key: Int) = arr[key] ?: -1
+
+        fun remove(key: Int) {
+            arr[key] = null
+        }
     }
 
     // https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/
