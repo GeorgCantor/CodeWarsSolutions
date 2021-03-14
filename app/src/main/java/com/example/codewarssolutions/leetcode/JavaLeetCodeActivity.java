@@ -35,6 +35,43 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         int s = arr.length;
     }
 
+    // https://leetcode.com/problems/valid-mountain-array/
+    public boolean validMountainArray(int[] arr) {
+        if (arr.length < 3 || arr[0] > arr[1]) return false;
+        boolean ascend = true;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i - 1] == arr[i]) return false;
+            if (ascend) {
+                if (arr[i - 1] > arr[i]) ascend = false;
+            } else {
+                if (arr[i - 1] < arr[i]) return false;
+            }
+        }
+
+        return !ascend;
+    }
+
+    // https://leetcode.com/problems/palindromic-substrings/
+    public int countSubstrings(String s) {
+        int c = 0;
+        for (int i = 0; i < s.length(); i++) {
+            StringBuilder sb = new StringBuilder();
+            for (int j = i; j < s.length(); j++) {
+                if (isPal(sb.append(s.charAt(j)).toString())) c++;
+            }
+        }
+
+        return c;
+    }
+
+    private boolean isPal(String word) {
+        int l = 0;
+        int r = word.length() - 1;
+        while (l < r) if (word.charAt(l++) != word.charAt(r--)) return false;
+
+        return true;
+    }
+
     // https://leetcode.com/problems/count-number-of-teams/
     public int numTeams(int[] ar) {
         int c = 0;

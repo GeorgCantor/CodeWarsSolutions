@@ -13,7 +13,47 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        sortArrayByParity(intArrayOf(3, 1, 2, 4))
+        validMountainArray(intArrayOf(0, 3, 2, 1))
+    }
+
+    // https://leetcode.com/problems/valid-mountain-array/
+    fun validMountainArray(arr: IntArray): Boolean {
+        if (arr.size < 3 || arr[0] > arr[1]) return false
+        var ascend = true
+        for (i in 1 until arr.size) {
+            if (arr[i - 1] == arr[i]) return false
+            if (ascend) {
+                if (arr[i - 1] > arr[i]) ascend = false
+            } else {
+                if (arr[i - 1] < arr[i]) return false
+            }
+        }
+
+        return !ascend
+    }
+
+    // https://leetcode.com/problems/largest-number-at-least-twice-of-others/
+    fun dominantIndex(ar: IntArray): Int {
+        val maxI = ar.indexOf(ar.max()!!)
+        for (i in ar.indices) if (i != maxI && ar[i] * 2 > ar[maxI]) return -1
+
+        return maxI
+    }
+
+    fun dominantIndex2(ar: IntArray) =
+        if (ar.sorted().dropLast(1).all { it * 2 <= ar.max()!! }) ar.indexOf(ar.max()!!) else -1
+
+    // https://leetcode.com/problems/palindromic-substrings/
+    fun countSubstrings(s: String): Int {
+        var c = 0
+        for (i in s.indices) {
+            val sb = StringBuilder()
+            for (j in i until s.length) if (sb.append(s[j]).toString() == sb.toString()
+                    .reversed()
+            ) c++
+        }
+
+        return c
     }
 
     // https://leetcode.com/problems/count-number-of-teams/
@@ -21,12 +61,8 @@ class LeetCodeActivity : AppCompatActivity() {
         var c = 0
         for (i in 0 until ar.size - 2) {
             for (j in i + 1 until ar.size - 1) {
-                if (ar[i] < ar[j]) for (k in j + 1 until ar.size) {
-                    if (ar[j] < ar[k]) c++
-                }
-                if (ar[i] > ar[j]) for (k in j + 1 until ar.size) {
-                    if (ar[j] > ar[k]) c++
-                }
+                if (ar[i] < ar[j]) for (k in j + 1 until ar.size) if (ar[j] < ar[k]) c++
+                if (ar[i] > ar[j]) for (k in j + 1 until ar.size) if (ar[j] > ar[k]) c++
             }
         }
 
