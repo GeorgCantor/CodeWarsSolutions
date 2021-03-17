@@ -30,6 +30,11 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/52685f7382004e774f0001f7/
+    public static String makeReadable(int sec) {
+        return String.format("%02d:%02d:%02d", sec / 3600, (sec % 3600) / 60, sec % 60);
+    }
+
     // https://www.codewars.com/kata/585d7d5adb20cf33cb000235
     public static double findUniq(double arr[]) {
         return Arrays.stream(arr)

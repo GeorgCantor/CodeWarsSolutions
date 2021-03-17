@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.codewarssolutions.R;
-import com.example.codewarssolutions.leetcode.ds.QuickSort;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -30,9 +29,32 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
-        int[] arr = new int[]{2, 5, 4, 3, 7, 9, 1};
-        QuickSort.quickSort(arr, 0, 6);
-        int s = arr.length;
+    }
+
+    // https://leetcode.com/problems/sort-array-by-parity/
+    public int[] sortArrayByParity(int[] a) {
+        int[] arr = new int[a.length];
+        int l = 0;
+        int r = a.length - 1;
+        for (int i : a) {
+            if (i % 2 == 0) arr[l++] = i;
+            else arr[r--] = i;
+        }
+
+        return arr;
+    }
+
+    // https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+    public int maxProduct2(int[] nums) {
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int sum = (nums[i] - 1) * (nums[j] - 1);
+                max = Math.max(max, sum);
+            }
+        }
+
+        return max;
     }
 
     // https://leetcode.com/problems/valid-mountain-array/

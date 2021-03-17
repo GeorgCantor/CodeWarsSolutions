@@ -16,6 +16,28 @@ class LeetCodeActivity : AppCompatActivity() {
         validMountainArray(intArrayOf(0, 3, 2, 1))
     }
 
+    // https://leetcode.com/problems/insert-interval/
+    fun insert(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
+        var new = newInterval
+        val list = mutableListOf<IntArray>()
+        intervals.forEach {
+            when {
+                it[1] < new[0] -> list.add(it)
+                new[1] < it[0] -> {
+                    list.add(new)
+                    new = it
+                }
+                else -> {
+                    new[0] = minOf(new[0], it[0])
+                    new[1] = maxOf(new[1], it[1])
+                }
+            }
+        }
+        list.add(new)
+
+        return list.toTypedArray()
+    }
+
     // https://leetcode.com/problems/valid-mountain-array/
     fun validMountainArray(arr: IntArray): Boolean {
         if (arr.size < 3 || arr[0] > arr[1]) return false
@@ -82,7 +104,16 @@ class LeetCodeActivity : AppCompatActivity() {
     fun sortArrayByParity2(a: IntArray) = a.sortedBy { it % 2 != 0 }.toIntArray()
 
     // https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
-    fun maxProduct(nums: IntArray): Int {
+    fun maxProduct(ar: IntArray): Int {
+        var max = 0
+        for (i in ar.indices) {
+            for (j in i + 1 until ar.size) max = maxOf(max, (ar[i] - 1) * (ar[j] - 1))
+        }
+
+        return max
+    }
+
+    fun maxProduct2(nums: IntArray): Int {
         var max = 0
         var sMax = 0
         nums.forEach {
@@ -97,7 +128,7 @@ class LeetCodeActivity : AppCompatActivity() {
         return (max - 1) * (sMax - 1)
     }
 
-    fun maxProduct2(nums: IntArray) = (nums.max()!! - 1) * (nums.sortedDescending()[1] - 1)
+    fun maxProduct3(ar: IntArray) = (ar.max()!! - 1) * (ar.sortedDescending()[1] - 1)
 
     // https://leetcode.com/problems/design-hashmap/
     class MyHashMap() {
