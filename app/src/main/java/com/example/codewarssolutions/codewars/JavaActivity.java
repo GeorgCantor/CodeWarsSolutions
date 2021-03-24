@@ -1212,24 +1212,6 @@ public class JavaActivity extends AppCompatActivity {
         return resArr;
     }
 
-    //count number of trailing zeros in factorial of n
-    public static int zeros(int n) {
-        long sum = 1;
-        for (int i = 1; i <= n; i++) {
-            if (i % 2 != 0) {
-                sum *= i * (i + 1);
-            }
-        }
-
-        String s = String.valueOf(sum);
-        int counter = 0;
-        while (counter < s.length() && s.charAt(s.length() - 1 - counter) == '0') {
-            counter++;
-        }
-
-        return counter;
-    }
-
     // 6 kyu Count the smiley faces!
     public static int countSmileys(List<String> arr) {
         int counter = 0;

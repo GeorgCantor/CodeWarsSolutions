@@ -13,7 +13,52 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        validMountainArray(intArrayOf(0, 3, 2, 1))
+        runningSum(intArrayOf(1, 2, 3, 4))
+    }
+
+    // https://leetcode.com/problems/thousand-separator/
+    fun thousandSeparator(n: Int): String {
+        val sb = StringBuilder()
+        var counter = 0
+        val str = n.toString()
+        for (i in str.lastIndex downTo 0) {
+            sb.append(str[i])
+            counter++
+            if (counter == 3 && i != 0) {
+                sb.append('.')
+                counter = 0
+            }
+        }
+
+        return sb.reversed().toString()
+    }
+
+    fun thousandSeparator2(n: Int) = n.toString().reversed().chunked(3).joinToString(".").reversed()
+
+    // https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+    fun replaceElements(arr: IntArray): IntArray {
+        val ar = IntArray(arr.size)
+        for (i in arr.indices) {
+            var max = 0
+            for (j in i + 1 until arr.size) max = maxOf(max, arr[j])
+            if (i == arr.size - 1) ar[i] = -1
+            else ar[i] = max
+        }
+
+        return ar
+    }
+
+    // https://leetcode.com/problems/running-sum-of-1d-array/
+    fun runningSum(nums: IntArray): IntArray {
+        val arr = IntArray(nums.size)
+        (nums.indices).forEach {
+            var sum = 0
+            (0..it).forEach { sum += nums[it] }
+            arr[it] = sum
+            sum = 0
+        }
+
+        return arr
     }
 
     // https://leetcode.com/problems/insert-interval/

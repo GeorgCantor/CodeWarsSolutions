@@ -1,6 +1,7 @@
 package com.example.codewarssolutions.codewars
 
 import android.os.Bundle
+import android.util.Pair
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
 import java.util.*
@@ -12,6 +13,23 @@ class Kotlin2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin2)
 
+    }
+
+    // https://www.codewars.com/kata/56a5d994ac971f1ac500003e
+    fun longestConsec(arr: Array<String>, k: Int) = if (k > 0) arr.toList().windowed(k)
+        .map { it.joinToString("") }.maxBy { it.length } ?: "" else ""
+
+    fun longestConsec2(arr: Array<String>, k: Int): String {
+        var res = listOf<String>()
+        for (i in k - 1..arr.lastIndex) {
+            val list = mutableListOf<String>()
+            (i downTo i - (k - 1)).forEach { list.add(arr[it]) }
+            if (list.joinToString("").length > res.joinToString("").length) {
+                res = list.reversed()
+            }
+        }
+
+        return res.joinToString("")
     }
 
     // https://www.codewars.com/kata/5868b2de442e3fb2bb000119

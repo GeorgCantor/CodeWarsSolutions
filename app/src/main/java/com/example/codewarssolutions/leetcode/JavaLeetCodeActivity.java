@@ -31,6 +31,40 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/thousand-separator/
+    public String thousandSeparator(int n) {
+        StringBuilder sb = new StringBuilder();
+        char[] ar = String.valueOf(n).toCharArray();
+        int counter = 0;
+        for (int i = ar.length - 1; i >= 0; i--) {
+            sb.append(ar[i]);
+            counter++;
+            if (counter == 3 && i != 0) {
+                sb.append('.');
+                counter = 0;
+            }
+        }
+
+        return sb.reverse().toString();
+    }
+
+    // https://leetcode.com/problems/largest-number-at-least-twice-of-others/
+    public int dominantIndex(int[] nums) {
+        int max = 0;
+        int maxI = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+                maxI = i;
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (i != maxI && nums[i] * 2 > nums[maxI]) return -1;
+        }
+
+        return maxI;
+    }
+
     // https://leetcode.com/problems/sort-array-by-parity/
     public int[] sortArrayByParity(int[] a) {
         int[] arr = new int[a.length];
