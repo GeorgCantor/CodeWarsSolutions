@@ -30,6 +30,33 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/5f7c38eb54307c002a2b8cc8
+    public static String removeParentheses(final String str) {
+        int counter = 0;
+        StringBuilder sb = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            if (c == '(') counter++;
+            else if (c == ')') counter--;
+            else if (counter == 0) sb.append(c);
+        }
+
+        return sb.toString();
+    }
+
+    // https://www.codewars.com/kata/587731fda577b3d1b0001196
+    public static String camelCase(String str) {
+        StringBuilder sb = new StringBuilder();
+        for (String s : str.split(" ")) {
+            char[] arr = s.trim().toCharArray();
+            for (int i = 0; i < arr.length; i++) {
+                if (i == 0) sb.append(Character.toUpperCase(arr[i]));
+                else sb.append(arr[i]);
+            }
+        }
+
+        return sb.toString();
+    }
+
     // https://www.codewars.com/kata/52685f7382004e774f0001f7/
     public static String makeReadable(int sec) {
         return String.format("%02d:%02d:%02d", sec / 3600, (sec % 3600) / 60, sec % 60);

@@ -13,8 +13,48 @@ class LeetCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
-        runningSum(intArrayOf(1, 2, 3, 4))
     }
+
+    // https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
+    fun evaluate(s: String, list: List<List<String>>): String {
+        val map = mutableMapOf<String, String>()
+        list.forEach { map[it[0]] = it[1] }
+        val sb = StringBuilder()
+        val sbTemp = StringBuilder()
+        var open = false
+        s.forEach {
+            when (it) {
+                '(' -> open = true
+                ')' -> {
+                    open = false
+                    sb.append(map[sbTemp.toString()] ?: "?")
+                    sbTemp.setLength(0)
+                }
+                else -> if (open) sbTemp.append(it) else sb.append(it)
+            }
+        }
+
+        return sb.toString()
+    }
+
+    // https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
+    fun countCharacters(ar: Array<String>, s: String): Int {
+        var size = 0
+        ar.forEach loop@{ w ->
+            w.forEach { ch -> if (w.count { it == ch } > s.count { it == ch }) return@loop }
+            size += w.length
+        }
+
+        return size
+    }
+
+    fun countCharacters2(ar: Array<String>, s: String) =
+        ar.filter { ('a'..'z').all { c -> s.count { it == c } >= it.count { it == c } } }
+            .sumBy { it.length }
+
+    // https://leetcode.com/problems/determine-if-string-halves-are-alike/
+    fun halvesAreAlike(s: String) = s.dropLast(s.length / 2).count { "aeiouAEIOU".contains(it) } ==
+            s.drop(s.length / 2).count { "aeiouAEIOU".contains(it) }
 
     // https://leetcode.com/problems/thousand-separator/
     fun thousandSeparator(n: Int): String {

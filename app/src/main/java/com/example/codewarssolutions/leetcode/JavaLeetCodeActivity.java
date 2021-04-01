@@ -31,6 +31,43 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+    public int[] replaceElements(int[] arr) {
+        int[] ar = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            int max = 0;
+            for (int j = i + 1; j < arr.length; j++) max = Math.max(max, arr[j]);
+            if (i == arr.length - 1) ar[i] = -1;
+            else ar[i] = max;
+        }
+
+        return ar;
+    }
+
+    // https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
+    public String evaluate(String s, List<List<String>> list) {
+        Map<String, String> map = new HashMap<>();
+        for (List<String> l : list) map.put(l.get(0), l.get(1));
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sbTemp = new StringBuilder();
+        boolean open = false;
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                open = true;
+            } else if (ch == ')') {
+                open = false;
+                String val = map.get(sbTemp.toString());
+                sb.append(val != null ? val : "?");
+                sbTemp.setLength(0);
+            } else {
+                if (open) sbTemp.append(ch);
+                else sb.append(ch);
+            }
+        }
+
+        return sb.toString();
+    }
+
     // https://leetcode.com/problems/thousand-separator/
     public String thousandSeparator(int n) {
         StringBuilder sb = new StringBuilder();

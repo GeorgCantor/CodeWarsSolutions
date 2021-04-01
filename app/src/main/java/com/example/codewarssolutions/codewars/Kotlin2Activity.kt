@@ -15,6 +15,26 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    fun frequencySort(ar: IntArray) = ar.sortedWith(compareBy<Int> { n -> ar.count { it == n } }.thenByDescending { it }).toIntArray()
+
+    // https://www.codewars.com/kata/5616868c81a0f281e500005c/kotlin
+    fun nthRank(st: String, we: IntArray, n: Int): String {
+        if (st.isBlank()) return "No participants"
+        val names = st.split(",")
+        if (n > names.size) return "Not enough participants"
+
+        val map = mutableMapOf<String, Int>()
+        names.forEachIndexed { i, w ->
+            var sum = 0
+            w.forEach { sum += ('a'..'z').indexOf(it.toLowerCase()) + 1 }
+            map[w] = (sum + w.length) * we[i]
+        }
+        val l =
+            map.entries.sortedWith(compareByDescending<Map.Entry<String, Int>> { it.value }.thenBy { it.key })
+
+        return l[n - 1].key
+    }
+
     // https://www.codewars.com/kata/56a5d994ac971f1ac500003e
     fun longestConsec(arr: Array<String>, k: Int) = if (k > 0) arr.toList().windowed(k)
         .map { it.joinToString("") }.maxBy { it.length } ?: "" else ""
