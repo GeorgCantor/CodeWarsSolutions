@@ -15,6 +15,44 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/string-matching-in-an-array/
+    fun stringMatching(words: Array<String>): List<String> {
+        val list = mutableListOf<String>()
+        words.forEach { one ->
+            words.forEach { two ->
+                if (one != two && one.contains(two) && !list.contains(two)) list.add(two)
+            }
+        }
+
+        return list
+    }
+
+    // https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+    fun canMakeArithmeticProgression(ar: IntArray): Boolean {
+        ar.sort()
+        val dif = ar[1] - ar[0]
+        for (i in 1..ar.lastIndex) if (ar[i] - ar[i - 1] != dif) return false
+
+        return true
+    }
+
+    // https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/
+    fun modifyString(s: String): String {
+        val chars = CharArray(s.length)
+        s.forEachIndexed { i, ch ->
+            chars[i] = if (ch != '?') ch
+            else {
+                when (i) {
+                    0 -> if (s.length > 1) ('a'..'z').first { it != s[i + 1] } else 'a'
+                    s.lastIndex -> ('a'..'z').first { it != s[i - 1] && it != chars[i - 1] }
+                    else -> ('a'..'z').first { it != s[i - 1] && it != s[i + 1] && it != chars[i - 1] }
+                }
+            }
+        }
+
+        return String(chars)
+    }
+
     // https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
     fun evaluate(s: String, list: List<List<String>>): String {
         val map = mutableMapOf<String, String>()

@@ -31,6 +31,46 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/string-matching-in-an-array/
+    public List<String> stringMatching(String[] words) {
+        List<String> list = new ArrayList<>();
+        for (String one : words) {
+            for (String two : words) {
+                if (!one.equals(two) && one.contains(two) && !list.contains(two)) list.add(two);
+            }
+        }
+
+        return list;
+    }
+
+    // https://leetcode.com/problems/replace-all-s-to-avoid-consecutive-repeating-characters/
+    public String modifyString(String s) {
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '?') {
+                for (char j = 'a'; j < 'z'; j++) {
+                    chars[i] = j;
+                    if (i > 0 && chars[i - 1] == j) continue;
+                    if (i < chars.length - 1 && chars[i + 1] == j) continue;
+                    break;
+                }
+            }
+        }
+
+        return new String(chars);
+    }
+
+    // https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+    public boolean canMakeArithmeticProgression(int[] arr) {
+        Arrays.sort(arr);
+        int dif = arr[1] - arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - arr[i - 1] != dif) return false;
+        }
+
+        return true;
+    }
+
     // https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
     public int[] replaceElements(int[] arr) {
         int[] ar = new int[arr.length];
