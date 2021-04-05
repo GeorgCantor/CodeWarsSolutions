@@ -15,6 +15,38 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/string-compression/
+    fun compress(ar: CharArray): Int {
+        val list = mutableListOf<Char>()
+        var c = 1
+        for (i in ar.indices) {
+            if (i == ar.lastIndex || ar[i] != ar[i + 1]) {
+                list.add(ar[i])
+                if (c > 1) c.toString().forEach { list.add(it) }
+                c = 1
+            } else c++
+        }
+        list.forEachIndexed { i, ch -> ar[i] = ch }
+
+        return list.size
+    }
+
+    // https://leetcode.com/problems/making-file-names-unique/
+    fun getFolderNames(ar: Array<String>): Array<String> {
+        val map = mutableMapOf<String, Int>()
+        for (i in ar.indices) {
+            var key = ar[i]
+            var c = map.getOrDefault(key, 0)
+
+            while (map.containsKey(key)) key = "${ar[i]}(${++c})"
+            map[ar[i]] = c
+            map[key] = 0
+            ar[i] = key
+        }
+
+        return ar
+    }
+
     // https://leetcode.com/problems/string-matching-in-an-array/
     fun stringMatching(words: Array<String>): List<String> {
         val list = mutableListOf<String>()

@@ -31,6 +31,38 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/string-compression/
+    public int compress(char[] ar) {
+        List<Character> list = new ArrayList<>();
+        int c = 1;
+        for (int i = 0; i < ar.length; i++) {
+            if (i == ar.length - 1 || ar[i] != ar[i + 1]) {
+                list.add(ar[i]);
+                if (c > 1) for (char ch : String.valueOf(c).toCharArray()) list.add(ch);
+                c = 1;
+            } else c++;
+        }
+        for (int i = 0; i < list.size(); i++) ar[i] = list.get(i);
+
+        return list.size();
+    }
+
+    // https://leetcode.com/problems/making-file-names-unique/
+    public String[] getFolderNames(String[] ar) {
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < ar.length; i++) {
+            String key = ar[i];
+            int c = map.getOrDefault(key, 0);
+
+            while (map.containsKey(key)) key = ar[i] + "(" + ++c + ")";
+            map.put(ar[i], c);
+            map.put(key, 0);
+            ar[i] = key;
+        }
+
+        return ar;
+    }
+
     // https://leetcode.com/problems/string-matching-in-an-array/
     public List<String> stringMatching(String[] words) {
         List<String> list = new ArrayList<>();
