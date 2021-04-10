@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -29,6 +30,19 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
+    }
+
+    // https://leetcode.com/problems/most-common-word/
+    public String mostCommonWord(String s, String[] ar) {
+        return Arrays.asList(s.split("[\\s!?',;.]")).stream()
+                .filter(w -> !w.isEmpty())
+                .map(String::toLowerCase)
+                .filter(w -> !Arrays.asList(ar).contains(w))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(w -> 1)))
+                .entrySet()
+                .stream().max(Comparator.comparingInt(Map.Entry::getValue))
+                .get()
+                .getKey();
     }
 
     // https://leetcode.com/problems/string-compression/

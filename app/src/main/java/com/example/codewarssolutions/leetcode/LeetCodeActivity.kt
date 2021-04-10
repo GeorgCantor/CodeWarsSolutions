@@ -15,6 +15,33 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
+    fun isPrefixOfWord(sen: String, s: String): Int {
+        sen.split(" ").apply { onEach { if (it.startsWith(s)) return indexOf(it) + 1 } }
+        return -1
+    }
+
+    // https://leetcode.com/problems/merge-strings-alternately/
+    fun mergeAlternately(w1: String, w2: String) = StringBuilder().apply {
+        for (i in 0..maxOf(w1.lastIndex, w2.lastIndex)) {
+            if (i <= w1.lastIndex) append(w1[i])
+            if (i <= w2.lastIndex) append(w2[i])
+        }
+    }.toString()
+
+    fun mergeAlternately2(w1: String, w2: String) = StringBuilder().apply {
+        if (w1.length >= w2.length) {
+            w1.forEachIndexed { i, ch -> append(ch); if (i <= w2.lastIndex) append(w2[i]) }
+        } else w2.forEachIndexed { i, ch -> if (i <= w1.lastIndex) append(w1[i]); append(ch) }
+    }.toString()
+
+    // https://leetcode.com/problems/most-common-word/
+    fun mostCommonWord(s: String, ar: Array<String>) = mutableMapOf<String, Int>().apply {
+        s.toLowerCase().replace(Regex("[^a-z ]"), " ").split(" ")
+            .filter { !ar.contains(it) && it.isNotBlank() }
+            .forEach { this[it] = getOrDefault(it, 0) + 1 }
+    }.maxBy { it.value }?.key!!
+
     // https://leetcode.com/problems/string-compression/
     fun compress(ar: CharArray): Int {
         val list = mutableListOf<Char>()
@@ -1235,12 +1262,10 @@ class LeetCodeActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/two-sum/
-    fun twoSum(nums: IntArray, target: Int): IntArray {
-        nums.forEachIndexed { i, num ->
-            for (j in i + 1 until nums.size) {
-                if (num + nums[j] == target) {
-                    return intArrayOf(nums.indexOf(num), nums.lastIndexOf(nums[j]))
-                }
+    fun twoSum(ar: IntArray, target: Int): IntArray {
+        ar.forEachIndexed { i, n ->
+            for (j in i + 1 until ar.size) {
+                if (n + ar[j] == target) return intArrayOf(i, j)
             }
         }
 
