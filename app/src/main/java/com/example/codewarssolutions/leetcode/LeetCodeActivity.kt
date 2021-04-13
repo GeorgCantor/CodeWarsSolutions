@@ -15,6 +15,23 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
+    fun kidsWithCandies(candies: IntArray, extra: Int): BooleanArray {
+        val arr = BooleanArray(candies.size)
+        candies.forEachIndexed { i, num ->
+            var greatest = true
+            loop@ for (j in candies.indices) {
+                if (j != i && (num + extra) < candies[j]) {
+                    greatest = false
+                    break@loop
+                }
+            }
+            arr[i] = greatest
+        }
+
+        return arr
+    }
+
     // https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
     fun isPrefixOfWord(sen: String, s: String): Int {
         sen.split(" ").apply { onEach { if (it.startsWith(s)) return indexOf(it) + 1 } }

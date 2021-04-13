@@ -32,9 +32,33 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
+    public int isPrefixOfWord(String sen, String s) {
+        int i = 1;
+        for (String w : sen.split(" ")) {
+            if (w.indexOf(s) == 0) return i;
+            i++;
+        }
+
+        return -1;
+    }
+
+    // https://leetcode.com/problems/merge-strings-alternately/
+    public String mergeAlternately(String w1, String w2) {
+        StringBuilder sb = new StringBuilder();
+        char[] ch1 = w1.toCharArray();
+        char[] ch2 = w2.toCharArray();
+        for (int i = 0; i < (Math.max(ch1.length, ch2.length)); i++) {
+            if (i < ch1.length) sb.append(ch1[i]);
+            if (i < ch2.length) sb.append(ch2[i]);
+        }
+
+        return sb.toString();
+    }
+
     // https://leetcode.com/problems/most-common-word/
     public String mostCommonWord(String s, String[] ar) {
-        return Arrays.asList(s.split("[\\s!?',;.]")).stream()
+        return Arrays.stream(s.split("[\\s!?',;.]"))
                 .filter(w -> !w.isEmpty())
                 .map(String::toLowerCase)
                 .filter(w -> !Arrays.asList(ar).contains(w))
