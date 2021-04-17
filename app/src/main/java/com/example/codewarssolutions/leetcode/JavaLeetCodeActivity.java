@@ -32,6 +32,43 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
+    public List<Boolean> kidsWithCandies(int[] ar, int ex) {
+        List<Boolean> list = new ArrayList<>();
+        for (int i = 0; i < ar.length; i++) {
+            boolean greatest = true;
+            for (int j = 0; j < ar.length; j++) {
+                if (i != j && (ar[i] + ex) < ar[j]) {
+                    greatest = false;
+                    break;
+                }
+            }
+            list.add(greatest);
+        }
+
+        return list;
+    }
+
+    // https://leetcode.com/problems/running-sum-of-1d-array/
+    public int[] runningSum(int[] nums) {
+        int[] ar = new int[nums.length];
+        int sum = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (i == 0) ar[0] = sum;
+            else ar[i] = sum += nums[i];
+        }
+
+        return ar;
+    }
+
+    // https://leetcode.com/problems/truncate-sentence/
+    public String truncateSentence(String s, int k) {
+        String[] ar = new String[k];
+        System.arraycopy(s.split(" "), 0, ar, 0, k);
+
+        return String.join(" ", ar);
+    }
+
     // https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
     public int isPrefixOfWord(String sen, String s) {
         int i = 1;

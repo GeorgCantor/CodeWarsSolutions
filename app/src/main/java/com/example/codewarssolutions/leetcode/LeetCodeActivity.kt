@@ -15,15 +15,30 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/truncate-sentence/
+    fun truncateSentence(s: String, k: Int) =
+        s.split(" ").withIndex().filter { it.index < k }.joinToString(" ") { it.value }
+
+    // https://leetcode.com/problems/count-items-matching-a-rule/
+    fun countMatches(items: List<List<String>>, key: String, value: String) = when (key) {
+        "type" -> items.count { it[0] == value }
+        "color" -> items.count { it[1] == value }
+        "name" -> items.count { it[2] == value }
+        else -> 0
+    }
+
+    // 1 line
+//  fun countMatches(l: List<List<String>>, k: String, v: String) = l.count { it[when(k){"type"->0 "color"->1 else->2}] == v }
+
     // https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
     fun kidsWithCandies(candies: IntArray, extra: Int): BooleanArray {
         val arr = BooleanArray(candies.size)
         candies.forEachIndexed { i, num ->
             var greatest = true
-            loop@ for (j in candies.indices) {
+            for (j in candies.indices) {
                 if (j != i && (num + extra) < candies[j]) {
                     greatest = false
-                    break@loop
+                    break
                 }
             }
             arr[i] = greatest
@@ -204,15 +219,14 @@ class LeetCodeActivity : AppCompatActivity() {
 
     // https://leetcode.com/problems/running-sum-of-1d-array/
     fun runningSum(nums: IntArray): IntArray {
-        val arr = IntArray(nums.size)
-        (nums.indices).forEach {
-            var sum = 0
-            (0..it).forEach { sum += nums[it] }
-            arr[it] = sum
-            sum = 0
+        var sum = nums.first()
+        val list = mutableListOf(sum)
+        for (i in 1 until nums.size) {
+            sum += nums[i]
+            list.add(sum)
         }
 
-        return arr
+        return list.toIntArray()
     }
 
     // https://leetcode.com/problems/insert-interval/
@@ -627,7 +641,12 @@ class LeetCodeActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/defanging-an-ip-address/
-    fun defangIPaddr(address: String) = address.replace(".", "[.]")
+    fun defangIPaddr(s: String) =
+        StringBuilder().apply { s.forEach { append(if (it == '.') "[.]" else it) } }.toString()
+
+    fun defangIPaddr2(s: String) = s.map { if (it == '.') "[.]" else it }.joinToString("")
+
+    fun defangIPaddr3(s: String) = s.replace(".", "[.]")
 
     // https://leetcode.com/problems/sum-of-unique-elements/
     fun sumOfUnique(nums: IntArray): Int {
