@@ -15,6 +15,25 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/find-pivot-index/
+    fun pivotIndex(nums: IntArray): Int {
+        var lSum = 0
+        var rSum = nums.sum()
+        nums.forEachIndexed { i, num ->
+            rSum -= num
+            if (lSum == rSum) return i
+            lSum += num
+        }
+
+        return -1
+    }
+
+    // https://leetcode.com/problems/height-checker/
+    fun heightChecker(ar: IntArray) = ar.zip(ar.sorted()).count { it.first != it.second }
+
+    // https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+    fun countNegatives(grid: Array<IntArray>) = grid.sumBy { it.count { it < 0 } }
+
     // https://leetcode.com/problems/truncate-sentence/
     fun truncateSentence(s: String, k: Int) =
         s.split(" ").withIndex().filter { it.index < k }.joinToString(" ") { it.value }
@@ -667,16 +686,15 @@ class LeetCodeActivity : AppCompatActivity() {
         return counter
     }
 
-    // https://leetcode.com/problems/number-of-good-pairs/
     fun numIdenticalPairs2(nums: IntArray): Int {
-        val map = HashMap<Int, Int>()
-        var counter = 0
+        val map = mutableMapOf<Int, Int>()
+        var count = 0
         nums.forEach {
-            if (map.containsKey(it)) counter += map[it]!!
+            if (map.containsKey(it)) count += map[it]!!
             map[it] = map.getOrDefault(it, 0) + 1
         }
 
-        return counter
+        return count
     }
 
     // https://leetcode.com/problems/shuffle-the-array/
@@ -1297,8 +1315,17 @@ class LeetCodeActivity : AppCompatActivity() {
         nums1.sort()
     }
 
+    // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+    fun twoSum(ar: IntArray, t: Int): IntArray {
+        var l = 0
+        var r = ar.lastIndex
+        while (ar[l] + ar[r] != t) if (ar[l] + ar[r] > t) r-- else l++
+
+        return intArrayOf(l + 1, r + 1)
+    }
+
     // https://leetcode.com/problems/two-sum/
-    fun twoSum(ar: IntArray, target: Int): IntArray {
+    fun twoSum2(ar: IntArray, target: Int): IntArray {
         ar.forEachIndexed { i, n ->
             for (j in i + 1 until ar.size) {
                 if (n + ar[j] == target) return intArrayOf(i, j)
@@ -1395,29 +1422,8 @@ class LeetCodeActivity : AppCompatActivity() {
         return arr
     }
 
+    // https://leetcode.com/problems/length-of-last-word/
     fun lengthOfLastWord(s: String): Int = s.trim().split(' ').last().length
-
-    fun lengthOfLastWord2(s: String): Int {
-        val list = mutableListOf<String>()
-        val sb = StringBuilder()
-        s.forEach {
-            when (it) {
-                ' ' -> {
-                    if (sb.isNotEmpty()) {
-                        list.add(sb.toString())
-                        sb.setLength(0)
-                    }
-                }
-                else -> sb.append(it)
-            }
-        }
-        if (sb.isNotEmpty()) list.add(sb.toString())
-
-        return when (list.size) {
-            0 -> 0
-            else -> list.last().length
-        }
-    }
 
     fun isPalindrome(x: Int) = x.toString() == x.toString().reversed()
 

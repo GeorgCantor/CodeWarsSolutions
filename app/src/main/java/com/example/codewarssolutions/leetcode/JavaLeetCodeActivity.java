@@ -32,6 +32,30 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/find-pivot-index/
+    public int pivotIndex(int[] nums) {
+        int lSum = 0;
+        int rSum = 0;
+        for (int num : nums) rSum += num;
+        for (int i = 0; i < nums.length; i++) {
+            rSum -= nums[i];
+            if (lSum == rSum) return i;
+            lSum += nums[i];
+        }
+
+        return -1;
+    }
+
+    // https://leetcode.com/problems/height-checker/
+    public int heightChecker(int[] heights) {
+        int[] ar = Arrays.copyOf(heights, heights.length);
+        Arrays.sort(heights);
+        int count = 0;
+        for (int i = 0; i < ar.length; i++) if (ar[i] != heights[i]) count++;
+
+        return count;
+    }
+
     // https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
     public List<Boolean> kidsWithCandies(int[] ar, int ex) {
         List<Boolean> list = new ArrayList<>();
@@ -818,8 +842,18 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         return new ArrayList<>(set);
     }
 
+    // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+    public int[] twoSum(int[] ar, int t) {
+        int l = 0;
+        int r = ar.length - 1;
+        while (ar[l] + ar[r] != t) if (ar[l] + ar[r] > t) r--;
+        else l++;
+
+        return new int[]{l + 1, r + 1};
+    }
+
     // https://leetcode.com/problems/two-sum/submissions/
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum2(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) return new int[]{i, j};
@@ -828,7 +862,7 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
         throw new IllegalArgumentException("Not found");
     }
 
-    public int[] twoSum2(int[] nums, int target) {
+    public int[] twoSum3(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];

@@ -15,7 +15,22 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
-    fun frequencySort(ar: IntArray) = ar.sortedWith(compareBy<Int> { n -> ar.count { it == n } }.thenByDescending { it }).toIntArray()
+    // https://www.codewars.com/kata/59590976838112bfea0000fa
+    fun beggars(values: List<Int>, n: Int): List<Int> {
+        if (n == 0) return listOf()
+        val ar = IntArray(n)
+        var count = 0
+        values.forEach {
+            ar[count] = (it + ar[count])
+            if (count < n - 1) count++ else count = 0
+        }
+
+        return ar.toList()
+    }
+
+    fun frequencySort(ar: IntArray) =
+        ar.sortedWith(compareBy<Int> { n -> ar.count { it == n } }.thenByDescending { it })
+            .toIntArray()
 
     // https://www.codewars.com/kata/5616868c81a0f281e500005c/kotlin
     fun nthRank(st: String, we: IntArray, n: Int): String {

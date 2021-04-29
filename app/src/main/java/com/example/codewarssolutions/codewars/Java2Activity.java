@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -28,6 +29,39 @@ public class Java2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
+    }
+
+    // https://www.codewars.com/kata/5340298112fa30e786000688
+    public static int[][] twosDifference(int[] array) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] + 2 == array[j])
+                    list.add(new ArrayList<>(Arrays.asList(array[i], array[j])));
+                if (array[j] + 2 == array[i])
+                    list.add(new ArrayList<>(Arrays.asList(array[j], array[i])));
+            }
+        }
+
+        int[][] ar = list.stream()
+                .map(l -> l.stream().mapToInt(Integer::intValue).toArray())
+                .toArray(int[][]::new);
+
+        Arrays.sort(ar, Comparator.comparingInt(i -> i[0]));
+
+        return ar;
+    }
+
+    // https://www.codewars.com/kata/523f5d21c841566fde000009
+    public static int[] arrayDiff(int[] a, int[] b) {
+        List<Integer> list = new ArrayList<>();
+        loop:
+        for (int num : a) {
+            for (int i : b) if (num == i) continue loop;
+            list.add(num);
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
     // https://www.codewars.com/kata/5f7c38eb54307c002a2b8cc8
@@ -63,7 +97,7 @@ public class Java2Activity extends AppCompatActivity {
     }
 
     // https://www.codewars.com/kata/585d7d5adb20cf33cb000235
-    public static double findUniq(double arr[]) {
+    public static double findUniq(double[] arr) {
         return Arrays.stream(arr)
                 .boxed()
                 .collect(groupingBy(identity(), counting()))
@@ -76,7 +110,7 @@ public class Java2Activity extends AppCompatActivity {
     }
 
     // https://www.codewars.com/kata/585d7d5adb20cf33cb000235
-    public static double findUniq2(double arr[]) {
+    public static double findUniq2(double[] arr) {
         Map<Double, Integer> map = new HashMap<>();
         for (double d : arr) {
             map.put(d, map.getOrDefault(d, 0) + 1);
