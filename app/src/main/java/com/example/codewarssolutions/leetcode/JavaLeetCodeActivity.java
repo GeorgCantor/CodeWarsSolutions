@@ -32,6 +32,35 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    public boolean canBeEqual(int[] target, int[] arr) {
+        Arrays.sort(target);
+        Arrays.sort(arr);
+        return Arrays.equals(target, arr);
+    }
+
+    // https://leetcode.com/problems/longest-nice-substring/submissions/
+    public String longestNiceSubstring(String s) {
+        String l = "";
+        for (int i = 0; i <= s.toCharArray().length; i++) {
+            for (int j = i + 1; j <= s.toCharArray().length; j++) {
+                String sub = s.substring(i, j);
+                if (isNice(sub) && sub.length() > l.length()) l = sub;
+            }
+        }
+
+        return l;
+    }
+
+    private Boolean isNice(String s) {
+        for (char ch : s.toCharArray()) {
+            if (s.contains(String.valueOf(Character.toLowerCase(ch))) && !s.contains(String.valueOf(Character.toUpperCase(ch))))
+                return false;
+            if (s.contains(String.valueOf(Character.toUpperCase(ch))) && !s.contains(String.valueOf(Character.toLowerCase(ch))))
+                return false;
+        }
+        return true;
+    }
+
     // https://leetcode.com/problems/find-pivot-index/
     public int pivotIndex(int[] nums) {
         int lSum = 0;

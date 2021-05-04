@@ -15,6 +15,35 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/make-two-arrays-equal-by-reversing-sub-arrays/
+    fun canBeEqual(t: IntArray, a: IntArray) = run { t.sort(); a.sort(); t.contentEquals(a) }
+
+    fun canBeEqual2(target: IntArray, arr: IntArray): Boolean {
+        target.sort()
+        arr.sort()
+        return target.contentEquals(arr)
+    }
+
+    // https://leetcode.com/problems/longest-nice-substring/submissions/
+    fun longestNiceSubstring(s: String): String {
+        fun String.nice(): Boolean {
+            forEach {
+                if (contains(it.toUpperCase()) && !contains(it.toLowerCase())) return false
+                if (contains(it.toLowerCase()) && !contains(it.toUpperCase())) return false
+            }
+            return true
+        }
+
+        var l = ""
+        for (i in s.indices) {
+            for (j in i + 1 until s.length) {
+                s.substring(i, j + 1).apply { if (nice() && length > l.length) l = this }
+            }
+        }
+
+        return l
+    }
+
     // https://leetcode.com/problems/find-pivot-index/
     fun pivotIndex(nums: IntArray): Int {
         var lSum = 0
@@ -1217,10 +1246,10 @@ class LeetCodeActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/reverse-only-letters/
-    fun reverseOnlyLetters(S: String): String {
-        val list = S.filter { it in 'a'..'z' || it in 'A'..'Z' }.reversed().toMutableList()
-        S.forEachIndexed { i, ch ->
-            if (ch !in 'a'..'z' && ch !in 'A'..'Z') list.add(i, ch)
+    fun reverseOnlyLetters(s: String): String {
+        val list = s.filter { it.toLowerCase() in 'a'..'z' }.reversed().toMutableList()
+        s.forEachIndexed { i, ch ->
+            if (ch.toLowerCase() !in 'a'..'z') list.add(i, ch)
         }
 
         return list.joinToString("")
