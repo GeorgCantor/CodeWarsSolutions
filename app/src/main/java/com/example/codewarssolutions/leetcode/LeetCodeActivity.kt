@@ -15,6 +15,31 @@ class LeetCodeActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/reformat-the-string/
+    fun reformat(s: String): String {
+        val l = mutableListOf<Char>()
+        val d = mutableListOf<Char>()
+        s.forEach {
+            if (it.isLetter()) l.add(it) else d.add(it)
+        }
+        if (l.size - d.size > 1 || d.size - l.size > 1) return ""
+
+        val sb = StringBuilder()
+        var i = 0
+        while (i < l.size + d.size) {
+            if (l.size > d.size) {
+                if (l.lastIndex >= i) sb.append(l[i])
+                if (d.lastIndex >= i) sb.append(d[i])
+            } else {
+                if (d.lastIndex >= i) sb.append(d[i])
+                if (l.lastIndex >= i) sb.append(l[i])
+            }
+            i++
+        }
+
+        return sb.toString()
+    }
+
     // https://leetcode.com/problems/make-two-arrays-equal-by-reversing-sub-arrays/
     fun canBeEqual(t: IntArray, a: IntArray) = run { t.sort(); a.sort(); t.contentEquals(a) }
 
@@ -776,9 +801,11 @@ class LeetCodeActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/remove-duplicates-from-sorted-array/
-    fun removeDuplicates(nums: IntArray): Int {
+    fun removeDuplicates(ar: IntArray) = ar.distinct().mapIndexed { i, n -> ar[i] = n }.size
+
+    fun removeDuplicates2(ar: IntArray): Int {
         var j = 0
-        for (i in nums.indices) if (nums[i] != nums[j]) nums[++j] = nums[i]
+        for (i in ar.indices) if (ar[i] != ar[j]) ar[++j] = ar[i]
 
         return ++j
     }

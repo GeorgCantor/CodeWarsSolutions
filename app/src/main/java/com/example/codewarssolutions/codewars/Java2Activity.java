@@ -31,6 +31,20 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/5727bb0fe81185ae62000ae3
+    public String cleanString(String s) {
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        char[] ar = s.toCharArray();
+        for (int i = ar.length - 1; i >= 0; i--) {
+            if (ar[i] == '#') count++;
+            else if (count == 0) sb.append(ar[i]);
+            else count--;
+        }
+
+        return sb.reverse().toString();
+    }
+
     // https://www.codewars.com/kata/5340298112fa30e786000688
     public static int[][] twosDifference(int[] array) {
         ArrayList<ArrayList<Integer>> list = new ArrayList<>();

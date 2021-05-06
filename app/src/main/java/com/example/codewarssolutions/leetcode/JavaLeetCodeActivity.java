@@ -32,6 +32,15 @@ public class JavaLeetCodeActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+    public int removeDuplicates(int[] nums) {
+        int[] ar = Arrays.stream(nums).distinct().toArray();
+        System.arraycopy(ar, 0, nums, 0, ar.length);
+
+        return ar.length;
+    }
+
+    // https://leetcode.com/problems/make-two-arrays-equal-by-reversing-sub-arrays/
     public boolean canBeEqual(int[] target, int[] arr) {
         Arrays.sort(target);
         Arrays.sort(arr);
