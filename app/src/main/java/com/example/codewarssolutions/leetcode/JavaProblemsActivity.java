@@ -23,13 +23,47 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class JavaLeetCodeActivity extends AppCompatActivity {
+public class JavaProblemsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
+    }
+
+    // https://leetcode.com/problems/increasing-decreasing-string/
+    public String sortString(String s) {
+        String abc = "abcdefghijklmnopqrstuvwxyz";
+        char[] chars = s.toCharArray();
+        String rev = new StringBuilder(abc).reverse().toString();
+        StringBuilder sb = new StringBuilder();
+        Set<Integer> exc = new HashSet<>();
+
+        while (sb.length() < s.length()) {
+            for (char ch : abc.toCharArray()) {
+                for (int i = 0; i < s.length(); i++) {
+                    if (ch == chars[i] && !exc.contains(i)) {
+                        sb.append(ch);
+                        exc.add(i);
+                        if (sb.length() == s.length()) return sb.toString();
+                        break;
+                    }
+                }
+            }
+            for (char ch : rev.toCharArray()) {
+                for (int i = 0; i < s.length(); i++) {
+                    if (ch == chars[i] && !exc.contains(i)) {
+                        sb.append(ch);
+                        exc.add(i);
+                        if (sb.length() == s.length()) return sb.toString();
+                        break;
+                    }
+                }
+            }
+        }
+
+        return sb.toString();
     }
 
     // https://leetcode.com/problems/remove-duplicates-from-sorted-array/

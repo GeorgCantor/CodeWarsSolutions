@@ -15,6 +15,18 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/55c6126177c9441a570000cc
+    fun orderWeight(s: String) = s.split(" ").sorted()
+        .sortedBy { it.sumBy { it - '0' } }
+        .joinToString(" ")
+
+    fun orderWeight2(s: String) = if (s.isEmpty()) s else s.split(" ")
+        .map { it.toLong() }
+        .sortedWith(compareBy<Long> {
+            it.toString().toCharArray().sumBy { it.toString().toInt() }
+        }.thenBy { it.toString() })
+        .joinToString(" ")
+
     // https://www.codewars.com/kata/59590976838112bfea0000fa
     fun beggars(values: List<Int>, n: Int): List<Int> {
         if (n == 0) return listOf()

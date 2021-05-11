@@ -7,12 +7,63 @@ import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
-class LeetCodeActivity : AppCompatActivity() {
+class KotlinProblemsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+    }
+
+    // https://leetcode.com/problems/ransom-note/
+    fun canConstruct(r: String, m: String): Boolean {
+        val exc = mutableListOf<Int>()
+        var count = 0
+        loop@ for (ch in r) {
+            for (i in m.indices) {
+                if (ch == m[i] && !exc.contains(i)) {
+                    count++
+                    if (count == r.length) return true
+                    exc.add(i)
+                    continue@loop
+                }
+            }
+        }
+
+        return count == r.length
+    }
+
+    // https://leetcode.com/problems/increasing-decreasing-string/
+    fun sortString(s: String): String {
+        val abc = "abcdefghijklmnopqrstuvwxyz"
+        val rev = abc.reversed()
+        val sb = StringBuilder()
+        val exc = mutableSetOf<Int>()
+
+        while (sb.length < s.length) {
+            abc.forEach {
+                s.forEachIndexed { i, ch ->
+                    if (it == ch && !exc.contains(i)) {
+                        sb.append(ch)
+                        exc.add(i)
+                        if (sb.length == s.length) return sb.toString()
+                        return@forEach
+                    }
+                }
+            }
+            rev.forEach {
+                s.forEachIndexed { i, ch ->
+                    if (it == ch && !exc.contains(i)) {
+                        sb.append(ch)
+                        exc.add(i)
+                        if (sb.length == s.length) return sb.toString()
+                        return@forEach
+                    }
+                }
+            }
+        }
+
+        return sb.toString()
     }
 
     // https://leetcode.com/problems/reformat-the-string/
