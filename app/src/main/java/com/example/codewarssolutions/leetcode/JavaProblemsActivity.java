@@ -32,6 +32,27 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/student-attendance-record-i/
+    public boolean checkRecord(String s) {
+        if (s.contains("LLL")) return false;
+        int count = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == 'A') count++;
+            if (count > 1) return false;
+        }
+
+        return true;
+    }
+
+    // https://leetcode.com/problems/check-if-the-sentence-is-pangram/
+    public boolean checkIfPangram(String sentence) {
+        for (char ch : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
+            if (!sentence.contains(String.valueOf(ch))) return false;
+        }
+
+        return true;
+    }
+
     // https://leetcode.com/problems/increasing-decreasing-string/
     public String sortString(String s) {
         String abc = "abcdefghijklmnopqrstuvwxyz";

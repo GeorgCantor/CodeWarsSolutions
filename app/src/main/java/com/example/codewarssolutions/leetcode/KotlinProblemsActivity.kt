@@ -15,6 +15,12 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/student-attendance-record-i/
+    fun checkRecord(s: String) = !s.contains("LLL") && s.count { it == 'A' } < 2
+
+    // https://leetcode.com/problems/check-if-the-sentence-is-pangram/
+    fun checkIfPangram(s: String) = "abcdefghijklmnopqrstuvwxyz".all { s.contains(it) }
+
     // https://leetcode.com/problems/ransom-note/
     fun canConstruct(r: String, m: String): Boolean {
         val exc = mutableListOf<Int>()
