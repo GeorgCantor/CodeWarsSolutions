@@ -6,6 +6,7 @@ import com.example.codewarssolutions.R
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
+import kotlin.math.abs
 
 class KotlinProblemsActivity : AppCompatActivity() {
 
@@ -13,6 +14,38 @@ class KotlinProblemsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leet_code)
 
+    }
+
+    // https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
+    fun finalPrices(p: IntArray): IntArray {
+        val ar = IntArray(p.size)
+        for (i in p.indices) {
+            ar[i] = p[i]
+            for (j in i + 1 until p.size) {
+                if (p[j] <= p[i]) {
+                    ar[i] = p[i] - p[j]
+                    break
+                }
+            }
+        }
+
+        return ar
+    }
+
+    // https://leetcode.com/problems/sorting-the-sentence/
+    fun sortSentence(s: String) = s.split(" ")
+        .sortedBy { it.dropWhile { it.isLetter() } }
+        .joinToString(" ") { it.dropLastWhile { it.isDigit() } }
+
+    // https://leetcode.com/problems/make-the-string-great/
+    fun makeGood(s: String): String {
+        for (i in 0 until s.length - 1) {
+            if (abs(s[i] - s[i + 1]) == 32) {
+                return makeGood("${s.substring(0, i)}${s.substring(i + 2)}")
+            }
+        }
+
+        return s
     }
 
     // https://leetcode.com/problems/student-attendance-record-i/
