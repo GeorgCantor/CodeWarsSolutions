@@ -16,6 +16,35 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/is-subsequence/
+    fun isSubsequence(s: String, t: String) =
+        t.fold(s, { w, c -> if (w.firstOrNull() == c) w.drop(1) else w }).isEmpty()
+
+    fun isSubsequence2(s: String, t: String): Boolean {
+        if (s.isEmpty()) return true
+        var i = 0
+        val sb = StringBuilder()
+        t.forEach {
+            if (i > s.lastIndex) return false
+            if (it == s[i]) {
+                sb.append(it)
+                if (sb.toString() == s) return true
+                i++
+            }
+        }
+
+        return sb.toString() == s
+    }
+
+    // https://leetcode.com/problems/decompress-run-length-encoded-list/
+    fun decompressRLElist(ar: IntArray) = mutableListOf<Int>().apply {
+        ar.toList().windowed(2, 2).forEach { p -> (1..p[0]).forEach { add(p[1]) } }
+    }.toIntArray()
+
+    fun decompressRLElist2(ar: IntArray) = ar.toList().windowed(2, 2) { (f, v) ->
+        List(f) { v }
+    }.flatten().toIntArray()
+
     // https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
     fun finalPrices(p: IntArray): IntArray {
         val ar = IntArray(p.size)

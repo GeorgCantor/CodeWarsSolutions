@@ -32,6 +32,24 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/is-subsequence/
+    public boolean isSubsequence(String s, String t) {
+        if (s.isEmpty()) return true;
+        char[] chars = s.toCharArray();
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        for (char ch : t.toCharArray()) {
+            if (i > s.length() - 1) return false;
+            if (ch == chars[i]) {
+                sb.append(ch);
+                if (sb.toString().equals(s)) return true;
+                i++;
+            }
+        }
+
+        return sb.toString().equals(s);
+    }
+
     // https://leetcode.com/problems/student-attendance-record-i/
     public boolean checkRecord(String s) {
         if (s.contains("LLL")) return false;
