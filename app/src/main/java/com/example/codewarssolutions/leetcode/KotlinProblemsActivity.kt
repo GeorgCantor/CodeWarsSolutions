@@ -16,6 +16,36 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/longest-common-prefix/
+    fun longestCommonPrefix(ar: Array<String>) = StringBuilder().apply {
+        ar.minBy { it.length }
+            ?.forEachIndexed { i, c -> if (ar.all { it[i] == c }) append(c) else return toString() }
+    }.toString()
+
+    // https://leetcode.com/problems/find-and-replace-pattern/
+    fun findAndReplacePattern(ar: Array<String>, p: String) = mutableListOf<String>().apply {
+        fun String.con() = StringBuilder().apply {
+            var i = 0
+            val map = mutableMapOf<Char, Int>()
+            this@con.forEach {
+                if (!map.containsKey(it)) {
+                    map[it] = i++; append(i)
+                } else append(map[it])
+            }
+        }.toString()
+
+        val s = p.con()
+        ar.forEach { if (it.con() == s) add(it) }
+    }
+
+    // https://leetcode.com/problems/di-string-match/
+    fun diStringMatch(s: String) = IntArray(s.length + 1).apply {
+        var l = 0
+        var r = s.length
+        for (i in s.indices) this[i] = if (s[i] == 'I') l++ else r--
+        this[s.length] = l
+    }
+
     // https://leetcode.com/problems/is-subsequence/
     fun isSubsequence(s: String, t: String) =
         t.fold(s, { w, c -> if (w.firstOrNull() == c) w.drop(1) else w }).isEmpty()

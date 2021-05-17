@@ -32,6 +32,29 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/find-and-replace-pattern/submissions/
+    public List<String> findAndReplacePattern(String[] ar, String p) {
+        List<String> l = new ArrayList<>();
+        String pat = con(p);
+        for (String s : ar) if (con(s).equals(pat)) l.add(s);
+
+        return l;
+    }
+
+    private String con(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (char ch : s.toCharArray()) {
+            if (!map.containsKey(ch)) {
+                map.put(ch, i++);
+                sb.append(i);
+            } else sb.append(map.get(ch));
+        }
+
+        return sb.toString();
+    }
+
     // https://leetcode.com/problems/is-subsequence/
     public boolean isSubsequence(String s, String t) {
         if (s.isEmpty()) return true;
