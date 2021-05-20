@@ -16,6 +16,12 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+    fun repeatedNTimes(ar: IntArray) =
+        ar.apply { forEach { n -> if (count { it == n } > 1) return n } }[0]
+
+    fun repeatedNTimes2(ar: IntArray) = ar.maxBy { n -> ar.count { it == n } }!!
+
     // https://leetcode.com/problems/longest-common-prefix/
     fun longestCommonPrefix(ar: Array<String>) = StringBuilder().apply {
         ar.minBy { it.length }
