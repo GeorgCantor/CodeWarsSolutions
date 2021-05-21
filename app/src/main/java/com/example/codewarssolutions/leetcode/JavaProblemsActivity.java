@@ -22,6 +22,9 @@ import java.util.Stack;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.joining;
+
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class JavaProblemsActivity extends AppCompatActivity {
 
@@ -30,6 +33,11 @@ public class JavaProblemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_leet_code);
 
+    }
+
+    // https://leetcode.com/problems/custom-sort-string/
+    public String customSortString(String o, String s) {
+        return Arrays.stream(s.split("")).sorted(comparing(o::indexOf)).collect(joining());
     }
 
     // https://leetcode.com/problems/find-and-replace-pattern/submissions/
@@ -657,7 +665,7 @@ public class JavaProblemsActivity extends AppCompatActivity {
             if (s.length() == 1 || set.contains(s.substring(0, s.length() - 1))) set.add(s);
         }
 
-        return set.stream().sorted(Comparator.comparing(String::new)).max(Comparator.comparing(String::length)).get();
+        return set.stream().sorted(comparing(String::new)).max(comparing(String::length)).get();
     }
 
     // https://leetcode.com/problems/defanging-an-ip-address/
@@ -1054,7 +1062,7 @@ public class JavaProblemsActivity extends AppCompatActivity {
             if (!isAlphabet(ch)) list.add(i, ch);
         }
 
-        return list.stream().map(Object::toString).collect(Collectors.joining());
+        return list.stream().map(Object::toString).collect(joining());
     }
 
     public boolean isAlphabet(char c) {

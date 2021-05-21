@@ -16,6 +16,10 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/custom-sort-string/
+    fun customSortString(o: String, s: String) =
+        s.toList().sortedBy { o.indexOf(it) }.joinToString("")
+
     // https://leetcode.com/problems/rearrange-words-in-a-sentence/
     fun arrangeWords(s: String) = s.split(" ").sortedBy { it.length }.mapIndexed { i, w ->
         if (i == 0) "${w[0].toUpperCase()}${w.drop(1)}" else "${w[0].toLowerCase()}${w.drop(1)}"
