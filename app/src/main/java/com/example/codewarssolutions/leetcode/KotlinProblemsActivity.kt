@@ -16,6 +16,11 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/rearrange-words-in-a-sentence/
+    fun arrangeWords(s: String) = s.split(" ").sortedBy { it.length }.mapIndexed { i, w ->
+        if (i == 0) "${w[0].toUpperCase()}${w.drop(1)}" else "${w[0].toLowerCase()}${w.drop(1)}"
+    }.joinToString(" ")
+
     // https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
     fun repeatedNTimes(ar: IntArray) =
         ar.apply { forEach { n -> if (count { it == n } > 1) return n } }[0]
