@@ -16,6 +16,30 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/split-a-string-in-balanced-strings/
+    fun balancedStringSplit(s: String): Int {
+        var sum = 0
+        var count = 0
+        s.forEach {
+            sum += if (it == 'L') 1 else -1
+            if (sum == 0) count++
+        }
+
+        return count
+    }
+
+    fun balancedStringSplit2(s: String): Int {
+        var count = 0
+        Stack<Char>().apply {
+            s.forEach {
+                if (isEmpty() || peek() == it) push(it) else pop()
+                if (isEmpty()) count++
+            }
+        }
+
+        return count
+    }
+
     // https://leetcode.com/problems/custom-sort-string/
     fun customSortString(o: String, s: String) =
         s.toList().sortedBy { o.indexOf(it) }.joinToString("")
@@ -129,7 +153,12 @@ class KotlinProblemsActivity : AppCompatActivity() {
     fun checkIfPangram(s: String) = "abcdefghijklmnopqrstuvwxyz".all { s.contains(it) }
 
     // https://leetcode.com/problems/ransom-note/
-    fun canConstruct(r: String, m: String): Boolean {
+    fun canConstruct(r: String, m: String) = IntArray(26).apply {
+        m.forEach { this[it - 'a']++ }
+        r.forEach { if (this[it - 'a'] == 0) return false else this[it - 'a']-- }
+    }.isNotEmpty()
+
+    fun canConstruct2(r: String, m: String): Boolean {
         val exc = mutableListOf<Int>()
         var count = 0
         loop@ for (ch in r) {
