@@ -16,6 +16,10 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/number-of-different-integers-in-a-string/
+    fun numDifferentIntegers(s: String) = s.split("\\D+".toRegex()).filter { it.isNotBlank() }
+        .map { it.replaceFirst("^0+".toRegex(), "") }.toSet().size
+
     // https://leetcode.com/problems/split-a-string-in-balanced-strings/
     fun balancedStringSplit(s: String): Int {
         var sum = 0

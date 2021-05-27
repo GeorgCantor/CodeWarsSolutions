@@ -35,6 +35,14 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/number-of-different-integers-in-a-string/
+    public int numDifferentIntegers(String s) {
+        return Arrays.stream(s.split("\\D+"))
+                .filter(w -> !w.isEmpty())
+                .map(w -> w.replaceFirst("^0+", ""))
+                .collect(Collectors.toSet()).size();
+    }
+
     // https://leetcode.com/problems/custom-sort-string/
     public String customSortString(String o, String s) {
         return Arrays.stream(s.split("")).sorted(comparing(o::indexOf)).collect(joining());
