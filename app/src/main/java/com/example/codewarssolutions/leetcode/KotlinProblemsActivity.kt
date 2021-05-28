@@ -16,6 +16,17 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/find-peak-element/
+    fun findPeakElement(a: IntArray): Int {
+        for (i in 1 until a.size) {
+            if (i == 0 && a[i] > a[i + 1]) return i
+            if (i == a.lastIndex && a[i] > a[i - 1]) return i
+            if (i > 0 && i < a.lastIndex && a[i] > a[i - 1] && a[i] > a[i + 1]) return i
+        }
+
+        return 0
+    }
+
     // https://leetcode.com/problems/number-of-different-integers-in-a-string/
     fun numDifferentIntegers(s: String) = s.split("\\D+".toRegex()).filter { it.isNotBlank() }
         .map { it.replaceFirst("^0+".toRegex(), "") }.toSet().size
