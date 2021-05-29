@@ -15,6 +15,13 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/51e056fe544cf36c410000fb/kotlin
+//    fun top3(s: String): List<String> =
+//        s.split(" ").asSequence().map { it.toLowerCase().filter { it.isLetter() || it == '\'' } }
+//            .filter { it.isNotBlank() && it.any { it.isLetter() } }.toSet()
+//            .sortedByDescending { st -> s.split(" ").count { it.toLowerCase() == st } }.take(3)
+//            .toList()
+
     // https://www.codewars.com/kata/55c6126177c9441a570000cc
     fun orderWeight(s: String) = s.split(" ").sorted()
         .sortedBy { it.sumBy { it - '0' } }

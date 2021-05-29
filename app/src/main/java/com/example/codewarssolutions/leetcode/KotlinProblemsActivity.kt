@@ -16,6 +16,88 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    data class Trans(
+        val name: String,
+        val time: Int,
+        val amount: Int,
+        val location: String,
+        val index: Int
+    )
+
+    // https://leetcode.com/problems/invalid-transactions/
+    class Solution {
+        fun invalidTransactions(ar: Array<String>): List<String> {
+            val list = mutableListOf<Trans>()
+            val map = mutableMapOf<String, MutableList<Trans>>()
+            var index = 0
+            ar.forEach {
+                val l = it.split(",")
+                val trans = Trans(l[0], l[1].toInt(), l[2].toInt(), l[3], index)
+                list.add(trans)
+                map.putIfAbsent(l[0], mutableListOf())
+                map[l[0]]!!.add(trans)
+                index++
+            }
+
+            val rList = mutableListOf<String>()
+            for (i in list.indices) {
+                val cur = list[i]
+                if (cur.amount > 1000) {
+                    rList.add(ar[i])
+                    continue
+                }
+
+                var found = false
+                map[cur.name]!!.forEach {
+                    if (it.index != i && it.location != cur.location && Math.abs(it.time - cur.time) <= 60) {
+                        found = true
+                        return@forEach
+                    }
+                }
+                if (found) rList.add(ar[i])
+            }
+
+            return rList
+        }
+    }
+
+    // https://leetcode.com/problems/slowest-key/
+    fun slowestKey(ar: IntArray, s: String): Char {
+        var maxChar = s[0]
+        var maxVal = ar[0]
+        for (i in 1 until s.length) {
+            val v = ar[i] - ar[i - 1]
+            if (v > maxVal) {
+                maxChar = s[i]
+                maxVal = v
+            }
+            if (v == maxVal) {
+                val l = listOf(maxChar, s[i]).sorted().last()
+                if (l == s[i]) maxChar = l
+            }
+        }
+
+        return maxChar
+    }
+
+    fun slowestKey2(ar: IntArray, s: String): Char {
+        val map = HashMap<Char, Int>()
+        s.forEachIndexed { i, ch ->
+            if (i == 0) {
+                map[ch] = ar[i]
+            } else {
+                val v = ar[i] - ar[i - 1]
+                if (!map.containsKey(ch)) {
+                    map[ch] = v
+                } else {
+                    if (map[ch]!! < v) map[ch] = v
+                }
+            }
+        }
+
+        return map.entries.sortedWith(compareByDescending<Map.Entry<Char, Int>> { it.value }.thenByDescending { it.key })[0].key
+    }
+
     // https://leetcode.com/problems/find-peak-element/
     fun findPeakElement(a: IntArray): Int {
         for (i in 1 until a.size) {
