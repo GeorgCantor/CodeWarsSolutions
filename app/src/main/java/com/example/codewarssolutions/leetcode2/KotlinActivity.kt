@@ -12,6 +12,19 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/minimum-absolute-difference/
+    fun minimumAbsDifference(arr: IntArray) = mutableListOf<List<Int>>().apply {
+        arr.sort()
+        var min = Int.MAX_VALUE
+        for (i in 1 until arr.size) {
+            val dif = arr[i] - arr[i - 1]
+            if (dif <= min) {
+                if (dif < min) clear(); min = dif
+                add(listOf(arr[i - 1], arr[i]))
+            }
+        }
+    }
+
     // https://leetcode.com/problems/maximum-69-number/
     fun maximum69Number(n: Int) = n.toString().replaceFirst("6", "9").toInt()
 

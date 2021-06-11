@@ -16,6 +16,14 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/valid-palindrome/
+    fun isPalindrome(s: String) = s.filter { it.isLetterOrDigit() }.run { equals(reversed(), true) }
+
+    fun isPalindrome2(s: String) = StringBuilder().run {
+        s.forEach { if (it.isLetterOrDigit()) append(it) }
+        toString().equals(toString().reversed(), true)
+    }
+
     data class Trans(
         val name: String,
         val time: Int,
@@ -1679,13 +1687,6 @@ class KotlinProblemsActivity : AppCompatActivity() {
         }
 
         return intArrayOf()
-    }
-
-    fun isPalindrome(s: String): Boolean {
-        val sb = StringBuilder()
-        s.forEach { if (it.isLetterOrDigit()) sb.append(it.toLowerCase()) }
-
-        return sb.toString() == sb.toString().reversed()
     }
 
     fun missingNumber(nums: IntArray) = ((0..nums.size) - nums.toList()).first()

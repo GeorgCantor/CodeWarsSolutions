@@ -35,6 +35,25 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/minimum-absolute-difference/
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        Arrays.sort(arr);
+        int min = Integer.MAX_VALUE;
+        List<List<Integer>> list = new ArrayList<>();
+        for (int i = 1; i < arr.length; i++) {
+            int dif = arr[i] - arr[i - 1];
+            if (dif < min) {
+                list.clear();
+                min = dif;
+                list.add(Arrays.asList(arr[i - 1], arr[i]));
+            } else if (dif == min) {
+                list.add(Arrays.asList(arr[i - 1], arr[i]));
+            }
+        }
+
+        return list;
+    }
+
     // https://leetcode.com/problems/number-of-different-integers-in-a-string/
     public int numDifferentIntegers(String s) {
         return Arrays.stream(s.split("\\D+"))
