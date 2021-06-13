@@ -35,6 +35,18 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/ransom-note/
+    public boolean canConstruct(String r, String m) {
+        int[] ar = new int[26];
+        for (char ch : m.toCharArray()) ar[ch - 'a']++;
+        for (char ch : r.toCharArray()) {
+            if (ar[ch - 'a'] == 0) return false;
+            else ar[ch - 'a']--;
+        }
+
+        return true;
+    }
+
     // https://leetcode.com/problems/minimum-absolute-difference/
     public List<List<Integer>> minimumAbsDifference(int[] arr) {
         Arrays.sort(arr);

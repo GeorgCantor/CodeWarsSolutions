@@ -31,6 +31,23 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/5ac95cb05624bac42e000005
+    public static ArrayList<ArrayList<Integer>> bucketize(final int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : arr) map.put(n, map.getOrDefault(n, 0) + 1);
+
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        list.add(null);
+        for (int i = 1; i <= arr.length; i++) {
+            ArrayList<Integer> l = new ArrayList<>();
+            for (Map.Entry<Integer, Integer> e : map.entrySet()) if (e.getValue() == i) l.add(e.getKey());
+            Collections.sort(l);
+            if (l.isEmpty()) list.add(null); else list.add(l);
+        }
+
+        return list;
+    }
+
     // https://www.codewars.com/kata/5727bb0fe81185ae62000ae3
     public String cleanString(String s) {
         StringBuilder sb = new StringBuilder();

@@ -12,6 +12,16 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/
+    fun freqAlphabets(s: String) = StringBuilder().apply {
+        var i = s.lastIndex
+        while (i >= 0) {
+            if (s[i] == '#') append((96 + "${s[i - 2]}${s[i - 1]}".toInt()).toChar())
+            else append((96 + s[i].toString().toInt()).toChar())
+            i -= if (s[i] == '#') 3 else 1
+        }
+    }.reversed().toString()
+
     // https://leetcode.com/problems/minimum-absolute-difference/
     fun minimumAbsDifference(arr: IntArray) = mutableListOf<List<Int>>().apply {
         arr.sort()
