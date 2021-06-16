@@ -12,6 +12,14 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/three-consecutive-odds/
+    fun threeConsecutiveOdds(ar: IntArray) = ar.toList().windowed(3).any { it.all { it % 2 == 1 } }
+
+    fun threeConsecutiveOdds2(a: IntArray): Boolean {
+        for (i in 1..a.size - 2) if (a[i - 1] % 2 == 1 && a[i] % 2 == 1 && a[i + 1] % 2 == 1) return true
+        return false
+    }
+
     // https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/
     fun freqAlphabets(s: String) = StringBuilder().apply {
         var i = s.lastIndex

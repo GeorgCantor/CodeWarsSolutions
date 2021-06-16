@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+import static java.lang.Character.getNumericValue;
 import static java.util.function.UnaryOperator.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -29,6 +31,28 @@ public class Java2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
+    }
+
+    // https://www.codewars.com/kata/554ca54ffa7d91b236000023
+    public static int[] deleteNth(int[] ar, int max) {
+        List<Integer> list = new ArrayList<>();
+        for (int n : ar) if (Collections.frequency(list, n) < max) list.add(n);
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    // https://www.codewars.com/kata/5418a1dd6d8216e18a0012b2
+    public static boolean validate(String n) {
+        int[] ar = new int[n.length()];
+        for (int i = 0; i < n.toCharArray().length; i++) ar[i] = getNumericValue(n.toCharArray()[i]);
+        for (int i = ar.length - 2; i >= 0; i--) {
+            int num = ar[i] * 2;
+            if (num > 9) num -= ar[i];
+            ar[i] = num;
+            i--;
+        }
+
+        return IntStream.of(ar).sum() % 10 == 0;
     }
 
     // https://www.codewars.com/kata/5ac95cb05624bac42e000005
