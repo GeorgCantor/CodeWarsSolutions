@@ -12,6 +12,29 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
+    fun sumOddLengthSubarrays(a: IntArray) = run {
+        var r = 0
+        for (i in a.indices) {
+            var j = i + 1
+            while (j <= a.size) {
+                r += a.copyOfRange(i, j).sum(); j += 2
+            }
+        }
+        r
+    }
+
+    // https://leetcode.com/problems/maximum-ascending-subarray-sum/
+    fun maxAscendingSum(ar: IntArray) = run {
+        var max = ar.first()
+        var t = ar.first()
+        for (i in 1 until ar.size) {
+            if (ar[i] > ar[i - 1]) t += ar[i] else t = ar[i]
+            max = maxOf(max, t)
+        }
+        max
+    }
+
     // https://leetcode.com/problems/three-consecutive-odds/
     fun threeConsecutiveOdds(ar: IntArray) = ar.toList().windowed(3).any { it.all { it % 2 == 1 } }
 

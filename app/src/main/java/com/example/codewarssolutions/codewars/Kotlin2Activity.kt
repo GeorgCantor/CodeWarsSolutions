@@ -15,6 +15,42 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/51ba717bb08c1cd60f00002f
+    fun rangeExtraction(a: IntArray) = StringBuilder().run {
+        for (i in a.indices) {
+            if (i == 0 || a[i] - a[i - 1] > 1) append(",${a[i]}")
+            else if ((i < a.size - 1 && a[i + 1] - a[i] > 1) || i == a.lastIndex)
+                append(if (i > 1 && a[i] - a[i - 2] == 2) "-${a[i]}" else ",${a[i]}")
+        }
+        toString().drop(1)
+    }
+
+    fun rangeExtraction2(arr: IntArray): String {
+        val sb = StringBuilder()
+        val set = mutableSetOf<Int>()
+        for (i in 0..arr.size - 2) {
+            if (arr[i] - arr[i + 1] == 1 || arr[i] + 1 == arr[i + 1]) {
+                set.add(arr[i])
+                set.add(arr[i + 1])
+            } else {
+                when (set.size) {
+                    0 -> sb.append(arr[i]).append(",")
+                    2 -> sb.append(arr[i - 1]).append(",").append(arr[i]).append(",")
+                    else -> sb.append("${set.first()}-${set.last()},")
+                }
+                set.clear()
+            }
+        }
+        when (set.size) {
+            0 -> Unit
+            2 -> sb.append(set.first()).append(",").append(set.last()).append(",")
+            else -> sb.append("${set.first()}-${set.last()},")
+        }
+        if (arr.last() - arr[arr.size - 2] > 1) sb.append(arr.last())
+
+        return sb.toString().dropLastWhile { it == ',' }
+    }
+
     // https://www.codewars.com/kata/51e056fe544cf36c410000fb/kotlin
 //    fun top3(s: String): List<String> =
 //        s.split(" ").asSequence().map { it.toLowerCase().filter { it.isLetter() || it == '\'' } }
