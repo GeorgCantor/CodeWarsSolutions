@@ -12,6 +12,18 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
+    fun countGoodSubstrings(s: String) = s.windowed(3, 1).count { it.toSet().size == 3 }
+
+    fun countGoodSubstrings2(s: String) = run {
+        var c = 0
+        for (i in 0..s.lastIndex - 2) if (arrayOf(s[i], s[i + 1], s[i + 2]).toSet().size == 3) c++
+        c
+    }
+
+    // https://leetcode.com/problems/repeated-substring-pattern/
+    fun repeatedSubstringPattern(s: String) = (s + s).run { substring(1, lastIndex) }.contains(s)
+
     // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
     fun sumOddLengthSubarrays(a: IntArray) = run {
         var r = 0

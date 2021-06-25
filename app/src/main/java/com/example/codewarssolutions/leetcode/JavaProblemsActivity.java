@@ -35,6 +35,17 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
+    public int countGoodSubstrings(String s) {
+        int c = 0;
+        char[] ar = s.toCharArray();
+        for (int i = 0; i < ar.length - 2; i++) {
+            if (new HashSet<>(Arrays.asList(ar[i], ar[i + 1], ar[i + 2])).size() == 3) c++;
+        }
+
+        return c;
+    }
+
     // https://leetcode.com/problems/ransom-note/
     public boolean canConstruct(String r, String m) {
         int[] ar = new int[26];
