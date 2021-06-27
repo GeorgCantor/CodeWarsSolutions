@@ -33,6 +33,15 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/57f609022f4d534f05000024
+    static int stray(int[] ar) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int n : ar) map.put(n, map.getOrDefault(n, 0) + 1);
+
+        return map.entrySet().stream().filter(e -> e.getValue() == 1)
+                .map(Map.Entry::getKey).mapToInt(Integer::intValue).findAny().getAsInt();
+    }
+
     // https://www.codewars.com/kata/554ca54ffa7d91b236000023
     public static int[] deleteNth(int[] ar, int max) {
         List<Integer> list = new ArrayList<>();
@@ -44,7 +53,8 @@ public class Java2Activity extends AppCompatActivity {
     // https://www.codewars.com/kata/5418a1dd6d8216e18a0012b2
     public static boolean validate(String n) {
         int[] ar = new int[n.length()];
-        for (int i = 0; i < n.toCharArray().length; i++) ar[i] = getNumericValue(n.toCharArray()[i]);
+        for (int i = 0; i < n.toCharArray().length; i++)
+            ar[i] = getNumericValue(n.toCharArray()[i]);
         for (int i = ar.length - 2; i >= 0; i--) {
             int num = ar[i] * 2;
             if (num > 9) num -= ar[i];
@@ -64,9 +74,11 @@ public class Java2Activity extends AppCompatActivity {
         list.add(null);
         for (int i = 1; i <= arr.length; i++) {
             ArrayList<Integer> l = new ArrayList<>();
-            for (Map.Entry<Integer, Integer> e : map.entrySet()) if (e.getValue() == i) l.add(e.getKey());
+            for (Map.Entry<Integer, Integer> e : map.entrySet())
+                if (e.getValue() == i) l.add(e.getKey());
             Collections.sort(l);
-            if (l.isEmpty()) list.add(null); else list.add(l);
+            if (l.isEmpty()) list.add(null);
+            else list.add(l);
         }
 
         return list;

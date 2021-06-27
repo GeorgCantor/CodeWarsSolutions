@@ -1,7 +1,6 @@
 package com.example.codewarssolutions.codewars
 
 import android.os.Bundle
-import android.util.Pair
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
 import java.util.*
@@ -14,6 +13,10 @@ class Kotlin2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin2)
 
     }
+
+    // https://www.codewars.com/kata/57f625992f4d53c24200070e
+    fun bingo(t: Array<Pair<String, Int>>, w: Int) =
+        if (t.count { it.first.any { c -> c.toInt() == it.second } } >= w) "Winner!" else "Loser!"
 
     // https://www.codewars.com/kata/51ba717bb08c1cd60f00002f
     fun rangeExtraction(a: IntArray) = StringBuilder().run {
@@ -50,13 +53,6 @@ class Kotlin2Activity : AppCompatActivity() {
 
         return sb.toString().dropLastWhile { it == ',' }
     }
-
-    // https://www.codewars.com/kata/51e056fe544cf36c410000fb/kotlin
-//    fun top3(s: String): List<String> =
-//        s.split(" ").asSequence().map { it.toLowerCase().filter { it.isLetter() || it == '\'' } }
-//            .filter { it.isNotBlank() && it.any { it.isLetter() } }.toSet()
-//            .sortedByDescending { st -> s.split(" ").count { it.toLowerCase() == st } }.take(3)
-//            .toList()
 
     // https://www.codewars.com/kata/55c6126177c9441a570000cc
     fun orderWeight(s: String) = s.split(" ").sorted()

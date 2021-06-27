@@ -12,6 +12,16 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    // https://leetcode.com/problems/buddy-strings/
+    fun buddyStrings(s: String, g: String) = with(mutableListOf<Int>()) {
+        if (s == g) s.toSet().size < s.length
+        else {
+            if (s.length != g.length) return false
+            s.forEachIndexed { i, c -> if (c != g[i]) add(i) }
+            size == 2 && s[first()] == g[last()] && s[last()] == g[first()]
+        }
+    }
+
     // https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
     fun countGoodSubstrings(s: String) = s.windowed(3, 1).count { it.toSet().size == 3 }
 
