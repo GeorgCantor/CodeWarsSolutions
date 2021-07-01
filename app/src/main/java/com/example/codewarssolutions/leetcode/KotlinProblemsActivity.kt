@@ -1323,8 +1323,9 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/majority-element/
-    fun majorityElement(nums: IntArray): Int = nums.sorted()[nums.size / 2]
+    fun majorityElement(ar: IntArray) = ar.find { n -> ar.count { it == n } > ar.size / 2 }
 
+    fun majorityElement2(ar: IntArray) = ar.sorted()[ar.size / 2]
 
     // https://leetcode.com/problems/implement-queue-using-stacks/
     class MyQueue() {
@@ -1824,6 +1825,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return -1
     }
 
+    // https://leetcode.com/problems/fibonacci-number/
     fun fib(n: Int): Int {
         var one = 0
         var two = 1

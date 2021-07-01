@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.math.pow
 
 class Kotlin2Activity : AppCompatActivity() {
 
@@ -12,6 +13,12 @@ class Kotlin2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin2)
 
+    }
+
+    // https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991/train/kotlin
+    fun revRot(s: String, sz: Int) = s.windowed(sz, sz).joinToString("") {
+        if (it.sumBy { it.toString().toDouble().pow(3.0).toInt() } % 2 == 0) it.reversed()
+        else it.drop(1) + it.first()
     }
 
     // https://www.codewars.com/kata/57f625992f4d53c24200070e
