@@ -15,6 +15,54 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/5629db57620258aa9d000014
+    fun mix(s1: String, s2: String): String {
+        val map1 = mutableMapOf<Char, Int>()
+        s1.forEach {
+            if (it.isLetter() && it.isLowerCase()) map1[it] = map1.getOrDefault(it, 0) + 1
+        }
+        val map2 = mutableMapOf<Char, Int>()
+        s2.forEach {
+            if (it.isLetter() && it.isLowerCase()) map2[it] = map2.getOrDefault(it, 0) + 1
+        }
+
+        val list = mutableListOf<Pair<Int, String>>()
+        (s1 + s2).toSet().forEach { ch ->
+            val sb = StringBuilder()
+            map1[ch]?.let {
+                if (it > 1 && it >= map2[ch] ?: 0) {
+                    (1..it).forEach { sb.append(ch) }
+                    list.add(Pair(if (it == map2[ch] ?: 0) 3 else 1, sb.toString()))
+                }
+            }
+            val sb2 = StringBuilder()
+            map2[ch]?.let {
+                if (it > 1 && it >= map1[ch] ?: 0) {
+                    (1..it).forEach { sb2.append(ch) }
+                    list.add(Pair(if (it == map1[ch] ?: 0) 3 else 2, sb2.toString()))
+                }
+            }
+        }
+
+        list.sortWith(compareByDescending<Pair<Int, String>> { it.second.length }.thenBy { it.first }
+            .thenBy { it.second })
+        val sb = StringBuilder()
+        val set = mutableSetOf<String>()
+        list.forEach {
+            if (map1[it.second.first()] == map2[it.second.first()]) {
+                val s = "/=:${it.second}"
+                if (!set.contains(s)) {
+                    sb.append(s)
+                    set.add(s)
+                }
+            } else {
+                sb.append("/${it.first}:${it.second}")
+            }
+        }
+
+        return sb.toString().drop(1)
+    }
+
     // https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991/train/kotlin
     fun revRot(s: String, sz: Int) = s.windowed(sz, sz).joinToString("") {
         if (it.sumBy { it.toString().toDouble().pow(3.0).toInt() } % 2 == 0) it.reversed()
