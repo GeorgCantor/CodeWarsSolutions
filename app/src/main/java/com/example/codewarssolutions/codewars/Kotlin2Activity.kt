@@ -13,6 +13,27 @@ class Kotlin2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin2)
 
+        solution("apples, plums % and bananas\npears\noranges !applesauce", charArrayOf('%', '!'))
+    }
+
+    // https://www.codewars.com/kata/51c8e37cee245da6b40000bd
+    fun solution(s: String, ar: CharArray) =
+        s.lines().joinToString("\n") { it.takeWhile { !ar.contains(it) }.trim() }
+
+    fun solution2(input: String, markers: CharArray) = StringBuilder().run {
+        var enabled = true
+        input.forEach { ch ->
+            if (enabled) {
+                if (markers.contains(ch)) {
+                    if (toString().last() == ' ') deleteCharAt(length - 1)
+                    enabled = false
+                } else append(ch)
+            } else if (ch == '\n') {
+                enabled = true
+                append(ch)
+            }
+        }
+        toString()
     }
 
     // https://www.codewars.com/kata/5629db57620258aa9d000014
