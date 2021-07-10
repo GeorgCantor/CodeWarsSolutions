@@ -9,7 +9,23 @@ class KotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
+    }
 
+    // https://leetcode.com/problems/find-lucky-integer-in-an-array/
+    fun findLucky(a: IntArray) =
+        a.sortedDescending().firstOrNull { n -> n == a.count { it == n } } ?: -1
+
+    // https://leetcode.com/problems/next-greater-element-i/
+    fun nextGreaterElement(a1: IntArray, a2: IntArray) = IntArray(a1.size).apply {
+        a1.forEachIndexed { i, n ->
+            this[i] = a2.slice(a2.indexOf(n)..a2.lastIndex).find { it > n } ?: -1
+        }
+    }
+
+    fun nextGreaterElement2(a1: IntArray, a2: IntArray) = IntArray(a1.size).apply {
+        a1.forEachIndexed { i, n ->
+            this[i] = a2.toList().subList(a2.indexOf(n), a2.size).find { it > n } ?: -1
+        }
     }
 
     // https://leetcode.com/problems/buddy-strings/

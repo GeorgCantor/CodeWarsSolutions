@@ -1924,13 +1924,6 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return list.isEmpty()
     }
 
-    fun intersection(nums1: IntArray, nums2: IntArray) =
-        nums1.toList().intersect(nums2.toList()).toIntArray()
-
-    fun intersection2(nums1: IntArray, nums2: IntArray): IntArray {
-        val list = mutableSetOf<Int>()
-        nums1.forEach { if (nums2.contains(it)) list.add(it) }
-
-        return list.toIntArray()
-    }
+    // https://leetcode.com/problems/intersection-of-two-arrays/
+    fun intersection(a1: IntArray, a2: IntArray) = a1.intersect(a2.asIterable()).toIntArray()
 }
