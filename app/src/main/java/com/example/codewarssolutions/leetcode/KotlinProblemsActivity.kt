@@ -1221,26 +1221,19 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/group-anagrams/
-    fun groupAnagrams(strs: Array<String>): List<List<String>> {
-        val map = mutableMapOf<String, MutableList<String>>()
-        strs.forEach {
-            val key = it.toCharArray().sorted().joinToString("")
-            if (!map.containsKey(key)) map[key] = mutableListOf()
-            map[key]?.add(it)
-        }
+    fun groupAnagrams(ar: Array<String>) =
+        ar.groupBy { it.toCharArray().sorted().toString() }.values.toList()
 
-        return map.values.toList()
-    }
+    fun groupAnagrams2(ar: Array<String>) = mutableMapOf<String, MutableList<String>>().apply {
+        ar.forEach {
+            val key = it.toCharArray().sorted().joinToString("")
+            if (!containsKey(key)) this[key] = mutableListOf()
+            this[key]?.add(it)
+        }
+    }.values.toList()
 
     // https://leetcode.com/problems/count-the-number-of-consistent-strings/
-    fun countConsistentStrings(allowed: String, words: Array<String>): Int {
-        var counter = 0
-        words.forEach {
-            if (it.all { allowed.contains(it) }) counter++
-        }
-
-        return counter
-    }
+    fun countConsistentStrings(s: String, a: Array<String>) = a.count { it.all { s.contains(it) } }
 
     // https://leetcode.com/problems/top-k-frequent-elements/
     fun topKFrequent(nums: IntArray, k: Int): IntArray {

@@ -13,8 +13,12 @@ class Kotlin2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin2)
 
-        solution("apples, plums % and bananas\npears\noranges !applesauce", charArrayOf('%', '!'))
     }
+
+    // https://www.codewars.com/kata/51e056fe544cf36c410000fb
+    fun top3(s: String) = s.toLowerCase().split("[^a-z']+".toRegex())
+        .filter { it.any { it.isLetter() } }.groupingBy { it }.eachCount()
+        .entries.sortedByDescending { it.value }.map { it.key }.take(3)
 
     // https://www.codewars.com/kata/51c8e37cee245da6b40000bd
     fun solution(s: String, ar: CharArray) =

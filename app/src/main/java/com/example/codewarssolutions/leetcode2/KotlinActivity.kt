@@ -11,6 +11,9 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/kth-largest-element-in-an-array/
+    fun findKthLargest(nums: IntArray, k: Int) = nums.sortedDescending()[k - 1]
+
     // https://leetcode.com/problems/find-lucky-integer-in-an-array/
     fun findLucky(a: IntArray) =
         a.sortedDescending().firstOrNull { n -> n == a.count { it == n } } ?: -1
