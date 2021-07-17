@@ -1414,16 +1414,16 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/relative-sort-array/
-    fun relativeSortArray(arr1: IntArray, arr2: IntArray): IntArray {
-        val list = mutableListOf<Int>()
-        arr2.forEach { it2 ->
-            arr1.forEach { it1 ->
-                if (it2 == it1) list.add(it1)
-            }
-        }
+    fun relativeSortArray(
+        a: IntArray,
+        b: IntArray
+    ) = (a.filter { b.contains(it) }.sortedBy { b.indexOf(it) } + a.filter { !b.contains(it) }
+        .sorted()).toIntArray()
 
-        return list.toIntArray() + arr1.filter { !list.contains(it) }.sorted()
-    }
+    fun relativeSortArray2(a1: IntArray, a2: IntArray) = mutableListOf<Int>().run {
+        a2.forEach { a1.forEach { n -> if (it == n) add(n) } }
+        this + a1.filter { !contains(it) }.sorted()
+    }.toIntArray()
 
     // https://leetcode.com/problems/min-stack/
     class MinStack() {
@@ -1891,16 +1891,12 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     fun containsDuplicate(nums: IntArray) = nums.size > nums.toSet().size
 
+    // https://leetcode.com/problems/reverse-string/
     fun reverseString(s: CharArray): Unit {
-        var aPointer = 0
-        var bPointer = s.size - 1
-
-        while (aPointer <= bPointer) {
-            val temp = s[aPointer]
-            s[aPointer] = s[bPointer]
-            s[bPointer] = temp
-            aPointer++
-            bPointer--
+        var l = 0
+        var r = s.lastIndex
+        while (l < r) {
+            val t = s[l]; s[l++] = s[r]; s[r--] = t
         }
     }
 

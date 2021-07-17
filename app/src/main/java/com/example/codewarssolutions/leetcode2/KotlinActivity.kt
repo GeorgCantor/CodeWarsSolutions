@@ -11,6 +11,21 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/rank-transform-of-an-array/
+    fun arrayRankTransform(a: IntArray) = a.clone().sorted().toIntArray().apply {
+        val map = mutableMapOf<Int, Int>()
+        forEach { map.putIfAbsent(it, map.size + 1) }
+        a.forEachIndexed { i, n -> this[i] = map[n]!! }
+    }
+
+    // https://leetcode.com/problems/peak-index-in-a-mountain-array/
+    fun peakIndexInMountainArray(a: IntArray) = a.indexOfFirst { it > a[a.indexOf(it) + 1] }
+
+    fun peakIndexInMountainArray2(a: IntArray): Int {
+        a.forEachIndexed { i, n -> if (n > a[i + 1]) return i }
+        return -1
+    }
+
     // https://leetcode.com/problems/kth-largest-element-in-an-array/
     fun findKthLargest(nums: IntArray, k: Int) = nums.sortedDescending()[k - 1]
 
