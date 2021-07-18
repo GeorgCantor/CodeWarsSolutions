@@ -1002,14 +1002,9 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/longest-word-in-dictionary/
-    fun longestWord(words: Array<String>): String {
-        val set = mutableSetOf<String>()
-        words.sorted().forEach {
-            if (it.length == 1 || set.contains(it.dropLast(1))) set.add(it)
-        }
-
-        return set.maxBy { it.length }!!
-    }
+    fun longestWord(ar: Array<String>) = mutableSetOf<String>().apply {
+        ar.sorted().forEach { if (it.length == 1 || contains(it.dropLast(1))) add(it) }
+    }.maxBy { it.length } ?: ""
 
     // https://leetcode.com/problems/defanging-an-ip-address/
     fun defangIPaddr(s: String) =
@@ -1031,14 +1026,16 @@ class KotlinProblemsActivity : AppCompatActivity() {
     fun numJewelsInStones(j: String, s: String) = s.count { j.contains(it) }
 
     // https://leetcode.com/problems/number-of-good-pairs/
-    fun numIdenticalPairs(nums: IntArray): Int {
-        var counter = 0
-        nums.forEachIndexed { i, num -> for (j in i + 1 until nums.size) if (num == nums[j]) counter++ }
+    fun numIdenticalPairs(a: IntArray) =
+        a.mapIndexed { i, n -> a.slice(i + 1..a.lastIndex).count { it == n } }.sum()
 
-        return counter
+    fun numIdenticalPairs2(a: IntArray): Int {
+        var c = 0
+        a.forEachIndexed { i, n -> for (j in i + 1 until a.size) if (n == a[j]) c++ }
+        return c
     }
 
-    fun numIdenticalPairs2(nums: IntArray): Int {
+    fun numIdenticalPairs3(nums: IntArray): Int {
         val map = mutableMapOf<Int, Int>()
         var count = 0
         nums.forEach {
@@ -1175,16 +1172,13 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/replace-words/
-    fun replaceWords(dictionary: List<String>, sentence: String): String {
-        val list = sentence.split(" ").toMutableList()
-        dictionary.sorted().forEach {
-            list.forEachIndexed { i, s ->
-                if (s.startsWith(it) && s.length > it.length) list[i] = it
-            }
-        }
-
-        return list.joinToString(" ")
+    fun replaceWords(d: List<String>, s: String) = s.split(" ").joinToString(" ") { w ->
+        d.filter { w.startsWith(it) }.minBy { it.length } ?: w
     }
+
+    fun replaceWords2(d: List<String>, s: String) = s.split(" ").toMutableList().apply {
+        d.sorted().forEach { forEachIndexed { i, w -> if (w.startsWith(it)) this[i] = it } }
+    }.joinToString(" ")
 
     // https://leetcode.com/problems/roman-to-integer/
     fun romanToInt(s: String): Int {
