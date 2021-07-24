@@ -1372,17 +1372,14 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/single-number/
-    fun singleNumber(nums: IntArray): Int {
-        val map = mutableMapOf<Int, Int>()
-        nums.forEach {
-            when {
-                map.containsKey(it) -> map[it] = map.getValue(it) + 1
-                else -> map[it] = 1
-            }
-        }
-
-        return map.filter { it.value == 1 }.keys.first()
+    fun singleNumber(a: IntArray) = mutableMapOf<Int, Int>().run {
+        a.forEach { this[it] = getOrDefault(it, 0) + 1 }
+        toList().find { it.second == 1 }!!.first
     }
+
+    fun singleNumber2(a: IntArray) = a.find { n -> a.count { it == n } == 1 }
+
+    fun singleNumber3(a: IntArray) = a.minBy { n -> a.count { it == n } }
 
     // https://leetcode.com/problems/longest-substring-without-repeating-characters/
     fun lengthOfLongestSubstring2(s: String): Int {
@@ -1851,14 +1848,10 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return list
     }
 
-    fun findTheDifference(s: String, t: String): Char {
-        val arr = t.toCharArray()
-        s.forEach {
-            if (t.contains(it)) arr[arr.indexOf(it)] = ' '
-        }
-
-        return arr.find { it.isLetter() }!!
-    }
+    // https://leetcode.com/problems/find-the-difference/
+    fun findTheDifference(s: String, t: String) = t.toCharArray().apply {
+        s.forEach { if (t.contains(it)) this[indexOf(it)] = ' ' }
+    }.find { it.isLetter() }
 
     fun detectCapitalUse(word: String) = word.all { it.isLowerCase() }
             || word.all { it.isUpperCase() }
@@ -1910,3 +1903,4 @@ class KotlinProblemsActivity : AppCompatActivity() {
     // https://leetcode.com/problems/intersection-of-two-arrays/
     fun intersection(a1: IntArray, a2: IntArray) = a1.intersect(a2.asIterable()).toIntArray()
 }
+

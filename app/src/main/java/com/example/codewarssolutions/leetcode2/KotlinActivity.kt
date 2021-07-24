@@ -11,6 +11,10 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-array-formation-through-concatenation/
+    fun canFormArray(a: IntArray, p: Array<IntArray>) =
+        p.sortedBy { a.indexOf(it.first()) }.map { it.map { it } }.flatten() == a.toList()
+
     // https://leetcode.com/problems/rank-transform-of-an-array/
     fun arrayRankTransform(a: IntArray) = a.clone().sorted().toIntArray().apply {
         val map = mutableMapOf<Int, Int>()
