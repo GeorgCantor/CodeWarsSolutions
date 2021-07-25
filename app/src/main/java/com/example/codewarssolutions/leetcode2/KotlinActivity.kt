@@ -11,6 +11,22 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
+    fun areAlmostEqual(s1: String, s2: String): Boolean {
+        if (s1 == s2) return true
+        for (i in s1.indices) {
+            for (j in s1.indices) {
+                if (i != j) {
+                    val temp = s1[i].toString()
+                    val sw = s1.replaceRange(i..i, s1[j].toString())
+                    if (sw.replaceRange(j..j, temp) == s2) return true
+                }
+            }
+        }
+
+        return false
+    }
+
     // https://leetcode.com/problems/check-array-formation-through-concatenation/
     fun canFormArray(a: IntArray, p: Array<IntArray>) =
         p.sortedBy { a.indexOf(it.first()) }.map { it.map { it } }.flatten() == a.toList()

@@ -35,6 +35,17 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/largest-substring-between-two-equal-characters/
+    public int maxLengthBetweenEqualCharacters(String s) {
+        int m = -1;
+        char[] ar = s.toCharArray();
+        for (int i = 0; i < ar.length; i++)
+            for (int j = ar.length - 1; j >= 0; j--)
+                if (ar[i] == ar[j]) m = Math.max(m, (j - i) - 1);
+
+        return m;
+    }
+
     // https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
     public int countGoodSubstrings(String s) {
         int c = 0;

@@ -1056,6 +1056,15 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     // https://leetcode.com/problems/largest-substring-between-two-equal-characters/
     fun maxLengthBetweenEqualCharacters(s: String): Int {
+        var m = -1
+        for (i in s.indices) {
+            for (j in s.lastIndex downTo 0) if (s[i] == s[j]) m = maxOf(m, (j - i) - 1)
+        }
+
+        return m
+    }
+
+    fun maxLengthBetweenEqualCharacters2(s: String): Int {
         var max = -1
         s.forEachIndexed { i, ch ->
             if (s.drop(i + 1).contains(ch)) {
@@ -1556,14 +1565,10 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/reverse-only-letters/
-    fun reverseOnlyLetters(s: String): String {
-        val list = s.filter { it.toLowerCase() in 'a'..'z' }.reversed().toMutableList()
-        s.forEachIndexed { i, ch ->
-            if (ch.toLowerCase() !in 'a'..'z') list.add(i, ch)
-        }
-
-        return list.joinToString("")
-    }
+    fun reverseOnlyLetters(s: String) =
+        s.filter { it.toLowerCase() in 'a'..'z' }.reversed().toMutableList().apply {
+            s.forEachIndexed { i, ch -> if (!ch.isLetter()) add(i, ch) }
+        }.joinToString("")
 
     // https://leetcode.com/problems/reverse-words-in-a-string-iii/
     fun reverseWords(s: String) = s.split(" ").joinToString(" ") { it.reversed() }
