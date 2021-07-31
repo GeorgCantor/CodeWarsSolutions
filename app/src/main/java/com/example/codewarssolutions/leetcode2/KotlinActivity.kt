@@ -11,6 +11,18 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
+    fun areOccurrencesEqual(s: String) = s.groupingBy { it }.eachCount().values.toSet().size == 1
+
+    fun areOccurrencesEqual2(s: String) =
+        s.groupingBy { it }.eachCount().run { values.all { it == values.first() } }
+
+    fun areOccurrencesEqual3(s: String) =
+        s.groupBy { c -> s.count { it == c } }.keys.toSet().size == 1
+
+    fun areOccurrencesEqual4(s: String) =
+        s.groupBy { c -> s.count { it == c } }.run { keys.all { it == keys.first() } }
+
     // https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
     fun areAlmostEqual(s1: String, s2: String): Boolean {
         if (s1 == s2) return true

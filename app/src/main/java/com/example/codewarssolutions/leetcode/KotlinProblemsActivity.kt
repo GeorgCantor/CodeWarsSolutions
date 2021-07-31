@@ -1762,8 +1762,6 @@ class KotlinProblemsActivity : AppCompatActivity() {
     // https://leetcode.com/problems/length-of-last-word/
     fun lengthOfLastWord(s: String): Int = s.trim().split(' ').last().length
 
-    fun isPalindrome(x: Int) = x.toString() == x.toString().reversed()
-
     fun reverse(x: Int): Int = when (x >= 0) {
         true -> {
             try {

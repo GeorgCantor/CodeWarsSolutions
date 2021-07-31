@@ -35,6 +35,15 @@ public class JavaProblemsActivity extends AppCompatActivity {
 
     }
 
+    // https://leetcode.com/problems/palindrome-number/
+    public boolean isPalindrome(int x) {
+        char[] ar = String.valueOf(x).toCharArray();
+        char[] arR = new StringBuilder(String.valueOf(x)).reverse().toString().toCharArray();
+        for (int i = 0; i < ar.length; i++) if (ar[i] != arR[i]) return false;
+
+        return true;
+    }
+
     // https://leetcode.com/problems/largest-substring-between-two-equal-characters/
     public int maxLengthBetweenEqualCharacters(String s) {
         int m = -1;
