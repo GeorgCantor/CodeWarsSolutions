@@ -11,6 +11,27 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/delete-columns-to-make-sorted/
+    fun minDeletionSize(ar: Array<String>): Int {
+        var count = 0
+        for (i in ar.first().indices) {
+            for (j in 1 until ar.size) {
+                if (ar[j - 1][i] > ar[j][i]) {
+                    count++
+                    break
+                }
+            }
+        }
+
+        return count
+    }
+
+    // https://leetcode.com/problems/check-if-word-equals-summation-of-two-words/
+    fun isSumEqual(f: String, s: String, t: String) = run {
+        fun String.n() = map { it - 'a' }.joinToString("").toInt()
+        f.n() + s.n() == t.n()
+    }
+
     // https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
     fun areOccurrencesEqual(s: String) = s.groupingBy { it }.eachCount().values.toSet().size == 1
 

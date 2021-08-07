@@ -1760,7 +1760,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/length-of-last-word/
-    fun lengthOfLastWord(s: String): Int = s.trim().split(' ').last().length
+    fun lengthOfLastWord(s: String) = s.trim().split(' ').last().length
 
     fun reverse(x: Int): Int = when (x >= 0) {
         true -> {

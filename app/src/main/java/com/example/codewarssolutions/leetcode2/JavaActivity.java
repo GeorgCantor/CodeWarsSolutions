@@ -17,6 +17,13 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/length-of-last-word/
+    public int lengthOfLastWord(String s) {
+        String[] ar = s.split(" ");
+
+        return ar.length > 0 ? ar[ar.length - 1].length() : 0;
+    }
+
     // https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
     public boolean areOccurrencesEqual(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
