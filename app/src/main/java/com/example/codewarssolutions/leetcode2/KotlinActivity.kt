@@ -11,6 +11,35 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/replace-all-digits-with-characters/
+    fun replaceDigits(s: String) = StringBuilder().apply {
+        s.forEachIndexed { i, c ->
+            append(if (c.isLetter()) c else Character.valueOf(s[i - 1] + Character.getNumericValue(c)))
+        }
+    }.toString()
+
+    fun replaceDigits2(s: String) = s.mapIndexed { i, c ->
+        if (c.isLetter()) c else Character.valueOf(s[i - 1] + Character.getNumericValue(c))
+    }.joinToString("")
+
+    // https://leetcode.com/problems/maximum-number-of-words-you-can-type/
+    fun canBeTypedWords(s: String, b: String) = s.split(" ").count { it.all { !b.contains(it) } }
+
+    fun canBeTypedWords2(s: String, b: String): Int {
+        val l = s.split(" ")
+        var count = l.size
+        for (i in l.indices) {
+            for (j in l[i].indices) {
+                if (b.contains(l[i][j])) {
+                    count--
+                    break
+                }
+            }
+        }
+
+        return count
+    }
+
     // https://leetcode.com/problems/delete-columns-to-make-sorted/
     fun minDeletionSize(ar: Array<String>): Int {
         var count = 0
