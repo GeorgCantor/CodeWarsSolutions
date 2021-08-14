@@ -11,6 +11,24 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/count-largest-group/
+    fun countLargestGroup(
+        n: Int
+    ) = (1..n).groupingBy { it.toString().sumBy { it.toString().toInt() } }.eachCount().run {
+        count { it.value == maxBy { it.value }?.value }
+    }
+
+    // https://leetcode.com/problems/maximum-score-after-splitting-a-string/
+    fun maxScore(s: String): Int {
+        var m = 0
+        for (i in 0 until s.length - 1) {
+            m = maxOf(m, s.substring(0, i + 1).count { it == '0' } +
+                    s.substring(i + 1, s.lastIndex + 1).count { it == '1' })
+        }
+
+        return m
+    }
+
     // https://leetcode.com/problems/replace-all-digits-with-characters/
     fun replaceDigits(s: String) = StringBuilder().apply {
         s.forEachIndexed { i, c ->
