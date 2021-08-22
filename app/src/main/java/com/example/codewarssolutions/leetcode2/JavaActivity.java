@@ -17,6 +17,26 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/
+    public int numOfStrings(String[] p, String w) {
+        int c = 0;
+        for (String s : p) if (w.contains(s)) c++;
+
+        return c;
+    }
+
+    // https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+    public int subtractProductAndSum(int n) {
+        int prod = 1;
+        int sum = 0;
+        for (char ch : String.valueOf(n).toCharArray()) {
+            prod *= Character.getNumericValue(ch);
+            sum += Character.getNumericValue(ch);
+        }
+
+        return prod - sum;
+    }
+
     // https://leetcode.com/problems/length-of-last-word/
     public int lengthOfLastWord(String s) {
         String[] ar = s.split(" ");

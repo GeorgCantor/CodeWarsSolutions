@@ -11,6 +11,37 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/
+    fun numOfStrings(p: Array<String>, w: String) = p.count { w.contains(it) }
+
+    fun numOfStrings2(p: Array<String>, w: String) = p.filter { w.contains(it) }.size
+
+    // https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+    fun subtractProductAndSum(n: Int): Int {
+        var prod = 1
+        var sum = 0
+        n.toString().forEach {
+            prod *= Character.getNumericValue(it)
+            sum += Character.getNumericValue(it)
+        }
+
+        return prod - sum
+    }
+
+    // https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/
+    fun busyStudent(s: IntArray, e: IntArray, q: Int) =
+        s.filterIndexed { i, n -> q in n..e[i] }.size
+
+    fun busyStudent2(s: IntArray, e: IntArray, q: Int) =
+        s.filterIndexed { i, n -> n <= q && e[i] >= q }.size
+
+    fun busyStudent3(s: IntArray, e: IntArray, q: Int): Int {
+        var count = 0
+        for (i in s.indices) if ((s[i]..e[i]).contains(q)) count++
+
+        return count
+    }
+
     // https://leetcode.com/problems/count-largest-group/
     fun countLargestGroup(
         n: Int
