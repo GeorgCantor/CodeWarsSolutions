@@ -11,6 +11,20 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/sort-integers-by-the-power-value/
+    fun getKth(lo: Int, hi: Int, k: Int): Int {
+        val l = mutableListOf<Pair<Int, Int>>()
+        (lo..hi).forEach { l.add(Pair(getNumPower(it), it)) }
+
+        return l.sortedWith(compareBy<Pair<Int, Int>> { it.first }.thenBy { it.second })[k - 1].second
+    }
+
+    private fun getNumPower(n: Int): Int {
+        if (n == 1) return 0
+        if (n % 2 == 0) return 1 + getNumPower(n / 2)
+        return 1 + getNumPower(3 * n + 1)
+    }
+
     // https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/
     fun numOfStrings(p: Array<String>, w: String) = p.count { w.contains(it) }
 

@@ -1,5 +1,10 @@
 package com.example.codewarssolutions.codewars;
 
+import static java.lang.Character.getNumericValue;
+import static java.util.function.UnaryOperator.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
 import android.os.Build;
 import android.os.Bundle;
 
@@ -19,11 +24,6 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static java.lang.Character.getNumericValue;
-import static java.util.function.UnaryOperator.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
-
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class Java2Activity extends AppCompatActivity {
 
@@ -31,6 +31,14 @@ public class Java2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java2);
+    }
+
+    // https://www.codewars.com/kata/585a1a227cb58d8d740001c3
+    public static String repeat(String s, long n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) sb.append(s);
+
+        return sb.toString();
     }
 
     // https://www.codewars.com/kata/57f609022f4d534f05000024

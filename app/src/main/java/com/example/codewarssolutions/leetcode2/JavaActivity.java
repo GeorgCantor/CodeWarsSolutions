@@ -17,6 +17,14 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/jewels-and-stones/
+    public int numJewelsInStones(String j, String s) {
+        int c = 0;
+        for (int i = 0; i < s.length(); i++) if (j.indexOf(s.charAt(i)) != -1) c++;
+
+        return c;
+    }
+
     // https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/
     public int numOfStrings(String[] p, String w) {
         int c = 0;
