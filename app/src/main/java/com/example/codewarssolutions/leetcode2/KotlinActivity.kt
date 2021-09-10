@@ -11,6 +11,36 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/shortest-distance-to-a-character/
+    fun shortestToChar(s: String, c: Char): IntArray {
+        val ar = IntArray(s.length)
+        for (i in s.indices) {
+            if (s[i] == c) {
+                ar[i] = 0
+                continue
+            }
+            var l = Int.MAX_VALUE
+            var lc = 0
+            for (j in i until s.length) {
+                if (s[j] == c) {
+                    l = lc
+                    break
+                } else lc++
+            }
+            var r = Int.MAX_VALUE
+            var rc = 0
+            for (j in i downTo 0) {
+                if (s[j] == c) {
+                    r = rc
+                    break
+                } else rc++
+            }
+            ar[i] = minOf(l, r)
+        }
+
+        return ar
+    }
+
     // https://leetcode.com/problems/sort-integers-by-the-power-value/
     fun getKth(lo: Int, hi: Int, k: Int): Int {
         val l = mutableListOf<Pair<Int, Int>>()
