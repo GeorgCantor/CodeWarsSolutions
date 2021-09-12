@@ -17,6 +17,36 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/sort-array-by-parity-ii/
+    public int[] sortArrayByParityII(int[] ar) {
+        int[] a = new int[ar.length];
+        int evenI = 0;
+        int oddI = 1;
+        for (int n : ar) {
+            if (n % 2 == 0) {
+                a[evenI] = n;
+                evenI += 2;
+            } else {
+                a[oddI] = n;
+                oddI += 2;
+            }
+        }
+
+        return a;
+    }
+
+    // https://leetcode.com/problems/unique-email-addresses/
+    public int numUniqueEmails(String[] ar) {
+        HashSet<String> set = new HashSet<>();
+        for (String s : ar) {
+            String[] a = s.split("@");
+            a[0] = a[0].replaceAll("\\.", "");
+            set.add(a[0].split("\\+")[0] + "@" + a[1]);
+        }
+
+        return set.size();
+    }
+
     // https://leetcode.com/problems/jewels-and-stones/
     public int numJewelsInStones(String j, String s) {
         int c = 0;

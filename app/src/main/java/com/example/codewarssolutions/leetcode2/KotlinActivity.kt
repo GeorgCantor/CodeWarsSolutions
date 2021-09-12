@@ -11,6 +11,35 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/sort-array-by-parity-ii/
+    fun sortArrayByParityII(ar: IntArray) = IntArray(ar.size).apply {
+        var evenI = 0
+        var oddI = 1
+        ar.forEach {
+            if (it % 2 == 0) {
+                this[evenI] = it; evenI += 2
+            } else {
+                this[oddI] = it; oddI += 2
+            }
+        }
+    }
+
+    // https://leetcode.com/problems/unique-email-addresses/
+    fun numUniqueEmails(ar: Array<String>) = ar.map {
+        val l = it.split('@')
+        "${l.first().replaceAfter("+", "").replace("+", "").replace(".", "")}@${l.last()}"
+    }.distinct().count()
+
+    fun numUniqueEmails2(ar: Array<String>) = mutableSetOf<String>().run {
+        ar.forEach {
+            val l = it.split('@')
+            add(
+                "${l.first().replaceAfter("+", "").replace("+", "").replace(".", "")}@${l.last()}"
+            )
+        }
+        size
+    }
+
     // https://leetcode.com/problems/shortest-distance-to-a-character/
     fun shortestToChar(s: String, c: Char): IntArray {
         val ar = IntArray(s.length)
