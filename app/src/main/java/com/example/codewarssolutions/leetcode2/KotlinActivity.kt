@@ -11,6 +11,10 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/reverse-prefix-of-word/
+    fun reversePrefix(s: String, ch: Char) = s.substring(0, s.indexOf(ch) + 1).reversed() +
+            s.substring(s.indexOf(ch) + 1, s.lastIndex + 1)
+
     // https://leetcode.com/problems/sort-array-by-parity-ii/
     fun sortArrayByParityII(ar: IntArray) = IntArray(ar.size).apply {
         var evenI = 0

@@ -33,6 +33,17 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/595aa94353e43a8746000120
+    public static int findDeletedNumber(int[] ar, int[] mAr) {
+        int num = 0;
+        for (int n : ar) if (Arrays.stream(mAr).allMatch(x -> x != n)) return n;
+        return num;
+    }
+
+    public static int findDeletedNumber2(int[] ar, int[] mAr) {
+        return IntStream.of(ar).sum() - IntStream.of(mAr).sum();
+    }
+
     // https://www.codewars.com/kata/585a1a227cb58d8d740001c3
     public static String repeat(String s, long n) {
         StringBuilder sb = new StringBuilder();

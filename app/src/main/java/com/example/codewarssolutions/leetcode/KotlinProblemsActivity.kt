@@ -1015,7 +1015,11 @@ class KotlinProblemsActivity : AppCompatActivity() {
     fun defangIPaddr3(s: String) = s.replace(".", "[.]")
 
     // https://leetcode.com/problems/sum-of-unique-elements/
-    fun sumOfUnique(nums: IntArray): Int {
+    fun sumOfUnique(ar: IntArray) = ar.filter { n -> ar.count { it == n } == 1 }.sum()
+
+    fun sumOfUnique2(ar: IntArray) = ar.groupBy { n -> ar.count { it == n } }[1]?.sum() ?: 0
+
+    fun sumOfUnique3(nums: IntArray): Int {
         val list = mutableListOf<Int>()
         nums.forEach { n -> if (nums.count { it == n } < 2) list.add(n) }
 
@@ -1837,7 +1841,17 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return list.max() ?: nums.first()
     }
 
-    fun fizzBuzz(n: Int): List<String> {
+    // https://leetcode.com/problems/fizz-buzz/
+    fun fizzBuzz(n: Int) = (1..n).map {
+        when {
+            it % 15 == 0 -> "FizzBuzz"
+            it % 5 == 0 -> "Buzz"
+            it % 3 == 0 -> "Fizz"
+            else -> it.toString()
+        }
+    }
+
+    fun fizzBuzz2(n: Int): List<String> {
         val list = mutableListOf<String>()
         (1..n).forEach {
             when {
