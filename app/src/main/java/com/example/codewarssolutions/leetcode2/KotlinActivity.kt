@@ -3,12 +3,19 @@ package com.example.codewarssolutions.leetcode2
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codewarssolutions.R
+import java.util.*
 
 class KotlinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
+    }
+
+    // https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+    fun removeDuplicates(s: String) = Stack<Char>().run {
+        s.forEach { if (isNotEmpty() && peek() == it) pop() else push(it) }
+        joinToString("")
     }
 
     // https://leetcode.com/problems/reverse-prefix-of-word/

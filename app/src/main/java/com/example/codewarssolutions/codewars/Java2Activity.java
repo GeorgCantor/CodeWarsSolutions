@@ -33,6 +33,41 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/51b66044bce5799a7f000003
+    public static String toRoman(int n) {
+        int[] ints = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romans = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ints.length; i++) {
+            while (n >= ints[i]) {
+                n -= ints[i];
+                sb.append(romans[i]);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static int fromRoman(String r) {
+        int res = 0;
+        int n = 0;
+        for (int i = r.length() - 1; i >= 0; i--) {
+            switch(r.charAt(i)) {
+                case 'I': n = 1; break;
+                case 'V': n = 5; break;
+                case 'X': n = 10; break;
+                case 'L': n = 50; break;
+                case 'C': n = 100; break;
+                case 'D': n = 500; break;
+                case 'M': n = 1000; break;
+            }
+            if (4 * n < res) res -= n;
+            else res += n;
+        }
+
+        return res;
+    }
+
     // https://www.codewars.com/kata/595aa94353e43a8746000120
     public static int findDeletedNumber(int[] ar, int[] mAr) {
         int num = 0;
