@@ -33,6 +33,19 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/5b16490986b6d336c900007d
+    public static List<String> myLanguages(final Map<String, Integer> map) {
+        return map.entrySet().stream()
+                .filter(m -> m.getValue() >= 60)
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .map(Map.Entry::getKey).collect(Collectors.toList());
+    }
+
+    // https://www.codewars.com/kata/5b39e3772ae7545f650000fc
+    public static String removeDuplicateWords(String s) {
+        return Arrays.stream(s.split(" ")).distinct().collect(Collectors.joining(" "));
+    }
+
     // https://www.codewars.com/kata/51b66044bce5799a7f000003
     public static String toRoman(int n) {
         int[] ints = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
@@ -52,14 +65,28 @@ public class Java2Activity extends AppCompatActivity {
         int res = 0;
         int n = 0;
         for (int i = r.length() - 1; i >= 0; i--) {
-            switch(r.charAt(i)) {
-                case 'I': n = 1; break;
-                case 'V': n = 5; break;
-                case 'X': n = 10; break;
-                case 'L': n = 50; break;
-                case 'C': n = 100; break;
-                case 'D': n = 500; break;
-                case 'M': n = 1000; break;
+            switch (r.charAt(i)) {
+                case 'I':
+                    n = 1;
+                    break;
+                case 'V':
+                    n = 5;
+                    break;
+                case 'X':
+                    n = 10;
+                    break;
+                case 'L':
+                    n = 50;
+                    break;
+                case 'C':
+                    n = 100;
+                    break;
+                case 'D':
+                    n = 500;
+                    break;
+                case 'M':
+                    n = 1000;
+                    break;
             }
             if (4 * n < res) res -= n;
             else res += n;
