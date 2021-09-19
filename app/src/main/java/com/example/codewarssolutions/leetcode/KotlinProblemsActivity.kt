@@ -158,11 +158,11 @@ class KotlinProblemsActivity : AppCompatActivity() {
     fun repeatedNTimes(ar: IntArray) =
         ar.apply { forEach { n -> if (count { it == n } > 1) return n } }[0]
 
-    fun repeatedNTimes2(ar: IntArray) = ar.maxBy { n -> ar.count { it == n } }!!
+    fun repeatedNTimes2(ar: IntArray) = ar.maxByOrNull { n -> ar.count { it == n } }!!
 
     // https://leetcode.com/problems/longest-common-prefix/
     fun longestCommonPrefix(ar: Array<String>) = StringBuilder().apply {
-        ar.minBy { it.length }
+        ar.minByOrNull { it.length }
             ?.forEachIndexed { i, c -> if (ar.all { it[i] == c }) append(c) else return toString() }
     }.toString()
 
@@ -443,7 +443,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
         s.toLowerCase().replace(Regex("[^a-z ]"), " ").split(" ")
             .filter { !ar.contains(it) && it.isNotBlank() }
             .forEach { this[it] = getOrDefault(it, 0) + 1 }
-    }.maxBy { it.value }?.key!!
+    }.maxByOrNull { it.value }?.key!!
 
     // https://leetcode.com/problems/string-compression/
     fun compress(ar: CharArray): Int {
@@ -640,14 +640,14 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     // https://leetcode.com/problems/largest-number-at-least-twice-of-others/
     fun dominantIndex(ar: IntArray): Int {
-        val maxI = ar.indexOf(ar.max()!!)
+        val maxI = ar.indexOf(ar.maxOrNull()!!)
         for (i in ar.indices) if (i != maxI && ar[i] * 2 > ar[maxI]) return -1
 
         return maxI
     }
 
     fun dominantIndex2(ar: IntArray) =
-        if (ar.sorted().dropLast(1).all { it * 2 <= ar.max()!! }) ar.indexOf(ar.max()!!) else -1
+        if (ar.sorted().dropLast(1).all { it * 2 <= ar.maxOrNull()!! }) ar.indexOf(ar.maxOrNull()!!) else -1
 
     // https://leetcode.com/problems/palindromic-substrings/
     fun countSubstrings(s: String): Int {
@@ -712,7 +712,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return (max - 1) * (sMax - 1)
     }
 
-    fun maxProduct3(ar: IntArray) = (ar.max()!! - 1) * (ar.sortedDescending()[1] - 1)
+    fun maxProduct3(ar: IntArray) = (ar.maxOrNull()!! - 1) * (ar.sortedDescending()[1] - 1)
 
     // https://leetcode.com/problems/design-hashmap/
     class MyHashMap() {
@@ -762,8 +762,8 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/richest-customer-wealth/
-    fun maximumWealth(arr: Array<IntArray>) = arr.maxBy { it.sum() }!!.sum()
-    fun maximumWealth2(arr: Array<IntArray>) = arr.map { it.sum() }.max()!!
+    fun maximumWealth(arr: Array<IntArray>) = arr.maxByOrNull { it.sum() }!!.sum()
+    fun maximumWealth2(arr: Array<IntArray>) = arr.map { it.sum() }.maxOrNull()!!
 
     // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
     fun findNumbers(nums: IntArray) = nums.map { it.toString() }.count { it.length % 2 == 0 }
@@ -1004,7 +1004,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
     // https://leetcode.com/problems/longest-word-in-dictionary/
     fun longestWord(ar: Array<String>) = mutableSetOf<String>().apply {
         ar.sorted().forEach { if (it.length == 1 || contains(it.dropLast(1))) add(it) }
-    }.maxBy { it.length } ?: ""
+    }.maxByOrNull { it.length } ?: ""
 
     // https://leetcode.com/problems/defanging-an-ip-address/
     fun defangIPaddr(s: String) =
@@ -1186,7 +1186,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     // https://leetcode.com/problems/replace-words/
     fun replaceWords(d: List<String>, s: String) = s.split(" ").joinToString(" ") { w ->
-        d.filter { w.startsWith(it) }.minBy { it.length } ?: w
+        d.filter { w.startsWith(it) }.minByOrNull { it.length } ?: w
     }
 
     fun replaceWords2(d: List<String>, s: String) = s.split(" ").toMutableList().apply {
@@ -1392,7 +1392,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     fun singleNumber2(a: IntArray) = a.find { n -> a.count { it == n } == 1 }
 
-    fun singleNumber3(a: IntArray) = a.minBy { n -> a.count { it == n } }
+    fun singleNumber3(a: IntArray) = a.minByOrNull { n -> a.count { it == n } }
 
     // https://leetcode.com/problems/longest-substring-without-repeating-characters/
     fun lengthOfLongestSubstring2(s: String): Int {
@@ -1440,7 +1440,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
         fun top() = list.last()
 
-        fun getMin() = list.min()
+        fun getMin() = list.minOrNull()
     }
 
     // https://leetcode.com/problems/intersection-of-two-arrays-ii/
@@ -1831,14 +1831,14 @@ class KotlinProblemsActivity : AppCompatActivity() {
 
     fun thirdMax(nums: IntArray): Int {
         val set = nums.toSet()
-        if (set.size == 2) return set.max()!!
+        if (set.size == 2) return set.maxOrNull()!!
         if (set.size == 1) return set.first()
 
         val list = set.toMutableList()
-        list.removeIf { it == list.max() }
-        list.removeIf { it == list.max() }
+        list.removeIf { it == list.maxOrNull() }
+        list.removeIf { it == list.maxOrNull() }
 
-        return list.max() ?: nums.first()
+        return list.maxOrNull() ?: nums.first()
     }
 
     // https://leetcode.com/problems/fizz-buzz/

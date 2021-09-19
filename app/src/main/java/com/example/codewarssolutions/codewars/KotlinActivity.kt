@@ -336,9 +336,9 @@ class KotlinActivity : AppCompatActivity() {
 
     fun sum(numbers: IntArray): Int? {
         var removed = numbers.toMutableList()
-        removed[removed.indexOf(removed.max() ?: 0)] = 0
+        removed[removed.indexOf(removed.maxOrNull() ?: 0)] = 0
         removed.removeIf { it == 0 }
-        removed[removed.indexOf(removed.min() ?: 0)] = 0
+        removed[removed.indexOf(removed.minOrNull() ?: 0)] = 0
 
         return removed.sum()
     }
@@ -678,7 +678,7 @@ class KotlinActivity : AppCompatActivity() {
             counter++
         }
 
-        return list.max() ?: 0
+        return list.maxOrNull() ?: 0
     }
 
     // 7 kyu Count the Digit

@@ -130,7 +130,7 @@ class KotlinActivity : AppCompatActivity() {
     fun countLargestGroup(
         n: Int
     ) = (1..n).groupingBy { it.toString().sumBy { it.toString().toInt() } }.eachCount().run {
-        count { it.value == maxBy { it.value }?.value }
+        count { it.value == maxByOrNull { it.value }?.value }
     }
 
     // https://leetcode.com/problems/maximum-score-after-splitting-a-string/

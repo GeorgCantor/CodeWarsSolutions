@@ -183,7 +183,7 @@ class Kotlin2Activity : AppCompatActivity() {
 
     // https://www.codewars.com/kata/56a5d994ac971f1ac500003e
     fun longestConsec(arr: Array<String>, k: Int) = if (k > 0) arr.toList().windowed(k)
-        .map { it.joinToString("") }.maxBy { it.length } ?: "" else ""
+        .map { it.joinToString("") }.maxByOrNull { it.length } ?: "" else ""
 
     fun longestConsec2(arr: Array<String>, k: Int): String {
         var res = listOf<String>()
