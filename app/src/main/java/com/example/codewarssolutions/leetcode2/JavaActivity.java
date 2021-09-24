@@ -17,6 +17,18 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/
+    public boolean isPrefixString(String s, String[] words) {
+        StringBuilder sb = new StringBuilder();
+        for (String w : words) {
+            sb.append(w);
+            if (sb.toString().length() > s.length()) return false;
+            if (sb.toString().equals(s)) return true;
+        }
+
+        return false;
+    }
+
     // https://leetcode.com/problems/sort-array-by-parity-ii/
     public int[] sortArrayByParityII(int[] ar) {
         int[] a = new int[ar.length];

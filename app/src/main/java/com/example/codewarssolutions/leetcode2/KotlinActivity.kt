@@ -12,6 +12,22 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/
+    fun isPrefixString(s: String, ar: Array<String>) = ar.reduce { acc, w ->
+        if (acc.length > s.length) return false
+        if (acc == s) return true
+        acc + w
+    } == s
+
+    fun isPrefixString2(s: String, ar: Array<String>) = StringBuilder().run {
+        ar.forEach {
+            append(it)
+            if (toString().length > s.length) return false
+            if (toString() == s) return true
+        }
+        false
+    }
+
     // https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
     fun removeDuplicates(s: String) = Stack<Char>().run {
         s.forEach { if (isNotEmpty() && peek() == it) pop() else push(it) }

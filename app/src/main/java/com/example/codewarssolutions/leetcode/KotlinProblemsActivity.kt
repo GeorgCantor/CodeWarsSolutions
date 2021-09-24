@@ -647,7 +647,9 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     fun dominantIndex2(ar: IntArray) =
-        if (ar.sorted().dropLast(1).all { it * 2 <= ar.maxOrNull()!! }) ar.indexOf(ar.maxOrNull()!!) else -1
+        if (ar.sorted().dropLast(1)
+                .all { it * 2 <= ar.maxOrNull()!! }
+        ) ar.indexOf(ar.maxOrNull()!!) else -1
 
     // https://leetcode.com/problems/palindromic-substrings/
     fun countSubstrings(s: String): Int {
@@ -1785,7 +1787,28 @@ class KotlinProblemsActivity : AppCompatActivity() {
         }
     }
 
-    fun findWords(words: Array<String>): Array<String> {
+    // https://leetcode.com/problems/keyboard-row/submissions/
+    fun findWords(ar: Array<String>): Array<String> {
+        val q = "qwertyuiop"
+        val a = "asdfghjkl"
+        val z = "zxcvbnm"
+        val one = ar.filter {
+            it.all { q.contains(it, true) } &&
+                    it.none { a.contains(it, true) } && it.none { z.contains(it, true) }
+        }
+        val two = ar.filter {
+            it.all { a.contains(it, true) } &&
+                    it.none { q.contains(it, true) } && it.none { z.contains(it, true) }
+        }
+        val three = ar.filter {
+            it.all { z.contains(it, true) } &&
+                    it.none { a.contains(it, true) } && it.none { q.contains(it, true) }
+        }
+
+        return (one + two + three).toTypedArray()
+    }
+
+    fun findWords2(words: Array<String>): Array<String> {
         val result = mutableListOf<String>()
         val q = "qwertyuiop"
         val a = "asdfghjkl"
