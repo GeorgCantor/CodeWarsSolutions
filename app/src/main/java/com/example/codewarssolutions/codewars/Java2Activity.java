@@ -33,6 +33,17 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/5a0b4dc2ffe75f72f70000ef
+    public static List<String> findChildren(List<String> sList, List<String> children) {
+        return children.stream().filter(sList::contains).distinct().sorted().collect(Collectors.toList());
+    }
+
+    public static List<String> findChildren2(List<String> sList, List<String> children) {
+        List<String> list = new ArrayList<>();
+        for (String s : children) if (sList.contains(s) && !list.contains(s)) list.add(s);
+        return list.stream().sorted().collect(Collectors.toList());
+    }
+
     // https://www.codewars.com/kata/5b16490986b6d336c900007d
     public static List<String> myLanguages(final Map<String, Integer> map) {
         return map.entrySet().stream()

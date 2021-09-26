@@ -12,6 +12,26 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/delete-characters-to-make-fancy-string/
+    fun makeFancyString(s: String) = StringBuilder().apply {
+        for (i in s.indices) {
+            if (i == 0 || i == s.lastIndex || s[i - 1] != s[i] || s[i + 1] != s[i]) append(s[i])
+        }
+    }.toString()
+
+    fun makeFancyString2(s: String) = s.mapIndexed { i, c ->
+        if (i == 0 || i == s.lastIndex || s[i - 1] != s[i] || s[i + 1] != s[i]) c else ' '
+    }.joinToString("").filter { it != ' ' }
+
+    // https://leetcode.com/problems/largest-number/
+    fun largestNumber(ar: IntArray): String {
+        val l = ar.map { it.toString() }.sortedWith(Comparator { a, b ->
+            (b + a).compareTo(a + b)
+        })
+
+        return if (l.first() == "0") "0" else l.joinToString(separator = "")
+    }
+
     // https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/
     fun isPrefixString(s: String, ar: Array<String>) = ar.reduce { acc, w ->
         if (acc.length > s.length) return false
