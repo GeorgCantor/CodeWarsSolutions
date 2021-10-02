@@ -33,6 +33,20 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/580a4734d6df748060000045
+    public static String isSortedAndHow(int[] ar) {
+        for (int i = 1; i < ar.length; i++) {
+            if (ar[i] < ar[i - 1]) break;
+            if (i == ar.length - 1) return "yes, ascending";
+        }
+        for (int i = ar.length - 2; i >= 0; i--) {
+            if (ar[i] < ar[i + 1]) break;
+            if (i == 0) return "yes, descending";
+        }
+
+        return "no";
+    }
+
     // https://www.codewars.com/kata/5a0b4dc2ffe75f72f70000ef
     public static List<String> findChildren(List<String> sList, List<String> children) {
         return children.stream().filter(sList::contains).distinct().sorted().collect(Collectors.toList());

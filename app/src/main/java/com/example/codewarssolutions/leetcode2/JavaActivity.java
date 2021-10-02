@@ -17,6 +17,29 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/check-if-n-and-its-double-exist/
+    public boolean checkIfExist(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[i] * 2 == a[j] || a[j] * 2 == a[i]) return true;
+            }
+        }
+
+        return false;
+    }
+
+    // https://leetcode.com/problems/delete-characters-to-make-fancy-string/
+    public String makeFancyString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 || i == s.length() - 1 || s.charAt(i - 1) != s.charAt(i) || s.charAt(i + 1) != s.charAt(i)) {
+                sb.append(s.charAt(i));
+            }
+        }
+
+        return sb.toString();
+    }
+
     // https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/
     public boolean isPrefixString(String s, String[] words) {
         StringBuilder sb = new StringBuilder();

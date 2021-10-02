@@ -12,6 +12,17 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-if-n-and-its-double-exist/
+    fun checkIfExist(a: IntArray): Boolean {
+        for (i in a.indices) {
+            for (j in i + 1 until a.size) {
+                if (a[i] * 2 == a[j] || a[j] * 2 == a[i]) return true
+            }
+        }
+
+        return false
+    }
+
     // https://leetcode.com/problems/delete-characters-to-make-fancy-string/
     fun makeFancyString(s: String) = StringBuilder().apply {
         for (i in s.indices) {
