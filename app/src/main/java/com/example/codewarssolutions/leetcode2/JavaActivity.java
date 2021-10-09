@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.codewarssolutions.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class JavaActivity extends AppCompatActivity {
 
@@ -15,6 +19,19 @@ public class JavaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java);
+    }
+
+    // https://leetcode.com/problems/second-largest-digit-in-a-string/
+    public int secondHighest(String s) {
+        Set<Integer> set = new HashSet<>();
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) set.add(Character.getNumericValue(c));
+        }
+        if (set.isEmpty()) return -1;
+        List<Integer> l = new ArrayList<>(set);
+        Collections.sort(l);
+
+        return set.size() == 1 ? -1 : l.get(l.size() - 2);
     }
 
     // https://leetcode.com/problems/check-if-n-and-its-double-exist/

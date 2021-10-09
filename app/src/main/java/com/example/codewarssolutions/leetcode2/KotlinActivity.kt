@@ -12,6 +12,18 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/
+    fun generateTheString(n: Int) = StringBuilder().apply {
+        for (i in 0 until n - 1) append('a')
+        append(if (n % 2 == 0) 'b' else 'a')
+    }.toString()
+
+    // https://leetcode.com/problems/second-largest-digit-in-a-string/
+    fun secondHighest(s: String) = s.filter { it.isDigit() }.toSet().run {
+        if (size < 2) return@run -1
+        map(Character::getNumericValue).sorted()[size - 2]
+    }
+
     // https://leetcode.com/problems/check-if-n-and-its-double-exist/
     fun checkIfExist(a: IntArray): Boolean {
         for (i in a.indices) {
