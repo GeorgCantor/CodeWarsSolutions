@@ -11,7 +11,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class JavaActivity extends AppCompatActivity {
 
@@ -19,6 +21,14 @@ public class JavaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java);
+    }
+
+    // https://leetcode.com/problems/find-all-duplicates-in-an-array/
+    public List<Integer> findDuplicates(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int n : nums) map.put(n, map.getOrDefault(n, 0) + 1);
+
+        return map.entrySet().stream().filter(e -> e.getValue() == 2).map(Map.Entry::getKey).collect(Collectors.toList());
     }
 
     // https://leetcode.com/problems/second-largest-digit-in-a-string/

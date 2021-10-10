@@ -12,6 +12,16 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/find-all-duplicates-in-an-array/
+    fun findDuplicates(a: IntArray) = mutableMapOf<Int, Int>().apply {
+        a.forEach { this[it] = getOrDefault(it, 0) + 1 }
+    }.filter { it.value == 2 }.keys.toList()
+
+    fun findDuplicates2(a: IntArray) = mutableListOf<Int>().apply {
+        val l = a.sorted()
+        for (i in 1 until l.size) if (l[i] == l[i - 1]) add(l[i])
+    }
+
     // https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/
     fun generateTheString(n: Int) = StringBuilder().apply {
         for (i in 0 until n - 1) append('a')

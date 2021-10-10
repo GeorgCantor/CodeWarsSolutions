@@ -15,6 +15,24 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/5635e7cb49adc7b54500001c
+    fun count(number: Int): Int {
+        var c = 0
+        var sum = number
+        val ar = arrayOf(500, 200, 100, 50, 20, 10)
+        while (sum >= 10) {
+            for (i in ar.indices) {
+                if (sum >= ar[i]) {
+                    sum -= ar[i]
+                    c++
+                    break
+                }
+            }
+        }
+
+        return if (sum == 0) c else -1
+    }
+
     // https://www.codewars.com/kata/51e056fe544cf36c410000fb
     fun top3(s: String) = s.toLowerCase().split("[^a-z']+".toRegex())
         .filter { it.any { it.isLetter() } }.groupingBy { it }.eachCount()
