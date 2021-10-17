@@ -15,6 +15,12 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/61123a6f2446320021db987d
+    fun prevMultOfThree(n: Int): Int? = n.toString().run {
+        for (i in indices) dropLast(i).toInt().run { if (this % 3 == 0) return this }
+        null
+    }
+
     // https://www.codewars.com/kata/5635e7cb49adc7b54500001c
     fun count(number: Int): Int {
         var c = 0

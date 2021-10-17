@@ -12,6 +12,17 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/number-of-pairs-of-strings-with-concatenation-equal-to-target/
+    fun numOfPairs(a: Array<String>, t: String): Int {
+        var c = 0
+        for (i in a.indices) for (j in a.indices) if (i != j && "${a[i]}${a[j]}" == t) c++
+        return c
+    }
+
+    fun numOfPairs2(a: Array<String>, t: String) = mutableListOf("").apply {
+        for (i in a.indices) for (j in a.indices) if (i != j && "${a[i]}${a[j]}" == t) add("+")
+    }.size - 1
+
     // https://leetcode.com/problems/find-all-duplicates-in-an-array/
     fun findDuplicates(a: IntArray) = mutableMapOf<Int, Int>().apply {
         a.forEach { this[it] = getOrDefault(it, 0) + 1 }
