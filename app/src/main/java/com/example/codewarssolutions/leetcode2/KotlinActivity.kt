@@ -12,6 +12,18 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/final-value-of-variable-after-performing-operations/
+    fun finalValueAfterOperations(a: Array<String>) =
+        a.fold(0) { ac, i -> if (i.contains('+')) ac + 1 else ac - 1 }
+
+    // https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
+    fun sortByBits(a: IntArray) =
+        a.sortedWith(compareBy<Int> { Integer.bitCount(it) }.thenBy { it }).toIntArray()
+
+    // https://leetcode.com/problems/maximum-product-difference-between-two-pairs/
+    fun maxProductDifference(a: IntArray) =
+        a.sorted().run { (last() * this[lastIndex - 1]) - (first() * this[1]) }
+
     // https://leetcode.com/problems/number-of-pairs-of-strings-with-concatenation-equal-to-target/
     fun numOfPairs(a: Array<String>, t: String): Int {
         var c = 0
