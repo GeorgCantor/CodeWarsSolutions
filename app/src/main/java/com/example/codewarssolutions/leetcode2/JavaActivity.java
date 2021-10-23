@@ -23,6 +23,30 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
+    public int[] sumZero(int n) {
+        int[] a = new int[n];
+        int l = -1;
+        int r = 1;
+        if (n % 2 == 0) {
+            for (int i = 0; i < n; i++) {
+                if (i % 2 == 0) a[i] = r++;
+                else a[i] = l--;
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                if (i == 0) {
+                    a[i] = i;
+                } else {
+                    if (i % 2 == 0) a[i] = r++;
+                    else a[i] = l--;
+                }
+            }
+        }
+
+        return a;
+    }
+
     // https://leetcode.com/problems/find-all-duplicates-in-an-array/
     public List<Integer> findDuplicates(int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();

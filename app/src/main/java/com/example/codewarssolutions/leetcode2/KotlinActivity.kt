@@ -12,6 +12,21 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
+    fun sumZero(n: Int) = IntArray(n).also {
+        var l = -1
+        var r = 1
+        if (n % 2 == 0) for (i in 0 until n) it[i] = if (i % 2 == 0) r++ else l--
+        else for (i in 0 until n) if (i == 0) it[i] = i else it[i] = if (i % 2 == 0) r++ else l--
+    }
+
+    // https://leetcode.com/problems/maximum-population-year/
+    fun maximumPopulation(a: Array<IntArray>) = mutableMapOf<Int, Int>().run {
+        a.forEach { (it.first() until it.last()).forEach { this[it] = getOrDefault(it, 0) + 1 } }
+        entries.sortedWith(compareByDescending<Map.Entry<Int, Int>> { it.value }
+            .thenBy { it.key }).first().key
+    }
+
     // https://leetcode.com/problems/final-value-of-variable-after-performing-operations/
     fun finalValueAfterOperations(a: Array<String>) =
         a.fold(0) { ac, i -> if (i.contains('+')) ac + 1 else ac - 1 }
