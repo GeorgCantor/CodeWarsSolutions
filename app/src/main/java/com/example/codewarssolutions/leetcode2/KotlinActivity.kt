@@ -12,6 +12,16 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/two-out-of-three/
+    fun twoOutOfThree(a: IntArray, b: IntArray, c: IntArray) = (a + b + c).toSet().filter {
+        arrayOf(a, b, c).count { ar -> ar.contains(it) } > 1
+    }
+
+    fun twoOutOfThree2(a: IntArray, b: IntArray, c: IntArray) = (a + b + c).toSet().filter {
+        a.contains(it) && b.contains(it) || b.contains(it) &&
+                c.contains(it) || a.contains(it) && c.contains(it)
+    }
+
     // https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
     fun sumZero(n: Int) = IntArray(n).also {
         var l = -1

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.codewarssolutions.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,6 +22,24 @@ public class JavaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java);
+    }
+
+    // https://leetcode.com/problems/two-out-of-three/
+    public List<Integer> twoOutOfThree(int[] a, int[] b, int[] c) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int i : a) set.add(i);
+        for (int i : b) set.add(i);
+        for (int i : c) set.add(i);
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i : set) {
+            if (Arrays.stream(a).anyMatch(it -> i == it) && Arrays.stream(b).anyMatch(it -> i == it)
+                    || Arrays.stream(b).anyMatch(it -> i == it) && Arrays.stream(c).anyMatch(it -> i == it)
+                    || Arrays.stream(a).anyMatch(it -> i == it) && Arrays.stream(c).anyMatch(it -> i == it)) {
+                list.add(i);
+            }
+        }
+
+        return list;
     }
 
     // https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
