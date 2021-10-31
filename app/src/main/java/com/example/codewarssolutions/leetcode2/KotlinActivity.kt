@@ -12,6 +12,18 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/baseball-game/
+    fun calPoints(ar: Array<String>) = Stack<Int>().apply {
+        ar.forEach {
+            when (it) {
+                "C" -> pop()
+                "D" -> push(last() * 2)
+                "+" -> push(last() + this[lastIndex - 1])
+                else -> push(it.toInt())
+            }
+        }
+    }.sum()
+
     // https://leetcode.com/problems/two-out-of-three/
     fun twoOutOfThree(a: IntArray, b: IntArray, c: IntArray) = (a + b + c).toSet().filter {
         arrayOf(a, b, c).count { ar -> ar.contains(it) } > 1

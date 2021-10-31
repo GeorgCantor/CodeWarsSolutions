@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class JavaActivity extends AppCompatActivity {
@@ -22,6 +23,32 @@ public class JavaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java);
+    }
+
+    // https://leetcode.com/problems/baseball-game/
+    public int calPoints(String[] ar) {
+        Stack<Integer> stack = new Stack<>();
+        for (String s : ar) {
+            switch (s) {
+                case "C":
+                    stack.pop();
+                    break;
+                case "D":
+                    stack.push(stack.peek() * 2);
+                    break;
+                case "+":
+                    int temp = stack.pop();
+                    int sum = stack.peek() + temp;
+                    stack.push(temp);
+                    stack.push(sum);
+                    break;
+                default:
+                    stack.push(Integer.parseInt(s));
+                    break;
+            }
+        }
+
+        return stack.stream().mapToInt(Integer::intValue).sum();
     }
 
     // https://leetcode.com/problems/two-out-of-three/
