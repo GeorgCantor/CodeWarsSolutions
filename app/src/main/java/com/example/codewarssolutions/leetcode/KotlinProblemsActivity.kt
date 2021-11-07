@@ -236,9 +236,12 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/sorting-the-sentence/
-    fun sortSentence(s: String) = s.split(" ")
-        .sortedBy { it.dropWhile { it.isLetter() } }
-        .joinToString(" ") { it.dropLastWhile { it.isDigit() } }
+    fun sortSentence(s: String) =
+        s.split(" ").sortedBy { it.last() }.joinToString(" ") { it.dropLast(1) }
+
+    fun sortSentence2(s: String) = s.split(" ")
+        .groupBy { it.last() }.entries.sortedBy { it.key }.map { it.value.first() }
+        .joinToString(" ") { it.dropLast(1) }
 
     // https://leetcode.com/problems/make-the-string-great/
     fun makeGood(s: String): String {
@@ -589,15 +592,20 @@ class KotlinProblemsActivity : AppCompatActivity() {
     }
 
     // https://leetcode.com/problems/running-sum-of-1d-array/
-    fun runningSum(nums: IntArray): IntArray {
-        var sum = nums.first()
-        val list = mutableListOf(sum)
-        for (i in 1 until nums.size) {
+    fun runningSum(a: IntArray): IntArray {
+        var sum = 0
+        return IntArray(a.size) { sum += a[it]; sum }
+    }
+
+    fun runningSum2(nums: IntArray): IntArray {
+        val ar = IntArray(nums.size)
+        var sum = 0
+        for (i in nums.indices) {
             sum += nums[i]
-            list.add(sum)
+            ar[i] = sum
         }
 
-        return list.toIntArray()
+        return ar
     }
 
     // https://leetcode.com/problems/insert-interval/
