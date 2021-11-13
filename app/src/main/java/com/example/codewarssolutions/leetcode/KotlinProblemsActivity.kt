@@ -394,7 +394,13 @@ class KotlinProblemsActivity : AppCompatActivity() {
         s.split(" ").withIndex().filter { it.index < k }.joinToString(" ") { it.value }
 
     // https://leetcode.com/problems/count-items-matching-a-rule/
-    fun countMatches(items: List<List<String>>, key: String, value: String) = when (key) {
+    fun countMatches(
+        l: List<List<String>>,
+        r: String,
+        v: String
+    ) = arrayOf("type", "color", "name").run { l.count { it[indexOf(r)] == v } }
+
+    fun countMatches2(items: List<List<String>>, key: String, value: String) = when (key) {
         "type" -> items.count { it[0] == value }
         "color" -> items.count { it[1] == value }
         "name" -> items.count { it[2] == value }

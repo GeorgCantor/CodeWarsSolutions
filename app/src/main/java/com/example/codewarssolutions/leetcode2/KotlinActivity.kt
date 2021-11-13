@@ -413,7 +413,17 @@ class KotlinActivity : AppCompatActivity() {
     fun repeatedSubstringPattern(s: String) = (s + s).run { substring(1, lastIndex) }.contains(s)
 
     // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
-    fun sumOddLengthSubarrays(a: IntArray) = run {
+    fun sumOddLengthSubarrays(a: IntArray): Int {
+        var c = 0
+        var wSize = 1
+        for (i in a.indices) {
+            c += a.toList().windowed(wSize).flatten().sum()
+            wSize += 2
+        }
+        return c
+    }
+
+    fun sumOddLengthSubarrays2(a: IntArray) = run {
         var r = 0
         for (i in a.indices) {
             var j = i + 1

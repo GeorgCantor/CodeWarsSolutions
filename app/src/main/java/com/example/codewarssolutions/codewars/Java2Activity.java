@@ -33,6 +33,18 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/56786a687e9a88d1cf00005d
+    public static boolean validateWord(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            map.put(Character.toLowerCase(c), map.getOrDefault(Character.toLowerCase(c), 0) + 1);
+        }
+        int first = map.values().stream().findFirst().get();
+        for (int value : map.values()) if (value != first) return false;
+
+        return true;
+    }
+
     // https://www.codewars.com/kata/580a4734d6df748060000045
     public static String isSortedAndHow(int[] ar) {
         for (int i = 1; i < ar.length; i++) {
