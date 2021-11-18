@@ -12,6 +12,32 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-whether-two-strings-are-almost-equivalent/
+    fun checkAlmostEquivalent(w1: String, w2: String): Boolean {
+        w1.forEach {
+            val c1 = w1.count { s -> s == it }
+            val c2 = w2.count { s -> s == it }
+            if (c1 > c2 && c1 - c2 > 3) return false
+            if (c2 > c1 && c2 - c1 > 3) return false
+        }
+        w2.forEach {
+            val c1 = w1.count { s -> s == it }
+            val c2 = w2.count { s -> s == it }
+            if (c1 > c2 && c1 - c2 > 3) return false
+            if (c2 > c1 && c2 - c1 > 3) return false
+        }
+        return true
+    }
+
+    // https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/
+    fun minSubsequence(ar: IntArray): List<Int> = with(ar.sortedDescending()) {
+        for (i in ar.indices) {
+            val l = subList(0, i + 1)
+            if (l.sum() > subList(i + 1, lastIndex + 1).sum()) return l
+        }
+        return emptyList()
+    }
+
     // https://leetcode.com/problems/baseball-game/
     fun calPoints(ar: Array<String>) = Stack<Int>().apply {
         ar.forEach {
