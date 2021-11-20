@@ -33,6 +33,19 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    // https://www.codewars.com/kata/5ce969ab07d4b7002dcaa7a1
+    public static int solve(String s) {
+        int c = 0;
+        int l = 1;
+        int r = s.length() - 1;
+        while (l <= s.length() / 2) {
+            if (s.substring(0, l).equals(s.substring(r--))) c = l;
+            l++;
+        }
+
+        return c;
+    }
+
     // https://www.codewars.com/kata/56786a687e9a88d1cf00005d
     public static boolean validateWord(String s) {
         Map<Character, Integer> map = new HashMap<>();
