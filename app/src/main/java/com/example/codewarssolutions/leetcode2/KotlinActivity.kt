@@ -361,6 +361,9 @@ class KotlinActivity : AppCompatActivity() {
     fun areOccurrencesEqual4(s: String) =
         s.groupBy { c -> s.count { it == c } }.run { keys.all { it == keys.first() } }
 
+    fun areOccurrencesEqual5(s: String) =
+        s.all { c -> s.count { c == it } == s.count { s.first() == it } }
+
     // https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
     fun areAlmostEqual(s1: String, s2: String): Boolean {
         if (s1 == s2) return true
@@ -414,6 +417,23 @@ class KotlinActivity : AppCompatActivity() {
         a1.forEachIndexed { i, n ->
             this[i] = a2.toList().subList(a2.indexOf(n), a2.size).find { it > n } ?: -1
         }
+    }
+
+    fun nextGreaterElement3(a1: IntArray, a2: IntArray): IntArray {
+        val ar = IntArray(a1.size)
+        var c = -1
+        a1.forEachIndexed { i, it ->
+            for (j in a2.lastIndex downTo 0) {
+                if (a2[j] == it) {
+                    ar[i] = c
+                    c = -1
+                    break
+                }
+                if (a2[j] > it) c = a2[j]
+            }
+        }
+
+        return ar
     }
 
     // https://leetcode.com/problems/buddy-strings/

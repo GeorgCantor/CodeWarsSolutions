@@ -25,6 +25,24 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/next-greater-element-i/
+    public int[] nextGreaterElement(int[] a1, int[] a2) {
+        int[] ar = new int[a1.length];
+        int c = -1;
+        for (int i = 0; i < a1.length; i++) {
+            for (int j = a2.length - 1; j >= 0; j--) {
+                if (a2[j] == a1[i]) {
+                    ar[i] = c;
+                    c = -1;
+                    break;
+                }
+                if (a2[j] > a1[i]) c = a2[j];
+            }
+        }
+
+        return ar;
+    }
+
     // https://leetcode.com/problems/baseball-game/
     public int calPoints(String[] ar) {
         Stack<Integer> stack = new Stack<>();

@@ -390,8 +390,7 @@ class KotlinProblemsActivity : AppCompatActivity() {
     fun countNegatives(grid: Array<IntArray>) = grid.sumBy { it.count { it < 0 } }
 
     // https://leetcode.com/problems/truncate-sentence/
-    fun truncateSentence(s: String, k: Int) =
-        s.split(" ").withIndex().filter { it.index < k }.joinToString(" ") { it.value }
+    fun truncateSentence(s: String, k: Int) = s.split(" ").take(k).joinToString(" ")
 
     // https://leetcode.com/problems/count-items-matching-a-rule/
     fun countMatches(
