@@ -33,6 +33,17 @@ public class Java2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_java2);
     }
 
+    public static String bumps2(final String road) {
+        int c = 0;
+        for (char ch : road.toCharArray()) {
+            if (ch == 'n') c++;
+            if (c > 15) return "Car Dead";
+        }
+
+        if (c <= 15) return "Woohoo!";
+        else return "Car Dead";
+    }
+
     // https://www.codewars.com/kata/5ce969ab07d4b7002dcaa7a1
     public static int solve(String s) {
         int c = 0;

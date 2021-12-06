@@ -12,6 +12,18 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/count-common-words-with-one-occurrence/
+    fun countWords(a: Array<String>, b: Array<String>) =
+        (a + b).toSet().count { w -> a.count { it == w } == 1 && b.count { it == w } == 1 }
+
+    fun countWords2(a: Array<String>, b: Array<String>): Int {
+        val mapA = a.groupingBy { it }.eachCount()
+        val mapB = b.groupingBy { it }.eachCount()
+        var c = 0
+        mapA.entries.forEach { if (it.value == 1 && mapB[it.key] == 1) c++ }
+        return c
+    }
+
     // https://leetcode.com/problems/check-whether-two-strings-are-almost-equivalent/
     fun checkAlmostEquivalent(w1: String, w2: String): Boolean {
         w1.forEach {

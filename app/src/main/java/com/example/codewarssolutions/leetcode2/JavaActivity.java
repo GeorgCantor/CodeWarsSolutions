@@ -25,6 +25,18 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/count-common-words-with-one-occurrence/
+    public int countWords(String[] a, String[] b) {
+        HashMap<String, Integer> mapA = new HashMap<>();
+        HashMap<String, Integer> mapB = new HashMap<>();
+        for (String s : a) mapA.put(s, mapA.getOrDefault(s, 0) + 1);
+        for (String s : b) mapB.put(s, mapB.getOrDefault(s, 0) + 1);
+        int c = 0;
+        for (String s : a) if (mapA.get(s) == 1 && mapB.getOrDefault(s, 0) == 1) c++;
+
+        return c;
+    }
+
     // https://leetcode.com/problems/next-greater-element-i/
     public int[] nextGreaterElement(int[] a1, int[] a2) {
         int[] ar = new int[a1.length];
