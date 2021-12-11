@@ -12,6 +12,25 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/count-vowel-substrings-of-a-string/
+    fun countVowelSubstrings(s: String): Int {
+        val vowels = "aeiou"
+        var c = 0
+        for (i in s.indices) {
+            val sb = StringBuilder()
+            for (j in i..s.lastIndex) {
+                if (s[j] in vowels) {
+                    sb.append(s[j])
+                    if (vowels.all { it in sb }) c++
+                } else {
+                    break
+                }
+            }
+        }
+
+        return c
+    }
+
     // https://leetcode.com/problems/count-common-words-with-one-occurrence/
     fun countWords(a: Array<String>, b: Array<String>) =
         (a + b).toSet().count { w -> a.count { it == w } == 1 && b.count { it == w } == 1 }

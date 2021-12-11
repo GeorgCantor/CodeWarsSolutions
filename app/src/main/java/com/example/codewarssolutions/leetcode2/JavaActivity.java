@@ -25,6 +25,24 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/count-vowel-substrings-of-a-string/
+    public int countVowelSubstrings(String s) {
+        Set<Character> set = new HashSet<>();
+        int c = 0;
+        for (int i = 0; i < s.length(); i++) {
+            set.clear();
+            for (int j = i; j < s.length(); j++) {
+                char ch = s.charAt(j);
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                    set.add(ch);
+                    if (set.size() == 5) c++;
+                } else break;
+            }
+        }
+
+        return c;
+    }
+
     // https://leetcode.com/problems/count-common-words-with-one-occurrence/
     public int countWords(String[] a, String[] b) {
         HashMap<String, Integer> mapA = new HashMap<>();
