@@ -12,6 +12,13 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/check-if-numbers-are-ascending-in-a-sentence/
+    fun areNumbersAscending(s: String): Boolean {
+        var l = Int.MIN_VALUE
+        s.split(" ").forEach { it.toIntOrNull()?.let { if (l >= it) return false else l = it } }
+        return true
+    }
+
     // https://leetcode.com/problems/count-vowel-substrings-of-a-string/
     fun countVowelSubstrings(s: String): Int {
         val vowels = "aeiou"

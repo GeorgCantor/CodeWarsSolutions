@@ -25,6 +25,19 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/check-if-numbers-are-ascending-in-a-sentence/
+    public boolean areNumbersAscending(String s) {
+        int l = Integer.MIN_VALUE;
+        for (String w : s.split(" ")) {
+            if (Character.isDigit(w.charAt(0))) {
+                if (l >= Integer.parseInt(w)) return false;
+                else l = Integer.parseInt(w);
+            }
+        }
+
+        return true;
+    }
+
     // https://leetcode.com/problems/count-vowel-substrings-of-a-string/
     public int countVowelSubstrings(String s) {
         Set<Character> set = new HashSet<>();
