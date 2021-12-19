@@ -12,6 +12,15 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
+    fun average(ar: IntArray) =
+        ar.sorted().drop(1).dropLast(1).map { it.toDouble() }.run { (sum() / size) }
+
+    // https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
+    fun isCovered(ar: Array<IntArray>, l: Int, r: Int) = (l..r).all { n ->
+        ar.any { n in it.first()..it.last() }
+    }
+
     // https://leetcode.com/problems/check-if-numbers-are-ascending-in-a-sentence/
     fun areNumbersAscending(s: String): Boolean {
         var l = Int.MIN_VALUE
