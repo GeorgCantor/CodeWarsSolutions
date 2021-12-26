@@ -25,6 +25,13 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/largest-odd-number-in-string/
+    public String largestOddNumber(String s) {
+        for (int i = s.length() - 1; i >= 0; i--)
+            if (s.charAt(i) % 2 == 1) return s.substring(0, i + 1);
+        return "";
+    }
+
     // https://leetcode.com/problems/check-if-numbers-are-ascending-in-a-sentence/
     public boolean areNumbersAscending(String s) {
         int l = Integer.MIN_VALUE;

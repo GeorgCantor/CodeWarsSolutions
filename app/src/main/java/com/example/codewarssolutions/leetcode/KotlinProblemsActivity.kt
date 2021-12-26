@@ -1845,7 +1845,10 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return result.toTypedArray()
     }
 
-    fun firstUniqChar(s: String): Int {
+    // https://leetcode.com/problems/first-unique-character-in-a-string/
+    fun firstUniqChar(s: String) = s.indexOfFirst { s.indexOf(it) == s.lastIndexOf(it) }
+
+    fun firstUniqChar2(s: String): Int {
         s.forEach {
             if (s.indexOf(it) == s.lastIndexOf(it)) return s.indexOf(it)
         }

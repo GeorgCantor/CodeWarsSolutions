@@ -12,6 +12,10 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/largest-odd-number-in-string/
+    fun largestOddNumber(s: String) =
+        s.substring(0, s.indexOfLast { it.toString().toInt() % 2 == 1 } + 1)
+
     // https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
     fun average(ar: IntArray) =
         ar.sorted().drop(1).dropLast(1).map { it.toDouble() }.run { (sum() / size) }
