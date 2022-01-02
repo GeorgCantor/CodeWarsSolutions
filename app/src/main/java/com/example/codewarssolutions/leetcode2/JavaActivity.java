@@ -25,6 +25,16 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
+    public String firstPalindrome(String[] ar) {
+        for (String s : ar) {
+            StringBuilder sb = new StringBuilder(s);
+            if (sb.reverse().toString().equals(s)) return s;
+        }
+
+        return "";
+    }
+
     // https://leetcode.com/problems/largest-odd-number-in-string/
     public String largestOddNumber(String s) {
         for (int i = s.length() - 1; i >= 0; i--)

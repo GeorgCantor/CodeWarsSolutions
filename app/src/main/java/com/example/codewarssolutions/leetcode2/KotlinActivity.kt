@@ -12,6 +12,9 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
+    fun firstPalindrome(ar: Array<String>) = ar.find { it.reversed() == it } ?: ""
+
     // https://leetcode.com/problems/largest-odd-number-in-string/
     fun largestOddNumber(s: String) =
         s.substring(0, s.indexOfLast { it.toString().toInt() % 2 == 1 } + 1)

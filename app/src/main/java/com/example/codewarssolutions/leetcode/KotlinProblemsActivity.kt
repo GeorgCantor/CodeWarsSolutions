@@ -1855,6 +1855,19 @@ class KotlinProblemsActivity : AppCompatActivity() {
         return -1
     }
 
+    fun firstUniqChar3(s: String): Int {
+        if (s.length == 1) return 0
+        for (i in s.indices) {
+            for (j in i + 1..s.lastIndex) {
+                if (s[i] == s[j]) break
+                if (j == s.lastIndex && s.count { it == s[i] } == 1) return i
+                if (i == s.lastIndex - 1 && s.count { it == s[j] } == 1) return j
+            }
+        }
+
+        return -1
+    }
+
     // https://leetcode.com/problems/fibonacci-number/
     fun fib(n: Int): Int {
         var one = 0
