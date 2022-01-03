@@ -12,6 +12,20 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    // https://leetcode.com/problems/sum-of-digits-of-string-after-convert/
+    fun getLucky(s: String, k: Int): Int {
+        val sb = StringBuilder()
+        s.forEach { sb.append((it - 'a') + 1) }
+        var sum = 0
+        for (i in 1..k) {
+            sum = sb.map { Character.getNumericValue(it) }.sum()
+            sb.setLength(0)
+            sb.append(sum.toString())
+        }
+
+        return sum
+    }
+
     // https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
     fun firstPalindrome(ar: Array<String>) = ar.find { it.reversed() == it } ?: ""
 

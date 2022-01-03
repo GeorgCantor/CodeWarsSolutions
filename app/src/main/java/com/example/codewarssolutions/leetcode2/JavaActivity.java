@@ -25,6 +25,21 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/sum-of-digits-of-string-after-convert/
+    public int getLucky(String s, int k) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) sb.append((c - 'a') + 1);
+        int sum = 0;
+        for (int i = 1; i <= k; i++) {
+            sum = 0;
+            for (char c : sb.toString().toCharArray()) sum += Character.getNumericValue(c);
+            sb.setLength(0);
+            sb.append(sum);
+        }
+
+        return sum;
+    }
+
     // https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
     public String firstPalindrome(String[] ar) {
         for (String s : ar) {
