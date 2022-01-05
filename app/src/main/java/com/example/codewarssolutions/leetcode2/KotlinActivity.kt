@@ -12,6 +12,19 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
+    
+
+    // https://leetcode.com/problems/design-an-ordered-stream/
+    class OrderedStream(n: Int) {
+        var i = 0
+        private val ar = arrayOfNulls<String>(n)
+
+        fun insert(idKey: Int, value: String) = mutableListOf<String>().apply {
+            ar[idKey - 1] = value
+            while (i < ar.size && ar[i] != null) add(ar[i++].orEmpty())
+        }
+    }
+
     // https://leetcode.com/problems/sum-of-digits-of-string-after-convert/
     fun getLucky(s: String, k: Int): Int {
         val sb = StringBuilder()

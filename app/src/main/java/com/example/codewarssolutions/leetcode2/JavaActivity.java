@@ -25,6 +25,25 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
     }
 
+    // https://leetcode.com/problems/design-an-ordered-stream/
+    class OrderedStream {
+        int i;
+        String[] ar;
+
+        public OrderedStream(int n) {
+            i = 0;
+            ar = new String[n];
+        }
+
+        public List<String> insert(int idKey, String value) {
+            List<String> list = new ArrayList<>();
+            ar[idKey - 1] = value;
+            while (i < ar.length && ar[i] != null) list.add(ar[i++]);
+
+            return list;
+        }
+    }
+
     // https://leetcode.com/problems/sum-of-digits-of-string-after-convert/
     public int getLucky(String s, int k) {
         StringBuilder sb = new StringBuilder();

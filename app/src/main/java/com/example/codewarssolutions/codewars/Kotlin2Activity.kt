@@ -15,6 +15,9 @@ class Kotlin2Activity : AppCompatActivity() {
 
     }
 
+    // https://www.codewars.com/kata/58235a167a8cb37e1a0000db
+    fun numberOfPairs(l: List<String>) = l.groupBy { it }.values.sumOf { it.size / 2 }
+
     // https://www.codewars.com/kata/61123a6f2446320021db987d
     fun prevMultOfThree(n: Int): Int? = n.toString().run {
         for (i in indices) dropLast(i).toInt().run { if (this % 3 == 0) return this }
