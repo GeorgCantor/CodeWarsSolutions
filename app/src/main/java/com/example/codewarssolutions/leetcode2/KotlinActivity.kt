@@ -12,7 +12,26 @@ class KotlinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin)
     }
 
-    
+    // https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/
+    fun checkString(s: String) = !s.contains("ba")
+
+    fun checkString2(s: String): Boolean {
+        for (i in 1..s.lastIndex) if (s[i - 1] == 'b' && s[i] == 'a') return false
+        return true
+    }
+
+    // https://leetcode.com/problems/relative-ranks/
+    fun findRelativeRanks(score: IntArray): Array<String> {
+        val ar = score.sortedDescending()
+        return score.map {
+            when (val i = ar.indexOf(it) + 1) {
+                1 -> "Gold Medal"
+                2 -> "Silver Medal"
+                3 -> "Bronze Medal"
+                else -> i.toString()
+            }
+        }.toTypedArray()
+    }
 
     // https://leetcode.com/problems/design-an-ordered-stream/
     class OrderedStream(n: Int) {
