@@ -1,13 +1,9 @@
 package com.example.codewarssolutions.codewars;
 
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.codewarssolutions.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,14 +17,7 @@ import java.util.Stack;
 import java.util.regex.Pattern;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class JavaActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_algo);
-
-    }
+public class Java {
 
     // 4 kyu Human readable duration format
     public static String formatDuration(int s) {

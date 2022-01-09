@@ -1,12 +1,11 @@
 package com.example.codewarssolutions.leetcode;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.joining;
+
 import android.os.Build;
-import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.codewarssolutions.R;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -22,18 +21,8 @@ import java.util.Stack;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.joining;
-
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class JavaProblemsActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_java_leet_code);
-
-    }
+public class Java {
 
     // https://leetcode.com/problems/palindrome-number/
     public boolean isPalindrome(int x) {

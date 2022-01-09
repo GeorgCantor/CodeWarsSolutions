@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.codewars;
+package com.example.codewarssolutions.codewars2;
 
 import static java.lang.Character.getNumericValue;
 import static java.util.function.UnaryOperator.identity;
@@ -6,12 +6,8 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 import android.os.Build;
-import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.codewarssolutions.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,13 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class Java2Activity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_java2);
-    }
+public class Java2 {
 
     public static String bumps2(final String road) {
         int c = 0;

@@ -1,11 +1,5 @@
 package com.example.codewarssolutions.leetcode2;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.codewarssolutions.R;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,13 +11,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-public class JavaActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_java);
-    }
+public class Java {
 
     // https://leetcode.com/problems/design-an-ordered-stream/
     class OrderedStream {
