@@ -13,6 +13,17 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
+    public int minPairSum(int[] ar) {
+        Arrays.sort(ar);
+        int max = Integer.MIN_VALUE;
+        for (int i = 0, j = ar.length - 1; i < ar.length / 2; i++) {
+            max = Math.max(max, ar[i] + ar[j--]);
+        }
+
+        return max;
+    }
+
     // https://leetcode.com/problems/design-an-ordered-stream/
     class OrderedStream {
         int i;

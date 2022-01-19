@@ -1,9 +1,6 @@
 package com.example.codewarssolutions.codewars;
 
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +13,6 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class Java {
 
     // 4 kyu Human readable duration format

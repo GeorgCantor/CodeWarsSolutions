@@ -5,10 +5,6 @@ import static java.util.function.UnaryOperator.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,10 +16,30 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class Java2 {
 
-    public static String bumps2(final String road) {
+    // https://www.codewars.com/kata/597bb84522bc93b71e00007e
+    public static String stringMerge(String s1, String s2, char c) {
+        return s1.substring(0, s1.indexOf(c)) + s2.substring(s2.indexOf(c));
+    }
+
+    public static String stringMerge2(String s1, String s2, char c) {
+        StringBuilder sb = new StringBuilder();
+        for (char ch : s1.toCharArray()) {
+            sb.append(ch);
+            if (ch == c) break;
+        }
+        boolean found = false;
+        for (char ch : s2.toCharArray()) {
+            if (found) sb.append(ch);
+            if (ch == c) found = true;
+        }
+
+        return sb.toString();
+    }
+
+    // https://www.codewars.com/kata/57ed30dde7728215300005fa
+    public static String bumps(final String road) {
         int c = 0;
         for (char ch : road.toCharArray()) {
             if (ch == 'n') c++;

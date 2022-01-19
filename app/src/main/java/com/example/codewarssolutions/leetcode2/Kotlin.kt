@@ -2,6 +2,15 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
+fun minPairSum(ar: IntArray): Int {
+    val a = ar.sorted()
+    var m = Int.MIN_VALUE
+    var j = ar.lastIndex
+    for (i in 0 until ar.size / 2) m = maxOf(m, a[i] + a[j--])
+    return m
+}
+
 // https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/
 fun checkString(s: String) = !s.contains("ba")
 

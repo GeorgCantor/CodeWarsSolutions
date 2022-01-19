@@ -3,10 +3,6 @@ package com.example.codewarssolutions.leetcode;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.joining;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +17,6 @@ import java.util.Stack;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class Java {
 
     // https://leetcode.com/problems/palindrome-number/
