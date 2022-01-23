@@ -18,6 +18,19 @@ import java.util.stream.IntStream;
 
 public class Java2 {
 
+    // https://www.codewars.com/kata/5a995c2aba1bb57f660001fd
+    public static String[] scrollingText(String text) {
+        String s = text.toUpperCase();
+        return IntStream.range(0, s.length()).mapToObj(i -> s.substring(i) + s.substring(0, i)).toArray(String[]::new);
+    }
+
+    public static String[] scrollingText2(String s) {
+        s = s.toUpperCase();
+        String[] a = new String[s.length()];
+        for (int i = 0; i < s.length(); i++) a[i] = s.substring(i) + s.substring(0, i);
+        return a;
+    }
+
     // https://www.codewars.com/kata/597bb84522bc93b71e00007e
     public static String stringMerge(String s1, String s2, char c) {
         return s1.substring(0, s1.indexOf(c)) + s2.substring(s2.indexOf(c));

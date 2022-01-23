@@ -13,6 +13,19 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/smallest-index-with-equal-value/
+    public int smallestEqual(int[] ar) {
+        for (int i = 0; i < ar.length; i++) if (i % 10 == ar[i]) return i;
+        return -1;
+    }
+
+    // https://leetcode.com/problems/excel-sheet-column-number/
+    public int titleToNumber(String s) {
+        int sum = 0;
+        for (char c : s.toCharArray()) sum = sum * 26 + (c - 'A' + 1);
+        return sum;
+    }
+
     // https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
     public int minPairSum(int[] ar) {
         Arrays.sort(ar);

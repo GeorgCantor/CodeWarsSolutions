@@ -2,6 +2,20 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/smallest-index-with-equal-value/
+fun smallestEqual(ar: IntArray) = ar.mapIndexed { i, n ->
+    if (i % 10 == n) i else null
+}.firstOrNull { it != null } ?: -1
+
+// https://leetcode.com/problems/excel-sheet-column-number/
+fun titleToNumber(s: String) = s.fold(0, { a, c -> a * 26 + (c - 'A' + 1) })
+
+fun titleToNumber2(s: String): Int {
+    var sum = 0
+    s.forEach { sum = sum * 26 + (it - 'A' + 1) }
+    return sum
+}
+
 // https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
 fun minPairSum(ar: IntArray): Int {
     val a = ar.sorted()
