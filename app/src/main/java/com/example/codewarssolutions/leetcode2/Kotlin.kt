@@ -2,6 +2,13 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/capitalize-the-title/
+fun capitalizeTitle(s: String) = s.split(" ").joinToString(" ") {
+    if (it.length > 2) {
+        it.mapIndexed { i, c -> if (i == 0) c.toUpperCase() else c.toLowerCase() }.joinToString("")
+    } else it.toLowerCase()
+}
+
 // https://leetcode.com/problems/smallest-index-with-equal-value/
 fun smallestEqual(ar: IntArray) = ar.mapIndexed { i, n ->
     if (i % 10 == n) i else null

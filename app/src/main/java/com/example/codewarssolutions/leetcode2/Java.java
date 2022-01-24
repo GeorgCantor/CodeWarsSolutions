@@ -13,6 +13,24 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/capitalize-the-title/
+    public String capitalizeTitle(String s) {
+        List<String> list = new ArrayList<>();
+        for (String w : s.split(" ")) {
+            StringBuilder sb = new StringBuilder();
+            if (w.length() > 2) {
+                for (int i = 0; i < w.length(); i++) {
+                    if (i == 0) sb.append(Character.toUpperCase(w.toCharArray()[i]));
+                    else sb.append(Character.toLowerCase(w.toCharArray()[i]));
+                }
+                list.add(sb.toString());
+            } else {
+                list.add(w.toLowerCase());
+            }
+        }
+        return String.join(" ", list);
+    }
+
     // https://leetcode.com/problems/smallest-index-with-equal-value/
     public int smallestEqual(int[] ar) {
         for (int i = 0; i < ar.length; i++) if (i % 10 == ar[i]) return i;
