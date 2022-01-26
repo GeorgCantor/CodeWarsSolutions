@@ -4,13 +4,11 @@ import java.util.*
 
 // https://leetcode.com/problems/verifying-an-alien-dictionary/
 fun isAlienSorted(ar: Array<String>, s: String): Boolean {
-    val map = mutableMapOf<Char, Int>()
-    for ((i, c) in s.withIndex()) map[c] = i
     fun String.isOrdered(w: String): Boolean {
         var i = 0
         var j = 0
         while (i < this.length && j < w.length) {
-            if (this[i] != w[j]) return map[this[i]]!! < map[w[j]]!!
+            if (this[i] != w[j]) return s.indexOf(this[i]) < s.indexOf(w[j])
             i++; j++
         }
         return this.length <= w.length
