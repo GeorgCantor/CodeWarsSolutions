@@ -2,6 +2,23 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/verifying-an-alien-dictionary/
+fun isAlienSorted(ar: Array<String>, s: String): Boolean {
+    val map = mutableMapOf<Char, Int>()
+    for ((i, c) in s.withIndex()) map[c] = i
+    fun String.isOrdered(w: String): Boolean {
+        var i = 0
+        var j = 0
+        while (i < this.length && j < w.length) {
+            if (this[i] != w[j]) return map[this[i]]!! < map[w[j]]!!
+            i++; j++
+        }
+        return this.length <= w.length
+    }
+    for (i in 0 until ar.size - 1) if (!ar[i].isOrdered(ar[i + 1])) return false
+    return true
+}
+
 // https://leetcode.com/problems/capitalize-the-title/
 fun capitalizeTitle(s: String) = s.split(" ").joinToString(" ") {
     if (it.length > 2) {
@@ -523,7 +540,9 @@ fun peakIndexInMountainArray2(a: IntArray): Int {
 fun findKthLargest(nums: IntArray, k: Int) = nums.sortedDescending()[k - 1]
 
 // https://leetcode.com/problems/find-lucky-integer-in-an-array/
-fun findLucky(a: IntArray) =
+fun findLucky(ar: IntArray) = ar.sorted().findLast { n -> n == ar.count { it == n } } ?: -1
+
+fun findLucky2(a: IntArray) =
     a.sortedDescending().firstOrNull { n -> n == a.count { it == n } } ?: -1
 
 // https://leetcode.com/problems/next-greater-element-i/

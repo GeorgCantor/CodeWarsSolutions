@@ -13,6 +13,17 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/find-lucky-integer-in-an-array/
+    public int findLucky(int[] ar) {
+        Arrays.sort(ar);
+        for (int i = ar.length - 1; i >= 0; i--) {
+            int num = ar[i];
+            int f = (int) Arrays.stream(ar).filter(n -> n == num).count();
+            if (f == num) return num;
+        }
+        return -1;
+    }
+
     // https://leetcode.com/problems/capitalize-the-title/
     public String capitalizeTitle(String s) {
         List<String> list = new ArrayList<>();
