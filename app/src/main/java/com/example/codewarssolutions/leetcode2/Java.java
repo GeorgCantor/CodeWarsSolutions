@@ -13,6 +13,14 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/kth-distinct-string-in-an-array/
+    public String kthDistinct(String[] ar, int k) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : ar) map.put(s, map.getOrDefault(s, 0) + 1);
+        List<String> l = Arrays.stream(ar).filter(s -> map.get(s) == 1).collect(Collectors.toList());
+        return k <= l.size() ? l.get(k - 1) : "";
+    }
+
     // https://leetcode.com/problems/find-lucky-integer-in-an-array/
     public int findLucky(int[] ar) {
         Arrays.sort(ar);

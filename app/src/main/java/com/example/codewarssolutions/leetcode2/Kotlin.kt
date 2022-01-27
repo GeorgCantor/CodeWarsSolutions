@@ -2,6 +2,13 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/kth-distinct-string-in-an-array/
+fun kthDistinct(
+    a: Array<String>,
+    k: Int
+) = a.groupingBy { it }.eachCount().filter { it.value == 1 }.keys.elementAtOrElse(k - 1) { "" }
+
+
 // https://leetcode.com/problems/verifying-an-alien-dictionary/
 fun isAlienSorted(ar: Array<String>, s: String): Boolean {
     fun String.isOrdered(w: String): Boolean {
