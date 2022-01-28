@@ -18,6 +18,13 @@ import java.util.stream.IntStream;
 
 public class Java2 {
 
+    // https://www.codewars.com/kata/5b39e91ee7a2c103300018b3
+    public static String removeConsecutiveDuplicates(String s) {
+        Stack<String> st = new Stack<>();
+        for (String w : s.split(" ")) if (st.isEmpty() || !st.peek().equals(w)) st.push(w);
+        return String.join(" ", st);
+    }
+
     // https://www.codewars.com/kata/5a995c2aba1bb57f660001fd
     public static String[] scrollingText(String text) {
         String s = text.toUpperCase();

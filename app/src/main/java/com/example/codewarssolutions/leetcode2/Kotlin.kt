@@ -2,6 +2,12 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/toeplitz-matrix/
+fun isToeplitzMatrix(a: Array<IntArray>): Boolean {
+    for (i in 0 until a.lastIndex) for (j in 0 until a[i].lastIndex) if (a[i][j] != a[i + 1][j + 1]) return false
+    return true
+}
+
 // https://leetcode.com/problems/kth-distinct-string-in-an-array/
 fun kthDistinct(
     a: Array<String>,

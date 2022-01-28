@@ -13,6 +13,14 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/toeplitz-matrix/
+    public boolean isToeplitzMatrix(int[][] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = 0; j < a[i].length - 1; j++) if (a[i][j] != a[i + 1][j + 1]) return false;
+        }
+        return true;
+    }
+
     // https://leetcode.com/problems/kth-distinct-string-in-an-array/
     public String kthDistinct(String[] ar, int k) {
         Map<String, Integer> map = new HashMap<>();
