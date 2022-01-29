@@ -4,6 +4,7 @@ import static java.lang.Character.getNumericValue;
 import static java.util.function.UnaryOperator.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.IntStream.of;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,28 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Java2 {
+
+    // https://www.codewars.com/kata/5809c661f15835266900010a
+    public static int[] doubleEveryOther(int[] a) {
+        return IntStream.range(0, a.length).map(i -> i % 2 == 0 ? a[i] : a[i] * 2).toArray();
+    }
+
+    public static int[] doubleEveryOther2(int[] a) {
+        for (int i = 1; i < a.length; i += 2) a[i] *= 2;
+        return a;
+    }
+
+    // https://www.codewars.com/kata/556196a6091a7e7f58000018
+    public static int largestPairSum(int[] a) {
+        return IntStream.of(a).boxed().sorted(Comparator.reverseOrder()).limit(2).mapToInt(Integer::intValue).sum();
+    }
+
+    public static int largestPairSum2(int[] a) {
+        int m = Integer.MIN_VALUE;
+        for (int i = 0; i < a.length; i++)
+            for (int j = i + 1; j < a.length; j++) m = Math.max(a[i] + a[j], m);
+        return m;
+    }
 
     // https://www.codewars.com/kata/5b39e91ee7a2c103300018b3
     public static String removeConsecutiveDuplicates(String s) {
@@ -190,7 +213,7 @@ public class Java2 {
     }
 
     public static int findDeletedNumber2(int[] ar, int[] mAr) {
-        return IntStream.of(ar).sum() - IntStream.of(mAr).sum();
+        return of(ar).sum() - of(mAr).sum();
     }
 
     // https://www.codewars.com/kata/585a1a227cb58d8d740001c3
@@ -230,7 +253,7 @@ public class Java2 {
             i--;
         }
 
-        return IntStream.of(ar).sum() % 10 == 0;
+        return of(ar).sum() % 10 == 0;
     }
 
     // https://www.codewars.com/kata/5ac95cb05624bac42e000005
