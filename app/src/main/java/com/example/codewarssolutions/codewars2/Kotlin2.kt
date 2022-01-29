@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.codewars
+package com.example.codewarssolutions.codewars2
 
 import java.util.*
 import kotlin.collections.HashMap

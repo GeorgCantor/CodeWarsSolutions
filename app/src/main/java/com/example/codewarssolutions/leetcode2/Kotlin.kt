@@ -2,6 +2,22 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
+fun checkZeroOnes(s: String): Boolean {
+    var oMax = 0
+    var lMax = 0
+    var o = 0
+    var l = 0
+    s.forEach {
+        if (it == '0') {
+            o++; if (l > 0 && l > lMax) lMax = l; l = 0
+        } else {
+            l++; if (o > 0 && o > oMax) oMax = o; o = 0
+        }
+    }
+    return maxOf(l, lMax) > maxOf(o, oMax)
+}
+
 // https://leetcode.com/problems/toeplitz-matrix/
 fun isToeplitzMatrix(a: Array<IntArray>): Boolean {
     for (i in 0 until a.lastIndex) for (j in 0 until a[i].lastIndex) if (a[i][j] != a[i + 1][j + 1]) return false

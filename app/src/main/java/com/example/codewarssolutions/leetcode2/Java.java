@@ -13,6 +13,23 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
+    public boolean checkZeroOnes(String s) {
+        int oMax = 0, lMax = 0, o = 0, l = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == '0') {
+                o++;
+                if (l > 0 && l > lMax) lMax = l;
+                l = 0;
+            } else {
+                l++;
+                if (o > 0 && o > oMax) oMax = o;
+                o = 0;
+            }
+        }
+        return Math.max(l, lMax) > Math.max(o, oMax);
+    }
+
     // https://leetcode.com/problems/toeplitz-matrix/
     public boolean isToeplitzMatrix(int[][] a) {
         for (int i = 0; i < a.length - 1; i++) {
