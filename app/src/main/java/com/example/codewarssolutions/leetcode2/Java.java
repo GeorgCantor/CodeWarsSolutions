@@ -13,6 +13,11 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/
+    public int minPartitions(String n) {
+        return n.chars().max().getAsInt() - '0';
+    }
+
     // https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
     public boolean checkZeroOnes(String s) {
         int oMax = 0, lMax = 0, o = 0, l = 0;

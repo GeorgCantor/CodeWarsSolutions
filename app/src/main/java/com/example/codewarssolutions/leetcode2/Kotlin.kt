@@ -2,6 +2,49 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/defuse-the-bomb/
+fun decrypt(a: IntArray, k: Int): IntArray {
+    val ar = IntArray(a.size)
+    if (k == 0) return ar
+    if (k > 0) {
+        for (i in 0..a.lastIndex) {
+            var ind = i
+            val list = mutableListOf<Int>()
+            ind++
+            repeat(k) {
+                if (ind <= a.lastIndex) {
+                    list.add(a[ind++])
+                } else {
+                    ind = 0
+                    list.add(a[ind++])
+                }
+            }
+            ar[i] = list.sum()
+        }
+    } else {
+        var ind = a.size - (k * -1)
+        for (i in 0..a.lastIndex) {
+            if (i != 0) ind++
+            val list = mutableListOf<Int>()
+            val temp = ind
+            repeat(k * -1) {
+                if (ind <= a.lastIndex) {
+                    list.add(a[ind++])
+                } else {
+                    if (ind == a.size) ind = 0 else ind -= a.size
+                    list.add(a[ind++])
+                }
+            }
+            ar[i] = list.sum()
+            ind = temp
+        }
+    }
+    return ar
+}
+
+// https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/
+fun minPartitions(n: String) = Character.getNumericValue(n.chars().max().asInt)
+
 // https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
 fun checkZeroOnes(s: String): Boolean {
     var oMax = 0

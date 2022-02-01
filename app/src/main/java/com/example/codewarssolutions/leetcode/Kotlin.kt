@@ -1,11 +1,6 @@
 package com.example.codewarssolutions.leetcode
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.codewarssolutions.R
 import java.util.*
-import kotlin.collections.HashMap
-import kotlin.collections.HashSet
 import kotlin.math.abs
 
 // https://leetcode.com/problems/valid-palindrome/
@@ -1543,24 +1538,17 @@ fun quickSort(items: List<Int>): List<Int> {
 }
 
 // https://leetcode.com/problems/valid-parentheses/
-fun isValid(s: String): Boolean {
-    val stack = Stack<Char>()
-    s.reversed().forEach {
+fun isValid(w: String): Boolean {
+    val s = Stack<Char>()
+    w.reversed().forEach {
         when (it) {
-            '(' -> if (stack.isNotEmpty() && stack.peek() == ')') stack.pop() else stack.push(
-                it
-            )
-            '[' -> if (stack.isNotEmpty() && stack.peek() == ']') stack.pop() else stack.push(
-                it
-            )
-            '{' -> if (stack.isNotEmpty() && stack.peek() == '}') stack.pop() else stack.push(
-                it
-            )
-            else -> stack.push(it)
+            '(' -> if (s.isNotEmpty() && s.peek() == ')') s.pop() else s.push(it)
+            '[' -> if (s.isNotEmpty() && s.peek() == ']') s.pop() else s.push(it)
+            '{' -> if (s.isNotEmpty() && s.peek() == '}') s.pop() else s.push(it)
+            else -> s.push(it)
         }
     }
-
-    return stack.isEmpty()
+    return s.isEmpty()
 }
 
 // https://leetcode.com/problems/search-insert-position/

@@ -2,7 +2,7 @@ package com.example.codewarssolutions
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.codewarssolutions.leetcode2.checkZeroOnes
+import com.example.codewarssolutions.leetcode2.decrypt
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        checkZeroOnes("0111010011")
+        decrypt(intArrayOf(2, 4, 9, 3), -2)
     }
 }
