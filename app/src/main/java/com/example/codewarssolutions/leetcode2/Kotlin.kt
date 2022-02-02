@@ -2,41 +2,51 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/destination-city/
+fun destCity(l: List<List<String>>) = l.flatten().filterIndexed { i, _ -> i % 2 == 1 }.find {
+    !l.flatten().filterIndexed { i, _ -> i % 2 == 0 }.contains(it)
+}
+
+fun destCity2(l: List<List<String>>): String {
+    val m = mutableListOf<String>()
+    val f = l.flatten().filterIndexed { i, s -> if (i % 2 == 1) m.add(s); i % 2 == 0 }
+    return m.find { !f.contains(it) }.orEmpty()
+}
+
+// https://leetcode.com/problems/happy-number/
+fun isHappy(n: Int): Boolean {
+    var r = n
+    while (r != 1 && r != 4) r = r.toString().sumBy { (it - '0') * (it - '0') }
+    return r == 1
+}
+
 // https://leetcode.com/problems/defuse-the-bomb/
 fun decrypt(a: IntArray, k: Int): IntArray {
     val ar = IntArray(a.size)
     if (k == 0) return ar
     if (k > 0) {
         for (i in 0..a.lastIndex) {
-            var ind = i
+            var j = i
             val list = mutableListOf<Int>()
-            ind++
+            j++
             repeat(k) {
-                if (ind <= a.lastIndex) {
-                    list.add(a[ind++])
-                } else {
-                    ind = 0
-                    list.add(a[ind++])
-                }
+                if (j > a.lastIndex) j = 0
+                list.add(a[j++])
             }
             ar[i] = list.sum()
         }
     } else {
-        var ind = a.size - (k * -1)
+        var j = a.size - (k * -1)
         for (i in 0..a.lastIndex) {
-            if (i != 0) ind++
+            if (i != 0) j++
             val list = mutableListOf<Int>()
-            val temp = ind
+            val temp = j
             repeat(k * -1) {
-                if (ind <= a.lastIndex) {
-                    list.add(a[ind++])
-                } else {
-                    if (ind == a.size) ind = 0 else ind -= a.size
-                    list.add(a[ind++])
-                }
+                if (j > a.lastIndex) if (j == a.size) j = 0 else j -= a.size
+                list.add(a[j++])
             }
             ar[i] = list.sum()
-            ind = temp
+            j = temp
         }
     }
     return ar

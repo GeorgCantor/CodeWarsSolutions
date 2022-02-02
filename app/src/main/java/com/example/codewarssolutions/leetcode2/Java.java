@@ -13,6 +13,13 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/happy-number/
+    public boolean isHappy(int n) {
+        while (n != 1 && n != 4)
+            n = String.valueOf(n).chars().map(c -> (c - '0') * (c - '0')).sum();
+        return n == 1;
+    }
+
     // https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/
     public int minPartitions(String n) {
         return n.chars().max().getAsInt() - '0';
