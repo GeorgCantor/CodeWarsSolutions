@@ -13,6 +13,51 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/positions-of-large-groups/submissions/
+    public List<List<Integer>> largeGroupPositions(String s) {
+        List<List<Integer>> l = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        sb.append(s.charAt(0));
+        int j = 0;
+        for (int i = 1; i < s.length(); i++) {
+            if (sb.toString().isEmpty()) {
+                sb.append(s.charAt(i));
+                j = i;
+            } else if (sb.toString().contains(String.valueOf(s.charAt(i)))) {
+                sb.append(s.charAt(i));
+                if (i == s.length() - 1 && sb.toString().length() > 2) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(j);
+                    list.add(i);
+                    l.add(list);
+                }
+            } else {
+                if (sb.toString().length() > 2) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(j);
+                    list.add(i - 1);
+                    l.add(list);
+                }
+                sb.setLength(0);
+                sb.append(s.charAt(i));
+                j = i;
+            }
+        }
+        return l;
+    }
+
+    // https://leetcode.com/problems/last-stone-weight/
+    public int lastStoneWeight(int[] a) {
+        if (a.length == 1) return a[0];
+        Arrays.sort(a);
+        while (a[a.length - 2] > 0) {
+            a[a.length - 1] -= a[a.length - 2];
+            a[a.length - 2] -= a[a.length - 2];
+            Arrays.sort(a);
+        }
+        return a[a.length - 1];
+    }
+
     // https://leetcode.com/problems/happy-number/
     public boolean isHappy(int n) {
         while (n != 1 && n != 4)

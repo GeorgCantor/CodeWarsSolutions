@@ -2,6 +2,44 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/positions-of-large-groups/
+fun largeGroupPositions(s: String): List<List<Int>> {
+    val l = mutableListOf<List<Int>>()
+    val sb = StringBuilder().append(s.first())
+    var j = 0
+    for (i in 1..s.lastIndex) {
+        when {
+            sb.isEmpty() -> {
+                sb.append(s[i])
+                j = i
+            }
+            sb.contains(s[i]) -> {
+                sb.append(s[i])
+                if (i == s.lastIndex && sb.length > 2) l.add(listOf(j, i))
+            }
+            else -> {
+                if (sb.length > 2) l.add(listOf(j, i - 1))
+                sb.setLength(0)
+                sb.append(s[i])
+                j = i
+            }
+        }
+    }
+    return l
+}
+
+// https://leetcode.com/problems/last-stone-weight/
+fun lastStoneWeight(a: IntArray): Int {
+    if (a.size == 1) return a.first()
+    a.sort()
+    while (a[a.lastIndex - 1] > 0) {
+        a[a.lastIndex] -= a[a.lastIndex - 1]
+        a[a.lastIndex - 1] -= a[a.lastIndex - 1]
+        a.sort()
+    }
+    return a.last()
+}
+
 // https://leetcode.com/problems/destination-city/
 fun destCity(l: List<List<String>>) = l.flatten().filterIndexed { i, _ -> i % 2 == 1 }.find {
     !l.flatten().filterIndexed { i, _ -> i % 2 == 0 }.contains(it)
