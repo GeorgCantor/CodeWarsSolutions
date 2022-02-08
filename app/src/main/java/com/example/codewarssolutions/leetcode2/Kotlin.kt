@@ -2,6 +2,24 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+fun check(a: IntArray): Boolean {
+    var c = 0
+    for (i in 1..a.lastIndex) if (a[i - 1] > a[i]) c++
+    if (a.first() < a.last()) c++
+    return c <= 1
+}
+
+// https://leetcode.com/problems/monotonic-array/
+fun isMonotonic(a: IntArray): Boolean {
+    if (a.first() > a.last()) {
+        for (i in 1..a.lastIndex) if (a[i - 1] < a[i]) return false
+    } else {
+        for (i in 1..a.lastIndex) if (a[i - 1] > a[i]) return false
+    }
+    return true
+}
+
 // https://leetcode.com/problems/positions-of-large-groups/
 fun largeGroupPositions(s: String): List<List<Int>> {
     val l = mutableListOf<List<Int>>()

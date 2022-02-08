@@ -13,6 +13,24 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+    public boolean check(int[] a) {
+        int c = 0;
+        for (int i = 1; i < a.length; i++) if (a[i - 1] > a[i]) c++;
+        if (a[0] < a[a.length - 1]) c++;
+        return c <= 1;
+    }
+
+    // https://leetcode.com/problems/monotonic-array/
+    public boolean isMonotonic(int[] a) {
+        if (a[0] > a[a.length - 1]) {
+            for (int i = 1; i < a.length; i++) if (a[i - 1] < a[i]) return false;
+        } else {
+            for (int i = 1; i < a.length; i++) if (a[i - 1] > a[i]) return false;
+        }
+        return true;
+    }
+
     // https://leetcode.com/problems/positions-of-large-groups/submissions/
     public List<List<Integer>> largeGroupPositions(String s) {
         List<List<Integer>> l = new ArrayList<>();
