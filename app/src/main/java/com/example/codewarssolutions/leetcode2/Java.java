@@ -13,11 +13,17 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/keep-multiplying-found-values-by-two/
+    public int findFinalValue(int[] ar, int o) {
+        Arrays.sort(ar);
+        for (int n : ar) if (n == o) o *= 2;
+        return o;
+    }
+
     // https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
     public boolean check(int[] a) {
-        int c = 0;
+        int c = a[0] < a[a.length - 1] ? 1 : 0;
         for (int i = 1; i < a.length; i++) if (a[i - 1] > a[i]) c++;
-        if (a[0] < a[a.length - 1]) c++;
         return c <= 1;
     }
 

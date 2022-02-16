@@ -2,11 +2,17 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/keep-multiplying-found-values-by-two/
+fun findFinalValue(ar: IntArray, o: Int): Int {
+    var n = o
+    while (ar.contains(n)) n *= 2
+    return n
+}
+
 // https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
 fun check(a: IntArray): Boolean {
-    var c = 0
+    var c = if (a.first() < a.last()) 1 else 0
     for (i in 1..a.lastIndex) if (a[i - 1] > a[i]) c++
-    if (a.first() < a.last()) c++
     return c <= 1
 }
 
