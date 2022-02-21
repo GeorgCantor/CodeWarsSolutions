@@ -2,6 +2,9 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/flipping-an-image/
+fun flipAndInvertImage(a: Array<IntArray>) = a.map { it.map { if (it == 0) 1 else 0 }.reversed() }
+
 // https://leetcode.com/problems/keep-multiplying-found-values-by-two/
 fun findFinalValue(ar: IntArray, o: Int): Int {
     var n = o

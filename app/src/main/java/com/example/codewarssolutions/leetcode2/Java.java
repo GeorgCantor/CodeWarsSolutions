@@ -13,6 +13,25 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/flipping-an-image/
+    public int[][] flipAndInvertImage(int[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                if (a[i][j] == 0) a[i][j]++;
+                else a[i][j]--;
+            }
+            int[] ar = new int[a[i].length];
+            for (int k = a[i].length - 1, l = 0; k >= 0; k--, l++) ar[l] = a[i][k];
+            a[i] = ar;
+        }
+        return a;
+    }
+
+    // https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
+    public boolean arrayStringsAreEqual(String[] a1, String[] a2) {
+        return String.join("", a1).equals(String.join("", a2));
+    }
+
     // https://leetcode.com/problems/keep-multiplying-found-values-by-two/
     public int findFinalValue(int[] ar, int o) {
         Arrays.sort(ar);
