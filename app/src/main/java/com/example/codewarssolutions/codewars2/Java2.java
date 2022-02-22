@@ -19,6 +19,18 @@ import java.util.stream.IntStream;
 
 public class Java2 {
 
+    // https://www.codewars.com/kata/58c9322bedb4235468000019
+    public static boolean isVeryEvenNumber(int n) {
+        while (n > 9) {
+            int a = 0;
+            for (char c : String.valueOf(n).toCharArray()) {
+                a += Character.getNumericValue(c);
+            }
+            n = a;
+        }
+        return n % 2 == 0;
+    }
+
     // https://www.codewars.com/kata/5809c661f15835266900010a
     public static int[] doubleEveryOther(int[] a) {
         return IntStream.range(0, a.length).map(i -> i % 2 == 0 ? a[i] : a[i] * 2).toArray();

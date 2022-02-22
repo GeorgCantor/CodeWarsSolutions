@@ -2,6 +2,13 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
+fun countKDifference(a: IntArray, k: Int): Int {
+    var c = 0
+    for (i in a.indices) for (j in i + 1..a.lastIndex) if (a[i] - a[j] == k || a[j] - a[i] == k) c++
+    return c
+}
+
 // https://leetcode.com/problems/flipping-an-image/
 fun flipAndInvertImage(a: Array<IntArray>) = a.map { it.map { if (it == 0) 1 else 0 }.reversed() }
 
