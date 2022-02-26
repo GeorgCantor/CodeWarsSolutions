@@ -1,7 +1,6 @@
 package com.example.codewarssolutions.codewars2
 
 import java.util.*
-import kotlin.collections.HashMap
 import kotlin.math.pow
 
 // https://www.codewars.com/kata/58235a167a8cb37e1a0000db

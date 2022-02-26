@@ -13,6 +13,32 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/
+    public boolean checkValid(int[][] a) {
+        for (int[] ar : a) {
+            Set<Integer> s = new HashSet<>();
+            for (int j : ar) if (!s.add(j)) return false;
+        }
+        for (int i = 0; i < a.length; i++) {
+            Set<Integer> s = new HashSet<>();
+            for (int[] ar : a) if (!s.add(ar[i])) return false;
+        }
+        return true;
+    }
+
+    // https://leetcode.com/problems/build-an-array-with-stack-operations/
+    public List<String> buildArray(int[] a, int n) {
+        List<String> l = new ArrayList<>();
+        int j = 0;
+        for (int i = 1; i <= n; i++) {
+            l.add("Push");
+            if (a[j] != i) l.add("Pop");
+            else if (j != a.length - 1) j++;
+            else return l;
+        }
+        return l;
+    }
+
     // https://leetcode.com/problems/flipping-an-image/
     public int[][] flipAndInvertImage(int[][] a) {
         for (int i = 0; i < a.length; i++) {

@@ -2,6 +2,30 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/
+fun checkValid(a: Array<IntArray>): Boolean {
+    a.forEach {
+        val s = hashSetOf<Int>()
+        it.forEach { if (!s.add(it)) return false }
+    }
+    for (i in a.indices) {
+        val s = hashSetOf<Int>()
+        a.forEach { if (!s.add(it[i])) return false }
+    }
+    return true
+}
+
+// https://leetcode.com/problems/build-an-array-with-stack-operations/
+fun buildArray(a: IntArray, n: Int): List<String> {
+    val l = mutableListOf<String>()
+    var j = 0
+    for (i in 1..n) {
+        l.add("Push")
+        if (a[j] != i) l.add("Pop") else if (j != a.lastIndex) j++ else return l
+    }
+    return l
+}
+
 // https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
 fun countKDifference(a: IntArray, k: Int): Int {
     var c = 0
