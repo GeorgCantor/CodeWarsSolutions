@@ -2,6 +2,14 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
+    a.forEach { ar ->
+        val m = ar.minOrNull() ?: 0
+        if (a.all { it[ar.indexOf(m)] <= m }) add(m)
+    }
+}
+
 // https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/
 fun checkValid(a: Array<IntArray>): Boolean {
     a.forEach {

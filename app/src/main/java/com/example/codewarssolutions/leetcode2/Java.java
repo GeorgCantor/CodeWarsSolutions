@@ -13,6 +13,25 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+    public List<Integer> luckyNumbers(int[][] a) {
+        List<Integer> l = new ArrayList<>();
+        loop:
+        for (int[] ar : a) {
+            int min = Integer.MAX_VALUE;
+            int minI = 0;
+            for (int j = 0; j < ar.length; j++) {
+                if (ar[j] < min) {
+                    min = ar[j];
+                    minI = j;
+                }
+            }
+            for (int[] n : a) if (n[minI] > min) continue loop;
+            l.add(min);
+        }
+        return l;
+    }
+
     // https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/
     public boolean checkValid(int[][] a) {
         for (int[] ar : a) {
