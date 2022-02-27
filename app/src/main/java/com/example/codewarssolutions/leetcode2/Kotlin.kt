@@ -2,6 +2,17 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/sort-even-and-odd-indices-independently/
+fun sortEvenOdd(a: IntArray): IntArray {
+    val l1 = a.filterIndexed { i, _ -> i % 2 == 0 }.sorted()
+    val l2 = a.filterIndexed { i, _ -> i % 2 != 0 }.sortedDescending()
+    val ar = IntArray(a.size)
+    var i1 = 0
+    var i2 = 0
+    for (i in a.indices) if (i % 2 == 0) ar[i] = l1[i1++] else ar[i] = l2[i2++]
+    return ar
+}
+
 // https://leetcode.com/problems/lucky-numbers-in-a-matrix/
 fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
     a.forEach { ar ->

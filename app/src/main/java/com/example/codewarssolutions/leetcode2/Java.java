@@ -13,6 +13,26 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/sort-even-and-odd-indices-independently/
+    public int[] sortEvenOdd(int[] a) {
+        List<Integer> l1 = new ArrayList<>();
+        List<Integer> l2 = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
+            if (i % 2 == 0) l1.add(a[i]);
+            else l2.add(a[i]);
+        }
+        Collections.sort(l1);
+        l2.sort(Collections.reverseOrder());
+        int[] ar = new int[a.length];
+        int i1 = 0;
+        int i2 = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (i % 2 == 0) ar[i] = l1.get(i1++);
+            else ar[i] = l2.get(i2++);
+        }
+        return ar;
+    }
+
     // https://leetcode.com/problems/lucky-numbers-in-a-matrix/
     public List<Integer> luckyNumbers(int[][] a) {
         List<Integer> l = new ArrayList<>();
