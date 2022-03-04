@@ -2,6 +2,9 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/counting-words-with-a-given-prefix/
+fun prefixCount(a: Array<String>, p: String) = a.count { it.startsWith(p) }
+
 // https://leetcode.com/problems/sort-even-and-odd-indices-independently/
 fun sortEvenOdd(a: IntArray): IntArray {
     val l1 = a.filterIndexed { i, _ -> i % 2 == 0 }.sorted()

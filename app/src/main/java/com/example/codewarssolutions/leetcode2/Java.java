@@ -13,6 +13,11 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/counting-words-with-a-given-prefix/
+    public int prefixCount(String[] a, String p) {
+        return (int) Arrays.stream(a).filter(ar -> ar.startsWith(p)).count();
+    }
+
     // https://leetcode.com/problems/sort-even-and-odd-indices-independently/
     public int[] sortEvenOdd(int[] a) {
         List<Integer> l1 = new ArrayList<>();
