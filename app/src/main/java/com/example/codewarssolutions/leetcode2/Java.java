@@ -38,6 +38,32 @@ public class Java {
         return ar;
     }
 
+    // https://leetcode.com/problems/path-crossing/
+    public boolean isPathCrossing(String s) {
+        int x = 0, y = 0;
+        Set<String> set = new HashSet<>();
+        set.add("0,0");
+        for (char c : s.toCharArray()) {
+            switch (c) {
+                case 'N':
+                    x++;
+                    break;
+                case 'S':
+                    x--;
+                    break;
+                case 'E':
+                    y++;
+                    break;
+                case 'W':
+                    y--;
+                    break;
+            }
+            if (set.contains(x + "," + y)) return true;
+            else set.add(x + "," + y);
+        }
+        return false;
+    }
+
     // https://leetcode.com/problems/lucky-numbers-in-a-matrix/
     public List<Integer> luckyNumbers(int[][] a) {
         List<Integer> l = new ArrayList<>();

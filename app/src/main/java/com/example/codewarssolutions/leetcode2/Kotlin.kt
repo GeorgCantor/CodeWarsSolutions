@@ -24,6 +24,23 @@ fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
     }
 }
 
+// https://leetcode.com/problems/path-crossing/
+fun isPathCrossing(path: String): Boolean {
+    var x = 0
+    var y = 0
+    val s = mutableSetOf<String>().apply { add("0,0") }
+    path.forEach {
+        when (it) {
+            'N' -> x++
+            'S' -> x--
+            'E' -> y++
+            'W' -> y--
+        }
+        if (s.contains("$x,$y")) return true else s.add("$x,$y")
+    }
+    return false
+}
+
 // https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/
 fun checkValid(a: Array<IntArray>): Boolean {
     a.forEach {
