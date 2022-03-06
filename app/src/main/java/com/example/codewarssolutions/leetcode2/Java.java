@@ -13,6 +13,13 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/build-array-from-permutation/
+    public int[] buildArray(int[] a) {
+        int[] ar = new int[a.length];
+        for (int i = 0; i < a.length; i++) ar[i] = a[a[i]];
+        return ar;
+    }
+
     // https://leetcode.com/problems/counting-words-with-a-given-prefix/
     public int prefixCount(String[] a, String p) {
         return (int) Arrays.stream(a).filter(ar -> ar.startsWith(p)).count();
@@ -34,6 +41,15 @@ public class Java {
         for (int i = 0; i < a.length; i++) {
             if (i % 2 == 0) ar[i] = l1.get(i1++);
             else ar[i] = l2.get(i2++);
+        }
+        return ar;
+    }
+
+    // https://leetcode.com/problems/transpose-matrix/
+    public int[][] transpose(int[][] a) {
+        int[][] ar = new int[a[0].length][a.length];
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) ar[j][i] = a[i][j];
         }
         return ar;
     }

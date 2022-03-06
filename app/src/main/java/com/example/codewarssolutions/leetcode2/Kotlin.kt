@@ -2,6 +2,9 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/build-array-from-permutation/
+fun buildArray(a: IntArray) = IntArray(a.size) { a[a[it]] }
+
 // https://leetcode.com/problems/counting-words-with-a-given-prefix/
 fun prefixCount(a: Array<String>, p: String) = a.count { it.startsWith(p) }
 
@@ -22,6 +25,17 @@ fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
         val m = ar.minOrNull() ?: 0
         if (a.all { it[ar.indexOf(m)] <= m }) add(m)
     }
+}
+
+// https://leetcode.com/problems/transpose-matrix/
+fun transpose(a: Array<IntArray>): Array<IntArray> {
+    val list = mutableListOf<MutableList<Int>>()
+    for (i in a.first().indices) {
+        val l = mutableListOf<Int>()
+        a.forEach { l.add(it[i]) }
+        list.add(l)
+    }
+    return list.map { it.toIntArray() }.toTypedArray()
 }
 
 // https://leetcode.com/problems/path-crossing/
