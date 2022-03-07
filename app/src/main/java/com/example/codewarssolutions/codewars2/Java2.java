@@ -36,6 +36,11 @@ public class Java2 {
         return IntStream.range(0, a.length).map(i -> i % 2 == 0 ? a[i] : a[i] * 2).toArray();
     }
 
+    // https://www.codewars.com/kata/59c5f4e9d751df43cf000035
+    public static int solve(String s) {
+        return Arrays.stream(s.split("[^aeiou]")).mapToInt(w -> w.length()).max().getAsInt();
+    }
+
     public static int[] doubleEveryOther2(int[] a) {
         for (int i = 1; i < a.length; i += 2) a[i] *= 2;
         return a;
@@ -106,7 +111,7 @@ public class Java2 {
     }
 
     // https://www.codewars.com/kata/5ce969ab07d4b7002dcaa7a1
-    public static int solve(String s) {
+    public static int solve2(String s) {
         int c = 0;
         int l = 1;
         int r = s.length() - 1;

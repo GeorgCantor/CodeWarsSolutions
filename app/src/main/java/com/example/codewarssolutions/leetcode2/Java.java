@@ -25,6 +25,21 @@ public class Java {
         return (int) Arrays.stream(a).filter(ar -> ar.startsWith(p)).count();
     }
 
+    // https://leetcode.com/problems/isomorphic-strings/
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character, Character> m = new HashMap<>();
+        Map<Character, Character> m2 = new HashMap<>();
+        char[] sA = s.toCharArray();
+        char[] tA = t.toCharArray();
+        for (int i = 0; i < sA.length; i++) {
+            if (m.containsKey(sA[i]) && m.get(sA[i]) != tA[i]) return false;
+            else m.put(sA[i], tA[i]);
+            if (m2.containsKey(tA[i]) && m2.get(tA[i]) != sA[i]) return false;
+            else m2.put(tA[i], sA[i]);
+        }
+        return true;
+    }
+
     // https://leetcode.com/problems/sort-even-and-odd-indices-independently/
     public int[] sortEvenOdd(int[] a) {
         List<Integer> l1 = new ArrayList<>();

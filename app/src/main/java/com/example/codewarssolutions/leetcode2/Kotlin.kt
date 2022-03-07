@@ -27,6 +27,17 @@ fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
     }
 }
 
+// https://leetcode.com/problems/isomorphic-strings/
+fun isIsomorphic(s: String, t: String): Boolean {
+    val m = mutableMapOf<Char, Char>()
+    val m2 = mutableMapOf<Char, Char>()
+    s.forEachIndexed { i, c ->
+        if (m.containsKey(c) && m[c] != t[i]) return false else m[c] = t[i]
+        if (m2.containsKey(t[i]) && m2[t[i]] != c) return false else m2[t[i]] = c
+    }
+    return true
+}
+
 // https://leetcode.com/problems/transpose-matrix/
 fun transpose(a: Array<IntArray>): Array<IntArray> {
     val list = mutableListOf<MutableList<Int>>()
