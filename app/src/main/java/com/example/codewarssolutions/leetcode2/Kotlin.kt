@@ -27,6 +27,59 @@ fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
     }
 }
 
+// https://leetcode.com/problems/available-captures-for-rook/
+fun numRookCaptures(a: Array<CharArray>): Int {
+    var line = 0
+    var column = 0
+    loop@ for (i in a.indices) {
+        for (j in a[i].indices) {
+            if (a[i][j] == 'R') {
+                line = i
+                column = j
+                break@loop
+            }
+        }
+    }
+    var counter = 0
+    loop@ for (i in column..a[line].lastIndex) {
+        when (a[line][i]) {
+            'p' -> {
+                counter++
+                break@loop
+            }
+            'B' -> break@loop
+        }
+    }
+    loop@ for (i in column downTo 0) {
+        when (a[line][i]) {
+            'p' -> {
+                counter++
+                break@loop
+            }
+            'B' -> break@loop
+        }
+    }
+    loop@ for (i in line..a.lastIndex) {
+        when (a[i][column]) {
+            'p' -> {
+                counter++
+                break@loop
+            }
+            'B' -> break@loop
+        }
+    }
+    loop@ for (i in line downTo 0) {
+        when (a[i][column]) {
+            'p' -> {
+                counter++
+                break@loop
+            }
+            'B' -> break@loop
+        }
+    }
+    return counter
+}
+
 // https://leetcode.com/problems/isomorphic-strings/
 fun isIsomorphic(s: String, t: String): Boolean {
     val m = mutableMapOf<Char, Char>()

@@ -25,6 +25,48 @@ public class Java {
         return (int) Arrays.stream(a).filter(ar -> ar.startsWith(p)).count();
     }
 
+    // https://leetcode.com/problems/available-captures-for-rook/
+    public int numRookCaptures(char[][] a) {
+        int line = 0;
+        int column = 0;
+        loop:
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                if (a[i][j] == 'R') {
+                    line = i;
+                    column = j;
+                    break loop;
+                }
+            }
+        }
+        int counter = 0;
+        for (int i = column; i < a[line].length; i++) {
+            if (a[line][i] == 'p') {
+                counter++;
+                break;
+            } else if (a[line][i] == 'B') break;
+        }
+        for (int i = column; i >= 0; i--) {
+            if (a[line][i] == 'p') {
+                counter++;
+                break;
+            } else if (a[line][i] == 'B') break;
+        }
+        for (int i = line; i < a.length; i++) {
+            if (a[i][column] == 'p') {
+                counter++;
+                break;
+            } else if (a[i][column] == 'B') break;
+        }
+        for (int i = line; i >= 0; i--) {
+            if (a[i][column] == 'p') {
+                counter++;
+                break;
+            } else if (a[i][column] == 'B') break;
+        }
+        return counter;
+    }
+
     // https://leetcode.com/problems/isomorphic-strings/
     public boolean isIsomorphic(String s, String t) {
         Map<Character, Character> m = new HashMap<>();
