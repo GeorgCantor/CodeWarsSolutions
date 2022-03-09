@@ -67,6 +67,22 @@ public class Java {
         return counter;
     }
 
+    // https://leetcode.com/problems/determine-color-of-a-chessboard-square/
+    public boolean squareIsWhite(String s) {
+        String abc = "abcdefgh";
+        Map<String, Boolean> map = new HashMap<>();
+        boolean isEven = false;
+        for (char c : abc.toCharArray()) {
+            if (isEven) {
+                for (int i = 1; i <= 8; i++) map.put(c + "" + i, i % 2 != 0);
+            } else {
+                for (int i = 1; i <= 8; i++) map.put(c + "" + i, i % 2 == 0);
+            }
+            isEven = !isEven;
+        }
+        return map.get(s);
+    }
+
     // https://leetcode.com/problems/isomorphic-strings/
     public boolean isIsomorphic(String s, String t) {
         Map<Character, Character> m = new HashMap<>();

@@ -19,6 +19,19 @@ fun sortEvenOdd(a: IntArray): IntArray {
     return ar
 }
 
+// https://leetcode.com/problems/determine-color-of-a-chessboard-square/
+fun squareIsWhite(s: String): Boolean {
+    val abc = "abcdefgh"
+    val map = mutableMapOf<String, Boolean>()
+    var isEven = false
+    abc.forEach { c ->
+        if (isEven) (1..8).forEach { map["$c$it"] = it % 2 != 0 }
+        else (1..8).forEach { map["$c$it"] = it % 2 == 0 }
+        isEven = !isEven
+    }
+    return map[s] ?: false
+}
+
 // https://leetcode.com/problems/lucky-numbers-in-a-matrix/
 fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
     a.forEach { ar ->
@@ -29,6 +42,68 @@ fun luckyNumbers(a: Array<IntArray>) = mutableListOf<Int>().apply {
 
 // https://leetcode.com/problems/available-captures-for-rook/
 fun numRookCaptures(a: Array<CharArray>): Int {
+    var line = 0
+    var column = 0
+    loop@ for (i in a.indices) {
+        for (j in a[i].indices) {
+            if (a[i][j] == 'R') {
+                line = i
+                column = j
+                break@loop
+            }
+        }
+    }
+    var counter = 0
+    var left = column
+    var right = column
+    for (i in 0..a[line].lastIndex) {
+        if (right > a[line].lastIndex && left < 0) break
+        if (right <= a[line].lastIndex) {
+            when (a[line][right++]) {
+                'p' -> {
+                    counter++
+                    right = a[line].lastIndex + 1
+                }
+                'B' -> right = a[line].lastIndex + 1
+            }
+        }
+        if (left >= 0) {
+            when (a[line][left--]) {
+                'p' -> {
+                    counter++
+                    left = -1
+                }
+                'B' -> left = -1
+            }
+        }
+    }
+    var top = line
+    var bottom = line
+    for (i in 0..a.lastIndex) {
+        if (bottom > a.lastIndex && top < 0) break
+        if (bottom <= a.lastIndex) {
+            when (a[bottom++][column]) {
+                'p' -> {
+                    counter++
+                    bottom = a.lastIndex + 1
+                }
+                'B' -> bottom = a.lastIndex + 1
+            }
+        }
+        if (top >= 0) {
+            when (a[top--][column]) {
+                'p' -> {
+                    counter++
+                    top = -1
+                }
+                'B' -> top = -1
+            }
+        }
+    }
+    return counter
+}
+
+fun numRookCaptures2(a: Array<CharArray>): Int {
     var line = 0
     var column = 0
     loop@ for (i in a.indices) {
