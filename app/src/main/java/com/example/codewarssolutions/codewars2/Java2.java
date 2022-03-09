@@ -41,6 +41,34 @@ public class Java2 {
         return Arrays.stream(s.split("[^aeiou]")).mapToInt(w -> w.length()).max().getAsInt();
     }
 
+    // https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
+    static int shiftedDiff(String f, String s) {
+        return (f.length() == s.length()) ? (s + s).indexOf(f) : -1;
+    }
+
+    static int shiftedDiff2(String f, String s) {
+        char[] fA = f.toCharArray();
+        char[] sA = s.toCharArray();
+        for (int j = 0; j < sA.length; j++) {
+            if (fA[0] == sA[j]) {
+                if ((s.substring(j) + s.substring(0, j)).equals(f)) return j;
+                else if (j == sA.length - 1) return -1;
+            }
+            if (j == sA.length - 1) return -1;
+        }
+        return 0;
+    }
+
+    // https://www.codewars.com/kata/559590633066759614000063
+    public static int[] minMax(int[] a) {
+        return new int[]{Arrays.stream(a).min().getAsInt(), Arrays.stream(a).max().getAsInt()};
+    }
+
+    public static int[] minMax2(int[] a) {
+        Arrays.sort(a);
+        return new int[]{a[0], a[a.length - 1]};
+    }
+
     public static int[] doubleEveryOther2(int[] a) {
         for (int i = 1; i < a.length; i += 2) a[i] *= 2;
         return a;
