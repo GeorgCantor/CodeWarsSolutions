@@ -56,8 +56,10 @@ fun numRookCaptures(a: Array<CharArray>): Int {
     var counter = 0
     var left = column
     var right = column
-    for (i in 0..a[line].lastIndex) {
-        if (right > a[line].lastIndex && left < 0) break
+    var top = line
+    var bottom = line
+    for (i in 0..a.lastIndex) {
+        if (right > a[line].lastIndex && left < 0 && bottom > a.lastIndex && top < 0) return counter
         if (right <= a[line].lastIndex) {
             when (a[line][right++]) {
                 'p' -> {
@@ -76,11 +78,6 @@ fun numRookCaptures(a: Array<CharArray>): Int {
                 'B' -> left = -1
             }
         }
-    }
-    var top = line
-    var bottom = line
-    for (i in 0..a.lastIndex) {
-        if (bottom > a.lastIndex && top < 0) break
         if (bottom <= a.lastIndex) {
             when (a[bottom++][column]) {
                 'p' -> {
