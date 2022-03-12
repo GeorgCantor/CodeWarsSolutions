@@ -2,6 +2,19 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/longest-continuous-increasing-subsequence/
+fun findLengthOfLCIS(a: IntArray): Int {
+    var max = 1
+    var c = 1
+    for (i in 1..a.lastIndex) {
+        if (a[i] <= a[i - 1]) {
+            max = maxOf(max, c)
+            c = 1
+        } else c++
+    }
+    return maxOf(max, c)
+}
+
 // https://leetcode.com/problems/build-array-from-permutation/
 fun buildArray(a: IntArray) = IntArray(a.size) { a[a[it]] }
 

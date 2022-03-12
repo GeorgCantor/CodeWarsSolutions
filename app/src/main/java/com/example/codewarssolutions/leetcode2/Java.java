@@ -13,6 +13,18 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/longest-continuous-increasing-subsequence/
+    public int findLengthOfLCIS(int[] a) {
+        int max = 1, c = 1;
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] <= a[i - 1]) {
+                max = Math.max(max, c);
+                c = 1;
+            } else c++;
+        }
+        return Math.max(max, c);
+    }
+
     // https://leetcode.com/problems/build-array-from-permutation/
     public int[] buildArray(int[] a) {
         int[] ar = new int[a.length];
