@@ -13,6 +13,12 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
+    public int findSpecialInteger(int[] a) {
+        Map<Integer, Long> m = Arrays.stream(a).boxed().collect(Collectors.groupingBy(n -> n, Collectors.counting()));
+        return m.entrySet().stream().filter(e -> e.getValue() > a.length / 4).findFirst().map(Map.Entry::getKey).get();
+    }
+
     // https://leetcode.com/problems/longest-continuous-increasing-subsequence/
     public int findLengthOfLCIS(int[] a) {
         int max = 1, c = 1;

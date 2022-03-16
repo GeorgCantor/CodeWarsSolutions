@@ -2,6 +2,9 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
+fun findSpecialInteger(a: IntArray) = a.find { n -> a.count { it == n } > a.size / 4 }
+
 // https://leetcode.com/problems/longest-continuous-increasing-subsequence/
 fun findLengthOfLCIS(a: IntArray): Int {
     var max = 1
