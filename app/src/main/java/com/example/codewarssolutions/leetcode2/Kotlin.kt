@@ -2,6 +2,26 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/reformat-phone-number/
+fun reformatNumber(s: String): String {
+    return s.filter { it.isDigit() }.replace("...?(?=..)".toRegex(), "$0-")
+}
+
+fun reformatNumber2(s: String): String {
+    val l = mutableListOf<String>()
+    var i = 0
+    val f = s.filter { it.isDigit() }
+    while (i != f.lastIndex - 3 && i != f.lastIndex - 2 && i != f.lastIndex - 1) {
+        l.add(f.substring(i..i + 2)); i += 3
+    }
+    when (i) {
+        f.lastIndex - 3 -> l.add("${f[f.lastIndex - 3]}${f[f.lastIndex - 2]}-${f.takeLast(2)}")
+        f.lastIndex - 2 -> l.add(f.takeLast(3))
+        else -> l.add(f.takeLast(2))
+    }
+    return l.joinToString("-")
+}
+
 // https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
 fun findSpecialInteger(a: IntArray) = a.find { n -> a.count { it == n } > a.size / 4 }
 
