@@ -38,6 +38,16 @@ public class Java {
         return ar;
     }
 
+    // https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
+    public int specialArray(int[] a) {
+        for (int i = 1; i <= a.length; i++) {
+            int c = 0;
+            for (int n : a) if (n >= i) c++;
+            if (c == i) return i;
+        }
+        return -1;
+    }
+
     // https://leetcode.com/problems/counting-words-with-a-given-prefix/
     public int prefixCount(String[] a, String p) {
         return (int) Arrays.stream(a).filter(ar -> ar.startsWith(p)).count();

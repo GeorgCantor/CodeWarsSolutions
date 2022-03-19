@@ -2,6 +2,19 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/finding-the-users-active-minutes/
+fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
+    a.groupBy { it.first() }.mapValues { it.value.distinctBy { it.last() } }.entries.forEach {
+        ++this[it.value.lastIndex]
+    }
+}
+
+// https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
+fun specialArray(a: IntArray): Int {
+    for (i in 1..a.size) if (a.count { it >= i } == i) return i
+    return -1
+}
+
 // https://leetcode.com/problems/reformat-phone-number/
 fun reformatNumber(s: String): String {
     return s.filter { it.isDigit() }.replace("...?(?=..)".toRegex(), "$0-")
