@@ -13,6 +13,25 @@ import java.util.stream.Collectors;
 
 public class Java {
 
+    // https://leetcode.com/problems/partition-labels/
+    public List<Integer> partitionLabels(String s) {
+        List<Integer> list = new ArrayList<>();
+        int j = 0, counter = 0;
+        char[] ar = s.toCharArray();
+        for (int i = 0; i < ar.length; i++) {
+            ++counter;
+            for (int k = j; k <= i; k++) {
+                if (s.substring(i + 1, ar.length).contains(String.valueOf(ar[k]))) break;
+                else if (k == i) {
+                    j = i;
+                    list.add(counter);
+                    counter = 0;
+                }
+            }
+        }
+        return list;
+    }
+
     // https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
     public int findSpecialInteger(int[] a) {
         Map<Integer, Long> m = Arrays.stream(a).boxed().collect(Collectors.groupingBy(n -> n, Collectors.counting()));
