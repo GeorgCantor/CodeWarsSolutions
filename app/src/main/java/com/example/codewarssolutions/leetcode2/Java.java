@@ -38,6 +38,18 @@ public class Java {
         return m.entrySet().stream().filter(e -> e.getValue() > a.length / 4).findFirst().map(Map.Entry::getKey).get();
     }
 
+    // https://leetcode.com/problems/minimum-moves-to-convert-string/
+    public int minimumMoves(String s) {
+        int c = 0;
+        for (int i = 0; i < s.length(); ) {
+            if (s.charAt(i) == 'X') {
+                i += 3;
+                ++c;
+            } else ++i;
+        }
+        return c;
+    }
+
     // https://leetcode.com/problems/longest-continuous-increasing-subsequence/
     public int findLengthOfLCIS(int[] a) {
         int max = 1, c = 1;

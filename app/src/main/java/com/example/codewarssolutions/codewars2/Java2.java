@@ -41,6 +41,16 @@ public class Java2 {
         return Arrays.stream(s.split("[^aeiou]")).mapToInt(w -> w.length()).max().getAsInt();
     }
 
+    // https://www.codewars.com/kata/57f8ee485cae443c4d000127
+    public static String spacify(String s) {
+        return s.replaceAll("", " ").trim();
+    }
+
+    // https://www.codewars.com/kata/53dbd5315a3c69eed20002dd
+    public static List<Object> filterList(final List<Object> list) {
+        return list.stream().filter(o -> o instanceof Integer).collect(Collectors.toList());
+    }
+
     // https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
     static int shiftedDiff(String f, String s) {
         return (f.length() == s.length()) ? (s + s).indexOf(f) : -1;

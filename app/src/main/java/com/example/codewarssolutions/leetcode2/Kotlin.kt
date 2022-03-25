@@ -31,6 +31,18 @@ fun specialArray(a: IntArray): Int {
     return -1
 }
 
+// https://leetcode.com/problems/minimum-moves-to-convert-string/
+fun minimumMoves(s: String): Int {
+    var c = 0
+    var i = 0
+    while (i <= s.lastIndex) {
+        if (s[i] == 'X') {
+            i += 3; ++c
+        } else ++i
+    }
+    return c
+}
+
 // https://leetcode.com/problems/reformat-phone-number/
 fun reformatNumber(s: String): String {
     return s.filter { it.isDigit() }.replace("...?(?=..)".toRegex(), "$0-")
