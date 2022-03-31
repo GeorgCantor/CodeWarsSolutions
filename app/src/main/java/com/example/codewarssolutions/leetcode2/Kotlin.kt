@@ -25,11 +25,21 @@ fun partitionLabels(s: String): List<Int> {
     return list
 }
 
+// https://leetcode.com/problems/divide-array-into-equal-pairs/
+fun divideArray(a: IntArray) = a.none { n -> a.count { it == n } % 2 == 1 }
+
+fun divideArray2(a: IntArray) =
+    HashSet<Int>().apply { a.forEach { if (!add(it)) remove(it) } }.isEmpty()
+
 // https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
 fun specialArray(a: IntArray): Int {
     for (i in 1..a.size) if (a.count { it >= i } == i) return i
     return -1
 }
+
+// https://leetcode.com/problems/find-the-difference-of-two-arrays/
+fun findDifference(a: IntArray, b: IntArray) =
+    listOf(a.filter { !b.contains(it) }.distinct(), b.filter { !a.contains(it) }.distinct())
 
 // https://leetcode.com/problems/minimum-moves-to-convert-string/
 fun minimumMoves(s: String): Int {

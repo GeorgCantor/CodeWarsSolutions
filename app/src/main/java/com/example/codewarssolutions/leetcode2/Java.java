@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Java {
 
@@ -36,6 +37,25 @@ public class Java {
     public int findSpecialInteger(int[] a) {
         Map<Integer, Long> m = Arrays.stream(a).boxed().collect(Collectors.groupingBy(n -> n, Collectors.counting()));
         return m.entrySet().stream().filter(e -> e.getValue() > a.length / 4).findFirst().map(Map.Entry::getKey).get();
+    }
+
+    // https://leetcode.com/problems/divide-array-into-equal-pairs/
+    public boolean divideArray(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int n : nums) if (!set.add(n)) set.remove(n);
+        return set.isEmpty();
+    }
+
+    // https://leetcode.com/problems/find-the-difference-of-two-arrays/
+    public List<List<Integer>> findDifference(int[] a, int[] b) {
+        Set<Integer> s1 = new HashSet<>();
+        Set<Integer> s2 = new HashSet<>();
+        for (int n : a) if (IntStream.of(b).noneMatch(v -> v == n)) s1.add(n);
+        for (int n : b) if (IntStream.of(a).noneMatch(v -> v == n)) s2.add(n);
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>(s1));
+        res.add(new ArrayList<>(s2));
+        return res;
     }
 
     // https://leetcode.com/problems/minimum-moves-to-convert-string/
