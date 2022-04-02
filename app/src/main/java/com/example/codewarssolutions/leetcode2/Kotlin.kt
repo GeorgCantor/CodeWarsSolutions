@@ -2,6 +2,31 @@ package com.example.codewarssolutions.leetcode2
 
 import java.util.*
 
+// https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
+fun displayTable(l: List<List<String>>): List<List<String>> {
+    val header = mutableListOf("Table")
+    val lines = mutableListOf<MutableList<String>>()
+    val res = mutableListOf<List<String>>()
+    val map = mutableMapOf<String, Int>()
+    l.forEach {
+        val key = it.drop(1).joinToString(",")
+        map[key] = map.getOrDefault(key, 0) + 1
+    }
+    val sorted = l.sortedWith(compareBy<List<String>> { it.last() }.thenBy { it[1].toInt() })
+    sorted.forEach { list ->
+        header.add(list.last())
+        lines.add(mutableListOf(list[1]))
+    }
+    val hD = header.distinct()
+    val lD = lines.distinct()
+    lD.forEach {
+        for (i in 1..hD.lastIndex) it.add(map.getOrDefault("${it[0]},${hD[i]}", 0).toString())
+    }
+    res.add(hD)
+    res.addAll(lD.sortedBy { it.first().toInt() })
+    return res
+}
+
 // https://leetcode.com/problems/finding-the-users-active-minutes/
 fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     a.groupBy { it.first() }.mapValues { it.value.distinctBy { it.last() } }.entries.forEach {
