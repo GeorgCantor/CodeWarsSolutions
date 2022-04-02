@@ -4,27 +4,22 @@ import java.util.*
 
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
+    val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
     val header = mutableListOf("Table")
     val lines = mutableListOf<MutableList<String>>()
-    val res = mutableListOf<List<String>>()
-    val map = mutableMapOf<String, Int>()
-    l.forEach {
-        val key = it.drop(1).joinToString(",")
-        map[key] = map.getOrDefault(key, 0) + 1
-    }
-    val sorted = l.sortedWith(compareBy<List<String>> { it.last() }.thenBy { it[1].toInt() })
-    sorted.forEach { list ->
-        header.add(list.last())
-        lines.add(mutableListOf(list[1]))
+    l.sortedWith(compareBy<List<String>> { it.last() }.thenBy { it[1].toInt() }).forEach {
+        header.add(it.last())
+        lines.add(mutableListOf(it[1]))
     }
     val hD = header.distinct()
     val lD = lines.distinct()
     lD.forEach {
         for (i in 1..hD.lastIndex) it.add(map.getOrDefault("${it[0]},${hD[i]}", 0).toString())
     }
-    res.add(hD)
-    res.addAll(lD.sortedBy { it.first().toInt() })
-    return res
+    return mutableListOf<List<String>>().apply {
+        this.add(hD)
+        this.addAll(lD.sortedBy { it.first().toInt() })
+    }
 }
 
 // https://leetcode.com/problems/finding-the-users-active-minutes/
