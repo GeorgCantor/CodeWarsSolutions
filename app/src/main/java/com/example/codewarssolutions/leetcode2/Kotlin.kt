@@ -29,6 +29,18 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/sort-characters-by-frequency/
+fun frequencySort(s: String) =
+    s.groupingBy { it }.eachCount().entries.sortedByDescending { it.value }.joinToString("") {
+        StringBuilder().apply { for (i in 1..it.value) append(it.key) }.toString()
+    }
+
+fun frequencySort2(s: String) = StringBuilder().apply {
+    s.groupingBy { it }.eachCount().entries.sortedByDescending { it.value }.forEach {
+        for (i in 1..it.value) append(it.key)
+    }
+}.toString()
+
 // https://leetcode.com/problems/partition-labels/
 fun partitionLabels(s: String): List<Int> {
     val list = mutableListOf<Int>()
