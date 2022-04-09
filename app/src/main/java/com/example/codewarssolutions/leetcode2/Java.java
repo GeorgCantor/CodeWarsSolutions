@@ -46,6 +46,33 @@ public class Java {
         return set.isEmpty();
     }
 
+    // https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
+    public String[] divideString(String s, int k, char c) {
+        if (k > s.length()) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 1; i <= k - s.length(); i++) sb.append(c);
+            return new String[]{s + sb};
+        }
+        List<String> list = new ArrayList<>();
+        int left = 0, right = k - 1;
+        while (right <= s.length() - 1) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = left; i <= right; i++) sb.append(s.charAt(i));
+            list.add(sb.toString());
+            int last = (s.length() - 1) - right;
+            if (last > 0 && last < k) {
+                sb.setLength(0);
+                sb.append(s.substring(right + 1));
+                for (int i = 1; i <= k - last; i++) sb.append(c);
+                list.add(sb.toString());
+                break;
+            }
+            left += k;
+            right += k;
+        }
+        return list.toArray(new String[list.size()]);
+    }
+
     // https://leetcode.com/problems/find-the-difference-of-two-arrays/
     public List<List<Integer>> findDifference(int[] a, int[] b) {
         Set<Integer> s1 = new HashSet<>();

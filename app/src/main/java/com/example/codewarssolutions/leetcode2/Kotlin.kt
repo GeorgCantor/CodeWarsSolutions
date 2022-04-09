@@ -57,6 +57,37 @@ fun partitionLabels(s: String): List<Int> {
     return list
 }
 
+// https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
+fun divideString(s: String, k: Int, c: Char) = s.chunked(k) { it.padEnd(k, c).toString() }
+
+fun divideString2(s: String, k: Int, c: Char): Array<String> {
+    if (k > s.length) {
+        return StringBuilder().run {
+            repeat(k - s.length) { append(c) }
+            arrayOf("$s$this")
+        }
+    }
+    val list = mutableListOf<String>()
+    var left = 0
+    var right = k - 1
+    while (right <= s.lastIndex) {
+        val sb = StringBuilder()
+        (left..right).forEach { sb.append(s[it]) }
+        list.add(sb.toString())
+        val last = s.lastIndex - right
+        if (last in 1 until k) {
+            sb.clear()
+            sb.append(s.takeLast(last))
+            repeat(k - last) { sb.append(c) }
+            list.add(sb.toString())
+            break
+        }
+        left += k
+        right += k
+    }
+    return list.toTypedArray()
+}
+
 // https://leetcode.com/problems/divide-array-into-equal-pairs/
 fun divideArray(a: IntArray) = a.none { n -> a.count { it == n } % 2 == 1 }
 
