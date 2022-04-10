@@ -3,6 +3,22 @@ package com.example.codewarssolutions.codewars
 import java.util.*
 import kotlin.math.pow
 
+// https://www.codewars.com/kata/51b6249c4612257ac0000005
+fun decode(s: String): Int {
+    val map =
+        mutableMapOf('I' to 1, 'V' to 5, 'X' to 10, 'L' to 50, 'C' to 100, 'D' to 500, 'M' to 1000)
+    var counter = 0
+    var last = 1000
+    s.forEach {
+        map[it]?.let {
+            if (it > last) counter -= last * 2
+            counter += it
+            last = it
+        }
+    }
+    return counter
+}
+
 // https://www.codewars.com/kata/58235a167a8cb37e1a0000db
 fun numberOfPairs(l: List<String>) = l.groupBy { it }.values.sumOf { it.size / 2 }
 
