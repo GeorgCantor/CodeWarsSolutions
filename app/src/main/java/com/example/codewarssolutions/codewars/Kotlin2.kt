@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.codewars2
+package com.example.codewarssolutions.codewars
 
 import java.util.*
 import kotlin.math.pow

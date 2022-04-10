@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.leetcode2
+package com.example.codewarssolutions.leetcode
 
 import java.util.*
 

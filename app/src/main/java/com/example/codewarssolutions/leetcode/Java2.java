@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.leetcode2;
+package com.example.codewarssolutions.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Java {
+public class Java2 {
 
     // https://leetcode.com/problems/partition-labels/
     public List<Integer> partitionLabels(String s) {

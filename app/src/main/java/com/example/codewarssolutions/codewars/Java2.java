@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.codewars2;
+package com.example.codewarssolutions.codewars;
 
 import static java.lang.Character.getNumericValue;
 import static java.util.function.UnaryOperator.identity;

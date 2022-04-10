@@ -1,4 +1,4 @@
-package com.example.codewarssolutions.leetcode.ds;
+package com.example.codewarssolutions.ds;
 
 import android.os.Build;
 

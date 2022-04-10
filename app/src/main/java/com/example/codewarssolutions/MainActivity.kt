@@ -2,7 +2,7 @@ package com.example.codewarssolutions
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.codewarssolutions.leetcode2.decrypt
+import com.example.codewarssolutions.leetcode.decrypt
 
 class MainActivity : AppCompatActivity() {
 
