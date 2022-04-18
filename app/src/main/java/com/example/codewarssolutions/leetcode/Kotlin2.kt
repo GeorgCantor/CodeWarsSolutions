@@ -88,6 +88,15 @@ fun divideString2(s: String, k: Int, c: Char): Array<String> {
     return list.toTypedArray()
 }
 
+// https://leetcode.com/problems/most-frequent-number-following-key-in-an-array/
+fun mostFrequent(a: IntArray, k: Int): Int {
+    val m = mutableMapOf<Pair<Int, Int>, Int>()
+    for (i in 1..a.lastIndex) {
+        if (a[i - 1] == k) m[Pair(a[i - 1], a[i])] = m.getOrDefault(Pair(a[i - 1], a[i]), 0) + 1
+    }
+    return m.entries.maxByOrNull { it.value }!!.key.second
+}
+
 // https://leetcode.com/problems/divide-array-into-equal-pairs/
 fun divideArray(a: IntArray) = a.none { n -> a.count { it == n } % 2 == 1 }
 
