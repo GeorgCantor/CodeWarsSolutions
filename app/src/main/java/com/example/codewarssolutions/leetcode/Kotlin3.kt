@@ -30,10 +30,9 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
 
 // https://leetcode.com/problems/cells-in-a-range-on-an-excel-sheet/
 fun cellsInRange(s: String) = mutableListOf<String>().apply {
-    val abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    for (i in abc.indexOf(s.first())..abc.indexOf(s[3])) {
+    (s.first()..s[3]).forEach {
         for (j in Character.getNumericValue(s[1])..Character.getNumericValue(s.last())) {
-            add("${abc[i]}$j")
+            add("$it$j")
         }
     }
 }
