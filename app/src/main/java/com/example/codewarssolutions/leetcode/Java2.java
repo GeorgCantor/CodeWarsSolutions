@@ -39,6 +39,16 @@ public class Java2 {
         return m.entrySet().stream().filter(e -> e.getValue() > a.length / 4).findFirst().map(Map.Entry::getKey).get();
     }
 
+    // https://leetcode.com/problems/distribute-candies/
+    public int distributeCandies(int[] a) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : a) map.put(n, map.getOrDefault(n, 0) + 1);
+        Set<Integer> set = map.keySet();
+        int counter = 0;
+        for (int i = 0; i < a.length / 2; ++i) if (i < set.size()) ++counter;
+        return counter;
+    }
+
     // https://leetcode.com/problems/divide-array-into-equal-pairs/
     public boolean divideArray(int[] nums) {
         Set<Integer> set = new HashSet<>();

@@ -31,8 +31,16 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
 // https://leetcode.com/problems/cells-in-a-range-on-an-excel-sheet/
 fun cellsInRange(s: String) = mutableListOf<String>().apply {
     (s.first()..s[3]).forEach {
-        for (j in Character.getNumericValue(s[1])..Character.getNumericValue(s.last())) {
-            add("$it$j")
+        for (i in Character.getNumericValue(s[1])..Character.getNumericValue(s.last())) {
+            add("$it$i")
         }
     }
+}
+
+// https://leetcode.com/problems/distribute-candies/
+fun distributeCandies(a: IntArray): Int {
+    val keys = a.toList().groupingBy { it }.eachCount().keys
+    var counter = 0
+    for (i in 0 until a.size / 2) if (i < keys.size) ++counter
+    return counter
 }
