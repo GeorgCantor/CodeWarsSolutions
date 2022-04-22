@@ -37,10 +37,25 @@ fun cellsInRange(s: String) = mutableListOf<String>().apply {
     }
 }
 
+// https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/
+fun countPairs(a: IntArray, k: Int) = a.mapIndexed { i, it ->
+    a.filterIndexed { j, n -> i < j && (i * j) % k == 0 && n == it }.size
+}.sum()
+
+fun countPairs2(a: IntArray, k: Int): Int {
+    var c = 0
+    for (i in a.indices) {
+        for (j in i + 1..a.lastIndex) {
+            if ((i * j) % k == 0 && a[i] == a[j]) ++c
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/distribute-candies/
 fun distributeCandies(a: IntArray): Int {
     val keys = a.toList().groupingBy { it }.eachCount().keys
-    var counter = 0
-    for (i in 0 until a.size / 2) if (i < keys.size) ++counter
-    return counter
+    var c = 0
+    for (i in 0 until a.size / 2) if (i < keys.size) ++c else break
+    return c
 }
