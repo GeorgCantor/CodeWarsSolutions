@@ -28,6 +28,11 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/find-the-middle-index-in-array/
+fun findMiddleIndex(a: IntArray) = a.mapIndexed { i, _ ->
+    if (a.take(i).sum() == a.takeLast(a.lastIndex - i).sum()) return i else -1
+}.first()
+
 // https://leetcode.com/problems/cells-in-a-range-on-an-excel-sheet/
 fun cellsInRange(s: String) = mutableListOf<String>().apply {
     (s.first()..s[3]).forEach {
