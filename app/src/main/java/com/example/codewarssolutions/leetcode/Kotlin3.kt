@@ -42,6 +42,15 @@ fun cellsInRange(s: String) = mutableListOf<String>().apply {
     }
 }
 
+// https://leetcode.com/problems/rings-and-rods/
+fun countPoints(rings: String) = mutableMapOf<Int, MutableSet<Char>>().apply {
+    rings.chunked(2).forEach {
+        val k = Character.getNumericValue(it.last())
+        if (containsKey(k)) this[k] = this[k]?.apply { add(it.first()) } as MutableSet<Char>
+        else this[k] = mutableSetOf(it.first())
+    }
+}.values.count { it.size > 2 }
+
 // https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/
 fun countPairs(a: IntArray, k: Int) = a.mapIndexed { i, it ->
     a.filterIndexed { j, n -> i < j && (i * j) % k == 0 && n == it }.size
