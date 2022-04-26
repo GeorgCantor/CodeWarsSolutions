@@ -39,6 +39,13 @@ public class Java2 {
         return m.entrySet().stream().filter(e -> e.getValue() > a.length / 4).findFirst().map(Map.Entry::getKey).get();
     }
 
+    // https://leetcode.com/problems/intersection-of-multiple-arrays/
+    public List<Integer> intersection(int[][] a) {
+        Map<Integer, Integer> m = new HashMap<>();
+        Arrays.stream(a).forEach(ar -> Arrays.stream(ar).forEach(x -> m.put(x, m.getOrDefault(x, 0) + 1)));
+        return m.entrySet().stream().filter(e -> e.getValue() == a.length).map(Map.Entry::getKey).sorted().collect(Collectors.toList());
+    }
+
     // https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/
     public int countPairs(int[] a, int k) {
         int c = 0;

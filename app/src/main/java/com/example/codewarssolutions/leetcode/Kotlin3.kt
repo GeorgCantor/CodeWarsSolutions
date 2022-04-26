@@ -42,6 +42,10 @@ fun cellsInRange(s: String) = mutableListOf<String>().apply {
     }
 }
 
+// https://leetcode.com/problems/intersection-of-multiple-arrays/
+fun intersection(a: Array<IntArray>) =
+    a.flatMap { it.toList() }.filter { n -> a.all { it.contains(n) } }.distinct().sorted()
+
 // https://leetcode.com/problems/rings-and-rods/
 fun countPoints(rings: String) = mutableMapOf<Int, MutableSet<Char>>().apply {
     rings.chunked(2).forEach {
