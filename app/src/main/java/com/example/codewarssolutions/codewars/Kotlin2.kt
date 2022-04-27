@@ -28,6 +28,18 @@ fun prevMultOfThree(n: Int): Int? = n.toString().run {
     null
 }
 
+// https://www.codewars.com/kata/550498447451fbbd7600041c
+fun comp(a: IntArray?, b: IntArray?) = a?.let { b?.let { a.map { it * it }.sorted() == b.sorted() } } ?: false
+
+fun comp2(a: IntArray?, b: IntArray?): Boolean {
+    if (a?.isEmpty() == true && b?.isEmpty() == true) return true
+    if (a == null || b == null) return false
+    a.toList().groupingBy { it }.eachCount().entries.forEach { e ->
+        if (b.count { it == e.key * e.key } != e.value) return false
+    }
+    return true
+}
+
 // https://www.codewars.com/kata/5635e7cb49adc7b54500001c
 fun count(number: Int): Int {
     var c = 0

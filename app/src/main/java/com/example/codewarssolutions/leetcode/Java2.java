@@ -42,7 +42,7 @@ public class Java2 {
     // https://leetcode.com/problems/intersection-of-multiple-arrays/
     public List<Integer> intersection(int[][] a) {
         Map<Integer, Integer> m = new HashMap<>();
-        Arrays.stream(a).forEach(ar -> Arrays.stream(ar).forEach(x -> m.put(x, m.getOrDefault(x, 0) + 1)));
+        Arrays.stream(a).forEach(ar -> Arrays.stream(ar).forEach(n -> m.put(n, m.getOrDefault(n, 0) + 1)));
         return m.entrySet().stream().filter(e -> e.getValue() == a.length).map(Map.Entry::getKey).sorted().collect(Collectors.toList());
     }
 

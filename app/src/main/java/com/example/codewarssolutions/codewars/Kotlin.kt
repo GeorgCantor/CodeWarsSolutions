@@ -762,21 +762,6 @@ fun squareDigits(n: Int): Int {
 fun toJadenCase(phrase: String) =
     phrase.split(" ").joinToString(separator = "") { it.capitalize() }
 
-fun comp(a: IntArray?, b: IntArray?): Boolean {
-    if (a == null || b == null) return false
-    if (a.isEmpty() || b.isEmpty()) return false
-
-    b.map { bInt ->
-        var isFind = false
-        a.map {
-            if (it * it == bInt) isFind = true
-        }
-        if (!isFind) return false
-    }
-
-    return true
-}
-
 // 6 kyu Persistent Bugger.
 fun persistence(num: Int): Int {
     if (num < 10) return 0
