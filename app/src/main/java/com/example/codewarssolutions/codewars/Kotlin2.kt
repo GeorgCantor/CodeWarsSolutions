@@ -29,7 +29,8 @@ fun prevMultOfThree(n: Int): Int? = n.toString().run {
 }
 
 // https://www.codewars.com/kata/550498447451fbbd7600041c
-fun comp(a: IntArray?, b: IntArray?) = a?.let { b?.let { a.map { it * it }.sorted() == b.sorted() } } ?: false
+fun comp(a: IntArray?, b: IntArray?) =
+    a?.let { b?.let { a.map { it * it }.sorted() == b.sorted() } } ?: false
 
 fun comp2(a: IntArray?, b: IntArray?): Boolean {
     if (a?.isEmpty() == true && b?.isEmpty() == true) return true
@@ -38,6 +39,11 @@ fun comp2(a: IntArray?, b: IntArray?): Boolean {
         if (b.count { it == e.key * e.key } != e.value) return false
     }
     return true
+}
+
+// https://www.codewars.com/kata/60a94f1443f8730025d1744b
+fun grid(n: Int) = if (n < 0) null else (0 until n).joinToString("\n") { i ->
+    (0 until n).map { j -> "abcdefghijklmnopqrstuvwxyz"[(i + j) % 26] }.joinToString(" ")
 }
 
 // https://www.codewars.com/kata/5635e7cb49adc7b54500001c
