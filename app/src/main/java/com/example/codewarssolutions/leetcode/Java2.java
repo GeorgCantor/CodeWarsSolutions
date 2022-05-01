@@ -39,6 +39,22 @@ public class Java2 {
         return m.entrySet().stream().filter(e -> e.getValue() > a.length / 4).findFirst().map(Map.Entry::getKey).get();
     }
 
+    // https://leetcode.com/problems/finding-3-digit-even-numbers/
+    public int[] findEvenNumbers(int[] a) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == 0) continue;
+            for (int j = 0; j < a.length; j++) {
+                if (j == i) continue;
+                for (int k = 0; k < a.length; k++) {
+                    if (k == i || k == j) continue;
+                    if (a[k] % 2 == 0) set.add(a[i] * 100 + a[j] * 10 + a[k]);
+                }
+            }
+        }
+        return set.stream().sorted().mapToInt(Integer::intValue).toArray();
+    }
+
     // https://leetcode.com/problems/intersection-of-multiple-arrays/
     public List<Integer> intersection(int[][] a) {
         Map<Integer, Integer> m = new HashMap<>();

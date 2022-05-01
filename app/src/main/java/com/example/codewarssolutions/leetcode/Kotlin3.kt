@@ -28,6 +28,20 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/finding-3-digit-even-numbers/
+fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
+    for (i in a.indices) {
+        if (a[i] == 0) continue
+        for (j in a.indices) {
+            if (j == i) continue
+            for (k in a.indices) {
+                if (k == i || k == j) continue
+                if (a[k] % 2 == 0) add(a[i] * 100 + a[j] * 10 + a[k])
+            }
+        }
+    }
+}.sorted().toIntArray()
+
 // https://leetcode.com/problems/find-the-middle-index-in-array/
 fun findMiddleIndex(a: IntArray) = a.mapIndexed { i, _ ->
     if (a.take(i).sum() == a.takeLast(a.lastIndex - i).sum()) return i else -1
