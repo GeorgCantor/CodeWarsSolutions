@@ -1,6 +1,5 @@
 package com.example.codewarssolutions.leetcode
 
-
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
@@ -54,6 +53,26 @@ fun cellsInRange(s: String) = mutableListOf<String>().apply {
             add("$it$i")
         }
     }
+}
+
+// https://leetcode.com/problems/island-perimeter/
+fun islandPerimeter(grid: Array<IntArray>): Int {
+    var c = 0
+    grid.forEachIndexed { i, a ->
+        a.forEachIndexed { j, n ->
+            if (n == 1) {
+                if (i == 0) ++c
+                if (i == grid.lastIndex) ++c
+                if (j == 0) ++c
+                if (j == a.lastIndex) ++c
+                grid.getOrNull(i - 1)?.get(j)?.let { if (it == 0) ++c }
+                grid.getOrNull(i + 1)?.get(j)?.let { if (it == 0) ++c }
+                a.getOrNull(j - 1)?.let { if (it == 0) ++c }
+                a.getOrNull(j + 1)?.let { if (it == 0) ++c }
+            }
+        }
+    }
+    return c
 }
 
 // https://leetcode.com/problems/intersection-of-multiple-arrays/
