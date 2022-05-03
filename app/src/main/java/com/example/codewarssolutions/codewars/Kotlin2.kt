@@ -3,6 +3,10 @@ package com.example.codewarssolutions.codewars
 import java.util.*
 import kotlin.math.pow
 
+// https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/
+fun groupThePeople(a: IntArray) =
+    a.withIndex().groupBy { it.value }.flatMap { it.value.map { it.index }.chunked(it.key) }
+
 // https://www.codewars.com/kata/51b6249c4612257ac0000005
 fun decode(s: String): Int {
     val map =
