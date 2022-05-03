@@ -51,6 +51,11 @@ public class Java2 {
         return list.stream().filter(o -> o instanceof Integer).collect(Collectors.toList());
     }
 
+    // https://www.codewars.com/kata/5a1ee4dfffe75f0fcb000145
+    public static String bingo(int[] a) {
+        return Arrays.stream(new int[]{2, 7, 9, 14, 15}).allMatch(n -> Arrays.stream(a).anyMatch(i -> i == n)) ? "WIN" : "LOSE";
+    }
+
     // https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
     static int shiftedDiff(String f, String s) {
         return (f.length() == s.length()) ? (s + s).indexOf(f) : -1;
