@@ -56,6 +56,25 @@ public class Java2 {
         return Arrays.stream(new int[]{2, 7, 9, 14, 15}).allMatch(n -> Arrays.stream(a).anyMatch(i -> i == n)) ? "WIN" : "LOSE";
     }
 
+    // https://www.codewars.com/kata/58539230879867a8cd00011c
+    static String findChildren(final String text) {
+        String[] s = text.split("");
+        Arrays.sort(s);
+        Arrays.sort(s, String.CASE_INSENSITIVE_ORDER);
+        return String.join("", s);
+    }
+
+    static String findChildren2(final String text) {
+        Comparator<String> alphabeticalOrder = (s1, s2) -> {
+            int c = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
+            if (c == 0) c = s1.compareTo(s2);
+            return c;
+        };
+        List<String> list = new ArrayList<>(Arrays.asList(text.split("")));
+        Collections.sort(list, alphabeticalOrder);
+        return String.join("", list);
+    }
+
     // https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
     static int shiftedDiff(String f, String s) {
         return (f.length() == s.length()) ? (s + s).indexOf(f) : -1;
