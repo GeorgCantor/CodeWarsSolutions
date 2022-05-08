@@ -55,6 +55,17 @@ fun cellsInRange(s: String) = mutableListOf<String>().apply {
     }
 }
 
+// https://leetcode.com/problems/create-target-array-in-the-given-order/
+fun createTargetArray(nums: IntArray, a: IntArray) = IntArray(nums.size).apply {
+    nums.forEachIndexed { i, n ->
+        if (i <= a[i]) this[a[i]] = n
+        else {
+            for (j in i downTo a[i]) this.getOrNull(j - 1)?.let { this[j] = it }
+            this[a[i]] = n
+        }
+    }
+}
+
 // https://leetcode.com/problems/island-perimeter/
 fun islandPerimeter(grid: Array<IntArray>): Int {
     var c = 0
