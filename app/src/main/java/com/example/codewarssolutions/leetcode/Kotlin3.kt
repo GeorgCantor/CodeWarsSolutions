@@ -1,5 +1,7 @@
 package com.example.codewarssolutions.leetcode
 
+import kotlin.math.abs
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
@@ -26,6 +28,11 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
         ++this[it.value.lastIndex]
     }
 }
+
+// https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
+fun nearestValidPoint(x: Int, y: Int, a: Array<IntArray>) = a.mapIndexed { i, ar -> i to ar }
+    .filter { it.second.first() == x || it.second.last() == y }
+    .minByOrNull { abs(it.second.first() - x) + abs(it.second.last() - y) }?.first ?: -1
 
 // https://leetcode.com/problems/finding-3-digit-even-numbers/
 fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
