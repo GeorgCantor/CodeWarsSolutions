@@ -75,6 +75,51 @@ public class Java2 {
         return String.join("", list);
     }
 
+    // https://www.codewars.com/kata/53f17f5b59c3fcd589000390
+    public class SecureList {
+        int[] a;
+
+        public SecureList(int[] ar) {
+            a = ar;
+        }
+
+        public int get(int index) {
+            int[] t = a;
+            List<Integer> list = new ArrayList<>();
+            for (int i = 0; i < a.length; i++) {
+                if (i != index) list.add(a[i]);
+            }
+            int[] n = new int[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                n[i] = list.get(i);
+            }
+            a = n;
+            return t[index];
+        }
+
+        public String toString() {
+            int[] t = a;
+            a = new int[]{};
+            if (t.length == 0) return "[]";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < t.length; i++) {
+                if (i == 0) {
+                    sb.append("[").append(t[i]).append(",");
+                } else if (i == t.length - 1) {
+                    sb.append(t[i]).append("]");
+                } else {
+                    sb.append(t[i]).append(",");
+                }
+            }
+            return sb.toString();
+        }
+
+        public int size() {
+            return a.length;
+        }
+    }
+
+
     // https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
     static int shiftedDiff(String f, String s) {
         return (f.length() == s.length()) ? (s + s).indexOf(f) : -1;
