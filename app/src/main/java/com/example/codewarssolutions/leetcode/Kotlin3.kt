@@ -29,6 +29,14 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/greatest-common-divisor-of-strings/
+fun gcdOfStrings(s1: String, s2: String): String {
+    return if (s1.length < s2.length) gcdOfStrings(s2, s1)
+    else if (!s1.startsWith(s2)) ""
+    else if (s2.isEmpty()) s1
+    else gcdOfStrings(s1.substring(s2.length), s2)
+}
+
 // https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
 fun nearestValidPoint(x: Int, y: Int, a: Array<IntArray>) = a.mapIndexed { i, ar -> i to ar }
     .filter { it.second.first() == x || it.second.last() == y }

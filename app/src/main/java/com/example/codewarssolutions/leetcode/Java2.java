@@ -62,6 +62,14 @@ public class Java2 {
         return m.entrySet().stream().filter(e -> e.getValue() == a.length).map(Map.Entry::getKey).sorted().collect(Collectors.toList());
     }
 
+    // https://leetcode.com/problems/greatest-common-divisor-of-strings/
+    public String gcdOfStrings(String s1, String s2) {
+        if (s1.length() < s2.length()) return gcdOfStrings(s2, s1);
+        else if (!s1.startsWith(s2)) return "";
+        else if (s2.isEmpty()) return s1;
+        else return gcdOfStrings(s1.substring(s2.length()), s2);
+    }
+
     // https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/
     public int countPairs(int[] a, int k) {
         int c = 0;
