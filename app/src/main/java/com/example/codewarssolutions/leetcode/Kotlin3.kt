@@ -29,6 +29,11 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/find-the-town-judge/
+fun findJudge(n: Int, a: Array<IntArray>) = (1..n).firstOrNull { k ->
+    a.count { it.last() == k } == n - 1 && a.none { it.first() == k }
+} ?: -1
+
 // https://leetcode.com/problems/greatest-common-divisor-of-strings/
 fun gcdOfStrings(s1: String, s2: String): String {
     return if (s1.length < s2.length) gcdOfStrings(s2, s1)
