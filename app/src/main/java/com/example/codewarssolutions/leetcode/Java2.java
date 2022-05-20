@@ -152,6 +152,14 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/array-partition-i/
+    public int arrayPairSum(int[] a) {
+        int sum = 0;
+        Arrays.sort(a);
+        for (int i = 0; i < a.length; i += 2) sum += a[i];
+        return sum;
+    }
+
     // https://leetcode.com/problems/longest-continuous-increasing-subsequence/
     public int findLengthOfLCIS(int[] a) {
         int max = 1, c = 1;

@@ -141,3 +141,6 @@ fun distributeCandies(a: IntArray): Int {
     for (i in 0 until a.size / 2) if (i < keys.size) ++c else break
     return c
 }
+
+// https://leetcode.com/problems/array-partition-i/
+fun arrayPairSum(a: IntArray) = a.sorted().chunked(2).map { it.first() }.sum()
