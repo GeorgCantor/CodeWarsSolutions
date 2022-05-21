@@ -42,6 +42,15 @@ fun gcdOfStrings(s1: String, s2: String): String {
     else gcdOfStrings(s1.substring(s2.length), s2)
 }
 
+// https://leetcode.com/problems/occurrences-after-bigram/
+fun findOcurrences(t: String, f: String, s: String) = t.split(" ").run {
+    filterIndexed { i, _ -> getOrNull(i - 2).orEmpty() == f && getOrNull(i - 1).orEmpty() == s }
+}.toTypedArray()
+
+fun findOcurrences2(t: String, f: String, s: String) = t.split(" ").run {
+    (0 until size - 2).filter { this[it] == f && this[it + 1] == s }.map { this[it + 2] }
+}.toTypedArray()
+
 // https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
 fun nearestValidPoint(x: Int, y: Int, a: Array<IntArray>) = a.mapIndexed { i, ar -> i to ar }
     .filter { it.second.first() == x || it.second.last() == y }
@@ -144,3 +153,6 @@ fun distributeCandies(a: IntArray): Int {
 
 // https://leetcode.com/problems/array-partition-i/
 fun arrayPairSum(a: IntArray) = a.sorted().chunked(2).map { it.first() }.sum()
+
+// https://leetcode.com/problems/count-prefixes-of-a-given-string/
+fun countPrefixes(a: Array<String>, s: String) = a.count { s.startsWith(it) }

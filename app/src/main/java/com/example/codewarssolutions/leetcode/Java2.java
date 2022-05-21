@@ -236,6 +236,12 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/occurrences-after-bigram/
+    public String[] findOcurrences(String t, String f, String s) {
+        String[] a = t.split(" ");
+        return IntStream.range(0, a.length - 2).filter(i -> a[i].equals(f) && a[i + 1].equals(s)).mapToObj(i -> a[i + 2]).toArray(String[]::new);
+    }
+
     // https://leetcode.com/problems/determine-color-of-a-chessboard-square/
     public boolean squareIsWhite(String s) {
         String abc = "abcdefgh";
@@ -352,6 +358,11 @@ public class Java2 {
             for (int[] ar : a) if (!s.add(ar[i])) return false;
         }
         return true;
+    }
+
+    // https://leetcode.com/problems/count-prefixes-of-a-given-string/
+    public int countPrefixes(String[] a, String s) {
+        return (int) Arrays.stream(a).filter(s::startsWith).count();
     }
 
     // https://leetcode.com/problems/build-an-array-with-stack-operations/
