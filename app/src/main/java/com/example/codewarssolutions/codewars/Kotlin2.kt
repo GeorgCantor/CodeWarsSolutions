@@ -23,6 +23,11 @@ fun decode(s: String): Int {
     return counter
 }
 
+// https://www.codewars.com/kata/5ce399e0047a45001c853c2b
+fun sumParts(a: IntArray) = IntArray(a.size + 1).apply {
+    for (i in a.lastIndex downTo 0) this[i] = this[i + 1] + a[i]
+}
+
 // https://www.codewars.com/kata/58235a167a8cb37e1a0000db
 fun numberOfPairs(l: List<String>) = l.groupBy { it }.values.sumOf { it.size / 2 }
 

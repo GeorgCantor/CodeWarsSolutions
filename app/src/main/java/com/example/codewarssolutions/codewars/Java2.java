@@ -31,6 +31,13 @@ public class Java2 {
         return n % 2 == 0;
     }
 
+    // https://www.codewars.com/kata/5ce399e0047a45001c853c2b
+    public static int[] sumParts(int[] ar) {
+        int[] a = new int[ar.length + 1];
+        for (int i = ar.length - 1; i >= 0; i--) a[i] = a[i + 1] + ar[i];
+        return a;
+    }
+
     // https://www.codewars.com/kata/5809c661f15835266900010a
     public static int[] doubleEveryOther(int[] a) {
         return IntStream.range(0, a.length).map(i -> i % 2 == 0 ? a[i] : a[i] * 2).toArray();

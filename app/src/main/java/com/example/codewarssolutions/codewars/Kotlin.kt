@@ -1,10 +1,8 @@
 package com.example.codewarssolutions.codewars
 
 import androidx.core.text.isDigitsOnly
-import java.util.*
 import java.util.Collections.frequency
 import java.util.Collections.max
-import kotlin.collections.HashMap
 import kotlin.math.sign
 import kotlin.math.sqrt
 
@@ -606,30 +604,6 @@ fun playPass2(s: String, n: Int): String {
     rBuilder.reverse()
 
     return rBuilder.toString()
-}
-
-fun sumParts(ls: IntArray): IntArray {
-    if (ls.isEmpty()) return intArrayOf(0)
-
-    val list = mutableListOf(ls)
-    var lsList = ls.toMutableList()
-
-    ls.map {
-        if (lsList.size > 1) {
-            lsList = lsList.subList(1, lsList.size)
-            list.add(lsList.toIntArray())
-        }
-    }
-
-    val resultList = mutableListOf<Int>()
-
-    list.map {
-        resultList.add(it.sum())
-    }
-
-    resultList.add(0)
-
-    return resultList.toIntArray()
 }
 
 fun calculateYears(years: Int): Array<Int> {
