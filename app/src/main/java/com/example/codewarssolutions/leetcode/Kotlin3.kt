@@ -29,6 +29,15 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/calculate-digit-sum-of-a-string/
+fun digitSum(s: String, k: Int): String {
+    var w = s
+    while (w.length > k) {
+        w = w.chunked(k).map { it.map(Character::getNumericValue).sum() }.joinToString("")
+    }
+    return w
+}
+
 // https://leetcode.com/problems/find-the-town-judge/
 fun findJudge(n: Int, a: Array<IntArray>) = (1..n).firstOrNull { k ->
     a.count { it.last() == k } == n - 1 && a.none { it.first() == k }
@@ -69,6 +78,19 @@ fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
         }
     }
 }.sorted().toIntArray()
+
+// https://leetcode.com/problems/maximum-units-on-a-truck/
+fun maximumUnits(boxTypes: Array<IntArray>, truckSize: Int): Int {
+    var counter = 0
+    var limit = 0
+    boxTypes.sortedByDescending { it.last() }.forEach {
+        for (i in 1..it.first()) {
+            counter += it.last()
+            if (++limit == truckSize) return counter
+        }
+    }
+    return counter
+}
 
 // https://leetcode.com/problems/find-the-middle-index-in-array/
 fun findMiddleIndex(a: IntArray) = a.mapIndexed { i, _ ->
