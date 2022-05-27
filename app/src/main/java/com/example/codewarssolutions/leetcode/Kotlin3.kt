@@ -79,6 +79,9 @@ fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
     }
 }.sorted().toIntArray()
 
+// https://leetcode.com/problems/percentage-of-letter-in-string/
+fun percentageLetter(s: String, c: Char) = 100 * s.count { it == c } / s.length
+
 // https://leetcode.com/problems/maximum-units-on-a-truck/
 fun maximumUnits(boxTypes: Array<IntArray>, truckSize: Int): Int {
     var counter = 0

@@ -94,6 +94,11 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/percentage-of-letter-in-string/
+    public int percentageLetter(String s, char c) {
+        return (int) s.chars().filter(ch -> ch == c).count() * 100 / s.length();
+    }
+
     // https://leetcode.com/problems/divide-array-into-equal-pairs/
     public boolean divideArray(int[] nums) {
         Set<Integer> set = new HashSet<>();
