@@ -29,6 +29,10 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
+fun kWeakestRows(a: Array<IntArray>, k: Int) =
+    a.withIndex().sortedBy { it.value.count { it == 1 } }.take(k).map { it.index }.toIntArray()
+
 // https://leetcode.com/problems/calculate-digit-sum-of-a-string/
 fun digitSum(s: String, k: Int): String {
     var w = s
