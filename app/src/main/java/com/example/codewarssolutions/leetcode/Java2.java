@@ -94,6 +94,17 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+    public int countBalls(int low, int high) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = low; i <= high; i++) {
+            int sum = 0;
+            for (char ch : String.valueOf(i).toCharArray()) sum += Character.getNumericValue(ch);
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return map.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
+    }
+
     // https://leetcode.com/problems/percentage-of-letter-in-string/
     public int percentageLetter(String s, char c) {
         return (int) s.chars().filter(ch -> ch == c).count() * 100 / s.length();

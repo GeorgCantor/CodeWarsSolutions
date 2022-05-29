@@ -55,6 +55,11 @@ fun gcdOfStrings(s1: String, s2: String): String {
     else gcdOfStrings(s1.substring(s2.length), s2)
 }
 
+// https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+fun countBalls(l: Int, h: Int) = (l..h).map {
+    it.toString().sumBy(Character::getNumericValue)
+}.groupingBy { it }.eachCount().values.maxOrNull()
+
 // https://leetcode.com/problems/occurrences-after-bigram/
 fun findOcurrences(t: String, f: String, s: String) = t.split(" ").run {
     filterIndexed { i, _ -> getOrNull(i - 2).orEmpty() == f && getOrNull(i - 1).orEmpty() == s }
