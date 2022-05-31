@@ -252,6 +252,15 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/find-greatest-common-divisor-of-array/
+    public int findGCD(int[] a) {
+        Arrays.sort(a);
+        for (int i = a[a.length - 1]; i >= 0; --i) {
+            if (a[0] % i == 0 && a[a.length - 1] % i == 0) return i;
+        }
+        return 0;
+    }
+
     // https://leetcode.com/problems/occurrences-after-bigram/
     public String[] findOcurrences(String t, String f, String s) {
         String[] a = t.split(" ");

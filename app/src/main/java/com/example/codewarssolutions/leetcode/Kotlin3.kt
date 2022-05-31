@@ -149,6 +149,11 @@ fun islandPerimeter(grid: Array<IntArray>): Int {
     return c
 }
 
+// https://leetcode.com/problems/find-greatest-common-divisor-of-array/
+fun findGCD(a: IntArray): Int = a.sorted().apply {
+    for (i in last() downTo 0) if (first() % i == 0 && last() % i == 0) return i
+}.first()
+
 // https://leetcode.com/problems/intersection-of-multiple-arrays/
 fun intersection(a: Array<IntArray>) =
     a.flatMap { it.toList() }.filter { n -> a.all { it.contains(n) } }.distinct().sorted()
