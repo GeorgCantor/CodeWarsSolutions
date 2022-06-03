@@ -104,6 +104,30 @@ fun maximumUnits(boxTypes: Array<IntArray>, truckSize: Int): Int {
     return counter
 }
 
+// https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
+fun minStartValue(nums: IntArray): Int {
+    var n = 1
+    while (true) {
+        var temp = n
+        for (i in nums.indices) {
+            temp += nums[i]
+            if (temp < 1) break
+        }
+        if (temp > 0) return n
+        ++n
+    }
+}
+
+fun minStartValue2(nums: IntArray) = (1..Int.MAX_VALUE).find {
+    var find = false
+    var temp = it
+    nums.forEach {
+        temp += it
+        if (temp < 1) find = true
+    }
+    !find
+} ?: -1
+
 // https://leetcode.com/problems/find-the-middle-index-in-array/
 fun findMiddleIndex(a: IntArray) = a.mapIndexed { i, _ ->
     if (a.take(i).sum() == a.takeLast(a.lastIndex - i).sum()) return i else -1

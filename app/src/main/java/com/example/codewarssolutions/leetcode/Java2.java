@@ -252,6 +252,20 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
+    public int minStartValue(int[] nums) {
+        int n = 1;
+        while (true) {
+            int temp = n;
+            for (int num : nums) {
+                temp += num;
+                if (temp < 1) break;
+            }
+            if (temp > 0) return n;
+            ++n;
+        }
+    }
+
     // https://leetcode.com/problems/find-greatest-common-divisor-of-array/
     public int findGCD(int[] a) {
         Arrays.sort(a);
