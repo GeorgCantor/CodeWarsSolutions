@@ -55,6 +55,20 @@ fun gcdOfStrings(s1: String, s2: String): String {
     else gcdOfStrings(s1.substring(s2.length), s2)
 }
 
+// https://leetcode.com/problems/two-furthest-houses-with-different-colors/
+fun maxDistance(a: IntArray): Int {
+    var max = 0
+    for (i in a.indices) {
+        for (j in a.lastIndex downTo i) {
+            if (a[i] != a[j]) {
+                max = maxOf(max, j - i)
+                break
+            }
+        }
+    }
+    return max
+}
+
 // https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
 fun countBalls(l: Int, h: Int) = (l..h).map {
     it.toString().sumBy(Character::getNumericValue)

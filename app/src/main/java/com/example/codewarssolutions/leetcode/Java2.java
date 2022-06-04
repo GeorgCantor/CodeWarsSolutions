@@ -252,6 +252,20 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/two-furthest-houses-with-different-colors/
+    public int maxDistance(int[] a) {
+        int max = 0;
+        for (int i = 0; i < a.length; ++i) {
+            for (int j = a.length - 1; j > i; --j) {
+                if (a[i] != a[j]) {
+                    max = Math.max(max, j - i);
+                    break;
+                }
+            }
+        }
+        return max;
+    }
+
     // https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
     public int minStartValue(int[] nums) {
         int n = 1;
