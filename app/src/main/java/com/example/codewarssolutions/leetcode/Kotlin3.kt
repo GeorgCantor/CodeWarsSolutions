@@ -55,6 +55,23 @@ fun gcdOfStrings(s1: String, s2: String): String {
     else gcdOfStrings(s1.substring(s2.length), s2)
 }
 
+// https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/
+fun minimumCost(a: IntArray) = a.sortedDescending().windowed(2, 3, true).sumBy { it.sum() }
+
+fun minimumCost2(a: IntArray): Int {
+    var c = 0
+    a.sortDescending()
+    for (i in a.indices step 3) {
+        c += a[i] + a.getOrElse(i + 1) { 0 }
+    }
+    return c
+}
+
+// https://leetcode.com/problems/remove-digit-from-number-to-maximize-result/
+fun removeDigit(n: String, d: Char) = mutableListOf<String>().apply {
+    for (i in n.indices) if (n[i] == d) add(n.removeRange(i..i))
+}.maxOrNull()!!
+
 // https://leetcode.com/problems/two-furthest-houses-with-different-colors/
 fun maxDistance(a: IntArray): Int {
     var max = 0
