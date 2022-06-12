@@ -2,6 +2,34 @@ package com.example.codewarssolutions.leetcode
 
 import kotlin.math.abs
 
+// https://leetcode.com/problems/design-twitter/
+class Twitter() {
+    private val map = mutableMapOf<Int, MutableList<Pair<Int, Int>>>()
+    private val list = mutableListOf<Pair<Int, MutableList<Int>>>()
+    var c = 0
+
+    fun postTweet(id: Int, tweetId: Int) {
+        map[id] = map[id]?.apply { add(tweetId to c++) } ?: mutableListOf(tweetId to c++)
+    }
+
+    fun getNewsFeed(id: Int): List<Int> {
+        val myTweets = map.entries.find { it.key == id }?.value ?: emptyList<Pair<Int, Int>>()
+        val followTweets = map.entries.filter {
+            list.find { it.first == id }?.second?.any { id -> it.key == id } ?: false
+        }.flatMap { it.value }
+        return (myTweets + followTweets).sortedByDescending { it.second }.map { it.first }.take(10)
+    }
+
+    fun follow(folId: Int, fId: Int) {
+        list.find { it.first == folId }?.let { it.second.add(fId) }
+            ?: list.add(folId to mutableListOf(fId))
+    }
+
+    fun unfollow(folId: Int, fId: Int) {
+        list.find { it.first == folId }?.let { it.second.removeIf { it == fId } }
+    }
+}
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
