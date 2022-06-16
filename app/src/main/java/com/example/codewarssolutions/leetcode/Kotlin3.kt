@@ -58,9 +58,9 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
 }
 
 // https://leetcode.com/problems/remove-one-element-to-make-the-array-strictly-increasing/
-fun canBeIncreasing(nums: IntArray) = (0..nums.lastIndex).any {
-    val a = nums.filterIndexed { j, _ -> j != it }
-    a.withIndex().all { (a.getOrElse(it.index - 1) { 0 }) < a[it.index] }
+fun canBeIncreasing(a: IntArray) = (0..a.lastIndex).any {
+    a.filterIndexed { j, _ -> j != it }
+        .run { withIndex().all { (getOrElse(it.index - 1) { 0 }) < this[it.index] } }
 }
 
 // https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
