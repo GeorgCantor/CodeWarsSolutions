@@ -57,6 +57,10 @@ fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     }
 }
 
+// https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/
+fun digitCount(s: String) =
+    s.withIndex().all { it.value - '0' == s.count { c -> c == '0' + it.index } }
+
 // https://leetcode.com/problems/remove-one-element-to-make-the-array-strictly-increasing/
 fun canBeIncreasing(a: IntArray) = (0..a.lastIndex).any {
     a.filterIndexed { j, _ -> j != it }
