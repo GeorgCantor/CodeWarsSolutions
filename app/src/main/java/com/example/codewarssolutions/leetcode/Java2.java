@@ -252,6 +252,23 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/count-asterisks/
+    public int countAsterisks(String s) {
+        int c = 0;
+        String[] ar = s.split("\\|");
+        for (int i = 0; i < ar.length; ++i) {
+            if (i % 2 == 0) {
+                char[] a = ar[i].toCharArray();
+                for (char value : a) if (value == '*') ++c;
+            }
+        }
+        return c;
+    }
+
+    public int countAsterisks2(String s) {
+        return s.replaceAll("\\|.*?\\||[^*]", "").length();
+    }
+
     // https://leetcode.com/problems/two-furthest-houses-with-different-colors/
     public int maxDistance(int[] a) {
         int max = 0;

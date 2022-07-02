@@ -80,6 +80,10 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/count-asterisks/
+fun countAsterisks(s: String) =
+    s.split("|").mapIndexed { i, w -> if (i % 2 == 0) w.count { it == '*' } else 0 }.sum()
+
 // https://leetcode.com/problems/find-the-town-judge/
 fun findJudge(n: Int, a: Array<IntArray>) = (1..n).firstOrNull { k ->
     a.count { it.last() == k } == n - 1 && a.none { it.first() == k }
