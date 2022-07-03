@@ -111,7 +111,7 @@ fun minimumCost2(a: IntArray): Int {
 
 // https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/
 fun greatestLetter(s: String) =
-    ('A'..'Z').findLast { s.contains(it) && s.contains(it.toLowerCase()) }?.toString().orEmpty()
+    ('Z' downTo 'A').find { s.contains(it) && s.contains(it.toLowerCase()) }?.toString() ?: ""
 
 // https://leetcode.com/problems/remove-digit-from-number-to-maximize-result/
 fun removeDigit(n: String, d: Char) = mutableListOf<String>().apply {
