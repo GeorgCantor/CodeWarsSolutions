@@ -269,6 +269,16 @@ public class Java2 {
         return s.replaceAll("\\|.*?\\||[^*]", "").length();
     }
 
+    // https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/
+    public String greatestLetter(String s) {
+        for (char c = 'Z'; c >= 'A'; --c) {
+            if (s.contains(String.valueOf(c)) && s.contains(String.valueOf(Character.toLowerCase(c)))) {
+                return String.valueOf(c);
+            }
+        }
+        return "";
+    }
+
     // https://leetcode.com/problems/two-furthest-houses-with-different-colors/
     public int maxDistance(int[] a) {
         int max = 0;
