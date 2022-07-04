@@ -118,6 +118,19 @@ fun removeDigit(n: String, d: Char) = mutableListOf<String>().apply {
     for (i in n.indices) if (n[i] == d) add(n.removeRange(i..i))
 }.maxOrNull()!!
 
+// https://leetcode.com/problems/min-max-game/
+fun minMaxGame(a: IntArray): Int {
+    var l = a.toList().chunked(2).toMutableList()
+    while (l.size > 1) {
+        val new = mutableListOf<List<Int>>()
+        for (i in l.indices step 2) {
+            new.add(listOf(l[i].minByOrNull { it } ?: 0, l[i + 1].maxByOrNull { it } ?: 0))
+        }
+        l = new
+    }
+    return l.first().minByOrNull { it } ?: 0
+}
+
 // https://leetcode.com/problems/two-furthest-houses-with-different-colors/
 fun maxDistance(a: IntArray): Int {
     var max = 0
