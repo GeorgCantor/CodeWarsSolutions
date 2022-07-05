@@ -120,7 +120,7 @@ fun removeDigit(n: String, d: Char) = mutableListOf<String>().apply {
 
 // https://leetcode.com/problems/min-max-game/
 fun minMaxGame(a: IntArray): Int {
-    var l = a.toList().chunked(2).toMutableList()
+    var l = a.toList().chunked(2)
     while (l.size > 1) {
         val new = mutableListOf<List<Int>>()
         for (i in l.indices step 2) {
