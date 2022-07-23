@@ -23,6 +23,11 @@ fun decode(s: String): Int {
     return counter
 }
 
+// https://www.codewars.com/kata/56f3a1e899b386da78000732
+fun partlist(a: Array<String>) = (1..a.lastIndex).map {
+    arrayOf(a.take(it).joinToString(" "), a.drop(it).joinToString(" "))
+}.toTypedArray()
+
 // https://www.codewars.com/kata/5ce399e0047a45001c853c2b
 fun sumParts(a: IntArray) = IntArray(a.size + 1).apply {
     for (i in a.lastIndex downTo 0) this[i] = this[i + 1] + a[i]
