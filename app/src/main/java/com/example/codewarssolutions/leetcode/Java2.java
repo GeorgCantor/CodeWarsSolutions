@@ -156,6 +156,18 @@ public class Java2 {
         return res;
     }
 
+    // https://leetcode.com/problems/largest-3-same-digit-number-in-string/
+    public String largestGoodInteger(String s) {
+        for (int i = 9; i >= 0; --i) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(i);
+            sb.append(i);
+            sb.append(i);
+            if (s.contains(sb.toString())) return sb.toString();
+        }
+        return "";
+    }
+
     // https://leetcode.com/problems/minimum-moves-to-convert-string/
     public int minimumMoves(String s) {
         int c = 0;

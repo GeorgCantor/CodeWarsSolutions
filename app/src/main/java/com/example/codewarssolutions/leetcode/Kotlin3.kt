@@ -80,6 +80,9 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/largest-3-same-digit-number-in-string/
+fun largestGoodInteger(s: String) = (9 downTo 0).map { "$it$it$it" }.find { s.contains(it) } ?: ""
+
 // https://leetcode.com/problems/count-asterisks/
 fun countAsterisks(s: String) =
     s.split("|").mapIndexed { i, w -> if (i % 2 == 0) w.count { it == '*' } else 0 }.sum()
