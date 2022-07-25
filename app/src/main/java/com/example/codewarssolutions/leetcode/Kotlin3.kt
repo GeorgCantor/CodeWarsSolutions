@@ -92,6 +92,14 @@ fun findJudge(n: Int, a: Array<IntArray>) = (1..n).firstOrNull { k ->
     a.count { it.last() == k } == n - 1 && a.none { it.first() == k }
 } ?: -1
 
+// https://leetcode.com/problems/maximum-number-of-pairs-in-array/
+fun numberOfPairs(a: IntArray) = a.toList().groupingBy { it }.eachCount().values.run {
+    intArrayOf(
+        reduce { s, n -> if (n % 2 == 0) s + n else s + (n - 1) } / 2,
+        count { it % 2 == 1 }
+    )
+}
+
 // https://leetcode.com/problems/greatest-common-divisor-of-strings/
 fun gcdOfStrings(s1: String, s2: String): String {
     return if (s1.length < s2.length) gcdOfStrings(s2, s1)
