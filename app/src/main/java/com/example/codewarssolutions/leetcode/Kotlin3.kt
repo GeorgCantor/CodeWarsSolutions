@@ -108,6 +108,10 @@ fun gcdOfStrings(s1: String, s2: String): String {
     else gcdOfStrings(s1.substring(s2.length), s2)
 }
 
+// https://leetcode.com/problems/first-letter-to-appear-twice/
+fun repeatedCharacter(s: String) =
+    IntArray(26).run { s.forEach { if (++this[it - 'a'] == 2) return it } }.toString()[0]
+
 // https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/
 fun minimumCost(a: IntArray) = a.sortedDescending().windowed(2, 3, true).sumBy { it.sum() }
 

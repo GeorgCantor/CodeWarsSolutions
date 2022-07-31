@@ -81,6 +81,13 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/first-letter-to-appear-twice/
+    public char repeatedCharacter(String s) {
+        int[] a = new int[26];
+        for (char c : s.toCharArray()) if (++a[c - 'a'] == 2) return c;
+        return ' ';
+    }
+
     // https://leetcode.com/problems/distribute-candies/
     public int distributeCandies(int[] a) {
         Map<Integer, Integer> map = new HashMap<>();
