@@ -146,6 +146,9 @@ fun minMaxGame(a: IntArray): Int {
     return l.first().minByOrNull { it } ?: 0
 }
 
+// https://leetcode.com/problems/make-array-zero-by-subtracting-equal-amounts/
+fun minimumOperations(a: IntArray) = a.distinct().count { it > 0 }
+
 // https://leetcode.com/problems/two-furthest-houses-with-different-colors/
 fun maxDistance(a: IntArray): Int {
     var max = 0

@@ -124,6 +124,11 @@ public class Java2 {
         return set.isEmpty();
     }
 
+    // https://leetcode.com/problems/make-array-zero-by-subtracting-equal-amounts/
+    public int minimumOperations(int[] a) {
+        return (int) Arrays.stream(a).distinct().filter(n -> n > 0).count();
+    }
+
     // https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
     public String[] divideString(String s, int k, char c) {
         if (k > s.length()) {
