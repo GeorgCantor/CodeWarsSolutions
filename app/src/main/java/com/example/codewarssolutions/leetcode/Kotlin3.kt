@@ -212,6 +212,17 @@ fun maximumUnits(boxTypes: Array<IntArray>, truckSize: Int): Int {
     return counter
 }
 
+// https://leetcode.com/problems/best-poker-hand/
+fun bestHand(a: IntArray, b: CharArray) = if (b.all { it == b.first() }) "Flush"
+else {
+    val max = a.groupBy { it }.values.maxByOrNull { it.size }?.size ?: 0
+    when {
+        max > 2 -> "Three of a Kind"
+        max == 2 -> "Pair"
+        else -> "High Card"
+    }
+}
+
 // https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
 fun minStartValue(nums: IntArray): Int {
     var n = 1
