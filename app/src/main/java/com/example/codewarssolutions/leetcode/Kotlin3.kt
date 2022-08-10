@@ -238,7 +238,7 @@ fun arithmeticTriplets(a: IntArray, d: Int): Int {
 fun strongPasswordCheckerII(p: String) = p.length > 7 && p.any { it.isDigit() } &&
         p.any { it.isLetter() } && p.any { it.isLowerCase() } && p.any { it.isUpperCase() } &&
         p.any { "!@#$%^&*()-+".contains(it) } &&
-        p.withIndex().all { p[it.index] != p.getOrNull(it.index + 1) }
+        p.withIndex().all { it.value != p.getOrNull(it.index + 1) }
 
 // https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
 fun minStartValue(nums: IntArray): Int {
