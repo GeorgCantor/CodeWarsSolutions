@@ -196,6 +196,12 @@ fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
     }
 }.sorted().toIntArray()
 
+// https://leetcode.com/problems/merge-similar-items/
+fun mergeSimilarItems(a: Array<IntArray>, b: Array<IntArray>) = mutableMapOf<Int, Int>().run {
+    (a + b).forEach { this[it.first()] = getOrDefault(it.first(), 0) + it.last() }
+    entries.map { listOf(it.key, it.value) }.sortedBy { it.first() }
+}
+
 // https://leetcode.com/problems/percentage-of-letter-in-string/
 fun percentageLetter(s: String, c: Char) = 100 * s.count { it == c } / s.length
 
