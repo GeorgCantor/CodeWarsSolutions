@@ -103,6 +103,31 @@ fun solution2(input: String, markers: CharArray) = StringBuilder().run {
     toString()
 }
 
+// https://www.codewars.com/kata/5b2e60742ae7543f9d00005d
+class CircularList<T>(vararg val elements: T) {
+    var i = -1
+
+    init {
+        if (elements.isEmpty()) throw Exception()
+    }
+
+    fun next(): T {
+        when (i) {
+            elements.lastIndex, -1 -> i = 0
+            else -> ++i
+        }
+        return elements[i]
+    }
+
+    fun prev(): T {
+        when (i) {
+            0, -1 -> i = elements.lastIndex
+            else -> --i
+        }
+        return elements[i]
+    }
+}
+
 // https://www.codewars.com/kata/5629db57620258aa9d000014
 fun mix(s1: String, s2: String): String {
     val map1 = mutableMapOf<Char, Int>()
