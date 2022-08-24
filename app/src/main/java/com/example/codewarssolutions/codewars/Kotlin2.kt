@@ -42,6 +42,33 @@ fun prevMultOfThree(n: Int): Int? = n.toString().run {
     null
 }
 
+// https://www.codewars.com/kata/5938f5b606c3033f4700015a
+fun alphabetWar(s: String): String {
+    val list = mutableListOf<Char>()
+    s.forEachIndexed { i, c ->
+        if (c.isLetter() && s.getOrNull(i - 1) != '*' && s.getOrNull(i + 1) != '*') list.add(c)
+    }
+    var l = 0
+    var r = 0
+    list.forEach {
+        when (it) {
+            'w' -> l += 4
+            'p' -> l += 3
+            'b' -> l += 2
+            's' -> ++l
+            'm' -> r += 4
+            'q' -> r += 3
+            'd' -> r += 2
+            'z' -> ++r
+        }
+    }
+    return when {
+        l > r -> "Left side wins!"
+        r > l -> "Right side wins!"
+        else -> "Let's fight again!"
+    }
+}
+
 // https://www.codewars.com/kata/550498447451fbbd7600041c
 fun comp(a: IntArray?, b: IntArray?) =
     a?.let { b?.let { a.map { it * it }.sorted() == b.sorted() } } ?: false
