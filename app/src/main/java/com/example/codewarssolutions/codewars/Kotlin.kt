@@ -1404,6 +1404,36 @@ fun reverseWords2(str: String): String {
     return words.reversed().toString().replace(",", "").replace("[", "").replace("]", "")
 }
 
+//7 kyu Alphabet war
+fun alphabetWar2(fight: String): String {
+    val mapL = HashMap<Char, Int>()
+    mapL['w'] = 4
+    mapL['p'] = 3
+    mapL['b'] = 2
+    mapL['s'] = 1
+
+    val mapR = HashMap<Char, Int>()
+    mapR['m'] = 4
+    mapR['q'] = 3
+    mapR['d'] = 2
+    mapR['z'] = 1
+
+    var lCounter = 0
+    var rCounter = 0
+
+    fight.map {
+        if (mapL.containsKey(it)) lCounter += mapL.getValue(it)
+        if (mapR.containsKey(it)) rCounter += mapR.getValue(it)
+    }
+
+    return when {
+        lCounter == rCounter -> "Let's fight again!"
+        lCounter > rCounter -> "Left side wins!"
+        rCounter > lCounter -> "Right side wins!"
+        else -> ""
+    }
+}
+
 // Sum Mixed Array
 fun sum(mixed: List<Any>): Int {
     val list = mutableListOf<Int>()
