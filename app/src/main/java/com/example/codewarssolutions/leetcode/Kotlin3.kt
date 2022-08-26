@@ -50,6 +50,26 @@ fun displayTable(l: List<List<String>>): List<List<String>> {
     }
 }
 
+// https://leetcode.com/problems/number-of-laser-beams-in-a-bank/
+fun numberOfBeams(bank: Array<String>): Int {
+    var c = 0
+    bank.forEachIndexed { i, row ->
+        for (j in row.indices) {
+            if (row[j] == '1') {
+                for (k in i + 1..bank.lastIndex) {
+                    if (bank[k].any { it == '1' }) {
+                        c += bank[k].count { it == '1' }
+                        break
+                    } else {
+                        continue
+                    }
+                }
+            }
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/finding-the-users-active-minutes/
 fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     a.groupBy { it.first() }.mapValues { it.value.distinctBy { it.last() } }.entries.forEach {
