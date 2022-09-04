@@ -81,6 +81,16 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/excel-sheet-column-title/
+    public String convertToTitle(int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            sb.append((char) ('A' + --n % 26));
+            n /= 26;
+        }
+        return sb.reverse().toString();
+    }
+
     // https://leetcode.com/problems/first-letter-to-appear-twice/
     public char repeatedCharacter(String s) {
         int[] a = new int[26];

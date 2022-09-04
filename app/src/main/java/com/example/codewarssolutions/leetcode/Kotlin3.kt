@@ -100,6 +100,15 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/excel-sheet-column-title/
+fun convertToTitle(columnNumber: Int) = StringBuilder().apply {
+    var n = columnNumber
+    while (n > 0) {
+        append('A' + --n % 26)
+        n /= 26
+    }
+}.reverse().toString()
+
 // https://leetcode.com/problems/largest-3-same-digit-number-in-string/
 fun largestGoodInteger(s: String) = (9 downTo 0).map { "$it$it$it" }.find { s.contains(it) } ?: ""
 
