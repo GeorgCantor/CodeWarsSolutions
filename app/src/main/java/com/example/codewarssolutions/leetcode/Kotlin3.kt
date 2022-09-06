@@ -153,6 +153,13 @@ fun minimumCost2(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/smallest-number-in-infinite-set/
+class SmallestInfiniteSet() {
+    val set = mutableSetOf<Int>().apply { (1..1000).forEach { add(it) } }
+    fun popSmallest() = set.minOrNull().apply { set.remove(this) } ?: 0
+    fun addBack(num: Int) = set.add(num)
+}
+
 // https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/
 fun greatestLetter(s: String) =
     ('Z' downTo 'A').find { s.contains(it) && s.contains(it.toLowerCase()) }?.toString() ?: ""
