@@ -70,6 +70,19 @@ fun numberOfBeams(bank: Array<String>): Int {
     return c
 }
 
+// https://leetcode.com/problems/equal-row-and-column-pairs/
+fun equalPairs(grid: Array<IntArray>): Int {
+    var c = 0
+    grid.forEach {
+        (0..it.lastIndex).forEach { i ->
+            val l = mutableListOf<Int>()
+            grid.forEach { l.add(it[i]) }
+            if (l.toIntArray().contentEquals(it)) ++c
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/finding-the-users-active-minutes/
 fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     a.groupBy { it.first() }.mapValues { it.value.distinctBy { it.last() } }.entries.forEach {
