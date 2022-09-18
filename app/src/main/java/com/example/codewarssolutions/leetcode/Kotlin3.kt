@@ -113,6 +113,21 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/set-matrix-zeroes/
+fun setZeroes(a: Array<IntArray>): Unit {
+    val r = mutableSetOf<Int>()
+    val c = mutableSetOf<Int>()
+    a.forEachIndexed { i, ar ->
+        ar.forEachIndexed { j, n ->
+            if (n == 0) {
+                r.add(i)
+                c.add(j)
+            }
+        }
+    }
+    for (i in a.indices) for (j in a[i].indices) if (r.contains(i) || c.contains(j)) a[i][j] = 0
+}
+
 // https://leetcode.com/problems/excel-sheet-column-title/
 fun convertToTitle(columnNumber: Int) = StringBuilder().apply {
     var n = columnNumber
