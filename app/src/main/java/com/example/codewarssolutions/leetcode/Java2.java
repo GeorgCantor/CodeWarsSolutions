@@ -81,6 +81,23 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/set-matrix-zeroes/
+    public void setZeroes(int[][] matrix) {
+        Set<Integer> c = new HashSet<>();
+        Set<Integer> r = new HashSet<>();
+        for (int i = 0; i < matrix.length; ++i) {
+            for (int j = 0; j < matrix[i].length; ++j) {
+                if (matrix[i][j] == 0) {
+                    c.add(i);
+                    r.add(j);
+                }
+            }
+        }
+        for (int i = 0; i < matrix.length; ++i)
+            for (int j = 0; j < matrix[i].length; ++j)
+                if (c.contains(i) || r.contains(j)) matrix[i][j] = 0;
+    }
+
     // https://leetcode.com/problems/excel-sheet-column-title/
     public String convertToTitle(int n) {
         StringBuilder sb = new StringBuilder();
