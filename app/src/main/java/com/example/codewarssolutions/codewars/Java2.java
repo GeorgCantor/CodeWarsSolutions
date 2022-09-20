@@ -126,6 +126,15 @@ public class Java2 {
         }
     }
 
+    // https://www.codewars.com/kata/59a96d71dbe3b06c0200009c
+    public static final String generateShape(int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= n; ++j) sb.append("+");
+            if (i < n) sb.append("\n");
+        }
+        return sb.toString();
+    }
 
     // https://www.codewars.com/kata/5596f6e9529e9ab6fb000014
     static int shiftedDiff(String f, String s) {
