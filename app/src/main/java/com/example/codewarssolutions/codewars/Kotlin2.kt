@@ -203,6 +203,10 @@ fun mix(s1: String, s2: String): String {
     return sb.toString().drop(1)
 }
 
+// https://leetcode.com/problems/sort-the-people/
+fun sortPeople(n: Array<String>, h: IntArray) =
+    n.withIndex().sortedByDescending { h[it.index] }.map { it.value }
+
 // https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991/train/kotlin
 fun revRot(s: String, sz: Int) = s.windowed(sz, sz).joinToString("") {
     if (it.sumBy { it.toString().toDouble().pow(3.0).toInt() } % 2 == 0) it.reversed()
