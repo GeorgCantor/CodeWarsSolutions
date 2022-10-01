@@ -108,6 +108,16 @@ public class Java2 {
         return sb.reverse().toString();
     }
 
+    // https://leetcode.com/problems/sort-the-people/
+    public String[] sortPeople(String[] names, int[] heights) {
+        Map<Integer, String> map = new HashMap<>();
+        for (int i = 0; i < names.length; ++i) map.put(heights[i], names[i]);
+        Arrays.sort(heights);
+        String[] a = new String[names.length];
+        for (int i = names.length - 1, j = 0; i >= 0; --i) a[j++] = map.get(heights[i]);
+        return a;
+    }
+
     // https://leetcode.com/problems/first-letter-to-appear-twice/
     public char repeatedCharacter(String s) {
         int[] a = new int[26];
