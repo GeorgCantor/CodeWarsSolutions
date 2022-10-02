@@ -118,6 +118,16 @@ public class Java2 {
         return a;
     }
 
+    // https://leetcode.com/problems/duplicate-zeros/
+    public void duplicateZeros(int[] a) {
+        for (int i = 0; i < a.length; ++i) {
+            if (a[i] == 0) {
+                for (int j = a.length - 1; j > i; --j) a[j] = a[j - 1];
+                ++i;
+            }
+        }
+    }
+
     // https://leetcode.com/problems/first-letter-to-appear-twice/
     public char repeatedCharacter(String s) {
         int[] a = new int[26];

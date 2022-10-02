@@ -128,6 +128,18 @@ fun setZeroes(a: Array<IntArray>): Unit {
     for (i in a.indices) for (j in a[i].indices) if (r.contains(i) || c.contains(j)) a[i][j] = 0
 }
 
+// https://leetcode.com/problems/duplicate-zeros/
+fun duplicateZeros(a: IntArray): Unit {
+    var i = 0
+    while (i in a.indices) {
+        if (a[i] == 0) {
+            for (j in a.lastIndex downTo i + 1) a[j] = a[j - 1]
+            ++i
+        }
+        ++i
+    }
+}
+
 // https://leetcode.com/problems/excel-sheet-column-title/
 fun convertToTitle(columnNumber: Int) = StringBuilder().apply {
     var n = columnNumber
