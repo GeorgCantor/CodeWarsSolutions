@@ -113,6 +113,16 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/optimal-partition-of-string/
+fun partitionString(s: String) = mutableSetOf<Char>().run {
+    var c = 1
+    s.forEach {
+        if (contains(it)) clear().apply { ++c }
+        add(it)
+    }
+    c
+}
+
 // https://leetcode.com/problems/set-matrix-zeroes/
 fun setZeroes(a: Array<IntArray>): Unit {
     val r = mutableSetOf<Int>()

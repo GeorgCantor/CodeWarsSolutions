@@ -81,6 +81,20 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/optimal-partition-of-string/
+    public int partitionString(String s) {
+        Set<Character> set = new HashSet<>();
+        int counter = 1;
+        for (int i = 0; i < s.length(); i++) {
+            if (set.contains(s.charAt(i))) {
+                ++counter;
+                set.clear();
+            }
+            set.add(s.charAt(i));
+        }
+        return counter;
+    }
+
     // https://leetcode.com/problems/set-matrix-zeroes/
     public void setZeroes(int[][] matrix) {
         Set<Integer> c = new HashSet<>();
