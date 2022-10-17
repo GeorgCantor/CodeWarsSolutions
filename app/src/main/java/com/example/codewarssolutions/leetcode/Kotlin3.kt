@@ -113,6 +113,20 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/longest-consecutive-sequence/
+fun longestConsecutive(a: IntArray) = a.toSortedSet().toList().run {
+    var max = 0
+    var c = 0
+    forEachIndexed { i, n ->
+        ++c
+        if (n + 1 != getOrNull(i + 1)) {
+            max = maxOf(c, max)
+            c = 0
+        }
+    }
+    max
+}
+
 // https://leetcode.com/problems/optimal-partition-of-string/
 fun partitionString(s: String) = mutableSetOf<Char>().run {
     var c = 1
