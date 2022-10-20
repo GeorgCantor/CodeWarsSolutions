@@ -1,5 +1,5 @@
 # CodeWarsSolutions
-Solutions from CodeWars & LeetCode. Kotlin, Java.
+LeetCode & CodeWars solutions. Kotlin & Java.
 
 <a href="https://leetcode.com/KurtGodel/" target="_blank"><img src="https://i.postimg.cc/KvjHvksB/leetcode-Image.png" /></a>
 
