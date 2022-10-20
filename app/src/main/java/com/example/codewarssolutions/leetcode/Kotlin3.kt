@@ -233,6 +233,10 @@ fun removeDigit(n: String, d: Char) = mutableListOf<String>().apply {
     for (i in n.indices) if (n[i] == d) add(n.removeRange(i..i))
 }.maxOrNull()!!
 
+// https://leetcode.com/problems/find-the-k-beauty-of-a-number/
+fun divisorSubstrings(n: Int, k: Int) =
+    n.toString().windowed(k).count { it.toInt() != 0 && n % it.toInt() == 0 }
+
 // https://leetcode.com/problems/min-max-game/
 fun minMaxGame(a: IntArray): Int {
     var l = a.toList().chunked(2)
