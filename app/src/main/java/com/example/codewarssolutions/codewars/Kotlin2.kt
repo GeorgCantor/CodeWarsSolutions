@@ -42,6 +42,30 @@ fun prevMultOfThree(n: Int): Int? = n.toString().run {
     null
 }
 
+// https://www.codewars.com/kata/5ae326342f8cbc72220000d2
+fun stringExpansion(s: String): String {
+    val sb = StringBuilder()
+    var last = -1
+    for (i in s.indices) {
+        if (s[i].isLetter()) {
+            val ch = s.getOrNull(i - 1)
+            if (ch?.isDigit() == true) {
+                for (j in 1..ch.digitToInt()) {
+                    sb.append(s[i])
+                }
+                last = ch.digitToInt()
+            } else if (last != -1) {
+                for (j in 1..last) {
+                    sb.append(s[i])
+                }
+            } else {
+                sb.append(s[i])
+            }
+        }
+    }
+    return sb.toString()
+}
+
 // https://www.codewars.com/kata/5938f5b606c3033f4700015a
 fun alphabetWar(s: String): String {
     val list = mutableListOf<Char>()
