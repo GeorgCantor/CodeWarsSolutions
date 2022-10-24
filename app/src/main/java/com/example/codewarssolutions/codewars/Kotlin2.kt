@@ -227,9 +227,9 @@ fun mix(s1: String, s2: String): String {
     return sb.toString().drop(1)
 }
 
-// https://leetcode.com/problems/sort-the-people/
-fun sortPeople(n: Array<String>, h: IntArray) =
-    n.withIndex().sortedByDescending { h[it.index] }.map { it.value }
+// https://www.codewars.com/kata/5264d2b162488dc400000001
+fun spinWords(s: String) =
+    s.split(" ").joinToString(" ") { if (it.length > 4) it.reversed() else it }
 
 // https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991/train/kotlin
 fun revRot(s: String, sz: Int) = s.windowed(sz, sz).joinToString("") {

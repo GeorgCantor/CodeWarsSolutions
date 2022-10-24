@@ -1671,28 +1671,6 @@ fun highAndLow(numbers: String): String {
     return "$max $min"
 }
 
-//6 kyu Stop gninnipS My sdroW!
-fun spinWords(sentence: String): String {
-    val words = sentence.split(" ")
-    val resultList = mutableListOf<String>()
-
-    words.map {
-        if (it.length > 4) {
-            resultList.add(it.reversed())
-        } else {
-            resultList.add(it)
-        }
-    }
-
-    val string = resultList.joinToString()
-    val builder = StringBuilder()
-    string.map {
-        if (it != ',') builder.append(it)
-    }
-
-    return builder.toString()
-}
-
 fun find(integers: Array<Int>): Int {
     var evenCounter = 0
     var oddCounter = 0

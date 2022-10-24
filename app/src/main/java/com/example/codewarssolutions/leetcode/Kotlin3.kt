@@ -286,6 +286,10 @@ fun nearestValidPoint(x: Int, y: Int, a: Array<IntArray>) = a.mapIndexed { i, ar
     .filter { it.second.first() == x || it.second.last() == y }
     .minByOrNull { abs(it.second.first() - x) + abs(it.second.last() - y) }?.first ?: -1
 
+// https://leetcode.com/problems/sort-the-people/
+fun sortPeople(n: Array<String>, h: IntArray) =
+    n.withIndex().sortedByDescending { h[it.index] }.map { it.value }
+
 // https://leetcode.com/problems/finding-3-digit-even-numbers/
 fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
     for (i in a.indices) {
