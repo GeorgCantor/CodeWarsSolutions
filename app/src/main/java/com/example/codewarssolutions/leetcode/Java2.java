@@ -173,6 +173,15 @@ public class Java2 {
         return map.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
     }
 
+    // https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/
+    public int findMaxK(int[] a) {
+        Arrays.sort(a);
+        for (int i = 0; i < a.length; ++i) {
+            for (int j = a.length - 1; j >= 0; --j) if (a[i] + a[j] == 0) return a[j];
+        }
+        return -1;
+    }
+
     // https://leetcode.com/problems/percentage-of-letter-in-string/
     public int percentageLetter(String s, char c) {
         return (int) s.chars().filter(ch -> ch == c).count() * 100 / s.length();

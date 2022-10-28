@@ -267,6 +267,12 @@ fun maxDistance(a: IntArray): Int {
     return max
 }
 
+// https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/
+fun findMaxK(nums: IntArray) = nums.sorted().run {
+    for (i in indices) for (j in indices.reversed()) if (this[i] + this[j] == 0) return@run this[j]
+    -1
+}
+
 // https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
 fun countBalls(l: Int, h: Int) = (l..h).map {
     it.toString().sumBy(Character::getNumericValue)
