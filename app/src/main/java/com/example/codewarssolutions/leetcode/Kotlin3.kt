@@ -100,6 +100,10 @@ fun canBeIncreasing(a: IntArray) = (0..a.lastIndex).any {
         .run { withIndex().all { (getOrElse(it.index - 1) { 0 }) < this[it.index] } }
 }
 
+// https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/
+fun makeEqual(a: Array<String>) =
+    a.flatMap { it.map { it } }.groupingBy { it }.eachCount().values.all { it % a.size == 0 }
+
 // https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
 fun kWeakestRows(a: Array<IntArray>, k: Int) =
     a.withIndex().sortedBy { it.value.count { it == 1 } }.take(k).map { it.index }.toIntArray()

@@ -194,6 +194,13 @@ public class Java2 {
         return set.isEmpty();
     }
 
+    // https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/
+    public boolean makeEqual(String[] a) {
+        Map<Character, Integer> m = new HashMap<>();
+        for (String s : a) for (char c : s.toCharArray()) m.put(c, m.getOrDefault(c, 0) + 1);
+        return m.keySet().stream().allMatch(k -> m.get(k) % a.length == 0);
+    }
+
     // https://leetcode.com/problems/make-array-zero-by-subtracting-equal-amounts/
     public int minimumOperations(int[] a) {
         return (int) Arrays.stream(a).distinct().filter(n -> n > 0).count();
