@@ -168,6 +168,12 @@ fun duplicateZeros(a: IntArray): Unit {
     }
 }
 
+// https://leetcode.com/problems/find-subarrays-with-equal-sum/
+fun findSubarrays(a: IntArray) = mutableSetOf<Int>().run {
+    for (i in 0 until a.lastIndex) if (!add(a[i] + a[i + 1])) return@run true
+    false
+}
+
 // https://leetcode.com/problems/excel-sheet-column-title/
 fun convertToTitle(columnNumber: Int) = StringBuilder().apply {
     var n = columnNumber

@@ -233,6 +233,15 @@ public class Java2 {
         return list.toArray(new String[list.size()]);
     }
 
+    // https://leetcode.com/problems/find-subarrays-with-equal-sum/
+    public boolean findSubarrays(int[] a) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < a.length - 1; ++i) {
+            if (!set.add(a[i] + a[i + 1])) return true;
+        }
+        return false;
+    }
+
     // https://leetcode.com/problems/find-the-difference-of-two-arrays/
     public List<List<Integer>> findDifference(int[] a, int[] b) {
         Set<Integer> s1 = new HashSet<>();
