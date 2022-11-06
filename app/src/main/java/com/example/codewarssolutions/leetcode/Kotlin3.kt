@@ -131,6 +131,20 @@ fun longestConsecutive(a: IntArray) = a.toSortedSet().toList().run {
     max
 }
 
+// https://leetcode.com/problems/zigzag-conversion/
+fun convert(s: String, rows: Int): String {
+    if (rows == 1) return s
+    val a = Array(rows) { StringBuilder() }
+    var i = 1
+    var down = true
+    s.forEach {
+        a[i - 1].append(it)
+        if (i == rows) down = false else if (i == 1) down = true
+        if (down) ++i else --i
+    }
+    return a.joinToString("")
+}
+
 // https://leetcode.com/problems/optimal-partition-of-string/
 fun partitionString(s: String) = mutableSetOf<Char>().run {
     var c = 1
