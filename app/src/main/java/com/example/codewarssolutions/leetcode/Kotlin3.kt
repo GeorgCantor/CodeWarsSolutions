@@ -170,6 +170,13 @@ fun setZeroes(a: Array<IntArray>): Unit {
     for (i in a.indices) for (j in a[i].indices) if (r.contains(i) || c.contains(j)) a[i][j] = 0
 }
 
+// https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
+fun minMovesToSeat(s: IntArray, st: IntArray) = (0..s.lastIndex).run {
+    s.sort()
+    st.sort()
+    fold(0) { ac, i -> ac + kotlin.math.abs(st[i] - s[i]) }
+}
+
 // https://leetcode.com/problems/duplicate-zeros/
 fun duplicateZeros(a: IntArray): Unit {
     var i = 0

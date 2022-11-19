@@ -122,6 +122,13 @@ public class Java2 {
         return sb.reverse().toString();
     }
 
+    // https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
+    public int minMovesToSeat(int[] s, int[] st) {
+        Arrays.sort(s);
+        Arrays.sort(st);
+        return IntStream.range(0, s.length).map(i -> Math.abs(st[i] - s[i])).sum();
+    }
+
     // https://leetcode.com/problems/sort-the-people/
     public String[] sortPeople(String[] names, int[] heights) {
         Map<Integer, String> map = new HashMap<>();
