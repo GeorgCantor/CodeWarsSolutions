@@ -23,6 +23,35 @@ fun decode(s: String): Int {
     return counter
 }
 
+// https://www.codewars.com/kata/515bb423de843ea99400000a
+class PaginationHelper<T>(val collection: List<T>, val itemsPerPage: Int) {
+    private val windows = collection.windowed(itemsPerPage, itemsPerPage, true)
+
+    /**
+     * returns the number of items within the entire collection
+     */
+    val itemCount = collection.size
+
+    /**
+     * returns the number of pages
+     */
+    val pageCount = windows.size
+
+    /**
+     * returns the number of items on the current page. page_index is zero based.
+     * this method should return -1 for pageIndex values that are out of range
+     */
+    fun pageItemCount(pageIndex: Int) = windows.getOrNull(pageIndex)?.size ?: -1
+
+
+    /**
+     * determines what page an item is on. Zero based indexes
+     * this method should return -1 for itemIndex values that are out of range
+     */
+    fun pageIndex(itemIndex: Int) =
+        if (itemIndex in collection.indices) itemIndex / itemsPerPage else -1
+}
+
 // https://www.codewars.com/kata/56f3a1e899b386da78000732
 fun partlist(a: Array<String>) = (1..a.lastIndex).map {
     arrayOf(a.take(it).joinToString(" "), a.drop(it).joinToString(" "))
