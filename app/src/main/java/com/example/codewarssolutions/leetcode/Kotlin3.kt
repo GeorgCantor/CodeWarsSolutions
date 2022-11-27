@@ -224,6 +224,22 @@ fun numberOfPairs(a: IntArray) = a.toList().groupingBy { it }.eachCount().values
     )
 }
 
+// https://leetcode.com/problems/count-special-quadruplets/
+fun countQuadruplets(a: IntArray): Int {
+    var c = 0
+    for (i in a.indices) {
+        for (j in i + 1 until a.lastIndex) {
+            for (k in j + 1 until a.lastIndex) {
+                for (l in k + 1..a.lastIndex) {
+                    if (a.getOrElse(i) { Int.MIN_VALUE } + a.getOrElse(j) { Int.MIN_VALUE } +
+                        a.getOrElse(k) { Int.MIN_VALUE } == a.getOrElse(l) { Int.MIN_VALUE }) ++c
+                }
+            }
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/greatest-common-divisor-of-strings/
 fun gcdOfStrings(s1: String, s2: String): String {
     return if (s1.length < s2.length) gcdOfStrings(s2, s1)
