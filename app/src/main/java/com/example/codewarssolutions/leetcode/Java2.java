@@ -169,6 +169,16 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/number-of-distinct-averages/
+    public int distinctAverages(int[] a) {
+        Arrays.sort(a);
+        Set<Float> set = new HashSet<>();
+        int l = -1;
+        int r = a.length;
+        while (l < r) set.add((a[++l] + a[--r]) / 2.0F);
+        return set.size();
+    }
+
     // https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
     public int countBalls(int low, int high) {
         Map<Integer, Integer> map = new HashMap<>();

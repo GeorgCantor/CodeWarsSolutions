@@ -240,6 +240,14 @@ fun countQuadruplets(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/number-of-distinct-averages/
+fun distinctAverages(a: IntArray) = mutableSetOf<Float>().apply {
+    a.sort()
+    var l = -1
+    var r = a.size
+    while (l < r) add((a[++l] + a[--r]) / 2.0F)
+}.size
+
 // https://leetcode.com/problems/greatest-common-divisor-of-strings/
 fun gcdOfStrings(s1: String, s2: String): String {
     return if (s1.length < s2.length) gcdOfStrings(s2, s1)
