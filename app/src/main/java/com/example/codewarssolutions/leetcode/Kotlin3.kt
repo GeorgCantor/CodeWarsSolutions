@@ -117,6 +117,18 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/partition-array-according-to-given-pivot/
+fun pivotArray(a: IntArray, p: Int) =
+    arrayOf(mutableListOf(), mutableListOf(), mutableListOf<Int>()).apply {
+        a.forEach {
+            when {
+                it < p -> first().add(it)
+                it == p -> this[1].add(it)
+                it > p -> last().add(it)
+            }
+        }
+    }.flatMap { it }.toIntArray()
+
 // https://leetcode.com/problems/longest-consecutive-sequence/
 fun longestConsecutive(a: IntArray) = a.toSortedSet().toList().run {
     var max = 0

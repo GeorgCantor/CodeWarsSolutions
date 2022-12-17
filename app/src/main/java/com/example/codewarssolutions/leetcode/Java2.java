@@ -2,6 +2,7 @@ package com.example.codewarssolutions.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Java2 {
 
@@ -147,6 +149,19 @@ public class Java2 {
                 ++i;
             }
         }
+    }
+
+    // https://leetcode.com/problems/partition-array-according-to-given-pivot/
+    public int[] pivotArray(int[] nums, int pivot) {
+        List<Integer> l = new ArrayList<>();
+        List<Integer> m = new ArrayList<>();
+        List<Integer> r = new ArrayList<>();
+        for (int n : nums) {
+            if (n < pivot) l.add(n);
+            else if (n == pivot) m.add(n);
+            else r.add(n);
+        }
+        return Stream.of(l, m, r).flatMap(Collection::stream).mapToInt(n -> n).toArray();
     }
 
     // https://leetcode.com/problems/first-letter-to-appear-twice/
