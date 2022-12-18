@@ -117,6 +117,18 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/daily-temperatures/
+fun dailyTemperatures(a: IntArray) = IntArray(a.size).apply {
+    a.forEachIndexed { i, t ->
+        for (j in i + 1..a.lastIndex) {
+            if (a[j] > t) {
+                this[i] = j - i
+                break
+            }
+        }
+    }
+}
+
 // https://leetcode.com/problems/partition-array-according-to-given-pivot/
 fun pivotArray(a: IntArray, p: Int) =
     arrayOf(mutableListOf(), mutableListOf(), mutableListOf<Int>()).apply {
