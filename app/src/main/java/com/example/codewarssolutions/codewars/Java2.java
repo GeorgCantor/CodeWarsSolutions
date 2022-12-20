@@ -258,6 +258,21 @@ public class Java2 {
         return true;
     }
 
+    // https://www.codewars.com/kata/634d0f7c562caa0016debac5
+    public static boolean block(int[] at, int[] def) {
+        List<Integer> a = new ArrayList<>();
+        List<Integer> d = new ArrayList<>();
+        if (at.length > def.length) for (int i = at.length - 1; i >= def.length; --i) a.add(at[i]);
+        if (def.length > at.length) for (int i = def.length - 1; i >= at.length; --i) d.add(def[i]);
+        for (int i = 0; i < at.length; ++i) {
+            if (at.length - 1 < i || def.length - 1 < i) break;
+            if (at[i] > def[i]) a.add(at[i]);
+            else if (def[i] > at[i]) d.add(def[i]);
+        }
+        if (a.size() == d.size()) return Arrays.stream(def).sum() >= Arrays.stream(at).sum();
+        else return d.size() > a.size();
+    }
+
     // https://www.codewars.com/kata/580a4734d6df748060000045
     public static String isSortedAndHow(int[] ar) {
         for (int i = 1; i < ar.length; i++) {
