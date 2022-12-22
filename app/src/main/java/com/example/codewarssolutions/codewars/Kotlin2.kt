@@ -256,6 +256,9 @@ fun mix(s1: String, s2: String): String {
     return sb.toString().drop(1)
 }
 
+// https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/
+fun countDistinctIntegers(a: IntArray) = (a + a.map { it.toString().reversed().toInt() }).distinct().size
+
 // https://www.codewars.com/kata/5264d2b162488dc400000001
 fun spinWords(s: String) =
     s.split(" ").joinToString(" ") { if (it.length > 4) it.reversed() else it }

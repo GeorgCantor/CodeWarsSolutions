@@ -273,6 +273,15 @@ public class Java2 {
         else return d.size() > a.size();
     }
 
+    // https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/
+    public int countDistinctIntegers(int[] a) {
+        List<Integer> res = new ArrayList<>(IntStream.of(a).boxed().collect(Collectors.toCollection(ArrayList::new)));
+        for (int n : a) {
+            res.add(Integer.parseInt(new StringBuilder(String.valueOf(n)).reverse().toString()));
+        }
+        return (int) res.stream().distinct().count();
+    }
+
     // https://www.codewars.com/kata/580a4734d6df748060000045
     public static String isSortedAndHow(int[] ar) {
         for (int i = 1; i < ar.length; i++) {
