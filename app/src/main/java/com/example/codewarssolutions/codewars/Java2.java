@@ -275,7 +275,7 @@ public class Java2 {
 
     // https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/
     public int countDistinctIntegers(int[] a) {
-        List<Integer> res = new ArrayList<>(IntStream.of(a).boxed().collect(Collectors.toCollection(ArrayList::new)));
+        List<Integer> res = IntStream.of(a).boxed().collect(Collectors.toList());
         for (int n : a) {
             res.add(Integer.parseInt(new StringBuilder(String.valueOf(n)).reverse().toString()));
         }
