@@ -85,29 +85,18 @@ public class Java2 {
             int n2 = Character.getNumericValue(s.charAt(i));
             String[] a = map.get(n1);
             if (n1 != n2) {
-                String st = a[c];
-                sb.append(st);
+                sb.append(a[c]);
                 c = 0;
-                if (i == length - 1) {
-                    String[] ar = map.get(n2);
-                    sb.append(ar[c]);
-                }
+                if (i == length - 1) sb.append(map.get(n2)[c]);
             } else {
                 if (c < a.length - 1) {
-                    if (i == length - 1) {
-                        String st = a[++c];
-                        sb.append(st);
-                    } else {
-                        ++c;
-                    }
+                    if (i == length - 1) sb.append(a[++c]);
+                    else ++c;
                 } else {
                     if (i == 1 && n1 != 0 && n1 != 1) c = 1;
-                    String st = a[c];
-                    sb.append(st);
+                    sb.append(a[c]);
                     c = 0;
-                    if (i == length - 1) {
-                        sb.append(st);
-                    }
+                    if (i == length - 1) sb.append(a[c]);
                 }
             }
         }
