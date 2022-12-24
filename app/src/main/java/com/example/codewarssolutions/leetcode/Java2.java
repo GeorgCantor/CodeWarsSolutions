@@ -114,6 +114,15 @@ public class Java2 {
                 if (c.contains(i) || r.contains(j)) matrix[i][j] = 0;
     }
 
+    // https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/
+    public int countDistinctIntegers(int[] a) {
+        List<Integer> res = IntStream.of(a).boxed().collect(Collectors.toList());
+        for (int n : a) {
+            res.add(Integer.parseInt(new StringBuilder(String.valueOf(n)).reverse().toString()));
+        }
+        return (int) res.stream().distinct().count();
+    }
+
     // https://leetcode.com/problems/excel-sheet-column-title/
     public String convertToTitle(int n) {
         StringBuilder sb = new StringBuilder();

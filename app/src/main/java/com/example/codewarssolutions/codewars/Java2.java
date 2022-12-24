@@ -63,6 +63,57 @@ public class Java2 {
         return Arrays.stream(new int[]{2, 7, 9, 14, 15}).allMatch(n -> Arrays.stream(a).anyMatch(i -> i == n)) ? "WIN" : "LOSE";
     }
 
+    // https://www.codewars.com/kata/635b8fa500fba2bef9189473
+    public static String phoneWords(String s) {
+        if (s == null || s.isEmpty()) return "";
+        Map<Integer, String[]> map = new HashMap<>();
+        map.put(0, new String[]{" "});
+        map.put(1, new String[]{""});
+        map.put(2, new String[]{"a", "b", "c"});
+        map.put(3, new String[]{"d", "e", "f"});
+        map.put(4, new String[]{"g", "h", "i"});
+        map.put(5, new String[]{"j", "k", "l"});
+        map.put(6, new String[]{"m", "n", "o"});
+        map.put(7, new String[]{"p", "q", "r", "s"});
+        map.put(8, new String[]{"t", "u", "v"});
+        map.put(9, new String[]{"w", "x", "y", "z"});
+        StringBuilder sb = new StringBuilder();
+        int length = s.toCharArray().length;
+        int c = 0;
+        for (int i = 1; i < length; ++i) {
+            int n1 = Character.getNumericValue(s.charAt(i - 1));
+            int n2 = Character.getNumericValue(s.charAt(i));
+            String[] a = map.get(n1);
+            if (n1 != n2) {
+                String st = a[c];
+                sb.append(st);
+                c = 0;
+                if (i == length - 1) {
+                    String[] ar = map.get(n2);
+                    sb.append(ar[c]);
+                }
+            } else {
+                if (c < a.length - 1) {
+                    if (i == length - 1) {
+                        String st = a[++c];
+                        sb.append(st);
+                    } else {
+                        ++c;
+                    }
+                } else {
+                    if (i == 1 && n1 != 0 && n1 != 1) c = 1;
+                    String st = a[c];
+                    sb.append(st);
+                    c = 0;
+                    if (i == length - 1) {
+                        sb.append(st);
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+
     // https://www.codewars.com/kata/58539230879867a8cd00011c
     static String findChildren(final String text) {
         String[] s = text.split("");
@@ -271,15 +322,6 @@ public class Java2 {
         }
         if (a.size() == d.size()) return Arrays.stream(def).sum() >= Arrays.stream(at).sum();
         else return d.size() > a.size();
-    }
-
-    // https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/
-    public int countDistinctIntegers(int[] a) {
-        List<Integer> res = IntStream.of(a).boxed().collect(Collectors.toList());
-        for (int n : a) {
-            res.add(Integer.parseInt(new StringBuilder(String.valueOf(n)).reverse().toString()));
-        }
-        return (int) res.stream().distinct().count();
     }
 
     // https://www.codewars.com/kata/580a4734d6df748060000045
