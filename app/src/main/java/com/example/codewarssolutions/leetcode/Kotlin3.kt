@@ -141,6 +141,20 @@ fun pivotArray(a: IntArray, p: Int) =
         }
     }.flatMap { it }.toIntArray()
 
+// https://leetcode.com/problems/find-players-with-zero-or-one-losses/
+fun findWinners(matches: Array<IntArray>): List<List<Int>> {
+    val wMap = mutableMapOf<Int, Int>()
+    val lMap = mutableMapOf<Int, Int>()
+    matches.forEach { (w, l) ->
+        wMap[w] = wMap.getOrDefault(w, 0) + 1
+        lMap[l] = lMap.getOrDefault(l, 0) + 1
+    }
+    return listOf(
+        wMap.keys.filter { !lMap.keys.contains(it) }.sorted(),
+        lMap.filter { it.value == 1 }.keys.sorted()
+    )
+}
+
 // https://leetcode.com/problems/longest-consecutive-sequence/
 fun longestConsecutive(a: IntArray) = a.toSortedSet().toList().run {
     var max = 0

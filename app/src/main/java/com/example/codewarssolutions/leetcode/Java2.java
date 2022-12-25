@@ -83,6 +83,20 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/find-players-with-zero-or-one-losses/
+    public List<List<Integer>> findWinners(int[][] matches) {
+        Map<Integer, Integer> w = new HashMap<>();
+        Map<Integer, Integer> l = new HashMap<>();
+        for (int[] m : matches) {
+            w.put(m[0], w.getOrDefault(m[0], 0) + 1);
+            l.put(m[1], l.getOrDefault(m[1], 0) + 1);
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(w.keySet().stream().filter(k -> !l.containsKey(k)).mapToInt(k -> k).sorted().boxed().collect(Collectors.toList()));
+        res.add(l.entrySet().stream().filter(e -> e.getValue() == 1).mapToInt(Map.Entry::getKey).sorted().boxed().collect(Collectors.toList()));
+        return res;
+    }
+
     // https://leetcode.com/problems/optimal-partition-of-string/
     public int partitionString(String s) {
         Set<Character> set = new HashSet<>();
