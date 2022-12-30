@@ -111,6 +111,23 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/rearrange-array-elements-by-sign/
+    public int[] rearrangeArray(int[] nums) {
+        List<Integer> pos = new ArrayList<>();
+        List<Integer> neg = new ArrayList<>();
+        for (int n : nums) {
+            if (n >= 0) pos.add(n);
+            else neg.add(n);
+        }
+        int[] res = new int[nums.length];
+        int pI = -1, nI = -1;
+        for (int i = 0; i < nums.length; ++i) {
+            if (i % 2 == 0) res[i] = pos.get(++pI);
+            else res[i] = neg.get(++nI);
+        }
+        return res;
+    }
+
     // https://leetcode.com/problems/set-matrix-zeroes/
     public void setZeroes(int[][] matrix) {
         Set<Integer> c = new HashSet<>();

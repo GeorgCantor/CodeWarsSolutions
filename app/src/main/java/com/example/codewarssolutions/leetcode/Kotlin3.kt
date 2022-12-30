@@ -117,6 +117,16 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/rearrange-array-elements-by-sign/
+fun rearrangeArray(a: IntArray) = IntArray(a.size).apply {
+    val pos = mutableListOf<Int>()
+    val neg = mutableListOf<Int>()
+    a.forEach { if (it >= 0) pos.add(it) else neg.add(it) }
+    var pI = -1
+    var nI = -1
+    for (i in a.indices) if (i % 2 == 0) this[i] = pos[++pI] else this[i] = neg[++nI]
+}
+
 // https://leetcode.com/problems/daily-temperatures/
 fun dailyTemperatures(a: IntArray) = IntArray(a.size).apply {
     a.forEachIndexed { i, t ->
