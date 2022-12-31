@@ -210,18 +210,18 @@ class CircularList<T>(vararg val elements: T) {
 
 // https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08
 fun multiplicationTable(size: Int): Array<IntArray> {
-    val res = mutableListOf<MutableList<Int>>()
+    val res = Array(size) { IntArray(size) }
     var c = 0
     for (i in 1..size) {
-        val l = mutableListOf<Int>()
+        val a = IntArray(size)
         for (j in 1..size) {
             c += i
-            l.add(c)
+            a[j - 1] = c
         }
-        res.add(l)
+        res[i - 1] = a
         c = 0
     }
-    return res.map { it.toIntArray() }.toTypedArray()
+    return res
 }
 
 // https://www.codewars.com/kata/5629db57620258aa9d000014
