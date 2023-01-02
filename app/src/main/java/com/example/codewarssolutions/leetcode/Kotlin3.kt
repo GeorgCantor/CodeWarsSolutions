@@ -218,6 +218,14 @@ fun setZeroes(a: Array<IntArray>): Unit {
     for (i in a.indices) for (j in a[i].indices) if (r.contains(i) || c.contains(j)) a[i][j] = 0
 }
 
+// https://leetcode.com/problems/decode-the-message/
+fun decodeMessage(key: String, m: String): String {
+    val k = key.toSet().filterNot { it.isWhitespace() }
+    val map = mutableMapOf<Char, Char>()
+    (0..25).forEachIndexed { i, n -> map[k[i]] = (n + 97).toChar() }
+    return m.map { if (it.isWhitespace()) ' ' else map[it] }.joinToString("")
+}
+
 // https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
 fun minMovesToSeat(s: IntArray, st: IntArray) = (0..s.lastIndex).run {
     s.sort()

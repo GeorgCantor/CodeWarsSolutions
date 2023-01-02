@@ -1,12 +1,7 @@
 package com.example.codewarssolutions.ds;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class SinglyLinkedList {
 
     static class Node {
