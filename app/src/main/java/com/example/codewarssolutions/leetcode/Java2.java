@@ -164,6 +164,15 @@ public class Java2 {
         return sb.reverse().toString();
     }
 
+    // https://leetcode.com/problems/decode-the-message/
+    public String decodeMessage(String key, String message) {
+        Map<Character, Character> map = new HashMap<>();
+        map.put(' ', ' ');
+        char ch = 'a';
+        for (char value : key.toCharArray()) if (!map.containsKey(value)) map.put(value, ch++);
+        return message.chars().mapToObj(c -> map.get((char) c) + "").collect(Collectors.joining(""));
+    }
+
     // https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
     public int minMovesToSeat(int[] s, int[] st) {
         Arrays.sort(s);
