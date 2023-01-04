@@ -83,6 +83,12 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
+    public String removeOccurrences(String s, String part) {
+        while (s.contains(part)) s = s.replaceFirst(part, "");
+        return s;
+    }
+
     // https://leetcode.com/problems/find-players-with-zero-or-one-losses/
     public List<List<Integer>> findWinners(int[][] matches) {
         Map<Integer, Integer> w = new HashMap<>();

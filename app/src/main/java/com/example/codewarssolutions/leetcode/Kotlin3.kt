@@ -117,6 +117,13 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
+fun removeOccurrences(s: String, part: String): String {
+    var w = s
+    while (w.contains(part)) w = w.replaceFirst(part, "")
+    return w
+}
+
 // https://leetcode.com/problems/rearrange-array-elements-by-sign/
 fun rearrangeArray(a: IntArray) = IntArray(a.size).apply {
     val pos = mutableListOf<Int>()
