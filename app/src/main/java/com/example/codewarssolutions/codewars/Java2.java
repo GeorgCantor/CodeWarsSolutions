@@ -587,18 +587,6 @@ public class Java2 {
         return ar;
     }
 
-    // https://www.codewars.com/kata/523f5d21c841566fde000009
-    public static int[] arrayDiff(int[] a, int[] b) {
-        List<Integer> list = new ArrayList<>();
-        loop:
-        for (int num : a) {
-            for (int i : b) if (num == i) continue loop;
-            list.add(num);
-        }
-
-        return list.stream().mapToInt(Integer::intValue).toArray();
-    }
-
     // https://www.codewars.com/kata/5f7c38eb54307c002a2b8cc8
     public static String removeParentheses(final String str) {
         int counter = 0;
@@ -610,6 +598,18 @@ public class Java2 {
         }
 
         return sb.toString();
+    }
+
+    // https://www.codewars.com/kata/523f5d21c841566fde000009
+    public static int[] arrayDiff(int[] a, int[] b) {
+        List<Integer> list = new ArrayList<>();
+        loop:
+        for (int num : a) {
+            for (int i : b) if (num == i) continue loop;
+            list.add(num);
+        }
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
     // https://www.codewars.com/kata/587731fda577b3d1b0001196
