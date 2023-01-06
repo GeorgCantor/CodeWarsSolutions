@@ -19,18 +19,6 @@ import java.util.stream.IntStream;
 
 public class Java2 {
 
-    // https://www.codewars.com/kata/58c9322bedb4235468000019
-    public static boolean isVeryEvenNumber(int n) {
-        while (n > 9) {
-            int a = 0;
-            for (char c : String.valueOf(n).toCharArray()) {
-                a += Character.getNumericValue(c);
-            }
-            n = a;
-        }
-        return n % 2 == 0;
-    }
-
     // https://www.codewars.com/kata/58b1ae711fcffa34090000ea
     public static String run(String events) {
         StringBuilder sb = new StringBuilder();
@@ -274,6 +262,18 @@ public class Java2 {
             if (j == sA.length - 1) return -1;
         }
         return 0;
+    }
+
+    // https://www.codewars.com/kata/58c9322bedb4235468000019
+    public static boolean isVeryEvenNumber(int n) {
+        while (n > 9) {
+            int a = 0;
+            for (char c : String.valueOf(n).toCharArray()) {
+                a += Character.getNumericValue(c);
+            }
+            n = a;
+        }
+        return n % 2 == 0;
     }
 
     // https://www.codewars.com/kata/559590633066759614000063
