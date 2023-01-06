@@ -31,6 +31,88 @@ public class Java2 {
         return n % 2 == 0;
     }
 
+    // https://www.codewars.com/kata/58b1ae711fcffa34090000ea
+    public static String run(String events) {
+        StringBuilder sb = new StringBuilder();
+        int sec = 0;
+        boolean opened = false;
+        boolean started = false;
+        boolean paused = false;
+        for (char ch : events.toCharArray()) {
+            switch (ch) {
+                case '.':
+                    if (started) {
+                        if (opened) {
+                            if (sec > 1) {
+                                sb.append(--sec);
+                            } else {
+                                started = false;
+                                opened = false;
+                                sb.append(0);
+                            }
+                        } else {
+                            if (sec < 5) {
+                                sb.append(++sec);
+                            } else {
+                                started = false;
+                                opened = true;
+                                paused = true;
+                                sb.append(sec);
+                            }
+                        }
+                    } else {
+                        if (paused) sb.append(sec);
+                        else sb.append(0);
+                    }
+                    break;
+                case 'P':
+                    if (started) {
+                        started = false;
+                        paused = true;
+                        sb.append(sec);
+                    } else {
+                        if (paused) {
+                            paused = false;
+                            started = true;
+                            if (opened) {
+                                if (sec > 1) {
+                                    sb.append(--sec);
+                                } else {
+                                    opened = false;
+                                    sb.append(0);
+                                }
+                            } else {
+                                if (sec < 5) {
+                                    sb.append(++sec);
+                                } else {
+                                    opened = true;
+                                    sb.append(0);
+                                }
+                            }
+                        } else {
+                            started = true;
+                            sb.append(++sec);
+                        }
+                    }
+                    break;
+                case 'O':
+                    if (started) {
+                        if (opened) {
+                            opened = false;
+                            sb.append(++sec);
+                        } else {
+                            opened = true;
+                            sb.append(--sec);
+                        }
+                    } else {
+                        sb.append(0);
+                    }
+                    break;
+            }
+        }
+        return sb.toString();
+    }
+
     // https://www.codewars.com/kata/5ce399e0047a45001c853c2b
     public static int[] sumParts(int[] ar) {
         int[] a = new int[ar.length + 1];
