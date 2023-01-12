@@ -89,6 +89,15 @@ public class Java2 {
         return s;
     }
 
+    // https://leetcode.com/problems/jump-game/
+    public boolean canJump(int[] a) {
+        int p = a.length - 1;
+        for (int i = a.length - 1; i >= 0; --i) {
+            if (i + a[i] >= p) p = i;
+        }
+        return p == 0;
+    }
+
     // https://leetcode.com/problems/find-players-with-zero-or-one-losses/
     public List<List<Integer>> findWinners(int[][] matches) {
         Map<Integer, Integer> w = new HashMap<>();

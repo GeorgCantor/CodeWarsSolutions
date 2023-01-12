@@ -146,6 +146,15 @@ fun dailyTemperatures(a: IntArray) = IntArray(a.size).apply {
     }
 }
 
+// https://leetcode.com/problems/jump-game/
+fun canJump(a: IntArray): Boolean {
+    var p = a.lastIndex
+    for (i in a.lastIndex downTo 0) {
+        if (i + a[i] >= p) p = i
+    }
+    return p == 0
+}
+
 // https://leetcode.com/problems/partition-array-according-to-given-pivot/
 fun pivotArray(a: IntArray, p: Int) =
     arrayOf(mutableListOf(), mutableListOf(), mutableListOf<Int>()).apply {
