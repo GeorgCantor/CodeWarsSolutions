@@ -150,17 +150,17 @@ fun dailyTemperatures(a: IntArray) = IntArray(a.size).apply {
 fun myAtoi(s: String): Int {
     var res = 0L
     val w = s.trim()
-    if (w.isBlank() || w.first() != '+' && w.first() != '-' && w.first() !in '0'..'9') return 0
+    if (w.isEmpty() || !w.first().isDigit() && w.first() != '+' && w.first() != '-') return 0
     if (w.first() == '-') {
         for (i in 1..w.lastIndex) {
-            if (w[i] !in '0'..'9') break
+            if (!w[i].isDigit()) break
             res *= 10
             res -= w[i] - '0'
             if (res < Int.MIN_VALUE) return Int.MIN_VALUE
         }
     } else {
         for (i in (if (w.first() == '+') 1 else 0)..w.lastIndex) {
-            if (w[i] !in '0'..'9') break
+            if (!w[i].isDigit()) break
             res *= 10
             res += w[i] - '0'
             if (res > Int.MAX_VALUE) return Int.MAX_VALUE

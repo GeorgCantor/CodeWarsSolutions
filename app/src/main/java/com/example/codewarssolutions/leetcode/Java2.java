@@ -98,6 +98,30 @@ public class Java2 {
         return p == 0;
     }
 
+    // https://leetcode.com/problems/string-to-integer-atoi/
+    public int myAtoi(String s) {
+        s = s.trim();
+        if (s.isEmpty() || !Character.isDigit(s.charAt(0)) && s.charAt(0) != '+' && s.charAt(0) != '-')
+            return 0;
+        long res = 0L;
+        if (s.charAt(0) == '-') {
+            for (int i = 1; i < s.toCharArray().length; ++i) {
+                if (!Character.isDigit(s.charAt(i))) break;
+                res *= 10;
+                res -= s.charAt(i) - '0';
+                if (res < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+            }
+        } else {
+            for (int i = s.charAt(0) == '+' ? 1 : 0; i < s.toCharArray().length; ++i) {
+                if (!Character.isDigit(s.charAt(i))) break;
+                res *= 10;
+                res += s.charAt(i) - '0';
+                if (res > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            }
+        }
+        return (int) res;
+    }
+
     // https://leetcode.com/problems/find-players-with-zero-or-one-losses/
     public List<List<Integer>> findWinners(int[][] matches) {
         Map<Integer, Integer> w = new HashMap<>();
