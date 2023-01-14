@@ -146,6 +146,29 @@ fun dailyTemperatures(a: IntArray) = IntArray(a.size).apply {
     }
 }
 
+// https://leetcode.com/problems/string-to-integer-atoi/
+fun myAtoi(s: String): Int {
+    var res = 0L
+    val w = s.trim()
+    if (w.isBlank() || w.first() != '+' && w.first() != '-' && w.first() !in '0'..'9') return 0
+    if (w.first() == '-') {
+        for (i in 1..w.lastIndex) {
+            if (w[i] !in '0'..'9') break
+            res *= 10
+            res -= w[i] - '0'
+            if (res < Int.MIN_VALUE) return Int.MIN_VALUE
+        }
+    } else {
+        for (i in (if (w.first() == '+') 1 else 0)..w.lastIndex) {
+            if (w[i] !in '0'..'9') break
+            res *= 10
+            res += w[i] - '0'
+            if (res > Int.MAX_VALUE) return Int.MAX_VALUE
+        }
+    }
+    return res.toInt()
+}
+
 // https://leetcode.com/problems/jump-game/
 fun canJump(a: IntArray): Boolean {
     var p = a.lastIndex
