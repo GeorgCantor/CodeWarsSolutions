@@ -150,6 +150,20 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/minimum-common-value/
+    public int getCommon(int[] a, int[] b) {
+        int i = 0;
+        int j = 0;
+        while (i < a.length && j < b.length) {
+            if (a[i] == b[j]) return a[i];
+            else {
+                if (a[i] > b[j]) ++j;
+                else ++i;
+            }
+        }
+        return -1;
+    }
+
     // https://leetcode.com/problems/rearrange-array-elements-by-sign/
     public int[] rearrangeArray(int[] nums) {
         List<Integer> pos = new ArrayList<>();

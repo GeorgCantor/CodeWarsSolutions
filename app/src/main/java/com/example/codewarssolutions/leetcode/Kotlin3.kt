@@ -257,6 +257,19 @@ fun setZeroes(a: Array<IntArray>): Unit {
     for (i in a.indices) for (j in a[i].indices) if (r.contains(i) || c.contains(j)) a[i][j] = 0
 }
 
+// https://leetcode.com/problems/minimum-common-value/
+fun getCommon(a: IntArray, b: IntArray) = a.intersect(b.toSet()).minOrNull() ?: -1
+
+fun getCommon2(a: IntArray, b: IntArray): Int {
+    var i = 0
+    var j = 0
+    while (i <= a.lastIndex && j <= b.lastIndex) {
+        if (a[i] == b[j]) return a[i]
+        else if (a[i] > b[j]) ++j else ++i
+    }
+    return -1
+}
+
 // https://leetcode.com/problems/decode-the-message/
 fun decodeMessage(key: String, m: String): String {
     val k = key.toSet().filterNot { it.isWhitespace() }
