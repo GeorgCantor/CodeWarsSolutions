@@ -273,6 +273,16 @@ public class Java2 {
         return ' ';
     }
 
+    // https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/
+    public int maximumValue(String[] a) {
+        int max = 0;
+        for (String s : a) {
+            if (s.chars().allMatch(Character::isDigit)) max = Math.max(max, Integer.valueOf(s));
+            else max = Math.max(max, s.length());
+        }
+        return max;
+    }
+
     // https://leetcode.com/problems/distribute-candies/
     public int distributeCandies(int[] a) {
         Map<Integer, Integer> map = new HashMap<>();

@@ -270,6 +270,10 @@ fun getCommon2(a: IntArray, b: IntArray): Int {
     return -1
 }
 
+// https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/
+fun maximumValue(a: Array<String>) =
+    a.maxOfOrNull { if (it.all { it.isDigit() }) it.toInt() else it.length }
+
 // https://leetcode.com/problems/decode-the-message/
 fun decodeMessage(key: String, m: String): String {
     val k = key.toSet().filterNot { it.isWhitespace() }
