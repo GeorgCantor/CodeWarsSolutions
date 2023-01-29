@@ -1,6 +1,7 @@
 package com.example.codewarssolutions.leetcode
 
 import kotlin.math.abs
+import kotlin.math.max
 
 // https://leetcode.com/problems/design-twitter/
 class Twitter() {
@@ -81,6 +82,18 @@ fun equalPairs(grid: Array<IntArray>): Int {
         }
     }
     return c
+}
+
+// https://leetcode.com/problems/unique-substrings-in-wraparound-string/
+fun findSubstringInWraproundString(s: String): Int {
+    val a = IntArray(26)
+    var c = 0
+    for (i in s.indices) {
+        if (i > 0 && (s[i] - s[i - 1] == 1 || s[i - 1] - s[i] == 25)) ++c else c = 1
+        val j = s[i] - 'a'
+        a[j] = max(c, a[j])
+    }
+    return a.sum()
 }
 
 // https://leetcode.com/problems/finding-the-users-active-minutes/
