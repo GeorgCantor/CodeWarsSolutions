@@ -31,6 +31,17 @@ class Twitter() {
     }
 }
 
+// https://leetcode.com/problems/lru-cache/
+class LRUCache(private val cap: Int) {
+    private val m = mutableMapOf<Int, Int>()
+    fun get(k: Int) = m[k]?.let { it.apply { m.remove(k); m[k] = it } } ?: -1
+    fun put(k: Int, v: Int) = with(m) {
+        if (keys.contains(k)) remove(k)
+        this[k] = v
+        if (size > cap) remove(keys.first())
+    }
+}
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
