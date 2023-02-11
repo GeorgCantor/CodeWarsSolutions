@@ -150,6 +150,18 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/delete-greatest-value-in-each-row/
+    public int deleteGreatestValue(int[][] grid) {
+        for (int[] a : grid) Arrays.sort(a);
+        int res = 0;
+        for (int i = 0; i < grid[0].length; ++i) {
+            int max = 0;
+            for (int[] a : grid) max = Math.max(max, a[i]);
+            res += max;
+        }
+        return res;
+    }
+
     // https://leetcode.com/problems/minimum-common-value/
     public int getCommon(int[] a, int[] b) {
         int i = 0;

@@ -256,6 +256,13 @@ fun convert(s: String, rows: Int): String {
     return a.joinToString("")
 }
 
+// https://leetcode.com/problems/delete-greatest-value-in-each-row/
+fun deleteGreatestValue(a: Array<IntArray>) = a.map { it.sorted() }.run {
+    var res = 0
+    for (i in first().indices) res += maxByOrNull { it[i] }?.get(i) ?: 0
+    res
+}
+
 // https://leetcode.com/problems/optimal-partition-of-string/
 fun partitionString(s: String) = mutableSetOf<Char>().run {
     var c = 1
