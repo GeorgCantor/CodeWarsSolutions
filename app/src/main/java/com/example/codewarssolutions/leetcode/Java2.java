@@ -150,6 +150,20 @@ public class Java2 {
         return counter;
     }
 
+    // https://leetcode.com/problems/count-pairs-of-similar-strings/
+    public int similarPairs(String[] a) {
+        for (int i = 0; i < a.length; i++) {
+            a[i] = Stream.of(a[i].split("")).sorted().distinct().collect(Collectors.joining());
+        }
+        int c = 0;
+        for (int i = 0; i < a.length; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[i].equals(a[j])) ++c;
+            }
+        }
+        return c;
+    }
+
     // https://leetcode.com/problems/delete-greatest-value-in-each-row/
     public int deleteGreatestValue(int[][] grid) {
         for (int[] a : grid) Arrays.sort(a);

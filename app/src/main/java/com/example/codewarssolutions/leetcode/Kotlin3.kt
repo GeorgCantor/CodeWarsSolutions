@@ -170,6 +170,15 @@ fun dailyTemperatures(a: IntArray) = IntArray(a.size).apply {
     }
 }
 
+// https://leetcode.com/problems/count-pairs-of-similar-strings/
+fun similarPairs(a: Array<String>) = a.map { it.toSortedSet() }.run {
+    var c = 0
+    for (i in indices) {
+        for (j in i + 1..lastIndex) if (this[i] == this[j]) ++c
+    }
+    c
+}
+
 // https://leetcode.com/problems/string-to-integer-atoi/
 fun myAtoi(s: String): Int {
     var res = 0L
