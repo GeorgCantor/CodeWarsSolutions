@@ -202,6 +202,12 @@ fun myAtoi(s: String): Int {
     return res.toInt()
 }
 
+// https://leetcode.com/problems/circular-sentence/
+fun isCircularSentence(s: String) = s.split(" ").run {
+    for (i in 0 until lastIndex) if (this[i].last() != this[i + 1].first()) return false
+    last().last() == first().first()
+}
+
 // https://leetcode.com/problems/jump-game/
 fun canJump(a: IntArray): Boolean {
     var p = a.lastIndex
