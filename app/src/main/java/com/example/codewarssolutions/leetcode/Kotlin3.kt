@@ -202,6 +202,16 @@ fun myAtoi(s: String): Int {
     return res.toInt()
 }
 
+// https://leetcode.com/problems/remove-letter-to-equalize-frequency/
+fun equalFrequency(s: String) = s.groupingBy { it }.eachCount().toMutableMap().run {
+    s.forEach {
+        this[it] = this[it]?.minus(1) ?: 0
+        filter { it.value > 0 }.values.apply { if (all { it == first() }) return true }
+        this[it] = this[it]?.plus(1) ?: 0
+    }
+    false
+}
+
 // https://leetcode.com/problems/circular-sentence/
 fun isCircularSentence(s: String) = s.split(" ").run {
     for (i in 0 until lastIndex) if (this[i].last() != this[i + 1].first()) return false
