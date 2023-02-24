@@ -206,7 +206,7 @@ fun myAtoi(s: String): Int {
 fun equalFrequency(s: String) = s.groupingBy { it }.eachCount().toMutableMap().run {
     s.forEach {
         this[it] = this[it]?.minus(1) ?: 0
-        filter { it.value > 0 }.values.apply { if (all { it == first() }) return true }
+        if (filter { it.value > 0 }.values.distinct().size == 1) return true
         this[it] = this[it]?.plus(1) ?: 0
     }
     false
