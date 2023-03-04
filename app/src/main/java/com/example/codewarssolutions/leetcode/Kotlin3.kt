@@ -107,6 +107,9 @@ fun findSubstringInWraproundString(s: String): Int {
     return a.sum()
 }
 
+// https://leetcode.com/problems/sort-the-students-by-their-kth-score/
+fun sortTheStudents(a: Array<IntArray>, k: Int) = a.sortedByDescending { it[k] }.toTypedArray()
+
 // https://leetcode.com/problems/finding-the-users-active-minutes/
 fun findingUsersActiveMinutes(a: Array<IntArray>, k: Int) = IntArray(k).apply {
     a.groupBy { it.first() }.mapValues { it.value.distinctBy { it.last() } }.entries.forEach {
