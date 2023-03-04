@@ -57,6 +57,11 @@ public class Java2 {
         return set.stream().sorted().mapToInt(Integer::intValue).toArray();
     }
 
+    // https://leetcode.com/problems/sort-the-students-by-their-kth-score/
+    public int[][] sortTheStudents(int[][] a, int k) {
+        return Arrays.stream(a).sorted((b, c) -> c[k] - b[k]).toArray(int[][]::new);
+    }
+
     // https://leetcode.com/problems/intersection-of-multiple-arrays/
     public List<Integer> intersection(int[][] a) {
         Map<Integer, Integer> m = new HashMap<>();
