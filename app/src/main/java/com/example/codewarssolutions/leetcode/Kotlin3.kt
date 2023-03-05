@@ -221,6 +221,11 @@ fun isCircularSentence(s: String) = s.split(" ").run {
     last().last() == first().first()
 }
 
+// https://leetcode.com/problems/most-frequent-even-element/
+fun mostFrequentEven(a: IntArray) = a
+    .groupBy { it }.values.sortedWith(compareByDescending<List<Int>> { it.size }.thenBy { it.first() })
+    .firstOrNull { it.first() % 2 == 0 }?.first() ?: -1
+
 // https://leetcode.com/problems/jump-game/
 fun canJump(a: IntArray): Boolean {
     var p = a.lastIndex
