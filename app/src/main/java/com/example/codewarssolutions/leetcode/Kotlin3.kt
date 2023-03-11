@@ -82,6 +82,36 @@ fun numberOfBeams(bank: Array<String>): Int {
     return c
 }
 
+// https://leetcode.com/problems/remove-comments/
+fun removeComments(source: Array<String>): List<String> {
+    var comment = false
+    val res = mutableListOf<String>()
+    val sb = StringBuilder()
+    source.forEach {
+        if (!comment) sb.clear()
+        var i = 0
+        while (i in it.indices) {
+            if (comment) {
+                if (it[i] == '*' && it.getOrNull(i + 1) == '/') {
+                    comment = false; ++i
+                }
+            } else {
+                if (it[i] == '/' && it.getOrNull(i + 1) == '/') {
+                    break
+                }
+                if (it[i] == '/' && it.getOrNull(i + 1) == '*') {
+                    comment = true; i += 2
+                    continue
+                }
+                sb.append(it[i])
+            }
+            ++i
+        }
+        if (!comment && sb.isNotEmpty()) res.add(sb.toString())
+    }
+    return res
+}
+
 // https://leetcode.com/problems/equal-row-and-column-pairs/
 fun equalPairs(grid: Array<IntArray>): Int {
     var c = 0
