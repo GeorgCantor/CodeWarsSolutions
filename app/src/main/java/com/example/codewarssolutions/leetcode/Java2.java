@@ -88,6 +88,35 @@ public class Java2 {
         return c;
     }
 
+    // https://leetcode.com/problems/remove-comments/
+    public List<String> removeComments(String[] source) {
+        boolean comment = false;
+        List<String> res = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        for (String s : source) {
+            if (!comment) sb.setLength(0);
+            char[] a = s.toCharArray();
+            for (int i = 0; i < a.length; ++i) {
+                if (!comment) {
+                    if (a[i] == '/' && i < a.length - 1 && a[i + 1] == '/') break;
+                    if (a[i] == '/' && i < a.length - 1 && a[i + 1] == '*') {
+                        comment = true;
+                        ++i;
+                        continue;
+                    }
+                    sb.append(a[i]);
+                } else {
+                    if (a[i] == '*' && i < a.length - 1 && a[i + 1] == '/') {
+                        comment = false;
+                        ++i;
+                    }
+                }
+            }
+            if (!comment && sb.length() > 0) res.add(sb.toString());
+        }
+        return res;
+    }
+
     // https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
     public String removeOccurrences(String s, String part) {
         while (s.contains(part)) s = s.replaceFirst(part, "");
