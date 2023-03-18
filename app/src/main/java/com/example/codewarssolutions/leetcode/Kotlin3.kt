@@ -42,6 +42,16 @@ class LRUCache(private val cap: Int) {
     }
 }
 
+// https://leetcode.com/problems/camelcase-matching/
+fun camelMatch(q: Array<String>, p: String) = q.map {
+    var i = 0
+    it.forEach {
+        if (i < p.length && it == p[i]) ++i
+        else if (it.isUpperCase()) return@map false
+    }
+    p.length == i
+}
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
