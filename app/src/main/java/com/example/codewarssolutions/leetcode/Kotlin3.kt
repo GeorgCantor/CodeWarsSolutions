@@ -123,18 +123,12 @@ fun removeComments(source: Array<String>): List<String> {
 }
 
 // https://leetcode.com/problems/maximum-value-after-insertion/
-fun maxValue(n: String, x: Int): String {
-    val sb = StringBuilder()
-    sb.append(n)
-    if (n.startsWith('-')) {
-        val i = n.indexOfFirst { Character.getNumericValue(it) > x }
-        if (i == -1) sb.append(x) else sb.insert(i, x)
-    } else {
-        val i = n.indexOfFirst { Character.getNumericValue(it) < x }
-        if (i == -1) sb.append(x) else sb.insert(i, x)
+fun maxValue(n: String, x: Int) = StringBuilder().append(n).apply {
+    val i = n.indexOfFirst {
+        if (n.startsWith('-')) Character.getNumericValue(it) > x else Character.getNumericValue(it) < x
     }
-    return sb.toString()
-}
+    if (i == -1) append(x) else insert(i, x)
+}.toString()
 
 // https://leetcode.com/problems/equal-row-and-column-pairs/
 fun equalPairs(grid: Array<IntArray>): Int {
