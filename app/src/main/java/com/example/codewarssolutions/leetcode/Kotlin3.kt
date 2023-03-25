@@ -122,6 +122,20 @@ fun removeComments(source: Array<String>): List<String> {
     return res
 }
 
+// https://leetcode.com/problems/maximum-value-after-insertion/
+fun maxValue(n: String, x: Int): String {
+    val sb = StringBuilder()
+    sb.append(n)
+    if (n.startsWith('-')) {
+        val i = n.indexOfFirst { Character.getNumericValue(it) > x }
+        if (i == -1) sb.append(x) else sb.insert(i, x)
+    } else {
+        val i = n.indexOfFirst { Character.getNumericValue(it) < x }
+        if (i == -1) sb.append(x) else sb.insert(i, x)
+    }
+    return sb.toString()
+}
+
 // https://leetcode.com/problems/equal-row-and-column-pairs/
 fun equalPairs(grid: Array<IntArray>): Int {
     var c = 0
