@@ -155,6 +155,16 @@ fun findSubstringInWraproundString(s: String): Int {
     return a.sum()
 }
 
+// https://leetcode.com/problems/map-sum-pairs/
+class MapSum() {
+    private val m = mutableMapOf<String, Int>()
+    fun insert(key: String, value: Int) {
+        m[key] = value
+    }
+
+    fun sum(p: String) = m.filter { it.key.startsWith(p) }.values.sum()
+}
+
 // https://leetcode.com/problems/sort-the-students-by-their-kth-score/
 fun sortTheStudents(a: Array<IntArray>, k: Int) = a.sortedByDescending { it[k] }.toTypedArray()
 
