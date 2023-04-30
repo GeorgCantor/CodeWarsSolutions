@@ -203,13 +203,12 @@ fun digitSum(s: String, k: Int): String {
 }
 
 // https://leetcode.com/problems/split-with-minimum-sum/
-fun splitNum(num: Int): Int {
-    val pair = num.toString().toCharArray().sorted()
-        .foldIndexed(Pair(StringBuilder(), StringBuilder())) { i, p, c ->
-            if (i % 2 == 0) p.apply { first.append(c) } else p.apply { second.append(c) }
-        }
-    return pair.first.toString().toInt() + pair.second.toString().toInt()
-}
+fun splitNum(num: Int) = num.toString().toCharArray().sorted()
+    .foldIndexed(Pair(StringBuilder(), StringBuilder())) { i, p, c ->
+        if (i % 2 == 0) p.apply { first.append(c) } else p.apply { second.append(c) }
+    }.run {
+        first.toString().toInt() + second.toString().toInt()
+    }
 
 // https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
 fun removeOccurrences(s: String, part: String): String {
