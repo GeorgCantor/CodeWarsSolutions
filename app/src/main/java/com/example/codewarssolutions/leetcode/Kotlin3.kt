@@ -210,6 +210,15 @@ fun splitNum(num: Int) = num.toString().toCharArray().sorted()
         first.toString().toInt() + second.toString().toInt()
     }
 
+// https://leetcode.com/problems/fair-candy-swap/
+fun fairCandySwap(a: IntArray, b: IntArray) = intArrayOf(a.sum(), b.sum()).apply {
+    a.forEach { aN ->
+        b.forEach { bN ->
+            if ((first() - aN) + bN == (last() - bN) + aN) return intArrayOf(aN, bN)
+        }
+    }
+}
+
 // https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
 fun removeOccurrences(s: String, part: String): String {
     var w = s
