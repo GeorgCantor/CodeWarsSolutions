@@ -165,6 +165,26 @@ class MapSum() {
     fun sum(p: String) = m.filter { it.key.startsWith(p) }.values.sum()
 }
 
+// https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/
+fun minimumRecolors(a: String, k: Int): Int {
+    if (a.split('W').any { it.length >= k }) return 0
+    var min = Int.MAX_VALUE
+    for (i in a.indices) {
+        if (k > (a.length - i)) return min
+        var w = 0
+        var c = 0
+        for (j in i..a.lastIndex) {
+            if (a[j] == 'W') ++w
+            ++c
+            if (c == k) {
+                min = minOf(min, w)
+                break
+            }
+        }
+    }
+    return min
+}
+
 // https://leetcode.com/problems/sort-the-students-by-their-kth-score/
 fun sortTheStudents(a: Array<IntArray>, k: Int) = a.sortedByDescending { it[k] }.toTypedArray()
 
