@@ -257,6 +257,13 @@ fun similarPairs(a: Array<String>) = a.map { it.toSortedSet() }.run {
     c
 }
 
+// https://leetcode.com/problems/left-and-right-sum-differences/
+fun leftRigthDifference(a: IntArray) = IntArray(a.size).apply {
+    for (i in a.indices) {
+        this[i] = Math.abs(a.take(i).sum() - a.drop(i + 1).sum())
+    }
+}
+
 // https://leetcode.com/problems/string-to-integer-atoi/
 fun myAtoi(s: String): Int {
     var res = 0L
