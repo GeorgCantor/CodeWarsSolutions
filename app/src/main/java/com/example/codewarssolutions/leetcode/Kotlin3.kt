@@ -52,6 +52,16 @@ fun camelMatch(q: Array<String>, p: String) = q.map {
     p.length == i
 }
 
+// https://leetcode.com/problems/find-the-prefix-common-array-of-two-arrays/
+fun findThePrefixCommonArray(a: IntArray, b: IntArray) = IntArray(a.size).apply {
+    val map = hashMapOf<Int, Int>()
+    for (i in indices) {
+        map[a[i]] = map.getOrDefault(a[i], 0) + 1
+        map[b[i]] = map.getOrDefault(b[i], 0) + 1
+        this[i] = map.values.count { it == 2 }
+    }
+}
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
