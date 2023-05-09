@@ -102,6 +102,10 @@ fun numberOfBeams(bank: Array<String>): Int {
     return c
 }
 
+// https://leetcode.com/problems/removing-stars-from-a-string/
+fun removeStars(s: String) =
+    buildString { s.forEach { if (it == '*') deleteCharAt(lastIndex) else append(it) } }
+
 // https://leetcode.com/problems/remove-comments/
 fun removeComments(source: Array<String>): List<String> {
     var comment = false
