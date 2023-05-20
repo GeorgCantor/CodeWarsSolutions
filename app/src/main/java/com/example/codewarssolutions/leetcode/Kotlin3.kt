@@ -676,6 +676,18 @@ fun maximumUnits(boxTypes: Array<IntArray>, truckSize: Int): Int {
     return counter
 }
 
+// https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/
+fun minNumber(a: IntArray, b: IntArray): Int {
+    val mA = a.groupBy { it }.toSortedMap()
+    val mB = b.groupBy { it }
+    mA.forEach {
+        if (mB.containsKey(it.key)) return it.key
+    }
+    val fA = mA.keys.first()
+    val fB = mB.toSortedMap().keys.first()
+    return minOf("${fA}${fB}".toInt(), "${fB}${fA}".toInt())
+}
+
 // https://leetcode.com/problems/best-poker-hand/
 fun bestHand(a: IntArray, b: CharArray) = if (b.all { it == b.first() }) "Flush"
 else {
