@@ -484,6 +484,23 @@ fun findSubarrays(a: IntArray) = mutableSetOf<Int>().run {
     false
 }
 
+// https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
+fun minLength(s: String) = StringBuilder(s).apply {
+    while (contains("AB") || contains("CD")) {
+        val temp = StringBuilder()
+        var i = 0
+        while (i in indices) {
+            if ((this[i] == 'A' && getOrNull(i + 1) == 'B') || (this[i] == 'C' && getOrNull(i + 1) == 'D')) {
+                i += 2
+            } else {
+                temp.append(this[i++])
+            }
+        }
+        clear()
+        append(temp)
+    }
+}.length
+
 // https://leetcode.com/problems/excel-sheet-column-title/
 fun convertToTitle(columnNumber: Int) = StringBuilder().apply {
     var n = columnNumber
