@@ -348,6 +348,10 @@ fun canJump(a: IntArray): Boolean {
     return p == 0
 }
 
+// https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/
+fun differenceOfSum(a: IntArray) =
+    a.sum() - a.flatMap { it.toString().map(Character::getNumericValue) }.sum()
+
 // https://leetcode.com/problems/partition-array-according-to-given-pivot/
 fun pivotArray(a: IntArray, p: Int) =
     arrayOf(mutableListOf(), mutableListOf(), mutableListOf<Int>()).apply {
