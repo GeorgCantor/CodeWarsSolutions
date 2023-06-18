@@ -356,11 +356,8 @@ fun differenceOfSum(a: IntArray) =
 fun sumOfMultiples(n: Int) = (3..n).filter { it % 3 == 0 || it % 5 == 0 || it % 7 == 0 }.sum()
 
 // https://leetcode.com/problems/find-the-distinct-difference-array/
-fun distinctDifferenceArray(a: IntArray) = IntArray(a.size).apply {
-    val l = a.toList()
-    for (i in l.indices) {
-        this[i] = l.subList(0, i + 1).toHashSet().size - l.subList(i + 1, l.size).toHashSet().size
-    }
+fun distinctDifferenceArray(a: IntArray) = IntArray(a.size).mapIndexed { i, _ ->
+    a.copyOfRange(0, i + 1).toHashSet().size - a.copyOfRange(i + 1, a.size).toHashSet().size
 }
 
 // https://leetcode.com/problems/partition-array-according-to-given-pivot/
