@@ -62,6 +62,24 @@ fun findThePrefixCommonArray(a: IntArray, b: IntArray) = IntArray(a.size).apply 
     }
 }
 
+// https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/
+fun findMatrix(a: IntArray) = mutableListOf<List<Int>>().apply {
+    val map = mutableMapOf<Int, Int>()
+    a.forEach {
+        map[it] = map.getOrDefault(it, 0) + 1
+    }
+    while (map.any { it.value > 0 }) {
+        val list = mutableListOf<Int>()
+        map.forEach {
+            if (it.value > 0) {
+                list.add(it.key)
+                map[it.key] = it.value - 1
+            }
+        }
+        add(list)
+    }
+}
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
