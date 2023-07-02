@@ -214,6 +214,32 @@ fun minimumRecolors(a: String, k: Int): Int {
     return if (min == Int.MAX_VALUE) 0 else min
 }
 
+// https://leetcode.com/problems/lemonade-change/
+fun lemonadeChange(bills: IntArray): Boolean {
+    val m = hashMapOf<Int, Int>()
+    bills.forEach {
+        when (it) {
+            5 -> m[it] = m.getOrDefault(it, 0) + 1
+            10 -> {
+                if (m.getOrDefault(5, 0) == 0) return false
+                m[5] = m[5]!! - 1
+                m[it] = m.getOrDefault(it, 0) + 1
+            }
+            20 -> {
+                if (m.getOrDefault(5, 0) == 0) return false
+                if (m.getOrDefault(10, 0) == 0) {
+                    if (m[5]!! < 3) return false else m[5] = m[5]!! - 3
+                } else {
+                    m[10] = m[10]!! - 1
+                    m[5] = m[5]!! - 1
+                }
+                m[it] = m.getOrDefault(it, 0) + 1
+            }
+        }
+    }
+    return true
+}
+
 // https://leetcode.com/problems/sort-the-students-by-their-kth-score/
 fun sortTheStudents(a: Array<IntArray>, k: Int) = a.sortedByDescending { it[k] }.toTypedArray()
 
