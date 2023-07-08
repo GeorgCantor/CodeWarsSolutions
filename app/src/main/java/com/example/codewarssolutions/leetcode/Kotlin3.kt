@@ -240,6 +240,10 @@ fun lemonadeChange(bills: IntArray): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/lexicographically-smallest-palindrome/
+fun makeSmallestPalindrome(s: String) =
+    s.mapIndexed { i, c -> minOf(c, s[s.lastIndex - i]) }.joinToString("")
+
 // https://leetcode.com/problems/sort-the-students-by-their-kth-score/
 fun sortTheStudents(a: Array<IntArray>, k: Int) = a.sortedByDescending { it[k] }.toTypedArray()
 
