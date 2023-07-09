@@ -120,6 +120,9 @@ fun numberOfBeams(bank: Array<String>): Int {
     return c
 }
 
+// https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
+fun findArray(a: IntArray) = a.apply { for (i in a.lastIndex downTo 1) a[i] = a[i] xor a[i - 1] }
+
 // https://leetcode.com/problems/removing-stars-from-a-string/
 fun removeStars(s: String) =
     buildString { s.forEach { if (it == '*') deleteCharAt(lastIndex) else append(it) } }
