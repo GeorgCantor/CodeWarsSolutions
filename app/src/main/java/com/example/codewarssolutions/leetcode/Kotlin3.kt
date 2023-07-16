@@ -243,6 +243,10 @@ fun lemonadeChange(bills: IntArray): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/find-maximum-number-of-string-pairs/
+fun maximumNumberOfStringPairs(a: Array<String>) =
+    a.map { it.toSortedSet() }.groupingBy { it }.eachCount().count { it.value > 1 }
+
 // https://leetcode.com/problems/lexicographically-smallest-palindrome/
 fun makeSmallestPalindrome(s: String) =
     s.mapIndexed { i, c -> minOf(c, s[s.lastIndex - i]) }.joinToString("")
