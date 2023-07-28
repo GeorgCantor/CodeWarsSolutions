@@ -297,6 +297,9 @@ fun digitSum(s: String, k: Int): String {
     return w
 }
 
+// https://leetcode.com/problems/check-if-the-number-is-fascinating/
+fun isFascinating(n: Int) = n == 192 || n == 219 || n == 273 || n == 327
+
 // https://leetcode.com/problems/split-with-minimum-sum/
 fun splitNum(num: Int) = num.toString().toCharArray().sorted()
     .foldIndexed(Pair(StringBuilder(), StringBuilder())) { i, p, c ->
