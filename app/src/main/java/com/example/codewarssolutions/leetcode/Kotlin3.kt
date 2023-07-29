@@ -80,6 +80,19 @@ fun findMatrix(a: IntArray) = mutableListOf<List<Int>>().apply {
     }
 }
 
+// https://leetcode.com/problems/number-of-good-ways-to-split-a-string/
+fun numSplits(s: String) = hashMapOf<Char, Int>().run {
+    val rMap = s.groupingBy { it }.eachCount().toMutableMap()
+    var c = 0
+    s.forEach {
+        this[it] = getOrDefault(it, 0) + 1
+        rMap[it] = rMap.getOrDefault(it, 0) - 1
+        if (rMap[it]!! <= 0) rMap.remove(it)
+        if (size == rMap.size) ++c
+    }
+    c
+}
+
 // https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/
 fun displayTable(l: List<List<String>>): List<List<String>> {
     val map = l.groupingBy { it.drop(1).joinToString(",") }.eachCount()
