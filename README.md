@@ -1,5 +1,4 @@
 # CodeWarsSolutions
-LeetCode & CodeWars solutions. Kotlin & Java.
 
 <a href="https://www.codewars.com/users/GeorgCantor" target="_blank"><img src="https://www.codewars.com/users/GeorgCantor/badges/large" /></a>
 
