@@ -258,7 +258,8 @@ fun lemonadeChange(bills: IntArray): Boolean {
 }
 
 // https://leetcode.com/problems/find-maximum-number-of-string-pairs/
-fun maximumNumberOfStringPairs(a: Array<String>) = a.groupingBy { it.toSortedSet() }.eachCount().count { it.value > 1 }
+fun maximumNumberOfStringPairs(a: Array<String>) =
+    a.groupingBy { it.toSortedSet() }.eachCount().count { it.value > 1 }
 
 // https://leetcode.com/problems/lexicographically-smallest-palindrome/
 fun makeSmallestPalindrome(s: String) =
