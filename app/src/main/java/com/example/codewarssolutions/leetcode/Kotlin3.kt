@@ -42,6 +42,20 @@ class LRUCache(private val cap: Int) {
     }
 }
 
+// https://leetcode.com/problems/search-suggestions-system/
+fun suggestedProducts(a: Array<String>, s: String) = mutableListOf<MutableList<String>>().apply {
+    val sorted = a.sorted()
+    for (i in 1..s.length) {
+        val pref = s.take(i)
+        val list = mutableListOf<String>()
+        sorted.forEach {
+            if (it.startsWith(pref) && list.size < 3) list.add(it)
+            else return@forEach
+        }
+        add(list)
+    }
+}
+
 // https://leetcode.com/problems/camelcase-matching/
 fun camelMatch(q: Array<String>, p: String) = q.map {
     var i = 0
