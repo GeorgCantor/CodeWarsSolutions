@@ -48,7 +48,7 @@ fun suggestedProducts(a: Array<String>, s: String) = mutableListOf<List<String>>
     val sb = StringBuilder()
     s.forEach {
         sb.append(it)
-        add(mutableListOf<String>().apply { a.forEach { if (it.startsWith(sb) && size < 3) add(it) else return@forEach } })
+        add(mutableListOf<String>().apply { a.forEach { if (it.startsWith(sb) && size < 3) add(it) } })
     }
 }
 
