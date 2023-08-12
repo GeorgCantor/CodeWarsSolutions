@@ -43,7 +43,7 @@ class LRUCache(private val cap: Int) {
 }
 
 // https://leetcode.com/problems/search-suggestions-system/
-fun suggestedProducts(a: Array<String>, s: String) = mutableListOf<MutableList<String>>().apply {
+fun suggestedProducts(a: Array<String>, s: String) = mutableListOf<List<String>>().apply {
     val sorted = a.sorted()
     for (i in 1..s.length) {
         val pref = s.take(i)
