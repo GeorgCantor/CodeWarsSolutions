@@ -31,6 +31,34 @@ class Twitter() {
     }
 }
 
+// https://leetcode.com/problems/design-browser-history/
+class BrowserHistory(homepage: String) {
+    val map = mutableMapOf<Int, String>()
+    var last = 0
+    var cur = 0
+
+    init {
+        map[last] = homepage
+    }
+
+    fun visit(url: String) {
+        map.entries.removeIf { it.key > cur }
+        last = map.size - 1
+        map[++last] = url
+        cur = last
+    }
+
+    fun back(steps: Int): String {
+        if (steps > cur) cur = 0 else cur -= steps
+        return map[cur].orEmpty()
+    }
+
+    fun forward(steps: Int): String {
+        if (steps > (last - cur)) cur = last else cur += steps
+        return map[cur].orEmpty()
+    }
+}
+
 // https://leetcode.com/problems/lru-cache/
 class LRUCache(private val cap: Int) {
     private val m = mutableMapOf<Int, Int>()
