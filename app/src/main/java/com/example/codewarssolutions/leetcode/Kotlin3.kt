@@ -52,6 +52,14 @@ fun suggestedProducts(a: Array<String>, s: String) = mutableListOf<List<String>>
     }
 }
 
+// https://leetcode.com/problems/adding-spaces-to-a-string/
+fun addSpaces(s: String, a: IntArray) = buildString {
+    var c = 0
+    s.forEachIndexed { i, ch ->
+        append(if (i == a.getOrNull(c)) " $ch".also { ++c } else ch)
+    }
+}
+
 // https://leetcode.com/problems/camelcase-matching/
 fun camelMatch(q: Array<String>, p: String) = q.map {
     var i = 0
