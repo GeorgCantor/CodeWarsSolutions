@@ -31,6 +31,14 @@ class Twitter() {
     }
 }
 
+// https://leetcode.com/problems/print-words-vertically/
+fun printVertically(s: String) = mutableListOf<String>().apply {
+    val l = s.split(" ")
+    for (i in l.maxByOrNull { it.length }!!.indices) {
+        add(buildString { l.forEach { append(it.getOrNull(i) ?: " ") } }.trimEnd())
+    }
+}
+
 // https://leetcode.com/problems/design-browser-history/
 class BrowserHistory(homepage: String) {
     val map = mutableMapOf<Int, String>()
