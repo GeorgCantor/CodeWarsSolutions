@@ -78,6 +78,23 @@ class LRUCache(private val cap: Int) {
     }
 }
 
+// https://leetcode.com/problems/design-a-stack-with-increment-operation/
+class CustomStack(maxSize: Int) {
+    val a = IntArray(maxSize)
+    var c = 0
+
+    fun push(x: Int) {
+        if (c < a.size) a[c++] = x
+    }
+
+    fun pop() = if (c == 0) -1 else a[--c]
+
+    fun increment(k: Int, x: Int) {
+        var i = 0
+        while (i < c && i < k) a[i++] += x
+    }
+}
+
 // https://leetcode.com/problems/search-suggestions-system/
 fun suggestedProducts(a: Array<String>, s: String) = mutableListOf<List<String>>().apply {
     a.sort()
