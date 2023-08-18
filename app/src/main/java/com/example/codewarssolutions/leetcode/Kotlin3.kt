@@ -67,6 +67,48 @@ class BrowserHistory(homepage: String) {
     }
 }
 
+// https://leetcode.com/problems/simple-bank-system/
+class Bank(a: LongArray) {
+    val m = a.withIndex().associate { it.index + 1 to it.value }.toMutableMap()
+
+    fun transfer(ac1: Int, ac2: Int, money: Long): Boolean {
+        if (m.containsKey(ac1) && m.containsKey(ac2)) {
+            if (m[ac1]!! < money) {
+                return false
+            } else {
+                if (ac1 == ac2) return true
+                m[ac1] = m[ac1]!! - money
+                m[ac2] = m[ac2]!! + money
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+
+    fun deposit(ac: Int, money: Long): Boolean {
+        return if (m.containsKey(ac)) {
+            m[ac] = m[ac]!! + money
+            true
+        } else {
+            false
+        }
+    }
+
+    fun withdraw(ac: Int, money: Long): Boolean {
+        return if (m.containsKey(ac)) {
+            if (m[ac]!! < money) {
+                false
+            } else {
+                m[ac] = m[ac]!! - money
+                true
+            }
+        } else {
+            false
+        }
+    }
+}
+
 // https://leetcode.com/problems/lru-cache/
 class LRUCache(private val cap: Int) {
     private val m = mutableMapOf<Int, Int>()
