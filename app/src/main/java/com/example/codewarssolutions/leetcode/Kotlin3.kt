@@ -68,44 +68,38 @@ class BrowserHistory(homepage: String) {
 }
 
 // https://leetcode.com/problems/simple-bank-system/
-class Bank(a: LongArray) {
-    val m = a.withIndex().associate { it.index + 1 to it.value }.toMutableMap()
-
+class Bank(val a: LongArray) {
     fun transfer(ac1: Int, ac2: Int, money: Long): Boolean {
-        if (m.containsKey(ac1) && m.containsKey(ac2)) {
-            if (m[ac1]!! < money) {
-                return false
-            } else {
-                if (ac1 == ac2) return true
-                m[ac1] = m[ac1]!! - money
-                m[ac2] = m[ac2]!! + money
-            }
-            return true
-        } else {
-            return false
-        }
+        a.getOrNull(ac1 - 1)?.let {
+            a.getOrNull(ac2 - 1)?.let {
+                if (a[ac1 - 1] < money) {
+                    return false
+                } else {
+                    if (ac1 == ac2) return true
+                    a[ac1 - 1] -= money
+                    a[ac2 - 1] += money
+                }
+                return true
+            } ?: return false
+        } ?: return false
     }
 
     fun deposit(ac: Int, money: Long): Boolean {
-        return if (m.containsKey(ac)) {
-            m[ac] = m[ac]!! + money
-            true
-        } else {
-            false
-        }
+        a.getOrNull(ac - 1)?.let {
+            a[ac - 1] += money
+            return true
+        } ?: return false
     }
 
     fun withdraw(ac: Int, money: Long): Boolean {
-        return if (m.containsKey(ac)) {
-            if (m[ac]!! < money) {
+        a.getOrNull(ac - 1)?.let {
+            return if (a[ac - 1] < money) {
                 false
             } else {
-                m[ac] = m[ac]!! - money
+                a[ac - 1] -= money
                 true
             }
-        } else {
-            false
-        }
+        } ?: return false
     }
 }
 
