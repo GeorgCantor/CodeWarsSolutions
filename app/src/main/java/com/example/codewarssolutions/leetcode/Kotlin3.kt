@@ -103,6 +103,14 @@ class Bank(val a: LongArray) {
     }
 }
 
+// https://leetcode.com/problems/sort-vowels-in-a-string/
+fun sortVowels(s: String) = buildString {
+    val v = "AEIOUaeiou"
+    val l = s.filter { v.contains(it) }.toList().sorted()
+    var i = 0
+    s.forEach { append(if (v.contains(it)) l[i++] else it) }
+}
+
 // https://leetcode.com/problems/lru-cache/
 class LRUCache(private val cap: Int) {
     private val m = mutableMapOf<Int, Int>()
