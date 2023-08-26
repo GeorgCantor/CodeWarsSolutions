@@ -1,6 +1,6 @@
 package com.example.codewarssolutions.leetcode
 
-import java.util.*
+import java.util.Stack
 
 // https://leetcode.com/problems/sort-characters-by-frequency/
 fun frequencySort(s: String) =
@@ -196,6 +196,7 @@ fun numRookCaptures(a: Array<CharArray>): Int {
                     counter++
                     right = a[line].lastIndex + 1
                 }
+
                 'B' -> right = a[line].lastIndex + 1
             }
         }
@@ -205,6 +206,7 @@ fun numRookCaptures(a: Array<CharArray>): Int {
                     counter++
                     left = -1
                 }
+
                 'B' -> left = -1
             }
         }
@@ -214,6 +216,7 @@ fun numRookCaptures(a: Array<CharArray>): Int {
                     counter++
                     bottom = a.lastIndex + 1
                 }
+
                 'B' -> bottom = a.lastIndex + 1
             }
         }
@@ -223,6 +226,7 @@ fun numRookCaptures(a: Array<CharArray>): Int {
                     counter++
                     top = -1
                 }
+
                 'B' -> top = -1
             }
         }
@@ -249,6 +253,7 @@ fun numRookCaptures2(a: Array<CharArray>): Int {
                 counter++
                 break@loop
             }
+
             'B' -> break@loop
         }
     }
@@ -258,6 +263,7 @@ fun numRookCaptures2(a: Array<CharArray>): Int {
                 counter++
                 break@loop
             }
+
             'B' -> break@loop
         }
     }
@@ -267,6 +273,7 @@ fun numRookCaptures2(a: Array<CharArray>): Int {
                 counter++
                 break@loop
             }
+
             'B' -> break@loop
         }
     }
@@ -276,6 +283,7 @@ fun numRookCaptures2(a: Array<CharArray>): Int {
                 counter++
                 break@loop
             }
+
             'B' -> break@loop
         }
     }
@@ -390,10 +398,12 @@ fun largeGroupPositions(s: String): List<List<Int>> {
                 sb.append(s[i])
                 j = i
             }
+
             sb.contains(s[i]) -> {
                 sb.append(s[i])
                 if (i == s.lastIndex && sb.length > 2) l.add(listOf(j, i))
             }
+
             else -> {
                 if (sb.length > 2) l.add(listOf(j, i - 1))
                 sb.setLength(0)
@@ -764,11 +774,11 @@ fun checkIfExist(a: IntArray): Boolean {
 }
 
 // https://leetcode.com/problems/delete-characters-to-make-fancy-string/
-fun makeFancyString(s: String) = StringBuilder().apply {
+fun makeFancyString(s: String) = buildString {
     for (i in s.indices) {
         if (i == 0 || i == s.lastIndex || s[i - 1] != s[i] || s[i + 1] != s[i]) append(s[i])
     }
-}.toString()
+}
 
 fun makeFancyString2(s: String) = s.mapIndexed { i, c ->
     if (i == 0 || i == s.lastIndex || s[i - 1] != s[i] || s[i + 1] != s[i]) c else ' '
