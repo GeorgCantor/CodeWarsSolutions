@@ -285,6 +285,21 @@ fun removeComments(source: Array<String>): List<String> {
     return res
 }
 
+// https://leetcode.com/problems/maximum-ice-cream-bars/
+fun maxIceCream(costs: IntArray, coins: Int): Int {
+    var co = coins
+    var c = 0
+    costs.sorted().forEach {
+        if (it <= co) {
+            ++c
+            co -= it
+        } else {
+            return c
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/maximum-value-after-insertion/
 fun maxValue(n: String, x: Int) = StringBuilder().append(n).apply {
     val i = n.indexOfFirst {
