@@ -1,6 +1,7 @@
 package com.example.codewarssolutions.leetcode
 
-import java.util.*
+import java.util.PriorityQueue
+import java.util.Stack
 import kotlin.math.abs
 
 // https://leetcode.com/problems/valid-palindrome/
@@ -525,6 +526,7 @@ fun evaluate(s: String, list: List<List<String>>): String {
                 sb.append(map[sbTemp.toString()] ?: "?")
                 sbTemp.setLength(0)
             }
+
             else -> if (open) sbTemp.append(it) else sb.append(it)
         }
     }
@@ -611,6 +613,7 @@ fun insert(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
                 list.add(new)
                 new = it
             }
+
             else -> {
                 new[0] = minOf(new[0], it[0])
                 new[1] = maxOf(new[1], it[1])
@@ -1093,6 +1096,7 @@ fun lengthOfLongestSubstring(s: String): Int {
                     list.clear()
                     break@loop
                 }
+
                 false -> list.add(s[i])
             }
         }
@@ -1170,10 +1174,12 @@ fun calculate(s: String): Int {
                     sum += temp
                     temp = num
                 }
+
                 '-' -> {
                     sum += temp
                     temp = -num
                 }
+
                 '*' -> temp *= num
                 '/' -> temp /= num
             }
@@ -1409,6 +1415,7 @@ fun lengthOfLongestSubstring2(s: String): Int {
                 end++
                 max = maxOf(set.size, max)
             }
+
             else -> {
                 set.remove(s[start])
                 start++
@@ -1479,6 +1486,7 @@ fun threeSum(nums: IntArray): List<List<Int>> {
                     left++
                     right--
                 }
+
                 sum < 0 -> left++
                 else -> right--
             }
@@ -1504,6 +1512,7 @@ fun fourSum(nums: IntArray, target: Int): List<List<Int>> {
                         left++
                         right--
                     }
+
                     sum < target -> left++
                     sum > target -> right--
                 }
@@ -1769,6 +1778,7 @@ fun reverse(x: Int): Int = when (x >= 0) {
             0
         }
     }
+
     false -> {
         try {
             var num = x.toString().drop(1).reversed().toInt()
