@@ -31,6 +31,58 @@ class Twitter() {
     }
 }
 
+// https://leetcode.com/problems/accounts-merge/
+fun accountsMerge(accounts: List<List<String>>): List<List<String>> {
+    val map = mutableMapOf<String, MutableList<String>>()
+    var postfix = 0
+
+    accounts.forEach { acc ->
+        map.entries.find {
+            it.key.dropLastWhile { it.isDigit() } == acc.first()
+                    && it.value.intersect(acc.drop(1).toSet()).isNotEmpty()
+        }?.let {
+            map[it.key] = (map[it.key]!! + acc.drop(1)).toSortedSet().toMutableList()
+        } ?: run {
+            map["${acc.first()}${postfix++}"] = acc.drop(1).sorted().toMutableList()
+        }
+    }
+
+    val m = mutableMapOf<String, MutableList<String>>()
+
+    fun MutableMap<String, MutableList<String>>.hasDuplicates(): Boolean {
+        entries.forEachIndexed { i, e ->
+            entries.forEachIndexed { j, e2 ->
+                if (i != j && e.value.intersect(e2.value).isNotEmpty()) {
+                    m.clear()
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    while (map.hasDuplicates()) {
+        map.forEach { e ->
+            m.entries.find {
+                e.key.dropLastWhile { it.isDigit() } == it.key.dropLastWhile { it.isDigit() }
+                        && e.value.intersect(it.value).isNotEmpty()
+            }?.let {
+                m[it.key] = (m[it.key]!! + e.value).toSortedSet().toMutableList()
+            } ?: run {
+                m[e.key] = e.value
+            }
+        }
+        map.clear()
+        m.forEach {
+            map[it.key] = it.value
+        }
+    }
+
+    return map.map {
+        it.value.apply { add(0, it.key.dropLastWhile { it.isDigit() }) }.distinct()
+    }.sortedBy { it.first() }
+}
+
 // https://leetcode.com/problems/print-words-vertically/
 fun printVertically(s: String) = mutableListOf<String>().apply {
     val l = s.split(" ")
