@@ -155,6 +155,15 @@ class Bank(val a: LongArray) {
     }
 }
 
+// https://leetcode.com/problems/merge-intervals/
+fun merge(a: Array<IntArray>) = mutableListOf<IntArray>().apply {
+    a.sortBy { it.first() }
+    a.forEach {
+        if (isEmpty() || last().last() < it.first()) add(it)
+        else last()[1] = maxOf(last().last(), it.last())
+    }
+}.toTypedArray()
+
 // https://leetcode.com/problems/sort-vowels-in-a-string/
 fun sortVowels(s: String) = buildString {
     val v = "AEIOUaeiou"
