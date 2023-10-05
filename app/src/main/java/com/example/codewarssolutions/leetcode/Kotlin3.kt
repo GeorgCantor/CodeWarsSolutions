@@ -309,6 +309,9 @@ fun numberOfBeams(bank: Array<String>): Int {
     return c
 }
 
+// https://leetcode.com/problems/faulty-keyboard/
+fun finalString(s: String) = buildString { s.forEach { if (it == 'i') reverse() else append(it) } }
+
 // https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
 fun findArray(a: IntArray) = a.apply { for (i in lastIndex downTo 1) a[i] = a[i] xor a[i - 1] }
 
