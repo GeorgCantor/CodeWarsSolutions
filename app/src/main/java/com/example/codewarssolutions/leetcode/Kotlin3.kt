@@ -155,6 +155,21 @@ class Bank(val a: LongArray) {
     }
 }
 
+// https://leetcode.com/problems/find-original-array-from-doubled-array/
+fun findOriginalArray(a: IntArray) = mutableListOf<Int>().run {
+    if (a.size % 2 != 0) return intArrayOf()
+    val m = hashMapOf<Int, Int>()
+    a.sorted().forEach {
+        if ((m[it] ?: 0) > 0) {
+            m[it] = m[it]!! - 1
+        } else {
+            add(it)
+            m[it * 2] = m.getOrDefault(it * 2, 0) + 1
+        }
+    }
+    if (m.all { it.value == 0 }) toIntArray() else intArrayOf()
+}
+
 // https://leetcode.com/problems/merge-intervals/
 fun merge(a: Array<IntArray>) = mutableListOf<IntArray>().apply {
     a.sortBy { it.first() }
