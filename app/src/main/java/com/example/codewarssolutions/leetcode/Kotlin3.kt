@@ -540,6 +540,12 @@ fun fairCandySwap(a: IntArray, b: IntArray) = intArrayOf(a.sum(), b.sum()).apply
     }
 }
 
+// https://leetcode.com/problems/shuffle-an-array/
+class Solution(val a: IntArray) {
+    fun reset() = a
+    fun shuffle() = a.toList().shuffled().toIntArray()
+}
+
 // https://leetcode.com/problems/remove-all-occurrences-of-a-substring/
 fun removeOccurrences(s: String, part: String): String {
     var w = s
