@@ -179,6 +179,35 @@ fun merge(a: Array<IntArray>) = mutableListOf<IntArray>().apply {
     }
 }.toTypedArray()
 
+// https://leetcode.com/problems/string-without-aaa-or-bbb/
+fun strWithout3a3b(aa: Int, bb: Int) = buildString {
+    var a = aa
+    var b = bb
+    while (a + b > 0) {
+        if (a > b) {
+            if (a >= 2) {
+                a -= 2; append("aa")
+            } else {
+                --a; append("a")
+            }
+            if (b > 0) {
+                --b; append("b")
+            }
+        } else if (b > a) {
+            if (b >= 2) {
+                b -= 2; append("bb")
+            } else {
+                --b; append("b")
+            }
+            if (a > 0) {
+                --a; append("a")
+            }
+        } else {
+            --a; --b; append("ab")
+        }
+    }
+}
+
 // https://leetcode.com/problems/sort-vowels-in-a-string/
 fun sortVowels(s: String) = buildString {
     val v = "AEIOUaeiou"
