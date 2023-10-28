@@ -208,6 +208,18 @@ fun strWithout3a3b(aa: Int, bb: Int) = buildString {
     }
 }
 
+// https://leetcode.com/problems/hand-of-straights/
+fun isNStraightHand(a: IntArray, size: Int) =
+    a.toList().groupingBy { it }.eachCount().toSortedMap().run {
+        while (isNotEmpty()) {
+            for (i in firstKey() until firstKey() + size) {
+                if (containsKey(i)) this[i] = this[i]!! - 1 else return false
+                if (this[i] == 0) remove(i)
+            }
+        }
+        true
+    }
+
 // https://leetcode.com/problems/sort-vowels-in-a-string/
 fun sortVowels(s: String) = buildString {
     val v = "AEIOUaeiou"
