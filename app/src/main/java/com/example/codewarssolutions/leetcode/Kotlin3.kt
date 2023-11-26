@@ -274,6 +274,9 @@ fun addSpaces(s: String, a: IntArray) = buildString {
     }
 }
 
+// https://leetcode.com/problems/number-of-senior-citizens/
+fun countSeniors(a: Array<String>) = a.count { it.substring(11, 13).toInt() > 60 }
+
 // https://leetcode.com/problems/camelcase-matching/
 fun camelMatch(q: Array<String>, p: String) = q.map {
     var i = 0
