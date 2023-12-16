@@ -456,6 +456,9 @@ fun findSubstringInWraproundString(s: String): Int {
     return a.sum()
 }
 
+// https://leetcode.com/problems/find-words-containing-character/
+fun findWordsContaining(a: Array<String>, x: Char) = (0..a.lastIndex).filter { x in a[it] }
+
 // https://leetcode.com/problems/map-sum-pairs/
 class MapSum() {
     private val m = mutableMapOf<String, Int>()
