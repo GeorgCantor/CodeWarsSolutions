@@ -155,6 +155,26 @@ class Bank(val a: LongArray) {
     }
 }
 
+// https://leetcode.com/problems/determine-if-two-strings-are-close/
+fun closeStrings(s: String, w: String) =
+    Pair(s.groupingBy { it }.eachCount(), w.groupingBy { it }.eachCount()).run {
+        first.keys == second.keys && first.values.sorted() == second.values.sorted()
+    }
+
+// https://leetcode.com/problems/determine-if-two-strings-are-close/
+fun closeStrings(
+    s: String,
+    w: String,
+    f: (String) -> Map<Char, Int> = { it.groupingBy { it }.eachCount() }
+) = Pair(f(s), f(w)).run {
+    first.keys == second.keys && first.values.sorted() == second.values.sorted()
+}
+
+fun closeStrings2(s: String, w: String): Boolean {
+    val (a, b) = s.groupingBy { it }.eachCount() to w.groupingBy { it }.eachCount()
+    return a.keys == b.keys && a.values.sorted() == b.values.sorted()
+}
+
 // https://leetcode.com/problems/find-original-array-from-doubled-array/
 fun findOriginalArray(a: IntArray) = mutableListOf<Int>().run {
     if (a.size % 2 != 0) return intArrayOf()
