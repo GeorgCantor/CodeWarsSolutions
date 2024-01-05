@@ -809,6 +809,15 @@ fun setZeroes(a: Array<IntArray>): Unit {
     for (i in a.indices) for (j in a[i].indices) if (r.contains(i) || c.contains(j)) a[i][j] = 0
 }
 
+// https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-i/
+fun sumCounts(l: List<Int>): Int {
+    var c = 0
+    for (i in 1..l.size) {
+        c += l.windowed(i).sumOf { val s = it.toSet().size; s * s }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/minimum-common-value/
 fun getCommon(a: IntArray, b: IntArray) = a.intersect(b.toSet()).minOrNull() ?: -1
 
