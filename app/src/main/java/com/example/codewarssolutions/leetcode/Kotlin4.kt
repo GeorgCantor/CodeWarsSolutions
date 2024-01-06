@@ -8,3 +8,7 @@ fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.t
 // https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-i/
 fun sumCounts(l: List<Int>) =
     (1..l.size).sumOf { l.windowed(it).sumOf { val s = it.toSet().size; s * s } }
+
+// https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/
+fun vowelStrings(a: Array<String>, l: Int, r: Int) =
+    "aeiou".run { (l..r).count { a[it][0] in this && a[it].last() in this } }
