@@ -21,3 +21,6 @@ fun countTestedDevices(a: IntArray): Int {
     }
     return c
 }
+
+// https://leetcode.com/problems/buy-two-chocolates/
+fun buyChoco(a: IntArray, m: Int) = a.sorted().take(2).sum().run { if (this > m) m else m - this }
