@@ -1091,6 +1091,10 @@ else {
     }
 }
 
+// https://leetcode.com/problems/find-common-elements-between-two-arrays/
+fun findIntersectionValues(a: IntArray, b: IntArray) =
+    intArrayOf(a.count { b.contains(it) }, b.count { a.contains(it) })
+
 // https://leetcode.com/problems/number-of-arithmetic-triplets/
 fun arithmeticTriplets(a: IntArray, d: Int): Int {
     var c = 0
