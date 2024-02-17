@@ -1,7 +1,5 @@
 package com.example.codewarssolutions.leetcode
 
-import kotlin.random.Random
-
 // https://leetcode.com/problems/card-flipping-game/
 fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.toSet().run {
     f.plus(b).filter { it !in this }.minOrNull() ?: 0
@@ -9,7 +7,7 @@ fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.t
 
 // https://leetcode.com/problems/random-pick-index/
 class Solution(val a: IntArray) {
-    fun pick(t: Int) = a.mapIndexed { i, n -> if (n == t) i else null }.filterNotNull().random()
+    fun pick(t: Int) = a.withIndex().filter { it.value == t }.random().index
 }
 
 // https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-i/
