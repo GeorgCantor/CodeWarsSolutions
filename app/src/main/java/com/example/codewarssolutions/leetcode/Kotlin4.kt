@@ -14,6 +14,10 @@ class Solution(val a: IntArray) {
 fun sumCounts(l: List<Int>) =
     (1..l.size).sumOf { l.windowed(it).sumOf { val s = it.toSet().size; s * s } }
 
+// https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
+fun minOperations(a: IntArray) = a.toList().groupingBy { it }.eachCount()
+    .apply { if (any { it.value == 1 }) return -1 }.values.sumOf { (it + 2) / 3 }
+
 // https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/
 fun vowelStrings(a: Array<String>, l: Int, r: Int) =
     "aeiou".run { (l..r).count { a[it][0] in this && a[it].last() in this } }
