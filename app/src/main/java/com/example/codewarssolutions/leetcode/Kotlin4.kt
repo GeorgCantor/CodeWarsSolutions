@@ -22,6 +22,11 @@ fun minOperations(a: IntArray) = a.toList().groupingBy { it }.eachCount()
 fun vowelStrings(a: Array<String>, l: Int, r: Int) =
     "aeiou".run { (l..r).count { a[it][0] in this && a[it].last() in this } }
 
+// https://leetcode.com/problems/find-consecutive-integers-from-a-data-stream/
+class DataStream(val v: Int, val k: Int, var c: Int = 0) {
+    fun consec(n: Int) = k.run { if (n == v) ++c else c = 0; c >= this }
+}
+
 // https://leetcode.com/problems/count-tested-devices-after-test-operations/
 fun countTestedDevices(a: IntArray): Int {
     var c = 0
