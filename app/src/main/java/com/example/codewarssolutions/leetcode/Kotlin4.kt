@@ -18,6 +18,13 @@ fun sumCounts(l: List<Int>) =
 fun minOperations(a: IntArray) = a.toList().groupingBy { it }.eachCount()
     .apply { if (any { it.value == 1 }) return -1 }.values.sumOf { (it + 2) / 3 }
 
+// https://leetcode.com/problems/find-missing-and-repeated-values/
+fun findMissingAndRepeatedValues(a: Array<IntArray>) = IntArray(2).apply {
+    val set = mutableSetOf<Int>()
+    a.forEach { it.forEach { if (!set.add(it)) this[0] = it } }
+    (1..a.size * a.size).find { it !in set }?.let { this[1] = it }
+}
+
 // https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/
 fun vowelStrings(a: Array<String>, l: Int, r: Int) =
     "aeiou".run { (l..r).count { a[it][0] in this && a[it].last() in this } }
