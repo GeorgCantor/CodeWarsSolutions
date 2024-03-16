@@ -25,6 +25,10 @@ fun findMissingAndRepeatedValues(a: Array<IntArray>) = IntArray(2).apply {
     (1..a.size * a.size).find { it !in set }?.let { this[1] = it }
 }
 
+// https://leetcode.com/problems/count-elements-with-maximum-frequency/
+fun maxFrequencyElements(a: IntArray) =
+    a.groupBy { it }.map { it.value.size }.sorted().run { takeLastWhile { it == last() }.sum() }
+
 // https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/
 fun vowelStrings(a: Array<String>, l: Int, r: Int) =
     "aeiou".run { (l..r).count { a[it][0] in this && a[it].last() in this } }
