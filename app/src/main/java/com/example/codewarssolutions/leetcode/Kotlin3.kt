@@ -691,6 +691,10 @@ fun equalFrequency(s: String) = s.groupingBy { it }.eachCount().toMutableMap().r
     false
 }
 
+
+// https://leetcode.com/problems/score-of-a-string/
+fun scoreOfString(s: String) = s.windowed(2).sumOf { abs(it.first().toInt() - it.last().toInt()) }
+
 // https://leetcode.com/problems/circular-sentence/
 fun isCircularSentence(s: String) = s.split(" ").run {
     for (i in 0 until lastIndex) if (this[i].last() != this[i + 1].first()) return false
