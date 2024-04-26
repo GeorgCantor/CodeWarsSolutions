@@ -36,6 +36,11 @@ fun numberOfPoints(l: List<List<Int>>) = l.flatMap { it[0]..it[1] }.toSet().size
 fun vowelStrings(a: Array<String>, l: Int, r: Int) =
     "aeiou".run { (l..r).count { a[it][0] in this && a[it].last() in this } }
 
+// https://leetcode.com/problems/number-of-changing-keys/
+fun countKeyChanges(s: String) = s.withIndex().count {
+    s.getOrNull(it.index - 1)?.equals(it.value, true) == false
+}
+
 // https://leetcode.com/problems/find-consecutive-integers-from-a-data-stream/
 class DataStream(val v: Int, val k: Int, var c: Int = 0) {
     fun consec(n: Int) = k.run { if (n == v) ++c else c = 0; c >= this }
