@@ -25,6 +25,9 @@ fun findMissingAndRepeatedValues(a: Array<IntArray>) = IntArray(2).apply {
     (1..a.size * a.size).find { it !in set }?.let { this[1] = it }
 }
 
+// https://leetcode.com/problems/existence-of-a-substring-in-a-string-and-its-reverse/
+fun isSubstringPresent(s: String) = s.windowed(2).any { s.contains(it.reversed()) }
+
 // https://leetcode.com/problems/count-elements-with-maximum-frequency/
 fun maxFrequencyElements(a: IntArray) =
     a.groupBy { it }.map { it.value.size }.sorted().run { takeLastWhile { it == last() }.sum() }
