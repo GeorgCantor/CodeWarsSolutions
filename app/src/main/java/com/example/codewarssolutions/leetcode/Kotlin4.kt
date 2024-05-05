@@ -25,6 +25,20 @@ fun findMissingAndRepeatedValues(a: Array<IntArray>) = IntArray(2).apply {
     (1..a.size * a.size).find { it !in set }?.let { this[1] = it }
 }
 
+// https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/
+fun findLongestWord(s: String, d: List<String>): String {
+    d.sortedWith(compareByDescending<String> { it.length }.thenBy { it }).forEach {
+        var c = 0
+        s.forEach { ch ->
+            if (ch == it[c]) {
+                ++c
+                if (c == it.length) return it
+            }
+        }
+    }
+    return ""
+}
+
 // https://leetcode.com/problems/existence-of-a-substring-in-a-string-and-its-reverse/
 fun isSubstringPresent(s: String) = s.windowed(2).any { s.contains(it.reversed()) }
 
