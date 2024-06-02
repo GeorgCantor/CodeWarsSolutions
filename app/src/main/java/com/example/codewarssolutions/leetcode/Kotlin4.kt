@@ -74,3 +74,8 @@ fun countTestedDevices(a: IntArray): Int {
 
 // https://leetcode.com/problems/buy-two-chocolates/
 fun buyChoco(a: IntArray, m: Int) = a.sorted().take(2).sum().let { if (it > m) m else m - it }
+
+// https://leetcode.com/problems/count-the-number-of-special-characters-i/
+fun numberOfSpecialChars(s: String) = mutableSetOf<Char>().apply {
+    s.forEach { if (it.isLowerCase() && s.contains(it.uppercaseChar())) add(it) }
+}.size
