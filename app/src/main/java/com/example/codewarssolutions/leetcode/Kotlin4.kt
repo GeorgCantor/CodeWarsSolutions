@@ -1,5 +1,7 @@
 package com.example.codewarssolutions.leetcode
 
+import java.util.TreeMap
+
 // https://leetcode.com/problems/card-flipping-game/
 fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.toSet().run {
     f.plus(b).filter { it !in this }.minOrNull() ?: 0
@@ -56,6 +58,15 @@ fun vowelStrings(a: Array<String>, l: Int, r: Int) =
 // https://leetcode.com/problems/number-of-changing-keys/
 fun countKeyChanges(s: String) = s.withIndex().count {
     s.getOrNull(it.index - 1)?.equals(it.value, true) == false
+}
+
+// https://leetcode.com/problems/time-based-key-value-store/
+class TimeMap(val m: MutableMap<String, TreeMap<Int, String>> = mutableMapOf()) {
+    fun set(k: String, v: String, t: Int) {
+        m.getOrPut(k, ::TreeMap)[t] = v
+    }
+
+    fun get(k: String, t: Int) = m[k]?.floorEntry(t)?.value.orEmpty()
 }
 
 // https://leetcode.com/problems/find-consecutive-integers-from-a-data-stream/
