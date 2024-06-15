@@ -41,6 +41,13 @@ fun findLongestWord(s: String, d: List<String>): String {
     return ""
 }
 
+// https://leetcode.com/problems/find-occurrences-of-an-element-in-an-array/
+fun occurrencesOfElement(a: IntArray, q: IntArray, x: Int) =
+    hashMapOf<Int, MutableList<Int>>().run {
+        a.forEachIndexed { i, n -> this[n] = getOrPut(n) { mutableListOf() }.apply { add(i) } }
+        q.map { getOrDefault(x, mutableListOf()).getOrElse(it - 1) { -1 } }.toIntArray()
+    }
+
 // https://leetcode.com/problems/existence-of-a-substring-in-a-string-and-its-reverse/
 fun isSubstringPresent(s: String) = s.windowed(2).any { s.contains(it.reversed()) }
 
