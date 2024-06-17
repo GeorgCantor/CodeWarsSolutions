@@ -76,6 +76,9 @@ class TimeMap(val m: MutableMap<String, TreeMap<Int, String>> = mutableMapOf()) 
     fun get(k: String, t: Int) = m[k]?.floorEntry(t)?.value.orEmpty()
 }
 
+// https://leetcode.com/problems/split-the-array/
+fun isPossibleToSplit(a: IntArray) = a.toList().groupingBy { it }.eachCount().values.all { it < 3 }
+
 // https://leetcode.com/problems/find-consecutive-integers-from-a-data-stream/
 class DataStream(val v: Int, val k: Int, var c: Int = 0) {
     fun consec(n: Int) = k.run { if (n == v) ++c else c = 0; c >= this }
