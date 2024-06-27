@@ -1,5 +1,6 @@
 package com.example.codewarssolutions.leetcode
 
+import java.lang.StringBuilder
 import java.util.TreeMap
 
 // https://leetcode.com/problems/card-flipping-game/
@@ -39,6 +40,11 @@ fun findLongestWord(s: String, d: List<String>): String {
         }
     }
     return ""
+}
+
+// https://leetcode.com/problems/clear-digits/
+fun clearDigits(s: String) = buildString {
+    s.forEach { if (it.isLetter()) append(it) else deleteAt(lastIndex) }
 }
 
 // https://leetcode.com/problems/find-occurrences-of-an-element-in-an-array/
