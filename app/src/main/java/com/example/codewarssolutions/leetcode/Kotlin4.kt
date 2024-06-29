@@ -106,3 +106,14 @@ fun buyChoco(a: IntArray, m: Int) = a.sorted().take(2).sum().let { if (it > m) m
 fun numberOfSpecialChars(s: String) = mutableSetOf<Char>().apply {
     s.forEach { if (it.isLowerCase() && s.contains(it.uppercaseChar())) add(it) }
 }.size
+
+// https://leetcode.com/problems/vowels-of-all-substrings/
+fun countVowels(s: String) = arrayOf('a', 'e', 'i', 'o', 'u').run {
+    var c = 0L
+    var p = 0L
+    for (i in s.indices) {
+        if (s[i] in this) p += i + 1
+        c += p
+    }
+    c
+}
