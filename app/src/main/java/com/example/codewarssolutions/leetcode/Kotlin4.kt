@@ -1,11 +1,30 @@
 package com.example.codewarssolutions.leetcode
 
-import java.lang.StringBuilder
+import java.util.Stack
 import java.util.TreeMap
 
 // https://leetcode.com/problems/card-flipping-game/
 fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.toSet().run {
     f.plus(b).filter { it !in this }.minOrNull() ?: 0
+}
+
+// https://leetcode.com/problems/throne-inheritance/
+class ThroneInheritance(val kingName: String) {
+    val m = HashMap<String, MutableList<String>>()
+    val set = HashSet<String>()
+    fun birth(par: String, ch: String) {
+        m[par] = m[par].apply { this?.add(ch) } ?: mutableListOf(ch)
+    }
+
+    fun death(name: String) = set.add(name)
+    fun getInheritanceOrder() = mutableListOf<String>().apply {
+        val stack = Stack<String>().apply { add(kingName) }
+        while (stack.isNotEmpty()) {
+            val pop = stack.pop()
+            if (pop !in set) add(pop)
+            m[pop]?.reversed()?.forEach { stack.push(it) }
+        }
+    }
 }
 
 // https://leetcode.com/problems/random-pick-index/
