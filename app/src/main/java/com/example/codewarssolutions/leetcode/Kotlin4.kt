@@ -61,6 +61,15 @@ fun findLongestWord(s: String, d: List<String>): String {
     return ""
 }
 
+// https://leetcode.com/problems/maximum-binary-string-after-change/
+fun maximumBinaryString(s: String) = buildString {
+    repeat(s.length) { append("1") }
+    var one = 0
+    var zer = 0
+    s.forEach { if (it == '0') ++zer else if (zer == 0) ++one }
+    if (one < s.length) setCharAt(one + zer - 1, '0')
+}
+
 // https://leetcode.com/problems/find-unique-binary-string/
 fun findDifferentBinaryString(a: Array<String>) = buildString {
     a.forEachIndexed { i, s -> append(if (s[i] == '0') '1' else '0') }
