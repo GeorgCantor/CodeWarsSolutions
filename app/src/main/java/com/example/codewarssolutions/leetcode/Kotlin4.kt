@@ -61,6 +61,11 @@ fun findLongestWord(s: String, d: List<String>): String {
     return ""
 }
 
+// https://leetcode.com/problems/find-unique-binary-string/
+fun findDifferentBinaryString(a: Array<String>) = buildString {
+    a.forEachIndexed { i, s -> append(if (s[i] == '0') '1' else '0') }
+}
+
 // https://leetcode.com/problems/clear-digits/
 fun clearDigits(s: String) = buildString {
     s.forEach { if (it.isLetter()) append(it) else deleteAt(lastIndex) }
