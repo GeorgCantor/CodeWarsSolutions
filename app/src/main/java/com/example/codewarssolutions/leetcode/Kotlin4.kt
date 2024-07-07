@@ -133,11 +133,9 @@ fun countTestedDevices(a: IntArray): Int {
 }
 
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
-fun countPairs(n: List<Int>, t: Int): Int {
-    var c = 0
-    for (i in 0 until n.lastIndex) for (j in i + 1 until n.size) if (n[i] + n[j] < t) ++c
-    return c
-}
+fun countPairs(n: List<Int>, t: Int) = buildString {
+    for (i in 0 until n.lastIndex) for (j in i + 1 until n.size) if (n[i] + n[j] < t) append('0')
+}.length
 
 // https://leetcode.com/problems/buy-two-chocolates/
 fun buyChoco(a: IntArray, m: Int) = a.sorted().take(2).sum().let { if (it > m) m else m - it }
