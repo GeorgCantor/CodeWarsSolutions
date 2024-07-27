@@ -61,6 +61,29 @@ fun findLongestWord(s: String, d: List<String>): String {
     return ""
 }
 
+// https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/
+fun garbageCollection(a: Array<String>, t: IntArray): Int {
+    var p = 0
+    var m = 0
+    var g = 0
+    var res = 0
+    a.forEachIndexed { i, s ->
+        s.forEach {
+            when (it) {
+                'P' -> p = i
+                'M' -> m = i
+                'G' -> g = i
+            }
+            ++res
+        }
+    }
+    for (i in 1 until t.size) t[i] = t[i - 1] + t[i]
+    if (p != 0) res += t[p - 1]
+    if (m != 0) res += t[m - 1]
+    if (g != 0) res += t[g - 1]
+    return res
+}
+
 // https://leetcode.com/problems/maximum-binary-string-after-change/
 fun maximumBinaryString(s: String) = buildString {
     repeat(s.length) { append("1") }
