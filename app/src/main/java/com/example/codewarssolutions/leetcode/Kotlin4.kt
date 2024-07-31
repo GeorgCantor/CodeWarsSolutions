@@ -2,6 +2,7 @@ package com.example.codewarssolutions.leetcode
 
 import java.util.Stack
 import java.util.TreeMap
+import kotlin.math.abs
 
 // https://leetcode.com/problems/card-flipping-game/
 fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.toSet().run {
@@ -60,6 +61,10 @@ fun findLongestWord(s: String, d: List<String>): String {
     }
     return ""
 }
+
+// https://leetcode.com/problems/permutation-difference-between-two-strings/
+fun findPermutationDifference(s: String, t: String) =
+    s.withIndex().sumOf { abs(it.index - t.indexOf(it.value)) }
 
 // https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/
 fun garbageCollection(a: Array<String>, t: IntArray): Int {
