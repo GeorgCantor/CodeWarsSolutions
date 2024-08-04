@@ -1323,12 +1323,9 @@ fun wordPattern(pattern: String, s: String): Boolean {
 }
 
 // https://leetcode.com/problems/shuffle-string/
-fun restoreString(s: String, indices: IntArray): String {
-    val array = CharArray(s.length)
-    indices.forEachIndexed { i, num -> array[num] = s[i] }
-
-    return String(array)
-}
+fun restoreString(s: String, a: IntArray) = StringBuilder(s).apply {
+    a.forEachIndexed { i, n -> setCharAt(n, s[i]) }
+}.toString()
 
 // https://leetcode.com/problems/majority-element/
 fun majorityElement(ar: IntArray) = ar.find { n -> ar.count { it == n } > ar.size / 2 }
