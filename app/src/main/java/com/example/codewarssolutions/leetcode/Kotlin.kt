@@ -1695,18 +1695,15 @@ fun missingNumber2(nums: IntArray): Int {
     return if (sorted.first() == 0) sorted[sorted.size - 1] + 1 else sorted.first() - 1
 }
 
-fun moveZeroes(nums: IntArray): Unit {
-    val numbers = mutableListOf<Int>()
-    val zeros = mutableListOf<Int>()
-    nums.forEach {
-        when (it) {
-            0 -> zeros.add(it)
-            else -> numbers.add(it)
+// https://leetcode.com/problems/move-zeroes/
+fun moveZeroes(a: IntArray): Unit {
+    var j = 0
+    for (i in a.indices) {
+        if (a[i] != 0) {
+            val temp = a[i]
+            a[i] = a[j]
+            a[j++] = temp
         }
-    }
-    val sorted = numbers + zeros
-    (sorted).indices.forEach {
-        nums[it] = sorted[it]
     }
 }
 
