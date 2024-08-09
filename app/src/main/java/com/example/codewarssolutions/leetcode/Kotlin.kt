@@ -1707,6 +1707,15 @@ fun moveZeroes(a: IntArray): Unit {
     }
 }
 
+// https://leetcode.com/problems/remove-trailing-zeros-from-a-string/
+fun removeTrailingZeros(s: String): String {
+    var j = s.length
+    for (i in s.lastIndex downTo 0) {
+        if (s[i] == '0') j = i else break
+    }
+    return s.substring(0, j)
+}
+
 private fun calculate(char: Char, string: String): Int {
     var counter = 0
     string.forEach {
