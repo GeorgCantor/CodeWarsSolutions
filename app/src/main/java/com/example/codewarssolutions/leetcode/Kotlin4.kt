@@ -28,6 +28,16 @@ class ThroneInheritance(val kingName: String) {
     }
 }
 
+// https://leetcode.com/problems/number-of-matching-subsequences/
+fun numMatchingSubseq(s: String, a: Array<String>) = a.count { w ->
+    var i = 0
+    s.forEach {
+        if (i == w.length) return@forEach
+        if (it == w[i]) ++i
+    }
+    i == w.length
+}
+
 // https://leetcode.com/problems/random-pick-index/
 class Solution(val a: IntArray) {
     fun pick(t: Int) = a.withIndex().filter { it.value == t }.random().index
