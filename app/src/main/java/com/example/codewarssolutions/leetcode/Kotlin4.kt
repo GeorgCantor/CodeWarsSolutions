@@ -38,6 +38,9 @@ fun numMatchingSubseq(s: String, a: Array<String>) = a.count { w ->
     i == w.length
 }
 
+// https://leetcode.com/problems/reverse-words-in-a-string/
+fun reverseWords(s: String) = s.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
+
 // https://leetcode.com/problems/random-pick-index/
 class Solution(val a: IntArray) {
     fun pick(t: Int) = a.withIndex().filter { it.value == t }.random().index
