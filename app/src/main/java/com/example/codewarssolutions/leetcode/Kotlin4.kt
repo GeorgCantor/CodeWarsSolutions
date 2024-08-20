@@ -38,6 +38,15 @@ fun numMatchingSubseq(s: String, a: Array<String>) = a.count { w ->
     i == w.length
 }
 
+// https://leetcode.com/problems/reveal-cards-in-increasing-order/
+fun deckRevealedIncreasing(a: IntArray) = mutableListOf<Int>().apply {
+    a.sortDescending()
+    a.forEach {
+        if (isNotEmpty()) add(0, removeAt(lastIndex))
+        add(0, it)
+    }
+}.toIntArray()
+
 // https://leetcode.com/problems/reverse-words-in-a-string/
 fun reverseWords(s: String) = s.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
 
