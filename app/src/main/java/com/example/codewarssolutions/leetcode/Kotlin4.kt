@@ -47,6 +47,19 @@ fun deckRevealedIncreasing(a: IntArray) = mutableListOf<Int>().apply {
     }
 }.toIntArray()
 
+// https://leetcode.com/problems/minimum-suffix-flips/
+fun minFlips(s: String): Int {
+    var c = 0
+    var p = '0'
+    s.forEach {
+        if (it != p) {
+            p = it
+            ++c
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
 fun validStrings(n: Int) = mutableListOf<String>().apply {
     if (n == 1) return mutableListOf("1", "0")
