@@ -47,6 +47,21 @@ fun deckRevealedIncreasing(a: IntArray) = mutableListOf<Int>().apply {
     }
 }.toIntArray()
 
+// https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
+fun validStrings(n: Int) = mutableListOf<String>().apply {
+    if (n == 1) return mutableListOf("1", "0")
+    addAll(listOf("01", "10", "11"))
+    repeat(n - 2) {
+        val l = mutableListOf<String>()
+        forEach {
+            l.add("${it}1")
+            if (it.last() == '1') l.add("${it}0")
+        }
+        clear()
+        addAll(l)
+    }
+}
+
 // https://leetcode.com/problems/reverse-words-in-a-string/
 fun reverseWords(s: String) = s.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
 
