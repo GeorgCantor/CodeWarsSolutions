@@ -3,6 +3,7 @@ package com.example.codewarssolutions.leetcode
 import java.util.Stack
 import java.util.TreeMap
 import kotlin.math.abs
+import kotlin.math.min
 
 // https://leetcode.com/problems/card-flipping-game/
 fun flipgame(f: IntArray, b: IntArray) = f.filterIndexed { i, n -> n == b[i] }.toSet().run {
@@ -64,6 +65,18 @@ fun minFlips(s: String): Int {
 fun countNicePairs(a: IntArray) =
     (a.map { it - (it.toString().reversed().toInt()) }.groupBy { it }.map { it.value.size.toLong() }
         .sumOf { it * (it - 1) / 2 } % 1000000007).toInt()
+
+// https://leetcode.com/problems/flip-string-to-monotone-increasing/
+fun minFlipsMonoIncr(s: String): Int {
+    var z = s.count { it == '0' }
+    var o = 0
+    var res = z
+    s.forEach {
+        if (it == '0') --z else ++o
+        res = min(res, z + o)
+    }
+    return res
+}
 
 // https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
 fun validStrings(n: Int) = mutableListOf<String>().apply {
