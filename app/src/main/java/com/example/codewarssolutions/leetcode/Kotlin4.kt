@@ -60,6 +60,11 @@ fun minFlips(s: String): Int {
     return c
 }
 
+// https://leetcode.com/problems/count-nice-pairs-in-an-array/
+fun countNicePairs(a: IntArray) =
+    (a.map { it - (it.toString().reversed().toInt()) }.groupBy { it }.map { it.value.size.toLong() }
+        .sumOf { it * (it - 1) / 2 } % 1000000007).toInt()
+
 // https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
 fun validStrings(n: Int) = mutableListOf<String>().apply {
     if (n == 1) return mutableListOf("1", "0")
