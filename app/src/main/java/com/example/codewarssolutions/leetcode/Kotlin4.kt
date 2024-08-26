@@ -61,6 +61,25 @@ fun minFlips(s: String): Int {
     return c
 }
 
+// https://leetcode.com/problems/masking-personal-information/
+fun maskPII(s: String) = buildString {
+    if ('@' in s) {
+        val l = s.split("@")
+        append("${l.first().first().lowercase()}*****${l.first().last().lowercase()}@")
+        l.last().forEach { append(it.lowercase()) }
+    } else {
+        s.forEach { if (it.isDigit()) append(it) }
+        val l = length
+        delete(0, length - 4)
+        insert(0, "***-***-")
+        if (l != 10) {
+            insert(0, "-")
+            repeat(l - 10) { insert(0, "*") }
+            insert(0, "+")
+        }
+    }
+}
+
 // https://leetcode.com/problems/count-nice-pairs-in-an-array/
 fun countNicePairs(a: IntArray) =
     (a.map { it - (it.toString().reversed().toInt()) }.groupBy { it }.map { it.value.size.toLong() }
