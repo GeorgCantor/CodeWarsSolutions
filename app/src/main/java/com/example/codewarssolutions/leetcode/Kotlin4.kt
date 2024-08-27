@@ -112,6 +112,12 @@ fun validStrings(n: Int) = mutableListOf<String>().apply {
     }
 }
 
+// https://leetcode.com/problems/validate-stack-sequences/
+fun validateStackSequences(pu: IntArray, po: IntArray) = Stack<Int>().apply {
+    var i = 0
+    pu.forEach { push(it); while (isNotEmpty() && po[i] == peek()) { pop(); ++i } }
+}.isEmpty()
+
 // https://leetcode.com/problems/reverse-words-in-a-string/
 fun reverseWords(s: String) = s.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
 
