@@ -245,6 +245,19 @@ fun countKeyChanges(s: String) = s.withIndex().count {
     s.getOrNull(it.index - 1)?.equals(it.value, true) == false
 }
 
+// https://leetcode.com/problems/license-key-formatting/description/
+fun licenseKeyFormatting(s: String, k: Int) = buildString {
+    val w = s.dropWhile { it == '-' }
+    var c = 0
+    for (i in w.lastIndex downTo 0) {
+        if (w[i] == '-') continue
+        insert(0, w[i].uppercase())
+        if (++c == k && i > 0) {
+            insert(0, '-'); c = 0
+        }
+    }
+}
+
 // https://leetcode.com/problems/time-based-key-value-store/
 class TimeMap(val m: MutableMap<String, TreeMap<Int, String>> = mutableMapOf()) {
     fun set(k: String, v: String, t: Int) {
