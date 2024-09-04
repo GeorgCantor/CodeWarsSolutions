@@ -245,7 +245,17 @@ fun countKeyChanges(s: String) = s.withIndex().count {
     s.getOrNull(it.index - 1)?.equals(it.value, true) == false
 }
 
-// https://leetcode.com/problems/license-key-formatting/description/
+// https://leetcode.com/problems/minimum-index-sum-of-two-lists/
+fun findRestaurant(a: Array<String>, b: Array<String>) = buildList {
+    val m = a.filter { it in b }.associateWith { s ->
+        a.indexOfFirst { it == s } + b.indexOfFirst { it == s }
+    }
+    m.values.minOrNull()?.let { min ->
+        m.filter { it.value == min }.forEach { add(it.key) }
+    }
+}
+
+// https://leetcode.com/problems/license-key-formatting/
 fun licenseKeyFormatting(s: String, k: Int) = buildString {
     val w = s.dropWhile { it == '-' }
     var c = 0
