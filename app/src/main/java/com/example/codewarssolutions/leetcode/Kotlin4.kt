@@ -307,6 +307,21 @@ fun countTestedDevices(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/valid-palindrome-ii/
+fun validPalindrome(s: String): Boolean {
+    fun isP(s: String, left: Int, right: Int): Boolean {
+        var l = left; var r = right
+        while (l < r) if (s[l++] != s[r--]) return false
+        return true
+    }
+    var l = 0; var r = s.lastIndex
+    while (l < r) {
+        if (s[l] != s[r]) return isP(s, l + 1, r) || isP(s, l, r - 1)
+        ++l; --r
+    }
+    return true
+}
+
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 fun countPairs(n: List<Int>, t: Int) = buildString {
     for (i in 0 until n.lastIndex) for (j in i + 1 until n.size) if (n[i] + n[j] < t) append('0')
