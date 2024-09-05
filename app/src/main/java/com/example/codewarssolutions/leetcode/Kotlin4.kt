@@ -268,6 +268,19 @@ fun licenseKeyFormatting(s: String, k: Int) = buildString {
     }
 }
 
+// https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/
+fun removeAnagrams(a: Array<String>): List<String> {
+    for (i in 0 until a.lastIndex) {
+        if (a[i].isEmpty()) continue
+        val l = a[i].toCharArray().sorted()
+        for (j in i + 1..a.lastIndex) {
+            val r = a[j].toCharArray().sorted()
+            if (l == r) a[j] = "" else break
+        }
+    }
+    return a.filter { it.isNotEmpty() }
+}
+
 // https://leetcode.com/problems/time-based-key-value-store/
 class TimeMap(val m: MutableMap<String, TreeMap<Int, String>> = mutableMapOf()) {
     fun set(k: String, v: String, t: Int) {
