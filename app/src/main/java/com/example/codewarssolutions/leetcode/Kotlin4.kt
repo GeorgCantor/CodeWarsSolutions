@@ -322,6 +322,16 @@ fun validPalindrome(s: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/long-pressed-name/
+fun isLongPressedName(name: String, typed: String): Boolean {
+    val n = name.split("(?<=(.))(?!\\1)".toRegex())
+    val t = typed.split("(?<=(.))(?!\\1)".toRegex())
+    for (i in n.indices) {
+        if (n[i].length > t[i].length || n[i].firstOrNull() != t[i].firstOrNull()) return false
+    }
+    return true
+}
+
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 fun countPairs(n: List<Int>, t: Int) = buildString {
     for (i in 0 until n.lastIndex) for (j in i + 1 until n.size) if (n[i] + n[j] < t) append('0')
