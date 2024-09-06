@@ -322,6 +322,17 @@ fun validPalindrome(s: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/
+fun maximumLengthSubstring(s: String) = mutableSetOf<Int>().apply {
+    for (i in 0 until s.lastIndex) {
+        var r = s.lastIndex
+        while (i < r) {
+            val m = s.slice(i..r).groupingBy { it }.eachCount()
+            if (m.values.none { it > 2 }) add(m.values.sum()); --r
+        }
+    }
+}.maxOrNull()
+
 // https://leetcode.com/problems/long-pressed-name/
 fun isLongPressedName(name: String, typed: String): Boolean {
     val n = name.split("(?<=(.))(?!\\1)".toRegex())
