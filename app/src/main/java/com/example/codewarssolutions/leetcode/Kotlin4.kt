@@ -332,6 +332,24 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/rearrange-characters-to-make-target-string/
+fun rearrangeCharacters(s: String, t: String): Int {
+    var res = 0
+    var c = 0
+    val m = s.filter { it in t }.groupingBy { it }.eachCount().toMutableMap()
+    while (m.isNotEmpty() && m.all { it.value > 0 }) {
+        t.forEach {
+            if (it !in m.keys) return res
+            m[it] = m.getOrDefault(it, 0) - 1
+            if (m[it]!! >= 0) ++c
+            if (c == t.length) {
+                ++res; c = 0
+            }
+        }
+    }
+    return res
+}
+
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 fun countPairs(n: List<Int>, t: Int) = buildString {
     for (i in 0 until n.lastIndex) for (j in i + 1 until n.size) if (n[i] + n[j] < t) append('0')
