@@ -343,6 +343,17 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/rearrange-spaces-between-words/
+fun reorderSpaces(s: String) = buildString {
+    var n = s.count { !it.isLetter() }; if (n == 0) return s
+    val l = s.trim().split("\\s+".toRegex())
+    val c = if (l.size > 1) n / (l.size - 1) else 0
+    l.forEachIndexed { i, w ->
+        append(w)
+        if (i == l.lastIndex) append(" ".repeat(n)) else repeat(c) { append(" "); --n }
+    }
+}
+
 // https://leetcode.com/problems/rearrange-characters-to-make-target-string/
 fun rearrangeCharacters(s: String, t: String): Int {
     var res = 0
