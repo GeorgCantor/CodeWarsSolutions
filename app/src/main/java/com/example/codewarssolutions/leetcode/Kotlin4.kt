@@ -307,6 +307,15 @@ fun countTestedDevices(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/degree-of-an-array/
+fun findShortestSubArray(a: IntArray) = mutableSetOf<Int>().apply {
+    val m = a.toList().groupingBy { it }.eachCount()
+    val max = m.values.maxOrNull() ?: 0
+    m.filter { it.value == max }.forEach {
+        add((a.lastIndexOf(it.key) + 1) - a.indexOf(it.key))
+    }
+}.minOrNull()
+
 // https://leetcode.com/problems/valid-palindrome-ii/
 fun validPalindrome(s: String): Boolean {
     fun isP(s: String, left: Int, right: Int): Boolean {
