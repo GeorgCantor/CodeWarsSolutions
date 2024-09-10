@@ -149,10 +149,9 @@ fun repeatedNTimes(ar: IntArray) =
 fun repeatedNTimes2(ar: IntArray) = ar.maxByOrNull { n -> ar.count { it == n } }!!
 
 // https://leetcode.com/problems/longest-common-prefix/
-fun longestCommonPrefix(ar: Array<String>) = StringBuilder().apply {
-    ar.minByOrNull { it.length }
-        ?.forEachIndexed { i, c -> if (ar.all { it[i] == c }) append(c) else return toString() }
-}.toString()
+fun longestCommonPrefix(a: Array<String>) = buildString {
+    a.minByOrNull { it.length }?.forEachIndexed { i, c -> if (a.all { it[i] == c }) append(c) else return toString() }
+}
 
 // https://leetcode.com/problems/find-and-replace-pattern/
 fun findAndReplacePattern(ar: Array<String>, p: String) = mutableListOf<String>().apply {
