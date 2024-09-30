@@ -81,6 +81,15 @@ fun maskPII(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/reorder-data-in-log-files/
+fun reorderLogFiles(a: Array<String>) = mutableListOf<String>().apply {
+    val l = mutableListOf<String>()
+    val d = mutableListOf<String>()
+    a.forEach { if (it.split(" ").drop(1).all { it.all { it.isLetter() } }) l.add(it) else d.add(it) }
+    l.sortWith(compareBy({ it.substringAfter(" ") }, { it.first() }))
+    addAll(l); addAll(d)
+}.toTypedArray()
+
 // https://leetcode.com/problems/count-nice-pairs-in-an-array/
 fun countNicePairs(a: IntArray) =
     (a.map { it - (it.toString().reversed().toInt()) }.groupBy { it }.map { it.value.size.toLong() }
