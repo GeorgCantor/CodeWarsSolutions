@@ -377,6 +377,9 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/repeated-dna-sequences/
+fun findRepeatedDnaSequences(s: String) = s.windowed(10).groupBy { it }.filter { it.value.size > 1 }.map { it.key }
+
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 fun countPairs(n: List<Int>, t: Int) = buildString {
     for (i in 0 until n.lastIndex) for (j in i + 1 until n.size) if (n[i] + n[j] < t) append('0')
