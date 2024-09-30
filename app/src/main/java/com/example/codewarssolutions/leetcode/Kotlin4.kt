@@ -378,7 +378,10 @@ fun rearrangeCharacters(s: String, t: String): Int {
 }
 
 // https://leetcode.com/problems/repeated-dna-sequences/
-fun findRepeatedDnaSequences(s: String) = s.windowed(10).groupBy { it }.filter { it.value.size > 1 }.map { it.key }
+fun findRepeatedDnaSequences(s: String) = mutableSetOf<String>().apply {
+    val a = mutableSetOf<String>()
+    for (i in 0..s.length - 10) s.substring(i, i + 10).apply { if (!a.add(this)) add(this) }
+}.toList()
 
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 fun countPairs(n: List<Int>, t: Int) = buildString {
