@@ -217,6 +217,11 @@ fun maximumBinaryString(s: String) = buildString {
     if (one < s.length) setCharAt(one + zer - 1, '0')
 }
 
+// https://leetcode.com/problems/maximum-product-of-three-numbers/
+fun maximumProduct(a: IntArray) = a.sorted().let { l ->
+    max(l.last() * l[l.size - 2] * l[l.size - 3], l[0] * l[1] * l.last())
+}
+
 // https://leetcode.com/problems/find-unique-binary-string/
 fun findDifferentBinaryString(a: Array<String>) = buildString {
     a.forEachIndexed { i, s -> append(if (s[i] == '0') '1' else '0') }
