@@ -62,6 +62,33 @@ fun minFlips(s: String): Int {
     return c
 }
 
+// https://leetcode.com/problems/frequency-tracker/
+class FrequencyTracker() {
+    val cMap = mutableMapOf<Int, Int>()
+    val fMap = mutableMapOf<Int, Int>()
+
+    fun add(n: Int) {
+        val curCount = cMap.getOrDefault(n, 0)
+        cMap[n] = curCount + 1
+        if (curCount > 0) {
+            fMap[curCount] = fMap.getOrDefault(curCount, 0) - 1
+            if (fMap[curCount] == 0) fMap.remove(curCount)
+        }
+        fMap[curCount + 1] = fMap.getOrDefault(curCount + 1, 0) + 1
+    }
+
+    fun deleteOne(n: Int) {
+        val curCount = cMap.getOrDefault(n, 0)
+        if (curCount > 0) cMap[n] = curCount - 1
+        fMap[curCount] = fMap.getOrDefault(curCount, 0) - 1
+        if (fMap[curCount] == 0) fMap.remove(curCount)
+        if (curCount > 1) fMap[curCount - 1] = fMap.getOrDefault(curCount - 1, 0) + 1
+        else cMap.remove(n)
+    }
+
+    fun hasFrequency(f: Int) = f in fMap
+}
+
 // https://leetcode.com/problems/masking-personal-information/
 fun maskPII(s: String) = buildString {
     if ('@' in s) {
