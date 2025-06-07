@@ -150,7 +150,8 @@ fun repeatedNTimes2(ar: IntArray) = ar.maxByOrNull { n -> ar.count { it == n } }
 
 // https://leetcode.com/problems/longest-common-prefix/
 fun longestCommonPrefix(a: Array<String>) = buildString {
-    a.minByOrNull { it.length }?.forEachIndexed { i, c -> if (a.all { it[i] == c }) append(c) else return toString() }
+    a.minByOrNull { it.length }
+        ?.forEachIndexed { i, c -> if (a.all { it[i] == c }) append(c) else return toString() }
 }
 
 // https://leetcode.com/problems/find-and-replace-pattern/
@@ -1350,15 +1351,10 @@ class MyQueue() {
 }
 
 // https://leetcode.com/problems/longest-palindrome/
-fun longestPalindrome(s: String): Int {
-    val set = mutableSetOf<Char>()
-    var counter = 0
-    s.forEach {
-        if (set.remove(it)) counter++ else set.add(it)
+fun longestPalindrome(s: String) =
+    IntArray(128).also { a -> s.forEach { a[it.code]++ } }.let { a ->
+        a.sumOf { if (it % 2 == 0) it else it - 1 }.let { n -> if (a.any { it % 2 == 1 }) n + 1 else n }
     }
-
-    return if (set.isEmpty()) counter * 2 else counter * 2 + 1
-}
 
 // https://leetcode.com/problems/longest-palindromic-substring/
 fun longestPalindrome2(s: String): String {
