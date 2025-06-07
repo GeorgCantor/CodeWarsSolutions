@@ -608,7 +608,7 @@ fun fairCandySwap(a: IntArray, b: IntArray) = intArrayOf(a.sum(), b.sum()).apply
 }
 
 // https://leetcode.com/problems/shuffle-an-array/
-class Solution(val a: IntArray) {
+class Solution9(val a: IntArray) {
     fun reset() = a
     fun shuffle() = a.toList().shuffled().toIntArray()
 }

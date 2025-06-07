@@ -155,10 +155,10 @@ fun validateStackSequences(pu: IntArray, po: IntArray) = Stack<Int>().apply {
 }.isEmpty()
 
 // https://leetcode.com/problems/reverse-words-in-a-string/
-fun reverseWords(s: String) = s.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
+fun reverseWords4(s: String) = s.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
 
 // https://leetcode.com/problems/random-pick-index/
-class Solution(val a: IntArray) {
+class Solution4(val a: IntArray) {
     fun pick(t: Int) = a.withIndex().filter { it.value == t }.random().index
 }
 
@@ -167,7 +167,7 @@ fun sumCounts(l: List<Int>) =
     (1..l.size).sumOf { l.windowed(it).sumOf { val s = it.toSet().size; s * s } }
 
 // https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
-fun minOperations(a: IntArray) = a.toList().groupingBy { it }.eachCount()
+fun minOperations6(a: IntArray) = a.toList().groupingBy { it }.eachCount()
     .apply { if (any { it.value == 1 }) return -1 }.values.sumOf { (it + 2) / 3 }
 
 // https://leetcode.com/problems/find-missing-and-repeated-values/
