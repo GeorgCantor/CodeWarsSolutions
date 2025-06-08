@@ -1720,23 +1720,16 @@ private fun calculate(char: Char, string: String): Int {
     return counter
 }
 
+// https://leetcode.com/problems/reverse-vowels-of-a-string/
 fun reverseVowels(s: String): String {
-    val vowels = "aeiouAEIOU"
-    val v = mutableListOf<Char>()
-    s.forEach {
-        if (vowels.contains(it)) v.add(it)
+    val a = BooleanArray(128).apply { "aeiouAEIOU".forEach { this[it.code] = true } }
+    val c = s.toCharArray(); var l = 0; var r = c.lastIndex
+    while (l < r) {
+        while (l < r && (c[l].code >= a.size || !a[c[l].code])) l++
+        while (l < r && (c[r].code >= a.size || !a[c[r].code])) r--
+        if (l < r) c[l] = c[r].also { c[r] = c[l] }; l++; r--
     }
-    val vArray = v.reversed().toCharArray()
-    val array = s.toCharArray()
-    var counter = 0
-    array.indices.forEach {
-        if (vowels.contains(array[it].toLowerCase())) {
-            array[it] = vArray[counter]
-            counter++
-        }
-    }
-
-    return array.joinToString("")
+    return String(c)
 }
 
 fun strStr(haystack: String, needle: String): Int {
