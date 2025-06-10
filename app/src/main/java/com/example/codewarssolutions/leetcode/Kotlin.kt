@@ -1899,9 +1899,7 @@ fun fizzBuzz2(n: Int): List<String> {
 }
 
 // https://leetcode.com/problems/find-the-difference/
-fun findTheDifference(s: String, t: String) = t.toCharArray().apply {
-    s.forEach { if (t.contains(it)) this[indexOf(it)] = ' ' }
-}.find { it.isLetter() }
+fun findTheDifference(s: String, t: String) = (s + t).fold(0) { ac, c -> ac xor c.code }.toChar()
 
 fun detectCapitalUse(word: String) = word.all { it.isLowerCase() }
         || word.all { it.isUpperCase() }
