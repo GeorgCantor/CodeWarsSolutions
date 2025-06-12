@@ -1553,15 +1553,14 @@ fun isValid(w: String): Boolean {
 }
 
 // https://leetcode.com/problems/search-insert-position/
-fun searchInsert(nums: IntArray, target: Int): Int {
-    var i = 0
-    while (i < nums.size) {
-        if (nums[i] == target) return i
-        if (i == 0 && target < nums[i]) return i
-        if (i > 0 && target > nums[i - 1] && target < nums[i]) return i
-        i++
+fun searchInsert(a: IntArray, t: Int): Int {
+    var l = 0; var r = a.lastIndex
+    while (l <= r) {
+        val m = l + (r - l) / 2
+        if (a[m] == t) return m
+        if (a[m] < t) l = m + 1 else r = m - 1
     }
-    return i
+    return l
 }
 
 // https://leetcode.com/problems/reverse-only-letters/
