@@ -1019,13 +1019,8 @@ fun countBalls(l: Int, h: Int) = (l..h).map {
 }.groupingBy { it }.eachCount().values.maxOrNull()
 
 // https://leetcode.com/problems/occurrences-after-bigram/
-fun findOcurrences(t: String, f: String, s: String) = t.split(" ").run {
-    filterIndexed { i, _ -> getOrNull(i - 2).orEmpty() == f && getOrNull(i - 1).orEmpty() == s }
-}.toTypedArray()
-
-fun findOcurrences2(t: String, f: String, s: String) = t.split(" ").run {
-    (0 until size - 2).filter { this[it] == f && this[it + 1] == s }.map { this[it + 2] }
-}.toTypedArray()
+fun findOcurrences(t: String, f: String, s: String) =
+    t.split(" ").windowed(3).filter { it[0] == f && it[1] == s }.map { it[2] }
 
 // https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
 fun nearestValidPoint(x: Int, y: Int, a: Array<IntArray>) = a.mapIndexed { i, ar -> i to ar }
