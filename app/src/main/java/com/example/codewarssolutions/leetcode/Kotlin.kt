@@ -991,18 +991,11 @@ fun topKFrequent2(words: Array<String>, k: Int): List<String> {
 }
 
 // https://leetcode.com/problems/find-common-characters/
-class Solution2 {
-    fun commonChars(arr: Array<String>): List<String> {
-        val map = arr.drop(1).fold(arr.first().groupingBy { it }.eachCount()) { m, str ->
-            m.keys.associateWith {
-                minOf(
-                    m.getOrDefault(it, 0),
-                    str.groupingBy { it }.eachCount().getOrDefault(it, 0)
-                )
-            }
-        }
-
-        return map.flatMap { entry -> List(entry.value) { entry.key.toString() } }
+fun commonChars(a: Array<String>) = buildList {
+    val l = a.map { it.groupingBy { it }.eachCount().toMutableMap() }
+    o@ for (c in a.first()) {
+        for (m in l) if ((m[c] ?: 0) > 0) m[c] = m[c]!! - 1 else continue@o
+        add(c.toString())
     }
 }
 
