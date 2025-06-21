@@ -1066,6 +1066,13 @@ fun maxLengthBetweenEqualCharacters(s: String): Int {
     return m
 }
 
+// https://leetcode.com/problems/rotate-string/
+fun rotateString(s: String, g: String) = StringBuilder(s).apply {
+    for (i in s.indices) {
+        append(first()); deleteCharAt(0); if (toString() == g) return true
+    }
+}.isEmpty()
+
 fun maxLengthBetweenEqualCharacters2(s: String): Int {
     var max = -1
     s.forEachIndexed { i, ch ->
