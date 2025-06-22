@@ -62,6 +62,12 @@ fun minFlips(s: String): Int {
     return c
 }
 
+// https://leetcode.com/problems/find-the-losers-of-the-circular-game/
+fun circularGameLosers(n: Int, k: Int) = BooleanArray(n).apply { this[0] = true }.apply {
+    var c = 0; var r = 1
+    while (true) { val s = (c + r * k) % n; if (this[s]) break; this[s] = true; c = s; ++r }
+}.withIndex().filter { !it.value }.map { it.index + 1 }.toIntArray()
+
 // https://leetcode.com/problems/frequency-tracker/
 class FrequencyTracker() {
     val cMap = mutableMapOf<Int, Int>()
