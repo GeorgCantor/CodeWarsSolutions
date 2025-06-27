@@ -64,8 +64,11 @@ fun minFlips(s: String): Int {
 
 // https://leetcode.com/problems/find-the-losers-of-the-circular-game/
 fun circularGameLosers(n: Int, k: Int) = BooleanArray(n).apply { this[0] = true }.apply {
-    var c = 0; var r = 1
-    while (true) { val s = (c + r * k) % n; if (this[s]) break; this[s] = true; c = s; ++r }
+    var c = 0;
+    var r = 1
+    while (true) {
+        val s = (c + r * k) % n; if (this[s]) break; this[s] = true; c = s; ++r
+    }
 }.withIndex().filter { !it.value }.map { it.index + 1 }.toIntArray()
 
 // https://leetcode.com/problems/frequency-tracker/
@@ -157,7 +160,11 @@ fun validStrings(n: Int) = mutableListOf<String>().apply {
 // https://leetcode.com/problems/validate-stack-sequences/
 fun validateStackSequences(pu: IntArray, po: IntArray) = Stack<Int>().apply {
     var i = 0
-    pu.forEach { push(it); while (isNotEmpty() && po[i] == peek()) { pop(); ++i } }
+    pu.forEach {
+        push(it); while (isNotEmpty() && po[i] == peek()) {
+        pop(); ++i
+    }
+    }
 }.isEmpty()
 
 // https://leetcode.com/problems/reverse-words-in-a-string/
@@ -199,7 +206,11 @@ fun findLongestWord(s: String, d: List<String>): String {
 
 // https://leetcode.com/problems/minimum-number-of-frogs-croaking/
 fun minNumberOfFrogs(s: String): Int {
-    var c = 0; var r = 0; var o = 0; var a = 0; var m = 0
+    var c = 0;
+    var r = 0;
+    var o = 0;
+    var a = 0;
+    var m = 0
     s.forEach {
         when (it) {
             'c' -> ++c
@@ -355,17 +366,21 @@ fun countTestedDevices(a: IntArray): Int {
 
 // https://leetcode.com/problems/degree-of-an-array/
 fun findShortestSubArray(a: IntArray) = a.toList().groupingBy { it }.eachCount().run {
-    filter { it.value == values.maxOrNull() }.map { (a.lastIndexOf(it.key) + 1) - a.indexOf(it.key) }.minOrNull()
+    filter { it.value == values.maxOrNull() }.map { (a.lastIndexOf(it.key) + 1) - a.indexOf(it.key) }
+        .minOrNull()
 }
 
 // https://leetcode.com/problems/valid-palindrome-ii/
 fun validPalindrome(s: String): Boolean {
     fun isP(s: String, left: Int, right: Int): Boolean {
-        var l = left; var r = right
+        var l = left;
+        var r = right
         while (l < r) if (s[l++] != s[r--]) return false
         return true
     }
-    var l = 0; var r = s.lastIndex
+
+    var l = 0;
+    var r = s.lastIndex
     while (l < r) {
         if (s[l] != s[r]) return isP(s, l + 1, r) || isP(s, l, r - 1)
         ++l; --r
@@ -405,6 +420,16 @@ fun reorderSpaces(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/
+fun minTimeToType(s: String): Int {
+    var t = 0; var c = 0
+    s.forEach {
+        val tar = it - 'a'; val dif = abs(tar - c); val st = min(dif, 26 - dif)
+        t += st + 1; c = tar
+    }
+    return t
+}
+
 // https://leetcode.com/problems/rearrange-characters-to-make-target-string/
 fun rearrangeCharacters(s: String, t: String): Int {
     var res = 0
@@ -425,7 +450,8 @@ fun rearrangeCharacters(s: String, t: String): Int {
 
 // https://leetcode.com/problems/repeated-dna-sequences/
 fun findRepeatedDnaSequences(s: String) = (mutableSetOf<String>() to mutableSetOf<String>()).apply {
-    for (i in 0..s.length - 10) s.substring(i, i + 10).apply { if (!first.add(this)) second.add(this) }
+    for (i in 0..s.length - 10) s.substring(i, i + 10)
+        .apply { if (!first.add(this)) second.add(this) }
 }.second.toList()
 
 // https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
