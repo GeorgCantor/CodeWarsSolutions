@@ -420,6 +420,17 @@ fun reorderSpaces(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/summary-ranges/
+fun summaryRanges(a: IntArray) = buildList {
+    if (a.size == 1) return listOf(a.first().toString()); var l = 0
+    for (i in 1..a.lastIndex) {
+        if (a[i].toLong() - a[i - 1].toLong() > 1) {
+            add(if (l == i - 1) "${a[l]}" else "${a[l]}->${a[i - 1]}"); l = i
+        }
+        if (i == a.lastIndex) add(if (l == i) "${a[l]}" else "${a[l]}->${a[i]}")
+    }
+}
+
 // https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/
 fun minTimeToType(s: String): Int {
     var t = 0; var c = 0
