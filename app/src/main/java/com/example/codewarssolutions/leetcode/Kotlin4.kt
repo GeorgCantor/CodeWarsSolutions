@@ -420,6 +420,11 @@ fun reorderSpaces(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/remove-outermost-parentheses/
+fun removeOuterParentheses(s: String) = buildString {
+    var b = 0; s.forEach { if (it == '(') { if (b > 0) append(it); ++b } else { --b; if (b > 0) append(it) } }
+}
+
 // https://leetcode.com/problems/summary-ranges/
 fun summaryRanges(a: IntArray) = buildList {
     if (a.size == 1) return listOf(a.first().toString()); var l = 0
