@@ -856,15 +856,8 @@ fun sortedSquares(nums: IntArray): IntArray {
 }
 
 // https://leetcode.com/problems/uncommon-words-from-two-sentences/
-fun uncommonFromSentences(a: String, b: String): Array<String> {
-    val uncList = mutableListOf<String>()
-    val aList = a.split(" ")
-    val bList = b.split(" ")
-    aList.forEach { w -> if (!bList.contains(w) && aList.count { it == w } < 2) uncList.add(w) }
-    bList.forEach { w -> if (!aList.contains(w) && bList.count { it == w } < 2) uncList.add(w) }
-
-    return uncList.toTypedArray()
-}
+fun uncommonFromSentences(a: String, b: String) =
+    ("$a $b").split(" ").groupingBy { it }.eachCount().filter { it.value == 1 }.keys.toList()
 
 // https://leetcode.com/problems/employee-importance/
 class Solution3 {
