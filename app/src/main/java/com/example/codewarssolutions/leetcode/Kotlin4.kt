@@ -483,6 +483,13 @@ fun numberOfSpecialChars(s: String) = mutableSetOf<Char>().apply {
     s.forEach { if (it.isLowerCase() && s.contains(it.uppercaseChar())) add(it) }
 }.size
 
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+fun maxProfit(a: IntArray): Int {
+    var min = Int.MAX_VALUE; var max = 0
+    a.forEach { if (it < min) min = it else (it - min).let { max = maxOf(it, max) } }
+    return max
+}
+
 // https://leetcode.com/problems/vowels-of-all-substrings/
 fun countVowels(s: String) = arrayOf('a', 'e', 'i', 'o', 'u').run {
     var c = 0L
