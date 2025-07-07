@@ -763,15 +763,9 @@ fun secondHighest(s: String) = s.filter { it.isDigit() }.toSet().run {
 }
 
 // https://leetcode.com/problems/check-if-n-and-its-double-exist/
-fun checkIfExist(a: IntArray): Boolean {
-    for (i in a.indices) {
-        for (j in i + 1 until a.size) {
-            if (a[i] * 2 == a[j] || a[j] * 2 == a[i]) return true
-        }
-    }
-
-    return false
-}
+fun checkIfExist(a: IntArray) = HashSet<Int>().apply {
+    a.forEach { if (it * 2 in this || it % 2 == 0 && it / 2 in this) return true; add(it) }
+}.isEmpty()
 
 // https://leetcode.com/problems/delete-characters-to-make-fancy-string/
 fun makeFancyString(s: String) = buildString {
