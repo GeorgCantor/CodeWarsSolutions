@@ -464,6 +464,9 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/check-if-binary-string-has-at-most-one-segment-of-ones/
+fun checkOnesSegment(s: String) = "01" !in s
+
 // https://leetcode.com/problems/maximum-repeating-substring/
 fun maxRepeating(s: String, w: String) = buildString {
     var c = 0; while (length < s.length) { append(w); if (this !in s) return c else ++c }
