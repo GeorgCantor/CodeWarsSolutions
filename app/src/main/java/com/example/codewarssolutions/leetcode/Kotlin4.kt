@@ -464,6 +464,11 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/maximum-repeating-substring/
+fun maxRepeating(s: String, w: String) = buildString {
+    var c = 0; while (length < s.length) { append(w); if (this !in s) return c else ++c }
+}.let { it.length / w.length }
+
 // https://leetcode.com/problems/find-subsequence-of-length-k-with-the-largest-sum/
 fun maxSubsequence(a: IntArray, k: Int) = a.withIndex().sortedBy { it.value }.takeLast(k).sortedBy { it.index }.map { it.value }
 
