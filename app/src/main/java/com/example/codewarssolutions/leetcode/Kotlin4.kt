@@ -446,6 +446,16 @@ fun minTimeToType(s: String): Int {
     return t
 }
 
+// https://leetcode.com/problems/binary-search/
+fun search(a: IntArray, t: Int): Int {
+    var l = 0; var r = a.lastIndex
+    while (l <= r) {
+        val m = l + (r - l) / 2
+        when { a[m] == t -> return m; a[m] < t -> l = m + 1; else -> r = m - 1 }
+    }
+    return -1
+}
+
 // https://leetcode.com/problems/rearrange-characters-to-make-target-string/
 fun rearrangeCharacters(s: String, t: String): Int {
     var res = 0
