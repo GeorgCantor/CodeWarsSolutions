@@ -474,6 +474,14 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/day-of-the-year/
+fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
+    val a = intArrayOf(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    var c = (1 until m).sumOf { a[it] } + d
+    if ((m > 2) && (y % 400 == 0 || y % 4 == 0 && y % 100 != 0)) ++c
+    c
+}
+
 // https://leetcode.com/problems/check-if-binary-string-has-at-most-one-segment-of-ones/
 fun checkOnesSegment(s: String) = "01" !in s
 
