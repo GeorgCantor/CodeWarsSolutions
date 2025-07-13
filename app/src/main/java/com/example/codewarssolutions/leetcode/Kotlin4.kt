@@ -474,6 +474,12 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/base-7/
+fun convertToBase7(num: Int) = buildString {
+    if (num == 0) return "0"; val neg = num < 0; var n = abs(num)
+    while (n > 0) { append(n % 7); n /= 7 }; if (neg) append("-"); reverse().toString()
+}
+
 // https://leetcode.com/problems/day-of-the-year/
 fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
     val a = intArrayOf(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
