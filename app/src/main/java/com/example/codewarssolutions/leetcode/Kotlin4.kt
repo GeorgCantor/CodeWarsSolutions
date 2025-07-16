@@ -488,6 +488,12 @@ fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
     c
 }
 
+// https://leetcode.com/problems/reverse-string-ii/
+fun reverseStr(s: String, k: Int) = buildString {
+    val l = s.chunked(k)
+    for (i in l.indices) append(if (i % 2 == 0) l[i].reversed() else l[i])
+}
+
 // https://leetcode.com/problems/check-if-binary-string-has-at-most-one-segment-of-ones/
 fun checkOnesSegment(s: String) = "01" !in s
 
