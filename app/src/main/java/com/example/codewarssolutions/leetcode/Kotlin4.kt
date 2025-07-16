@@ -488,6 +488,13 @@ fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
     c
 }
 
+// https://leetcode.com/problems/odd-string-difference/
+fun oddString(a: Array<String>) = mutableMapOf<List<Int>, MutableList<String>>().apply {
+    a.forEach { w ->
+        w.zipWithNext { a, b -> b.code - a.code }.let { getOrPut(it) { mutableListOf() }.add(w) }
+    }
+}.values.first { it.size == 1 }.first()
+
 // https://leetcode.com/problems/reverse-string-ii/
 fun reverseStr(s: String, k: Int) = buildString {
     val l = s.chunked(k)
