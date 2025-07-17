@@ -30,6 +30,16 @@ class ThroneInheritance(val kingName: String) {
     }
 }
 
+// https://leetcode.com/problems/maximum-average-subarray-i/
+fun findMaxAverage(a: IntArray, k: Int): Double {
+    var s = a.take(k).sum(); var m = s
+    for (i in k until a.size) {
+        s += a[i] - a[i - k]
+        if (s > m) m = s
+    }
+    return m / k.toDouble()
+}
+
 // https://leetcode.com/problems/number-of-matching-subsequences/
 fun numMatchingSubseq(s: String, a: Array<String>) = a.count { w ->
     var i = 0
