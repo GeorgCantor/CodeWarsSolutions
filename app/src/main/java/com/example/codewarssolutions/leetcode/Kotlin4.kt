@@ -127,6 +127,10 @@ fun maskPII(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/majority-element-ii/
+fun majorityElement(a: IntArray) =
+    a.toList().groupingBy { it }.eachCount().filter { it.value > a.size / 3 }.keys.toList()
+
 // https://leetcode.com/problems/reorder-data-in-log-files/
 fun reorderLogFiles(a: Array<String>) = mutableListOf<String>().run {
     val d = mutableListOf<String>()
