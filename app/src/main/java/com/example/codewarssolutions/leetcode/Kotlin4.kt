@@ -536,6 +536,16 @@ fun countPairs(n: List<Int>, t: Int) = buildString {
 // https://leetcode.com/problems/buy-two-chocolates/
 fun buyChoco(a: IntArray, m: Int) = a.sorted().take(2).sum().let { if (it > m) m else m - it }
 
+// https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/
+fun minOperations(s: String): Int {
+    var a = 0; var b = 0
+    for (i in s.indices) {
+        if (i % 2 == 0 && s[i] != '0' || i % 2 == 1 && s[i] != '1') ++a
+        if (i % 2 == 0 && s[i] != '1' || i % 2 == 1 && s[i] != '0') ++b
+    }
+    return minOf(a, b)
+}
+
 // https://leetcode.com/problems/count-the-number-of-special-characters-i/
 fun numberOfSpecialChars(s: String) = mutableSetOf<Char>().apply {
     s.forEach { if (it.isLowerCase() && s.contains(it.uppercaseChar())) add(it) }
