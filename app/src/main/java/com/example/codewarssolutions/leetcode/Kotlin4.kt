@@ -502,6 +502,24 @@ fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
     c
 }
 
+// https://leetcode.com/problems/number-of-days-between-two-dates/
+fun daysBetweenDates(d1: String, d2: String): Int {
+    fun Int.isL() = (this % 4 == 0 && this % 100 != 0) || (this % 400 == 0)
+    fun days(y: Int, m: Int): Int {
+        val a = intArrayOf(31, if (y.isL()) 29 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+        return a[m - 1]
+    }
+    fun String.calc(): Int {
+        var c = 0
+        val d = split("-").map { it.toInt() }
+        for (i in 1971 until d.first()) c += if (i.isL()) 366 else 365
+        for (i in 1 until d[1]) c += days(d.first(), i)
+        c += d.last() - 1
+        return c
+    }
+    return abs(d1.calc() - d2.calc())
+}
+
 // https://leetcode.com/problems/odd-string-difference/
 fun oddString(a: Array<String>) = mutableMapOf<List<Int>, MutableList<String>>().apply {
     a.forEach { w ->
