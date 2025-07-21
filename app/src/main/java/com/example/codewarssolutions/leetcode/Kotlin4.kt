@@ -527,6 +527,10 @@ fun oddString(a: Array<String>) = mutableMapOf<List<Int>, MutableList<String>>()
     }
 }.values.first { it.size == 1 }.first()
 
+// https://leetcode.com/problems/number-of-equivalent-domino-pairs/
+fun numEquivDominoPairs(a: Array<IntArray>) =
+    a.groupingBy { (x, y) -> if (x < y) Pair(x, y) else Pair(y, x) }.eachCount().values.sumOf { it * (it - 1) / 2 }
+
 // https://leetcode.com/problems/reverse-string-ii/
 fun reverseStr(s: String, k: Int) = buildString {
     val l = s.chunked(k)
