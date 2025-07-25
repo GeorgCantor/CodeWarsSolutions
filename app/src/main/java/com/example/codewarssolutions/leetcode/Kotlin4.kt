@@ -139,6 +139,14 @@ fun reorderLogFiles(a: Array<String>) = mutableListOf<String>().run {
     (this + d).toTypedArray()
 }
 
+// https://leetcode.com/problems/generate-parentheses/
+fun generateParenthesis(n: Int) = mutableListOf<String>().apply {
+    fun b(cur: String, o: Int, c: Int) {
+        if (cur.length == n * 2) { add(cur); return }
+        if (o < n) b("$cur(", o + 1, c); if (c < o) b("$cur)", o, c + 1)
+    }; b("", 0, 0)
+}
+
 // https://leetcode.com/problems/count-nice-pairs-in-an-array/
 fun countNicePairs(a: IntArray) =
     (a.map { it - (it.toString().reversed().toInt()) }.groupBy { it }.map { it.value.size.toLong() }
