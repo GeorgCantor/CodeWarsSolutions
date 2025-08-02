@@ -147,6 +147,15 @@ fun generateParenthesis(n: Int) = mutableListOf<String>().apply {
     }; b("", 0, 0)
 }
 
+// https://leetcode.com/problems/add-strings/
+fun addStrings(a: String, b: String) = buildString {
+    var i = a.lastIndex; var j = b.lastIndex; var c = 0
+    while (i >= 0 || j >= 0 || c != 0) {
+        val s = (a.getOrNull(i--)?.digitToInt() ?: 0) + (b.getOrNull(j--)?.digitToInt() ?: 0) + c
+        c = s / 10; append(s % 10)
+    }
+}.reversed()
+
 // https://leetcode.com/problems/count-nice-pairs-in-an-array/
 fun countNicePairs(a: IntArray) =
     (a.map { it - (it.toString().reversed().toInt()) }.groupBy { it }.map { it.value.size.toLong() }
