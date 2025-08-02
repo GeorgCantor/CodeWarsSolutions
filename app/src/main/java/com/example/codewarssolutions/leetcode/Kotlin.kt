@@ -1773,49 +1773,9 @@ fun reverse(x: Int): Int = when (x >= 0) {
     }
 }
 
-// https://leetcode.com/problems/keyboard-row/submissions/
-fun findWords(ar: Array<String>): Array<String> {
-    val q = "qwertyuiop"
-    val a = "asdfghjkl"
-    val z = "zxcvbnm"
-    val one = ar.filter {
-        it.all { q.contains(it, true) } &&
-                it.none { a.contains(it, true) } && it.none { z.contains(it, true) }
-    }
-    val two = ar.filter {
-        it.all { a.contains(it, true) } &&
-                it.none { q.contains(it, true) } && it.none { z.contains(it, true) }
-    }
-    val three = ar.filter {
-        it.all { z.contains(it, true) } &&
-                it.none { a.contains(it, true) } && it.none { q.contains(it, true) }
-    }
-
-    return (one + two + three).toTypedArray()
-}
-
-fun findWords2(words: Array<String>): Array<String> {
-    val result = mutableListOf<String>()
-    val q = "qwertyuiop"
-    val a = "asdfghjkl"
-    val z = "zxcvbnm"
-    words.forEach { word ->
-        var qCounter = 0
-        var aCounter = 0
-        var zCounter = 0
-        word.forEach {
-            if (q.contains(it)) qCounter++
-            if (a.contains(it)) aCounter++
-            if (z.contains(it)) zCounter++
-        }
-        when {
-            qCounter > 0 && aCounter == 0 && zCounter == 0 -> result.add(word)
-            qCounter == 0 && aCounter > 0 && zCounter == 0 -> result.add(word)
-            qCounter == 0 && aCounter == 0 && zCounter > 0 -> result.add(word)
-        }
-    }
-
-    return result.toTypedArray()
+// https://leetcode.com/problems/keyboard-row/
+fun findWords(a: Array<String>) = arrayOf("qwertyuiop", "asdfghjkl", "zxcvbnm").run {
+    a.filter { w -> this.count { w.all { c -> it.contains(c, true) } } == 1 }
 }
 
 // https://leetcode.com/problems/first-unique-character-in-a-string/
