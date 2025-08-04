@@ -1378,14 +1378,7 @@ private fun isPalindrome(word: String, start: Int, end: Int): Boolean {
 }
 
 // https://leetcode.com/problems/single-number/
-fun singleNumber(a: IntArray) = mutableMapOf<Int, Int>().run {
-    a.forEach { this[it] = getOrDefault(it, 0) + 1 }
-    toList().find { it.second == 1 }!!.first
-}
-
-fun singleNumber2(a: IntArray) = a.find { n -> a.count { it == n } == 1 }
-
-fun singleNumber3(a: IntArray) = a.minByOrNull { n -> a.count { it == n } }
+fun singleNumber(a: IntArray): Int { var r = 0; a.forEach { r = r xor it }; return r }
 
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 fun lengthOfLongestSubstring2(s: String): Int {
