@@ -1807,17 +1807,8 @@ fun fib(n: Int): Int {
     return one
 }
 
-fun thirdMax(nums: IntArray): Int {
-    val set = nums.toSet()
-    if (set.size == 2) return set.maxOrNull()!!
-    if (set.size == 1) return set.first()
-
-    val list = set.toMutableList()
-    list.removeIf { it == list.maxOrNull() }
-    list.removeIf { it == list.maxOrNull() }
-
-    return list.maxOrNull() ?: nums.first()
-}
+// https://leetcode.com/problems/third-maximum-number/
+fun thirdMax(a: IntArray) = a.toSet().sortedDescending().run { getOrNull(2) ?: first() }
 
 // https://leetcode.com/problems/fizz-buzz/
 fun fizzBuzz(n: Int) = (1..n).map {
