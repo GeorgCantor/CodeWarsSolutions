@@ -435,11 +435,10 @@ fun mergeAlternately2(w1: String, w2: String) = StringBuilder().apply {
 }.toString()
 
 // https://leetcode.com/problems/most-common-word/
-fun mostCommonWord(s: String, ar: Array<String>) = mutableMapOf<String, Int>().apply {
-    s.toLowerCase().replace(Regex("[^a-z ]"), " ").split(" ")
-        .filter { !ar.contains(it) && it.isNotBlank() }
-        .forEach { this[it] = getOrDefault(it, 0) + 1 }
-}.maxByOrNull { it.value }?.key!!
+fun mostCommonWord(w: String, a: Array<String>) = w.lowercase().split(Regex("[^a-z]+")).filter { it.isNotEmpty() }.run {
+    val s = a.map { it.lowercase() }.toSet(); val m = mutableMapOf<String, Int>()
+    forEach { if (it !in s) m[it] = m.getOrDefault(it, 0) + 1 }; m.maxByOrNull { it.value }!!.key
+}
 
 // https://leetcode.com/problems/string-compression/
 fun compress(ar: CharArray): Int {
