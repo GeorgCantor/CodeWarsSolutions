@@ -283,6 +283,12 @@ fun garbageCollection(a: Array<String>, t: IntArray): Int {
     return res
 }
 
+// https://leetcode.com/problems/convert-a-number-to-hexadecimal/
+fun toHex(n: Int) = if (n == 0) "0" else buildString {
+    val h = "0123456789abcdef"; var u = n.toUInt()
+    while (u != 0u) { append(h[(u and 0xfu).toInt()]); u = u shr 4 }
+}.reversed()
+
 // https://leetcode.com/problems/maximum-binary-string-after-change/
 fun maximumBinaryString(s: String) = buildString {
     repeat(s.length) { append("1") }
