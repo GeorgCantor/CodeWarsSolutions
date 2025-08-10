@@ -1021,10 +1021,9 @@ fun canFormArray(a: IntArray, p: Array<IntArray>) =
     p.sortedBy { a.indexOf(it.first()) }.map { it.map { it } }.flatten() == a.toList()
 
 // https://leetcode.com/problems/rank-transform-of-an-array/
-fun arrayRankTransform(a: IntArray) = a.clone().sorted().toIntArray().apply {
-    val map = mutableMapOf<Int, Int>()
-    forEach { map.putIfAbsent(it, map.size + 1) }
-    a.forEachIndexed { i, n -> this[i] = map[n]!! }
+fun arrayRankTransform(a: IntArray) = a.apply {
+    val m = toSortedSet().withIndex().associate { (i, v) -> v to i + 1 }
+    forEachIndexed { i, v -> this[i] = m[v]!! }
 }
 
 // https://leetcode.com/problems/peak-index-in-a-mountain-array/
