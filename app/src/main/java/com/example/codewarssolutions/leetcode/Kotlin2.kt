@@ -827,20 +827,17 @@ fun sortArrayByParityII(ar: IntArray) = IntArray(ar.size).apply {
 }
 
 // https://leetcode.com/problems/unique-email-addresses/
-fun numUniqueEmails(ar: Array<String>) = ar.map {
-    val l = it.split('@')
-    "${l.first().replaceAfter("+", "").replace("+", "").replace(".", "")}@${l.last()}"
-}.distinct().count()
-
-fun numUniqueEmails2(ar: Array<String>) = mutableSetOf<String>().run {
-    ar.forEach {
-        val l = it.split('@')
-        add(
-            "${l.first().replaceAfter("+", "").replace("+", "").replace(".", "")}@${l.last()}"
-        )
+fun numUniqueEmails(a: Array<String>) = mutableSetOf<String>().apply {
+    var at = false; var p = false; val s = StringBuilder()
+    a.forEach {
+        for (i in it.indices) {
+            if (it[i] == '@') { s.append(it[i]); at = true; continue }
+            if (it[i] == '+') { p = true; continue }
+            if (at) s.append(it[i]) else if (p) continue else if (it[i] != '.') s.append(it[i])
+        }
+        add(s.toString()); s.setLength(0); at = false; p = false
     }
-    size
-}
+}.size
 
 // https://leetcode.com/problems/shortest-distance-to-a-character/
 fun shortestToChar(s: String, c: Char): IntArray {
