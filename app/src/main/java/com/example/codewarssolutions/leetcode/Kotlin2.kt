@@ -563,16 +563,10 @@ fun checkString2(s: String): Boolean {
 }
 
 // https://leetcode.com/problems/relative-ranks/
-fun findRelativeRanks(score: IntArray): Array<String> {
-    val ar = score.sortedDescending()
-    return score.map {
-        when (val i = ar.indexOf(it) + 1) {
-            1 -> "Gold Medal"
-            2 -> "Silver Medal"
-            3 -> "Bronze Medal"
-            else -> i.toString()
-        }
-    }.toTypedArray()
+fun findRelativeRanks(a: IntArray) = mutableMapOf<Int, String>().let { m ->
+    a.sortedDescending().forEachIndexed { i, n ->
+        m[n] = when (i) { 0 -> "Gold Medal"; 1 -> "Silver Medal"; 2 -> "Bronze Medal"; else -> "${i + 1}" }
+    }; a.map { m[it]!! }
 }
 
 // https://leetcode.com/problems/design-an-ordered-stream/
