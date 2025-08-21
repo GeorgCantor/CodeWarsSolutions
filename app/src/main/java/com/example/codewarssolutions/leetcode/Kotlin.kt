@@ -1751,26 +1751,8 @@ fun findWords(a: Array<String>) = arrayOf("qwertyuiop", "asdfghjkl", "zxcvbnm").
 }
 
 // https://leetcode.com/problems/first-unique-character-in-a-string/
-fun firstUniqChar(s: String) = s.indexOfFirst { s.indexOf(it) == s.lastIndexOf(it) }
-
-fun firstUniqChar2(s: String): Int {
-    s.forEach {
-        if (s.indexOf(it) == s.lastIndexOf(it)) return s.indexOf(it)
-    }
-    return -1
-}
-
-fun firstUniqChar3(s: String): Int {
-    if (s.length == 1) return 0
-    for (i in s.indices) {
-        for (j in i + 1..s.lastIndex) {
-            if (s[i] == s[j]) break
-            if (j == s.lastIndex && s.count { it == s[i] } == 1) return i
-            if (i == s.lastIndex - 1 && s.count { it == s[j] } == 1) return j
-        }
-    }
-
-    return -1
+fun firstUniqChar(s: String) = IntArray(26).let { a ->
+    s.forEach { a[it - 'a']++ }; s.indexOfFirst { a[it - 'a'] == 1 }
 }
 
 // https://leetcode.com/problems/fibonacci-number/
