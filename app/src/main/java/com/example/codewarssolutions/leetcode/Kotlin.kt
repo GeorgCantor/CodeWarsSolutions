@@ -1388,16 +1388,12 @@ fun lengthOfLongestSubstring2(s: String): Int {
 }
 
 // https://leetcode.com/problems/relative-sort-array/
-fun relativeSortArray(
-    a: IntArray,
-    b: IntArray
-) = (a.filter { b.contains(it) }.sortedBy { b.indexOf(it) } + a.filter { !b.contains(it) }
-    .sorted()).toIntArray()
-
-fun relativeSortArray2(a1: IntArray, a2: IntArray) = mutableListOf<Int>().run {
-    a2.forEach { a1.forEach { n -> if (it == n) add(n) } }
-    this + a1.filter { !contains(it) }.sorted()
-}.toIntArray()
+fun relativeSortArray(a: IntArray, b: IntArray) = buildList {
+    val m = LinkedHashMap<Int, Int>().apply { b.forEach { put(it, 0) } }
+    val l = mutableListOf<Int>()
+    a.forEach { if (it in m) m[it] = m[it]!! + 1 else l += it }
+    m.forEach { (k, v) -> repeat(v) { add(k) } }; addAll(l.sorted())
+}
 
 // https://leetcode.com/problems/min-stack/
 class MinStack() {
