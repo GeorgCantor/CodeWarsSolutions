@@ -1029,7 +1029,9 @@ fun peakIndexInMountainArray2(a: IntArray): Int {
 fun findKthLargest(nums: IntArray, k: Int) = nums.sortedDescending()[k - 1]
 
 // https://leetcode.com/problems/find-lucky-integer-in-an-array/
-fun findLucky(ar: IntArray) = ar.sorted().findLast { n -> n == ar.count { it == n } } ?: -1
+fun findLucky(a: IntArray) = IntArray(501).apply { a.forEach { this[it]++ } }.run {
+    var m = -1; for (i in 1..500) if (this[i] == i && i > m) m = i; m
+}
 
 fun findLucky2(a: IntArray) =
     a.sortedDescending().firstOrNull { n -> n == a.count { it == n } } ?: -1
