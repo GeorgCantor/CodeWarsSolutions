@@ -1584,18 +1584,10 @@ fun nextGreatestLetter(letters: CharArray, target: Char): Char {
     return letters[0]
 }
 
-fun findErrorNums(nums: IntArray): IntArray {
-    val numArray = IntArray(2)
-    val tempArray = IntArray(nums.size + 1)
-    nums.indices.forEach {
-        tempArray[nums[it]] += 1
-    }
-    for (i in 1..nums.size) {
-        if (tempArray[i] == 0) numArray[1] = i
-        if (tempArray[i] > 1) numArray[0] = i
-    }
-
-    return numArray
+// https://leetcode.com/problems/set-mismatch/
+fun findErrorNums(a: IntArray) = BooleanArray(a.size + 1).let { b ->
+    var d = -1; var m = -1; a.forEach { if (b[it]) d = it; b[it] = true }
+    for (i in 1..a.size) if (!b[i]) { m = i; break }; intArrayOf(d, m)
 }
 
 fun intToRoman(num: Int): String {
