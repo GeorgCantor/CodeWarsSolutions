@@ -1658,6 +1658,9 @@ fun moveZeroes(a: IntArray): Unit {
     }
 }
 
+// https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+fun findDisappearedNumbers(a: IntArray) = a.toHashSet().run { (1..a.size).filter { it !in this } }
+
 // https://leetcode.com/problems/remove-trailing-zeros-from-a-string/
 fun removeTrailingZeros(s: String): String {
     var j = s.length
