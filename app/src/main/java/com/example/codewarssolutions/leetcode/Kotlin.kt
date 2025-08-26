@@ -898,11 +898,7 @@ class Codec() {
 }
 
 // https://leetcode.com/problems/unique-number-of-occurrences/
-fun uniqueOccurrences(arr: IntArray): Boolean {
-    val map = arr.associateBy({ it }, { n -> arr.count { it == n } })
-
-    return map.values.size == map.values.distinct().count()
-}
+fun uniqueOccurrences(a: IntArray) = a.toList().groupingBy { it }.eachCount().values.let { it.toSet().size == it.size }
 
 // https://leetcode.com/problems/goal-parser-interpretation/
 fun interpret(command: String): String {
