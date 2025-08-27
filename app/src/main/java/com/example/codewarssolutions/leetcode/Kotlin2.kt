@@ -834,33 +834,15 @@ fun numUniqueEmails(a: Array<String>) = mutableSetOf<String>().apply {
 }.size
 
 // https://leetcode.com/problems/shortest-distance-to-a-character/
-fun shortestToChar(s: String, c: Char): IntArray {
-    val ar = IntArray(s.length)
-    for (i in s.indices) {
-        if (s[i] == c) {
-            ar[i] = 0
-            continue
+fun shortestToChar(s: String, c: Char) = buildList {
+    fun Int.i(): Int {
+        var lC = 0; var rC = 0; var l = this; var r = this
+        while (true) {
+            if (s.getOrNull(l - 1) == c) return ++lC else --l; ++lC
+            if (s.getOrNull(r + 1) == c) return ++rC else ++r; ++rC
         }
-        var l = Int.MAX_VALUE
-        var lc = 0
-        for (j in i until s.length) {
-            if (s[j] == c) {
-                l = lc
-                break
-            } else lc++
-        }
-        var r = Int.MAX_VALUE
-        var rc = 0
-        for (j in i downTo 0) {
-            if (s[j] == c) {
-                r = rc
-                break
-            } else rc++
-        }
-        ar[i] = minOf(l, r)
     }
-
-    return ar
+    for (i in s.indices) add(if (s[i] == c) 0 else i.i())
 }
 
 // https://leetcode.com/problems/sort-integers-by-the-power-value/
