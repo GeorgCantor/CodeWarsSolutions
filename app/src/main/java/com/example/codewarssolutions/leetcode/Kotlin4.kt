@@ -425,6 +425,11 @@ fun validPalindrome(s: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/number-of-lines-to-write-string/
+fun numberOfLines(a: IntArray, s: String) = s.fold(mutableListOf(1, 0)) { r, c ->
+    val w = a[c - 'a']; if (r[1] + w > 100) { r[0]++; r[1] = w } else r[1] += w; r
+}
+
 // https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/
 fun maximumLengthSubstring(s: String) = mutableSetOf<Int>().apply {
     for (i in 0 until s.lastIndex) {
