@@ -426,7 +426,7 @@ fun validPalindrome(s: String): Boolean {
 }
 
 // https://leetcode.com/problems/number-of-lines-to-write-string/
-fun numberOfLines(a: IntArray, s: String) = s.fold(mutableListOf(1, 0)) { r, c ->
+fun numberOfLines(a: IntArray, s: String) = s.fold(intArrayOf(1, 0)) { r, c ->
     val w = a[c - 'a']; if (r[1] + w > 100) { r[0]++; r[1] = w } else r[1] += w; r
 }
 
