@@ -530,6 +530,10 @@ fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
     c
 }
 
+// https://leetcode.com/problems/add-to-array-form-of-integer/
+fun addToArrayForm(a: IntArray, k: Int) =
+    (a.joinToString("").toBigInteger() + k.toBigInteger()).toString().map { it.digitToInt() }
+
 // https://leetcode.com/problems/number-of-days-between-two-dates/
 fun daysBetweenDates(d1: String, d2: String): Int {
     fun Int.isL() = (this % 4 == 0 && this % 100 != 0) || (this % 400 == 0)
