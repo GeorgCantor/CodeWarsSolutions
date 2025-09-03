@@ -530,6 +530,14 @@ fun dayOfYear(s: String) = s.split("-").map { it.toInt() }.let { (y, m, d) ->
     c
 }
 
+// https://leetcode.com/problems/unique-morse-code-words/
+fun uniqueMorseRepresentations(a: Array<String>) = HashSet<String>().apply {
+    val m = arrayOf(".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..")
+    a.forEach {
+        val s = StringBuilder(it.length * 4); it.forEach { s.append(m[it - 'a']) }; add(s.toString())
+    }
+}.size
+
 // https://leetcode.com/problems/add-to-array-form-of-integer/
 fun addToArrayForm(a: IntArray, k: Int) =
     (a.joinToString("").toBigInteger() + k.toBigInteger()).toString().map { it.digitToInt() }
