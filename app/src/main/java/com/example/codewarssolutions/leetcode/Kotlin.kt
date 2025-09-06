@@ -224,8 +224,9 @@ fun finalPrices(p: IntArray): IntArray {
 }
 
 // https://leetcode.com/problems/sorting-the-sentence/
-fun sortSentence(s: String) =
-    s.split(" ").sortedBy { it.last() }.joinToString(" ") { it.dropLast(1) }
+fun sortSentence(s: String, l: List<String> = s.split(" ")) = arrayOfNulls<String>(l.size).apply {
+    l.forEach { this[it.last().digitToInt() - 1] = it.dropLast(1) }
+}.joinToString(" ")
 
 fun sortSentence2(s: String) = s.split(" ")
     .groupBy { it.last() }.entries.sortedBy { it.key }.map { it.value.first() }
