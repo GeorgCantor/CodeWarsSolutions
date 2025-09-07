@@ -379,10 +379,9 @@ fun check(a: IntArray): Boolean {
 
 // https://leetcode.com/problems/monotonic-array/
 fun isMonotonic(a: IntArray): Boolean {
-    if (a.first() > a.last()) {
-        for (i in 1..a.lastIndex) if (a[i - 1] < a[i]) return false
-    } else {
-        for (i in 1..a.lastIndex) if (a[i - 1] > a[i]) return false
+    var inc = true; var dec = true
+    for (i in 1..a.lastIndex) {
+        if (a[i] > a[i - 1]) dec = false; if (a[i] < a[i - 1]) inc = false; if (!inc && !dec) return false
     }
     return true
 }
