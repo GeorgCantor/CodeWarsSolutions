@@ -831,11 +831,10 @@ fun maximumValue(a: Array<String>) =
     a.maxOfOrNull { if (it.all { it.isDigit() }) it.toInt() else it.length }
 
 // https://leetcode.com/problems/decode-the-message/
-fun decodeMessage(key: String, m: String): String {
-    val k = key.toSet().filterNot { it.isWhitespace() }
-    val map = mutableMapOf<Char, Char>()
-    (0..25).forEachIndexed { i, n -> map[k[i]] = (n + 97).toChar() }
-    return m.map { if (it.isWhitespace()) ' ' else map[it] }.joinToString("")
+fun decodeMessage(k: String, m: String) = buildString {
+    val a = IntArray(26) { -1 }; var c = 0
+    k.forEach { if (c < 26 && it != ' ' && a[it - 'a'] == -1) a[it - 'a'] = c++ }
+    m.forEach { append(if (it == ' ') it else 'a' + a[it - 'a']) }
 }
 
 // https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
