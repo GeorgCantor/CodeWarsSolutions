@@ -516,6 +516,9 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/find-the-integer-added-to-array-i/
+fun addedInteger(a: IntArray, b: IntArray) = b.maxOrNull()?.minus(a.maxOrNull()!!)
+
 // https://leetcode.com/problems/base-7/
 fun convertToBase7(num: Int) = buildString {
     if (num == 0) return "0"; val neg = num < 0; var n = abs(num)
