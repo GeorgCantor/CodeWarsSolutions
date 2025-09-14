@@ -516,6 +516,10 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/valid-boomerang/
+fun isBoomerang(a: Array<IntArray>) =
+    a[0][0] * (a[1][1] - a[2][1]) + a[1][0] * (a[2][1] - a[0][1]) + a[2][0] * (a[0][1] - a[1][1]) != 0
+
 // https://leetcode.com/problems/find-the-integer-added-to-array-i/
 fun addedInteger(a: IntArray, b: IntArray) = b.maxOrNull()?.minus(a.maxOrNull()!!)
 
