@@ -362,6 +362,12 @@ fun licenseKeyFormatting(s: String, k: Int) = buildString {
     }
 }
 
+// https://leetcode.com/problems/smallest-missing-integer-greater-than-sequential-prefix-sum/
+fun missingInteger(a: IntArray) = mutableListOf<Int>().run {
+    for (i in a.indices) { add(a[i]); if (i == a.lastIndex || a[i] + 1 != a[i + 1]) break }
+    var r = sum(); val s = a.toSet(); while (r in s) ++r; r
+}
+
 // https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/
 fun removeAnagrams(a: Array<String>): List<String> {
     for (i in 0 until a.lastIndex) {
