@@ -368,6 +368,12 @@ fun missingInteger(a: IntArray) = mutableListOf<Int>().run {
     var r = sum(); val s = a.toSet(); while (r in s) ++r; r
 }
 
+// https://leetcode.com/problems/number-of-valid-words-in-a-sentence/
+fun countValidWords(s: String): Int {
+    val r = Regex("^(?!.*\\d)([a-z]+(-[a-z]+)?[!.,]?|[a-z]*[!.,])$")
+    return s.split("\\s+".toRegex()).count { r.matches(it) }
+}
+
 // https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/
 fun removeAnagrams(a: Array<String>): List<String> {
     for (i in 0 until a.lastIndex) {
