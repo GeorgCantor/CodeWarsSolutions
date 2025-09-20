@@ -374,6 +374,13 @@ fun countValidWords(s: String): Int {
     return s.split("\\s+".toRegex()).count { r.matches(it) }
 }
 
+// https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/
+fun canThreePartsEqualSum(a: IntArray): Boolean {
+    val t = a.sum().also { if (it % 3 != 0) return false } / 3; var c = 0; var p = 0
+    a.forEach { c += it; if (c == t) { if (++p == 3) return true; c = 0 } }
+    return false
+}
+
 // https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/
 fun removeAnagrams(a: Array<String>): List<String> {
     for (i in 0 until a.lastIndex) {
