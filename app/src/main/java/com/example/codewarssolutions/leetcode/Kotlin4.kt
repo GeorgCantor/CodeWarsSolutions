@@ -368,6 +368,11 @@ fun missingInteger(a: IntArray) = mutableListOf<Int>().run {
     var r = sum(); val s = a.toSet(); while (r in s) ++r; r
 }
 
+// https://leetcode.com/problems/maximum-difference-between-increasing-elements/
+fun maximumDifference(a: IntArray) = a.fold(a[0] to -1) { (m, d), n ->
+    minOf(m, n) to if (n > m) maxOf(d, n - m) else d
+}.second
+
 // https://leetcode.com/problems/number-of-valid-words-in-a-sentence/
 fun countValidWords(s: String): Int {
     val r = Regex("^(?!.*\\d)([a-z]+(-[a-z]+)?[!.,]?|[a-z]*[!.,])$")
