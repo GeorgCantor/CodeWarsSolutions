@@ -368,6 +368,9 @@ fun missingInteger(a: IntArray) = mutableListOf<Int>().run {
     var r = sum(); val s = a.toSet(); while (r in s) ++r; r
 }
 
+// https://leetcode.com/problems/determine-if-two-events-have-conflict/
+fun haveConflict(a: Array<String>, b: Array<String>) = a[0] <= b[1] && b[0] <= a[1]
+
 // https://leetcode.com/problems/maximum-difference-between-increasing-elements/
 fun maximumDifference(a: IntArray) = a.fold(a[0] to -1) { (m, d), n ->
     minOf(m, n) to if (n > m) maxOf(d, n - m) else d
