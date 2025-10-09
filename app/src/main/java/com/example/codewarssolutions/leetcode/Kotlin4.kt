@@ -543,6 +543,12 @@ fun rearrangeCharacters(s: String, t: String): Int {
     return res
 }
 
+// https://leetcode.com/problems/range-sum-query-immutable/
+class NumArray(val a: IntArray) {
+    val p = a.runningFold(0, Int::plus)
+    fun sumRange(l: Int, r: Int) = p[r + 1] - p[l]
+}
+
 // https://leetcode.com/problems/valid-boomerang/
 fun isBoomerang(a: Array<IntArray>) =
     a[0][0] * (a[1][1] - a[2][1]) + a[1][0] * (a[2][1] - a[0][1]) + a[2][0] * (a[0][1] - a[1][1]) != 0
