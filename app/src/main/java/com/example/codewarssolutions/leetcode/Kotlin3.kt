@@ -1045,9 +1045,10 @@ fun findEvenNumbers(a: IntArray) = mutableSetOf<Int>().apply {
 }.sorted().toIntArray()
 
 // https://leetcode.com/problems/merge-similar-items/
-fun mergeSimilarItems(a: Array<IntArray>, b: Array<IntArray>) = mutableMapOf<Int, Int>().run {
-    (a + b).forEach { this[it.first()] = getOrDefault(it.first(), 0) + it.last() }
-    entries.map { listOf(it.key, it.value) }.sortedBy { it.first() }
+fun mergeSimilarItems(a: Array<IntArray>, b: Array<IntArray>) = buildList {
+    val m = IntArray(1001)
+    a.forEach { m[it[0]] += it[1] }; b.forEach { m[it[0]] += it[1] }
+    m.indices.forEach { if (m[it] > 0) add(listOf(it, m[it])) }
 }
 
 // https://leetcode.com/problems/percentage-of-letter-in-string/
