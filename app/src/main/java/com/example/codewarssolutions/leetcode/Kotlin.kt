@@ -775,13 +775,8 @@ fun findNumbers(nums: IntArray) = nums.map { it.toString() }.count { it.length %
 
 // https://leetcode.com/problems/remove-palindromic-subsequences/
 fun removePalindromeSub(s: String): Int {
-    if (s.isEmpty()) return 0
-    var start = 0
-    var end = s.lastIndex
-    while (start < end) {
-        if (s[start++] != s[end--]) return 2
-    }
-
+    var i = 0; var j = s.lastIndex
+    while (i < j) if (s[i++] != s[j--]) return 2
     return 1
 }
 
