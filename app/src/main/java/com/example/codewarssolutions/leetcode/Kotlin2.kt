@@ -958,19 +958,10 @@ fun isSumEqual(f: String, s: String, t: String) = run {
 }
 
 // https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
-fun areOccurrencesEqual(s: String) = s.groupingBy { it }.eachCount().values.toSet().size == 1
-
-fun areOccurrencesEqual2(s: String) =
-    s.groupingBy { it }.eachCount().run { values.all { it == values.first() } }
-
-fun areOccurrencesEqual3(s: String) =
-    s.groupBy { c -> s.count { it == c } }.keys.toSet().size == 1
-
-fun areOccurrencesEqual4(s: String) =
-    s.groupBy { c -> s.count { it == c } }.run { keys.all { it == keys.first() } }
-
-fun areOccurrencesEqual5(s: String) =
-    s.all { c -> s.count { c == it } == s.count { s.first() == it } }
+fun areOccurrencesEqual(s: String) = IntArray(26).run {
+    s.forEach { this[it - 'a']++ }; val f = first { it > 0 }
+    all { it == 0 || it == f }
+}
 
 // https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
 fun areAlmostEqual(s1: String, s2: String): Boolean {
