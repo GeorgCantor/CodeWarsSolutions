@@ -206,6 +206,16 @@ class Solution4(val a: IntArray) {
     fun pick(t: Int) = a.withIndex().filter { it.value == t }.random().index
 }
 
+// https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/
+fun containsPattern(a: IntArray, m: Int, k: Int): Boolean {
+    var c = 0
+    for (i in 0..a.lastIndex - m) {
+        c = if (a[i] == a[i + m]) c + 1 else 0
+        if (c == m * (k - 1)) return true
+    }
+    return false
+}
+
 // https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-i/
 fun sumCounts(l: List<Int>) =
     (1..l.size).sumOf { l.windowed(it).sumOf { val s = it.toSet().size; s * s } }
