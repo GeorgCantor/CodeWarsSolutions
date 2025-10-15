@@ -499,6 +499,13 @@ fun reorderSpaces(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/1-bit-and-2-bit-characters/
+fun isOneBitCharacter(a: IntArray): Boolean {
+    var i = 0
+    while (i < a.lastIndex) i += if (a[i] == 1) 2 else 1
+    return i == a.lastIndex
+}
+
 // https://leetcode.com/problems/remove-outermost-parentheses/
 fun removeOuterParentheses(s: String) = buildString {
     var b = 0; s.forEach { if (it == '(') { if (b > 0) append(it); ++b } else { --b; if (b > 0) append(it) } }
