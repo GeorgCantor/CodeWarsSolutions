@@ -506,6 +506,9 @@ fun isOneBitCharacter(a: IntArray): Boolean {
     return i == a.lastIndex
 }
 
+// https://leetcode.com/problems/find-the-distance-value-between-two-arrays/
+fun findTheDistanceValue(a: IntArray, b: IntArray, d: Int) = a.count { n -> b.all { abs(n - it) > d } }
+
 // https://leetcode.com/problems/remove-outermost-parentheses/
 fun removeOuterParentheses(s: String) = buildString {
     var b = 0; s.forEach { if (it == '(') { if (b > 0) append(it); ++b } else { --b; if (b > 0) append(it) } }
