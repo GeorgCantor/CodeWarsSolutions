@@ -514,6 +514,13 @@ fun removeOuterParentheses(s: String) = buildString {
     var b = 0; s.forEach { if (it == '(') { if (b > 0) append(it); ++b } else { --b; if (b > 0) append(it) } }
 }
 
+// https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/
+fun kLengthApart(a: IntArray, k: Int): Boolean {
+    var c = 0; var has = false
+    a.forEach { if (it == 1) { if (has && c < k) return false; c = 0; has = true } else { ++c } }
+    return true
+}
+
 // https://leetcode.com/problems/summary-ranges/
 fun summaryRanges(a: IntArray) = buildList {
     if (a.size == 1) return listOf(a.first().toString()); var l = 0
