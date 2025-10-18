@@ -488,6 +488,11 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/binary-prefix-divisible-by-5/
+fun prefixesDivBy5(a: IntArray) = buildList {
+    var c = 0; a.forEach { c = (c shl 1 or it) % 5; add(c == 0) }
+}
+
 // https://leetcode.com/problems/rearrange-spaces-between-words/
 fun reorderSpaces(s: String) = buildString {
     var n = s.count { !it.isLetter() }; if (n == 0) return s
