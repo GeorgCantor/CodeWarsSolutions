@@ -488,6 +488,20 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/count-good-triplets/
+fun countGoodTriplets(ar: IntArray, a: Int, b: Int, c: Int): Int {
+    var r = 0
+    for (i in ar.indices) {
+        for (j in i + 1..ar.lastIndex) {
+            if (abs(ar[i] - ar[j]) > a) continue
+            for (k in j + 1..ar.lastIndex) {
+                if (abs(ar[j] - ar[k]) <= b && abs(ar[i] - ar[k]) <= c) ++r
+            }
+        }
+    }
+    return r
+}
+
 // https://leetcode.com/problems/binary-prefix-divisible-by-5/
 fun prefixesDivBy5(a: IntArray) = buildList {
     var c = 0; a.forEach { c = (c shl 1 or it) % 5; add(c == 0) }
