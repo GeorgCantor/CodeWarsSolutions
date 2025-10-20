@@ -488,6 +488,11 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/crawler-log-folder/
+fun minOperations(a: Array<String>) = a.fold(0) { d, l ->
+    when (l) { "../" -> max(0, d - 1); "./" -> d; else -> d + 1 }
+}
+
 // https://leetcode.com/problems/count-good-triplets/
 fun countGoodTriplets(ar: IntArray, a: Int, b: Int, c: Int): Int {
     var r = 0
