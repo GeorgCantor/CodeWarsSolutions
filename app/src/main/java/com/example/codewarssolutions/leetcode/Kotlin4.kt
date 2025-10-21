@@ -488,6 +488,13 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/minimum-distance-to-the-target-element/
+fun getMinDistance(a: IntArray, t: Int, s: Int): Int {
+    var i = 0
+    while (i < a.size) { if (t == a.getOrNull(s - i) || t == a.getOrNull(s + i)) return i; ++i }
+    return i
+}
+
 // https://leetcode.com/problems/crawler-log-folder/
 fun minOperations(a: Array<String>) = a.fold(0) { d, l ->
     when (l) { "../" -> max(0, d - 1); "./" -> d; else -> d + 1 }
