@@ -488,6 +488,9 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
+fun minimumDifference(a: IntArray, k: Int) = a.sorted().windowed(k).minOf { it.last() - it.first() }
+
 // https://leetcode.com/problems/minimum-distance-to-the-target-element/
 fun getMinDistance(a: IntArray, t: Int, s: Int): Int {
     var i = 0
