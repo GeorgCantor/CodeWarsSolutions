@@ -488,6 +488,14 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/
+fun countElements(a: IntArray): Int {
+    var min = Int.MAX_VALUE; var max = Int.MIN_VALUE; var c = 0
+    a.forEach { if (it < min) min = it; if (it > max) max = it }
+    a.forEach { if (it > min && it < max) ++c }
+    return c
+}
+
 // https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
 fun minimumDifference(a: IntArray, k: Int) = a.sorted().windowed(k).minOf { it.last() - it.first() }
 
