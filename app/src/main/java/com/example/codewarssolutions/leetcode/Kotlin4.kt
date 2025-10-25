@@ -488,6 +488,21 @@ fun isLongPressedName(name: String, typed: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/apply-operations-to-an-array/
+fun applyOperations(a: IntArray) = IntArray(a.size).apply {
+    var i = 0
+    while (i < a.lastIndex) {
+        val n = a[i]
+        if (n == a[i + 1]) {
+            a[i] = n * 2; a[i + 1] = 0; i += 2
+        } else {
+            ++i
+        }
+    }
+    var j = 0
+    a.forEach { if (it != 0) this[j++] = it }
+}
+
 // https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/
 fun countElements(a: IntArray): Int {
     var min = Int.MAX_VALUE; var max = Int.MIN_VALUE; var c = 0
