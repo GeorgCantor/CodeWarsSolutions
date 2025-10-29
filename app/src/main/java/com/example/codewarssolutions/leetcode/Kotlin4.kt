@@ -526,6 +526,16 @@ fun minOperations(a: Array<String>) = a.fold(0) { d, l ->
     when (l) { "../" -> max(0, d - 1); "./" -> d; else -> d + 1 }
 }
 
+// https://leetcode.com/problems/time-needed-to-buy-tickets/
+fun timeRequiredToBuy(a: IntArray, k: Int): Int {
+    var c = 0; var i = 0
+    while (true) {
+        if (a[i] > 0) {
+            a[i]--; c++; if (i == k && a[i] == 0) return c
+        }; i++; if (i > a.lastIndex) i = 0
+    }
+}
+
 // https://leetcode.com/problems/count-good-triplets/
 fun countGoodTriplets(ar: IntArray, a: Int, b: Int, c: Int): Int {
     var r = 0
