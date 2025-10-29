@@ -536,6 +536,9 @@ fun timeRequiredToBuy(a: IntArray, k: Int): Int {
     }
 }
 
+// https://leetcode.com/problems/separate-the-digits-in-an-array/
+fun separateDigits(a: IntArray) = buildString { a.forEach { append(it) } }.map { it - '0' }
+
 // https://leetcode.com/problems/count-good-triplets/
 fun countGoodTriplets(ar: IntArray, a: Int, b: Int, c: Int): Int {
     var r = 0
