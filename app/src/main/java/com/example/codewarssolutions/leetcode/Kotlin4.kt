@@ -536,6 +536,13 @@ fun timeRequiredToBuy(a: IntArray, k: Int): Int {
     }
 }
 
+// https://leetcode.com/problems/find-closest-number-to-zero/
+fun findClosestNumber(a: IntArray): Int {
+    var c = a.first()
+    a.forEach { if (abs(it) < abs(c) || (abs(it) == abs(c) && it > c)) c = it }
+    return c
+}
+
 // https://leetcode.com/problems/separate-the-digits-in-an-array/
 fun separateDigits(a: IntArray) = buildString { a.forEach { append(it) } }.map { it - '0' }
 
