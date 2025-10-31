@@ -543,6 +543,14 @@ fun findClosestNumber(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/count-hills-and-valleys-in-an-array/
+fun countHillValley(a: IntArray) = mutableListOf<Int>().let { l ->
+    a.forEach { if (l.isEmpty() || it != l.last()) l.add(it) }; var c = 0
+    for (i in 1 until l.lastIndex) {
+        if ((l[i - 1] < l[i] && l[i] > l[i + 1]) || (l[i - 1] > l[i] && l[i] < l[i + 1])) c++
+    }; c
+}
+
 // https://leetcode.com/problems/separate-the-digits-in-an-array/
 fun separateDigits(a: IntArray) = buildString { a.forEach { append(it) } }.map { it - '0' }
 
