@@ -551,6 +551,14 @@ fun countHillValley(a: IntArray) = mutableListOf<Int>().let { l ->
     }; c
 }
 
+// https://leetcode.com/problems/longest-subsequence-with-limited-sum/
+fun answerQueries(a: IntArray, q: IntArray) = a.sorted().let { l ->
+    q.map {
+        var c = 0; var s = 0
+        for (n in l) if (s + n <= it) { s += n; ++c } else break; c
+    }
+}
+
 // https://leetcode.com/problems/separate-the-digits-in-an-array/
 fun separateDigits(a: IntArray) = buildString { a.forEach { append(it) } }.map { it - '0' }
 
