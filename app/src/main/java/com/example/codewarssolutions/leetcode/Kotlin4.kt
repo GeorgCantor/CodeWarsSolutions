@@ -2,6 +2,7 @@ package com.example.codewarssolutions.leetcode
 
 import java.util.Stack
 import java.util.TreeMap
+import kotlin.collections.EmptyMap.entries
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -590,6 +591,18 @@ fun reorderSpaces(s: String) = buildString {
         append(w)
         if (i == l.lastIndex) append(" ".repeat(n)) else repeat(c) { append(" "); --n }
     }
+}
+
+// https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/
+fun hardestWorker(n: Int, a: Array<IntArray>) = mutableMapOf<Int, Int>().let { m ->
+    m[a.first().first()] = a.first().last()
+    for (i in 1..a.lastIndex) {
+        val c = a[i]
+        val s = m[c.first()] ?: 0
+        val d = c.last() - a[i - 1].last()
+        if (d > s) m[c.first()] = d
+    }
+    m.entries.sortedWith(compareByDescending<Map.Entry<Int, Int>> { it.value }.thenBy { it.key }).first().key
 }
 
 // https://leetcode.com/problems/1-bit-and-2-bit-characters/
