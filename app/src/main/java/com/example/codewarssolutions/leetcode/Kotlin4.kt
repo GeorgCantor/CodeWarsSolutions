@@ -593,6 +593,12 @@ fun reorderSpaces(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/convert-1d-array-into-2d-array/
+fun construct2DArray(a: IntArray, m: Int, n: Int) = Array(m) { IntArray(n) }.apply {
+    if (a.size != m * n) return emptyArray<IntArray>()
+    var i = 0; forEach { for (j in it.indices) { it[j] = a[i++] } }
+}
+
 // https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/
 fun hardestWorker(n: Int, a: Array<IntArray>) = mutableMapOf<Int, Int>().let { m ->
     m[a.first().first()] = a.first().last()
