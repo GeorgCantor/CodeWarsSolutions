@@ -599,6 +599,24 @@ fun construct2DArray(a: IntArray, m: Int, n: Int) = Array(m) { IntArray(n) }.app
     var i = 0; forEach { for (j in it.indices) { it[j] = a[i++] } }
 }
 
+// https://leetcode.com/problems/shortest-distance-to-target-string-in-a-circular-array/
+fun closestTarget(a: Array<String>, t: String, s: Int): Int {
+    if (a[s] == t) return 0
+    var f = false; var r = 0; var i = s
+    do {
+        r++; i++
+        if (i > a.lastIndex) i = 0
+        if (a[i] == t) { f = true; break }
+    } while (i != s)
+    var l = 0; var j = s
+    do {
+        l++; j--
+        if (j < 0) j = a.lastIndex
+        if (a[j] == t) { f = true; break }
+    } while (j != s)
+    return if (f) min(r, l) else -1
+}
+
 // https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/
 fun hardestWorker(n: Int, a: Array<IntArray>) = mutableMapOf<Int, Int>().let { m ->
     m[a.first().first()] = a.first().last()
