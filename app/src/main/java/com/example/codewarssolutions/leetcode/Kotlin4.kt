@@ -504,6 +504,13 @@ fun applyOperations(a: IntArray) = IntArray(a.size).apply {
     a.forEach { if (it != 0) this[j++] = it }
 }
 
+// https://leetcode.com/problems/furthest-point-from-origin/
+fun furthestDistanceFromOrigin(m: String): Int {
+    var c = 0; var s = 0
+    m.forEach { when (it) { 'L' -> s--; 'R' -> s++; else -> ++c } }
+    return abs(s) + c
+}
+
 // https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/
 fun countElements(a: IntArray): Int {
     var min = Int.MAX_VALUE; var max = Int.MIN_VALUE; var c = 0
