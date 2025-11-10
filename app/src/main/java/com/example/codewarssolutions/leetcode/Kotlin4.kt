@@ -519,6 +519,16 @@ fun countElements(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/make-three-strings-equal/
+fun findMinimumOperations(a: String, b: String, c: String): Int {
+    var j = 0
+    for (i in a.indices) {
+        if (a[i] != b.getOrNull(i) || a[i] != c.getOrNull(i)) break else ++j
+    }
+    if (j == 0) return -1
+    return a.drop(j).length + b.drop(j).length + c.drop(j).length
+}
+
 // https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
 fun minimumDifference(a: IntArray, k: Int) = a.sorted().windowed(k).minOf { it.last() - it.first() }
 
