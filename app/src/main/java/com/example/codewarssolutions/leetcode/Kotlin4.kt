@@ -519,6 +519,17 @@ fun countElements(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/valid-word/
+fun isValid(s: String): Boolean {
+    if (s.length < 3) return false
+    val v = "aeiou"
+    val c = "bcdfghjklmnpqrstvwxyz"
+    if (s.any { !it.isDigit() && !it.isLetter() }) return false
+    if (s.all { !v.contains(it, true) }) return false
+    if (s.all { !c.contains(it, true)  }) return false
+    return true
+}
+
 // https://leetcode.com/problems/make-three-strings-equal/
 fun findMinimumOperations(a: String, b: String, c: String): Int {
     var j = 0
