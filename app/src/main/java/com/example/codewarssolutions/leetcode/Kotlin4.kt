@@ -530,6 +530,21 @@ fun isValid(s: String): Boolean {
     return true
 }
 
+// https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
+fun captureForts(a: IntArray): Int {
+    var s = false; var c = 0; var m = 0
+    fun IntArray.c() {
+        forEach {
+            when (it) {
+                1 -> { s = true; c = 0 }
+                0 -> if (s) c++
+                -1 -> { if (s) m = max(m, c); s = false; c = 0 }
+            }
+        }; c = 0; s = false
+    }; a.c(); a.reversed().toIntArray().c()
+    return m
+}
+
 // https://leetcode.com/problems/make-three-strings-equal/
 fun findMinimumOperations(a: String, b: String, c: String): Int {
     var j = 0
