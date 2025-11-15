@@ -545,6 +545,9 @@ fun captureForts(a: IntArray): Int {
     return m
 }
 
+// https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
+fun averageValue(a: IntArray) = a.filter { it % 2 == 0 && it % 3 == 0 }.takeIf { it.isNotEmpty() }?.run { sum() / size } ?: 0
+
 // https://leetcode.com/problems/make-three-strings-equal/
 fun findMinimumOperations(a: String, b: String, c: String): Int {
     var j = 0
