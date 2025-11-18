@@ -545,6 +545,14 @@ fun captureForts(a: IntArray): Int {
     return m
 }
 
+// https://leetcode.com/problems/find-the-array-concatenation-value/
+fun findTheArrayConcVal(a: IntArray): Long {
+    var l = 0; var r = a.lastIndex; var c = 0L
+    while (l < r) c += "${a[l++]}${a[r--]}".toLong()
+    if (a.size % 2 != 0) c += a[l]
+    return c
+}
+
 // https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
 fun averageValue(a: IntArray) = a.filter { it % 2 == 0 && it % 3 == 0 }.takeIf { it.isNotEmpty() }?.run { sum() / size } ?: 0
 
