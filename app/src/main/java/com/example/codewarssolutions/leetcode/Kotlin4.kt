@@ -553,6 +553,15 @@ fun findTheArrayConcVal(a: IntArray): Long {
     return c
 }
 
+// https://leetcode.com/problems/determine-the-winner-of-a-bowling-game/
+fun isWinner(p1: IntArray, p2: IntArray) = mutableListOf<Int>().run {
+    var a = 0; var b = 0
+    p1.forEach { a += if (10 in takeLast(2)) it * 2 else it; add(it) }
+    clear()
+    p2.forEach { b += if (10 in takeLast(2)) it * 2 else it; add(it) }
+    when { a > b -> 1; b > a -> 2; else -> 0 }
+}
+
 // https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
 fun averageValue(a: IntArray) = a.filter { it % 2 == 0 && it % 3 == 0 }.takeIf { it.isNotEmpty() }?.run { sum() / size } ?: 0
 
