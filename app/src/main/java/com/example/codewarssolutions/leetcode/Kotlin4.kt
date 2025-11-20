@@ -562,6 +562,13 @@ fun isWinner(p1: IntArray, p2: IntArray) = mutableListOf<Int>().run {
     when { a > b -> 1; b > a -> 2; else -> 0 }
 }
 
+// https://leetcode.com/problems/row-with-maximum-ones/
+fun rowAndMaximumOnes(ar: Array<IntArray>): IntArray {
+    val (i, c) = ar.mapIndexed { j, a -> j to a.sum() }
+        .maxWithOrNull(compareBy({ it.second }, { -it.first }))!!
+    return intArrayOf(i, c)
+}
+
 // https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
 fun averageValue(a: IntArray) = a.filter { it % 2 == 0 && it % 3 == 0 }.takeIf { it.isNotEmpty() }?.run { sum() / size } ?: 0
 
