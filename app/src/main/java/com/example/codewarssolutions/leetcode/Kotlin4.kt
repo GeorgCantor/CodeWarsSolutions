@@ -569,6 +569,9 @@ fun rowAndMaximumOnes(ar: Array<IntArray>): IntArray {
     return intArrayOf(i, c)
 }
 
+// https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/
+fun findColumnWidth(a: Array<IntArray>) = (0..a[0].lastIndex).map { a.maxOf { r -> r[it].toString().length } }
+
 // https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
 fun averageValue(a: IntArray) = a.filter { it % 2 == 0 && it % 3 == 0 }.takeIf { it.isNotEmpty() }?.run { sum() / size } ?: 0
 
