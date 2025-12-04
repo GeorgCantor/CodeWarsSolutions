@@ -569,6 +569,10 @@ fun rowAndMaximumOnes(ar: Array<IntArray>): IntArray {
     return intArrayOf(i, c)
 }
 
+// https://leetcode.com/problems/find-the-maximum-divisibility-score/
+fun maxDivScore(a: IntArray, d: IntArray) = d.map { n -> n to a.count { it % n == 0 } }
+    .sortedWith(compareByDescending<Pair<Int, Int>> { it.second }.thenBy { it.first }).first().first
+
 // https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/
 fun findColumnWidth(a: Array<IntArray>) = (0..a[0].lastIndex).map { a.maxOf { r -> r[it].toString().length } }
 
