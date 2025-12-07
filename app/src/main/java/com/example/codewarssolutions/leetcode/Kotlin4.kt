@@ -569,6 +569,11 @@ fun rowAndMaximumOnes(ar: Array<IntArray>): IntArray {
     return intArrayOf(i, c)
 }
 
+// https://leetcode.com/problems/max-pair-sum-in-an-array/
+fun maxSum(a: IntArray) = a.groupBy { it.toString().maxOrNull() }.values.maxOfOrNull {
+    if (it.size > 1) it.sortedDescending().let { l -> l[0] + l[1] } else -1
+} ?: -1
+
 // https://leetcode.com/problems/find-the-maximum-divisibility-score/
 fun maxDivScore(a: IntArray, d: IntArray) = d.map { n -> n to a.count { it % n == 0 } }
     .sortedWith(compareByDescending<Pair<Int, Int>> { it.second }.thenBy { it.first }).first().first
