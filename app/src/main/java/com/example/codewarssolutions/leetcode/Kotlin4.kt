@@ -569,6 +569,18 @@ fun rowAndMaximumOnes(ar: Array<IntArray>): IntArray {
     return intArrayOf(i, c)
 }
 
+// https://leetcode.com/problems/last-visited-integers/
+fun lastVisitedIntegers(a: IntArray) = buildList {
+    val r = mutableListOf<Int>(); var c = 0
+    a.forEach {
+        if (it == -1) {
+            c++; add(r.getOrNull(c - 1) ?: -1)
+        } else {
+            c = 0; r.add(0, it)
+        }
+    }
+}
+
 // https://leetcode.com/problems/max-pair-sum-in-an-array/
 fun maxSum(a: IntArray) = a.groupBy { it.toString().maxOrNull() }.values.maxOfOrNull {
     if (it.size > 1) it.sortedDescending().let { l -> l[0] + l[1] } else -1
