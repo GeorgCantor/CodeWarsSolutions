@@ -581,6 +581,11 @@ fun lastVisitedIntegers(a: IntArray) = buildList {
     }
 }
 
+// https://leetcode.com/problems/find-the-peaks/
+fun findPeaks(a: IntArray) = (1 until a.lastIndex).filter {
+    a[it - 1] < a[it] && a[it + 1] < a[it]
+}
+
 // https://leetcode.com/problems/max-pair-sum-in-an-array/
 fun maxSum(a: IntArray) = a.groupBy { it.toString().maxOrNull() }.values.maxOfOrNull {
     if (it.size > 1) it.sortedDescending().let { l -> l[0] + l[1] } else -1
