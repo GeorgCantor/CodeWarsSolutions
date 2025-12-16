@@ -582,7 +582,7 @@ fun lastVisitedIntegers(a: IntArray) = buildList {
 }
 
 // https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
-fun incremovableSubarrayCount(a: IntArray) = a.toList().run {
+fun incremovableSubarrayCount(a: IntArray): Int {
     fun IntArray.check(l: List<Int>): Boolean {
         val ar = copyOf()
         l.forEach { ar[it] = -1 }
@@ -593,8 +593,8 @@ fun incremovableSubarrayCount(a: IntArray) = a.toList().run {
         return true
     }
     var c = 0
-    (1..a.size).forEach { indices.windowed(it).forEach { if (a.check(it)) c++ } }
-    c
+    (1..a.size).forEach { a.indices.windowed(it).forEach { if (a.check(it)) c++ } }
+    return c
 }
 
 // https://leetcode.com/problems/find-the-peaks/
