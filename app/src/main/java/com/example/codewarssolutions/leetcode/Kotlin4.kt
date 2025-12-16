@@ -581,6 +581,22 @@ fun lastVisitedIntegers(a: IntArray) = buildList {
     }
 }
 
+// https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
+fun incremovableSubarrayCount(a: IntArray) = a.toList().run {
+    fun IntArray.check(l: List<Int>): Boolean {
+        val ar = copyOf()
+        l.forEach { ar[it] = -1 }
+        val r = ar.filter { it != -1 }
+        for (i in r.indices) {
+            if ((r.getOrNull(i - 1) ?: Int.MIN_VALUE) >= r[i]) return false
+        }
+        return true
+    }
+    var c = 0
+    (1..a.size).forEach { indices.windowed(it).forEach { if (a.check(it)) c++ } }
+    c
+}
+
 // https://leetcode.com/problems/find-the-peaks/
 fun findPeaks(a: IntArray) = (1 until a.lastIndex).filter {
     a[it - 1] < a[it] && a[it + 1] < a[it]
