@@ -581,6 +581,21 @@ fun lastVisitedIntegers(a: IntArray) = buildList {
     }
 }
 
+// https://leetcode.com/problems/count-and-say/
+fun countAndSay(n: Int) = StringBuilder("1").apply {
+    var i = 1
+    while (i < n) {
+        val s = toString(); clear(); var c = 0
+        for (j in s.indices) {
+            ++c
+            if (j == s.lastIndex || s[j] != s[j + 1]) {
+                append("${c}${s[j]}"); c = 0
+            }
+        }
+        ++i
+    }
+}.toString()
+
 // https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
 fun incremovableSubarrayCount(a: IntArray): Int {
     fun IntArray.check(l: List<Int>): Boolean {
