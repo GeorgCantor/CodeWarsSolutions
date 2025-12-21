@@ -596,6 +596,14 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
+fun countPrefixSuffixPairs(a: Array<String>): Int {
+    fun String.p(s: String) = s.startsWith(this) && s.endsWith(this)
+    var c = 0
+    for (i in a.indices) for (j in i + 1..a.lastIndex) if (a[i].p(a[j])) ++c
+    return c
+}
+
 // https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
 fun incremovableSubarrayCount(a: IntArray): Int {
     fun IntArray.check(l: List<Int>): Boolean {
