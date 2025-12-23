@@ -596,6 +596,15 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/
+fun maxOperations(a: IntArray): Int {
+    val sum = a[0] + a[1]; var c = 1
+    for (i in 2..a.lastIndex step 2) {
+        if ((a.getOrNull(i) ?: Int.MAX_VALUE) + (a.getOrNull(i + 1) ?: Int.MAX_VALUE) == sum) ++c else break
+    }
+    return c
+}
+
 // https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
 fun countPrefixSuffixPairs(a: Array<String>): Int {
     fun String.p(s: String) = s.startsWith(this) && s.endsWith(this)
