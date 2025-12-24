@@ -596,6 +596,19 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/
+fun maximumTripletValue(a: IntArray): Long {
+    var m = 0L
+    for (i in a.indices) {
+        for (j in i + 1 until a.lastIndex) {
+            for (k in j + 1..a.lastIndex) {
+                m = maxOf(m, (a[i] - a[j]).toLong() * a[k])
+            }
+        }
+    }
+    return m
+}
+
 // https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/
 fun maxOperations(a: IntArray): Int {
     val sum = a[0] + a[1]; var c = 1
