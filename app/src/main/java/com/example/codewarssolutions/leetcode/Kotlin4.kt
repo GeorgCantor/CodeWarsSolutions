@@ -609,6 +609,16 @@ fun maximumTripletValue(a: IntArray): Long {
     return m
 }
 
+// https://leetcode.com/problems/coupon-code-validator/
+fun validateCoupons(a: Array<String>, b: Array<String>, c: BooleanArray) = mutableListOf<Pair<String, Int>>().run {
+    val w = arrayOf("electronics", "grocery", "pharmacy", "restaurant")
+    for (i in a.indices) {
+        if (a[i].isEmpty() || a[i].any { !it.isLetterOrDigit() && it != '_' } || !c[i] || b[i] !in w) continue
+        add(a[i] to i)
+    }
+    sortedWith(compareBy<Pair<String, Int>> { w.indexOf(b[it.second]) }.thenBy { it.first }).map { it.first }
+}
+
 // https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/
 fun maxOperations(a: IntArray): Int {
     val sum = a[0] + a[1]; var c = 1
