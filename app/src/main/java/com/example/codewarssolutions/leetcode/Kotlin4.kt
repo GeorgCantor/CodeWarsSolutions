@@ -609,6 +609,16 @@ fun maximumTripletValue(a: IntArray): Long {
     return m
 }
 
+// https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/
+fun findXSum(a: IntArray, k: Int, x: Int) = buildList {
+    a.toList().windowed(k).forEach {
+        val sum = it.groupingBy { it }.eachCount().entries.sortedWith(
+            compareByDescending<Map.Entry<Int, Int>> { it.value }.thenByDescending { it.key }
+        ).take(x).sumOf { it.key * it.value }
+        add(sum)
+    }
+}
+
 // https://leetcode.com/problems/permutations/
 fun permute(a: IntArray): List<List<Int>> {
     if (a.isEmpty()) return listOf(emptyList())
