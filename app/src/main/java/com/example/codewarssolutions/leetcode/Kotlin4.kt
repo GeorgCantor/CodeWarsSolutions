@@ -609,6 +609,19 @@ fun maximumTripletValue(a: IntArray): Long {
     return m
 }
 
+// https://leetcode.com/problems/permutations/
+fun permute(a: IntArray): List<List<Int>> {
+    if (a.isEmpty()) return listOf(emptyList())
+    val res = mutableListOf<List<Int>>()
+    a.forEach { n ->
+        val p = permute(a.filter { it != n }.toIntArray())
+        p.forEach {
+            res.add(listOf(n) + it)
+        }
+    }
+    return res
+}
+
 // https://leetcode.com/problems/coupon-code-validator/
 fun validateCoupons(a: Array<String>, b: Array<String>, c: BooleanArray) = mutableListOf<Pair<String, Int>>().run {
     val w = arrayOf("electronics", "grocery", "pharmacy", "restaurant")
