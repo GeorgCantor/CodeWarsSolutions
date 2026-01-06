@@ -609,6 +609,20 @@ fun maximumTripletValue(a: IntArray): Long {
     return m
 }
 
+// https://leetcode.com/problems/snake-in-matrix/
+fun finalPositionOfSnake(n: Int, l: List<String>): Int {
+    var c = 0
+    l.forEach {
+        when (it) {
+            "UP" -> c -= n
+            "RIGHT" -> c += 1
+            "DOWN" -> c += n
+            "LEFT" -> c -= 1
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/
 fun findXSum(a: IntArray, k: Int, x: Int) = buildList {
     a.toList().windowed(k).forEach {
