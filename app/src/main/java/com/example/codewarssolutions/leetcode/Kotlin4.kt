@@ -596,6 +596,13 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/matrix-diagonal-sum/
+fun diagonalSum(a: Array<IntArray>): Int {
+    var c = 0; var f = 0; var l = a.first().lastIndex; var i = 0
+    while (l >= 0) { c += a[i][f]; if (f != l) c += a[i][l]; ++f; --l; ++i }
+    return c
+}
+
 // https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/
 fun maximumTripletValue(a: IntArray): Long {
     var m = 0L
