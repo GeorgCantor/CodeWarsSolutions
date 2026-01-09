@@ -596,6 +596,20 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/arithmetic-subarrays/
+fun checkArithmeticSubarrays(a: IntArray, l: IntArray, r: IntArray) = buildList {
+    out@ for (i in l.indices) {
+        val s = a.slice(l[i]..r[i]).sorted()
+        val d = s[0] - s[1]
+        for (j in 0 until s.lastIndex) {
+            if (s[j] - s[j + 1] != d) {
+                add(false); continue@out
+            }
+        }
+        add(true)
+    }
+}
+
 // https://leetcode.com/problems/matrix-diagonal-sum/
 fun diagonalSum(a: Array<IntArray>): Int {
     var c = 0; var f = 0; var l = a.first().lastIndex; var i = 0
