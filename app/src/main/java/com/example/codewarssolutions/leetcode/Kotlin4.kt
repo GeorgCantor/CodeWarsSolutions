@@ -596,6 +596,9 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/transformed-array/
+fun constructTransformedArray(a: IntArray) = a.mapIndexed { i, n -> a[(i + n).mod(a.size)] }
+
 // https://leetcode.com/problems/arithmetic-subarrays/
 fun checkArithmeticSubarrays(a: IntArray, l: IntArray, r: IntArray) = buildList {
     out@ for (i in l.indices) {
