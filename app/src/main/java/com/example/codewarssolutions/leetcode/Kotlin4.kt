@@ -596,6 +596,11 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/number-complement/
+fun findComplement(n: Int) = buildString {
+    n.toString(2).forEach { append(if (it == '0') '1' else '0') }
+}.toInt(2)
+
 // https://leetcode.com/problems/maximum-difference-between-adjacent-elements-in-a-circular-array/
 fun maxAdjacentDistance(a: IntArray) = a.mapIndexed { i, n ->
     max(abs((a.getOrNull(i - 1) ?: a.last()) - n), abs(n - (a.getOrNull(i + 1) ?: a.first())))
