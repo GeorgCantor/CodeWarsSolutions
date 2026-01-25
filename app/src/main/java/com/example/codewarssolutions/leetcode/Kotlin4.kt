@@ -596,6 +596,11 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/self-dividing-numbers/
+fun selfDividingNumbers(l: Int, r: Int) = (l..r).filter {
+    it.toString().all { c -> c != '0' && it % c.digitToInt() == 0 }
+}
+
 // https://leetcode.com/problems/number-complement/
 fun findComplement(n: Int) = buildString {
     n.toString(2).forEach { append(if (it == '0') '1' else '0') }
