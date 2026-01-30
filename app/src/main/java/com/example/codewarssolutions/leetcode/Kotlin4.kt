@@ -601,6 +601,34 @@ fun selfDividingNumbers(l: Int, r: Int) = (l..r).filter {
     it.toString().all { c -> c != '0' && it % c.digitToInt() == 0 }
 }
 
+// https://leetcode.com/problems/make-array-elements-equal-to-zero/
+fun countValidSelections(a: IntArray): Int {
+    fun IntArray.check(index: Int, isLeft: Boolean): Boolean {
+        var i = index; var isL = isLeft
+        while (i in a.indices) {
+            if (isL) {
+                if (i == 0) return this.all { it == 0 }
+                if (this[i - 1] == 0) {
+                    i--
+                } else {
+                    this[i - 1]--; isL = !isL
+                }
+            } else {
+                if (i == this.lastIndex) return this.all { it == 0 }
+                if (this[i + 1] == 0) {
+                    i++
+                } else {
+                    this[i + 1]--; isL = !isL
+                }
+            }
+        }
+        return this.all { it == 0 }
+    }
+    return a.mapIndexed { i, n ->
+        if (n == 0) listOf(a.copyOf().check(i, true), a.copyOf().check(i, false)) else listOf()
+    }.flatten().count { it }
+}
+
 // https://leetcode.com/problems/number-complement/
 fun findComplement(n: Int) = buildString {
     n.toString(2).forEach { append(if (it == '0') '1' else '0') }
