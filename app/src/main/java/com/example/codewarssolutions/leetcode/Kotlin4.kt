@@ -601,6 +601,9 @@ fun selfDividingNumbers(l: Int, r: Int) = (l..r).filter {
     it.toString().all { c -> c != '0' && it % c.digitToInt() == 0 }
 }
 
+// https://leetcode.com/problems/convert-date-to-binary/
+fun convertDateToBinary(s: String) = s.split("-").joinToString("-") { it.toInt().toString(2) }
+
 // https://leetcode.com/problems/make-array-elements-equal-to-zero/
 fun countValidSelections(a: IntArray): Int {
     fun IntArray.check(index: Int, isLeft: Boolean): Boolean {
