@@ -596,6 +596,19 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
+fun countKConstraintSubstrings(s: String, k: Int): Int {
+    var c = 0
+    for (i in s.indices) {
+        var z = 0; var o = 0
+        for (j in i..s.lastIndex) {
+            if (s[j] == '0') ++z else ++o
+            if (z <= k || o <= k) ++c
+        }
+    }
+    return c
+}
+
 // https://leetcode.com/problems/self-dividing-numbers/
 fun selfDividingNumbers(l: Int, r: Int) = (l..r).filter {
     it.toString().all { c -> c != '0' && it % c.digitToInt() == 0 }
