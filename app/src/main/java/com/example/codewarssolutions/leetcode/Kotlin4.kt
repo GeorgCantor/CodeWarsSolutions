@@ -596,6 +596,16 @@ fun countAndSay(n: Int) = StringBuilder("1").apply {
     }
 }.toString()
 
+// https://leetcode.com/problems/find-special-substring-of-length-k/
+fun hasSpecialSubstring(s: String, k: Int): Boolean {
+    for (i in 0..s.length - k) {
+        val sub = s.substring(i until i + k)
+        val good = (i == 0 || s[i] != s[i - 1]) && (i + k == s.length || s[i] != s[i + k])
+        if (good && sub.toSet().size == 1) return true
+    }
+    return false
+}
+
 // https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
 fun countKConstraintSubstrings(s: String, k: Int): Int {
     var c = 0
