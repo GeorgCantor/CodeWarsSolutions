@@ -606,6 +606,21 @@ fun hasSpecialSubstring(s: String, k: Int): Boolean {
     return false
 }
 
+// https://leetcode.com/problems/equal-score-substrings/
+fun scoreBalance(s: String): Boolean {
+    for (i in 1..s.lastIndex) {
+        var l = 0; var r = 0
+        for (j in 0 until i) {
+            l += (s[j] - 'a') + 1
+        }
+        for (k in s.lastIndex downTo i) {
+            r += (s[k] - 'a') + 1
+        }
+        if (l == r) return true
+    }
+    return false
+}
+
 // https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
 fun countKConstraintSubstrings(s: String, k: Int): Int {
     var c = 0
