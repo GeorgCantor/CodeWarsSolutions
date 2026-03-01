@@ -36,3 +36,37 @@ fun generateTag(s: String) = buildString {
         }
     }
 }
+
+// https://leetcode.com/problems/majority-frequency-characters/
+fun majorityFrequencyGroup(s: String) = buildString {
+    s.groupingBy { it }
+        .eachCount().entries
+        .groupBy { it.value }.entries
+        .sortedWith(compareByDescending<Map.Entry<Int, List<Map.Entry<Char, Int>>>> { it.value.size }
+            .thenByDescending { it.key }).first().value.forEach { append(it.key) }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
