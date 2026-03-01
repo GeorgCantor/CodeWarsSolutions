@@ -24,3 +24,15 @@ fun maxDifference(s: String): Int {
     }
     return maxO - minE
 }
+
+// https://leetcode.com/problems/generate-tag-for-video-caption/
+fun generateTag(s: String) = buildString {
+    append('#')
+    s.trim().split(" ").forEachIndexed { j, w ->
+        for (i in w.indices) {
+            if (!w[i].isLetter()) continue
+            append(if (i == 0 && j > 0) w[i].uppercase() else w[i].lowercase())
+            if (length == 100) return@buildString
+        }
+    }
+}
