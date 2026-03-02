@@ -46,7 +46,14 @@ fun majorityFrequencyGroup(s: String) = buildString {
             .thenByDescending { it.key }).first().value.forEach { append(it.key) }
 }
 
-
+// https://leetcode.com/problems/reverse-letters-then-special-characters-in-a-string/
+fun reverseByType(s: String) = buildString {
+    val let = mutableListOf<Char>()
+    val sym = mutableListOf<Char>()
+    for (i in s.lastIndex downTo 0) if (s[i].isLetter()) let.add(s[i]) else sym.add(s[i])
+    var iL = 0; var iS = 0
+    s.forEach { append(if (it.isLetter()) let[iL++] else sym[iS++]) }
+}
 
 
 
