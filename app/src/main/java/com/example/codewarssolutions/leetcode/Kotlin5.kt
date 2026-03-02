@@ -55,6 +55,15 @@ fun reverseByType(s: String) = buildString {
     s.forEach { append(if (it.isLetter()) let[iL++] else sym[iS++]) }
 }
 
+// https://leetcode.com/problems/find-the-largest-almost-missing-integer/
+fun largestInteger(a: IntArray, k: Int): Int {
+    val l = a.toList().windowed(k)
+    val e = a.associateWith { n -> l.count { n in it } }.entries.sortedWith(
+        compareBy<Map.Entry<Int, Int>> { it.value }.thenByDescending { it.key }
+    ).first()
+    return if (e.value == 1) e.key else -1
+}
+
 
 
 
