@@ -64,6 +64,19 @@ fun largestInteger(a: IntArray, k: Int): Int {
     return if (e.value == 1) e.key else -1
 }
 
+// https://leetcode.com/problems/find-valid-pair-of-adjacent-digits-in-string/
+fun findValidPair(s: String) = buildString {
+    val m = s.groupingBy { it }.eachCount()
+    for (i in 1..s.lastIndex) {
+        val l = s[i - 1]; val r = s[i]
+        if (l == r) continue
+        if (m[l] == l.digitToInt() && m[r] == r.digitToInt()) {
+            append("$l$r")
+            return@buildString
+        }
+    }
+}
+
 
 
 
