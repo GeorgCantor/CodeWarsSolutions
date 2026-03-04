@@ -77,6 +77,18 @@ fun findValidPair(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/count-residue-prefixes/
+fun residuePrefixes(s: String): Int {
+    var c = 0; var d = 0
+    val a = BooleanArray(26)
+    s.forEachIndexed { i, ch ->
+        val j = ch - 'a'
+        if (!a[j]) { a[j] = true; ++d }
+        if (d == (i + 1) % 3) ++c
+    }
+    return c
+}
+
 
 
 
