@@ -89,6 +89,23 @@ fun residuePrefixes(s: String): Int {
     return c
 }
 
+// https://leetcode.com/problems/minimum-number-of-operations-to-convert-time/
+fun convertTime(a: String, b: String): Int {
+    var d = (b.substring(0, 2).toInt() * 60 + b.substring(3, 5).toInt()) -
+            (a.substring(0, 2).toInt() * 60 + a.substring(3, 5).toInt())
+    var c = 0
+    while (d > 0) {
+        d -= when {
+            d >= 60 -> 60
+            d >= 15 -> 15
+            d >= 5 -> 5
+            else -> 1
+        }
+        ++c
+    }
+    return c
+}
+
 
 
 
