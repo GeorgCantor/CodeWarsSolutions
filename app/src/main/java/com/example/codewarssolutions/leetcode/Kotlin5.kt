@@ -106,6 +106,14 @@ fun convertTime(a: String, b: String): Int {
     return c
 }
 
+// https://leetcode.com/problems/semi-ordered-permutation/
+fun semiOrderedPermutation(a: IntArray): Int {
+    val posOne = a.indexOf(1)
+    val posN = a.indexOf(a.size)
+    val sN = a.lastIndex - posN
+    return if (posOne < posN) posOne + sN else (posOne + sN) - 1
+}
+
 
 
 
