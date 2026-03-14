@@ -51,7 +51,8 @@ fun reverseByType(s: String) = buildString {
     val let = mutableListOf<Char>()
     val sym = mutableListOf<Char>()
     for (i in s.lastIndex downTo 0) if (s[i].isLetter()) let.add(s[i]) else sym.add(s[i])
-    var iL = 0; var iS = 0
+    var iL = 0;
+    var iS = 0
     s.forEach { append(if (it.isLetter()) let[iL++] else sym[iS++]) }
 }
 
@@ -68,7 +69,8 @@ fun largestInteger(a: IntArray, k: Int): Int {
 fun findValidPair(s: String) = buildString {
     val m = s.groupingBy { it }.eachCount()
     for (i in 1..s.lastIndex) {
-        val l = s[i - 1]; val r = s[i]
+        val l = s[i - 1];
+        val r = s[i]
         if (l == r) continue
         if (m[l] == l.digitToInt() && m[r] == r.digitToInt()) {
             append("$l$r")
@@ -79,11 +81,14 @@ fun findValidPair(s: String) = buildString {
 
 // https://leetcode.com/problems/count-residue-prefixes/
 fun residuePrefixes(s: String): Int {
-    var c = 0; var d = 0
+    var c = 0;
+    var d = 0
     val a = BooleanArray(26)
     s.forEachIndexed { i, ch ->
         val j = ch - 'a'
-        if (!a[j]) { a[j] = true; ++d }
+        if (!a[j]) {
+            a[j] = true; ++d
+        }
         if (d == (i + 1) % 3) ++c
     }
     return c
@@ -112,6 +117,30 @@ fun semiOrderedPermutation(a: IntArray): Int {
     val posN = a.indexOf(a.size)
     val sN = a.lastIndex - posN
     return if (posOne < posN) posOne + sN else (posOne + sN) - 1
+}
+
+// https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/
+fun tictactoe(ar: Array<IntArray>): String {
+    val wins = arrayOf(
+        arrayOf(0 to 0, 0 to 1, 0 to 2),
+        arrayOf(1 to 0, 1 to 1, 1 to 2),
+        arrayOf(2 to 0, 2 to 1, 2 to 2),
+        arrayOf(0 to 0, 1 to 0, 2 to 0),
+        arrayOf(0 to 1, 1 to 1, 2 to 1),
+        arrayOf(0 to 2, 1 to 2, 2 to 2),
+        arrayOf(0 to 0, 1 to 1, 2 to 2),
+        arrayOf(2 to 0, 1 to 1, 0 to 2),
+    )
+    val x = mutableListOf<Pair<Int, Int>>()
+    val o = mutableListOf<Pair<Int, Int>>()
+    ar.forEachIndexed { i, a ->
+        if (i % 2 == 0) x.add(a.first() to a.last()) else o.add(a.first() to a.last())
+    }
+    wins.forEach {
+        if (it.all { it in x }) return "A"
+        if (it.all { it in o }) return "B"
+    }
+    return if (ar.size == 9) "Draw" else "Pending"
 }
 
 
