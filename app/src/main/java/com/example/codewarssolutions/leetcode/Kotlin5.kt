@@ -51,8 +51,7 @@ fun reverseByType(s: String) = buildString {
     val let = mutableListOf<Char>()
     val sym = mutableListOf<Char>()
     for (i in s.lastIndex downTo 0) if (s[i].isLetter()) let.add(s[i]) else sym.add(s[i])
-    var iL = 0;
-    var iS = 0
+    var iL = 0; var iS = 0
     s.forEach { append(if (it.isLetter()) let[iL++] else sym[iS++]) }
 }
 
@@ -69,8 +68,7 @@ fun largestInteger(a: IntArray, k: Int): Int {
 fun findValidPair(s: String) = buildString {
     val m = s.groupingBy { it }.eachCount()
     for (i in 1..s.lastIndex) {
-        val l = s[i - 1];
-        val r = s[i]
+        val l = s[i - 1]; val r = s[i]
         if (l == r) continue
         if (m[l] == l.digitToInt() && m[r] == r.digitToInt()) {
             append("$l$r")
@@ -81,14 +79,11 @@ fun findValidPair(s: String) = buildString {
 
 // https://leetcode.com/problems/count-residue-prefixes/
 fun residuePrefixes(s: String): Int {
-    var c = 0;
-    var d = 0
+    var c = 0; var d = 0
     val a = BooleanArray(26)
     s.forEachIndexed { i, ch ->
         val j = ch - 'a'
-        if (!a[j]) {
-            a[j] = true; ++d
-        }
+        if (!a[j]) { a[j] = true; ++d }
         if (d == (i + 1) % 3) ++c
     }
     return c
@@ -141,6 +136,21 @@ fun tictactoe(ar: Array<IntArray>): String {
         if (it.all { it in o }) return "B"
     }
     return if (ar.size == 9) "Draw" else "Pending"
+}
+
+// https://leetcode.com/problems/check-if-any-element-has-prime-frequency/
+fun checkPrimeFrequency(a: IntArray) = IntArray(101).run {
+    a.forEach { this[it]++ }
+    val p = booleanArrayOf(
+        false, false, true, true, false, true, false, true, false, false, false, true, false, true, false,
+        false, false, true, false, true, false, false, false, true, false, false, false, false, false, true,
+        false, true, false, false, false, false, false, true, false, false, false, true, false, true, false,
+        false, false, true, false, false, false, false, false, true, false, false, false, false, false, true,
+        false, true, false, false, false, false, false, true, false, false, false, true, false, true, false,
+        false, false, false, false, true, false, false, false, true, false, false, false, false, false, true,
+        false, false, false, false, false, false, false, true, false, false, false
+    )
+    any { it > 1 && p[it] }
 }
 
 
