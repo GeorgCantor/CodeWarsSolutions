@@ -153,6 +153,12 @@ fun checkPrimeFrequency(a: IntArray) = IntArray(101).run {
     any { it > 1 && p[it] }
 }
 
+// https://leetcode.com/problems/smallest-pair-with-different-frequencies/
+fun minDistinctFreqPair(a: IntArray) = a.toList().groupingBy { it }.eachCount().entries.sortedBy { it.key }.run {
+    forEach { e -> find { it.key > e.key && it.value != e.value }?.let { return intArrayOf(e.key, it.key) } }
+    intArrayOf(-1, -1)
+}
+
 
 
 
