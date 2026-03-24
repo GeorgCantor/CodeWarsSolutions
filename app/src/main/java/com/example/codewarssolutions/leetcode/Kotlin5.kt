@@ -159,6 +159,9 @@ fun minDistinctFreqPair(a: IntArray) = a.toList().groupingBy { it }.eachCount().
     intArrayOf(-1, -1)
 }
 
+// https://leetcode.com/problems/reverse-degree-of-a-string/
+fun reverseDegree(s: String) = s.mapIndexed { i, c -> ('z' - c + 1) * (i + 1) }.sum()
+
 
 
 
