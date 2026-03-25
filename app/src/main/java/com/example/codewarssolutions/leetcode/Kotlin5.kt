@@ -1,5 +1,7 @@
 package com.example.codewarssolutions.leetcode
 
+import kotlin.math.max
+
 // https://leetcode.com/problems/find-the-original-typed-string-i/
 fun possibleStringCount(s: String): Int {
     var c = 1
@@ -161,6 +163,19 @@ fun minDistinctFreqPair(a: IntArray) = a.toList().groupingBy { it }.eachCount().
 
 // https://leetcode.com/problems/reverse-degree-of-a-string/
 fun reverseDegree(s: String) = s.mapIndexed { i, c -> ('z' - c + 1) * (i + 1) }.sum()
+
+// https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
+fun maxDepth(s: String): Int {
+    var c = 0; var m = 0
+    s.forEach {
+        if (it == '(') {
+            ++c; m = max(m, c)
+        } else if (it == ')') {
+            --c
+        }
+    }
+    return m
+}
 
 
 
