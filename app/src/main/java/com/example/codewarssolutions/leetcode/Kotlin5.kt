@@ -177,6 +177,13 @@ fun maxDepth(s: String): Int {
     return m
 }
 
+// https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+fun oddCells(m: Int, n: Int, a: Array<IntArray>) = Array(m) { IntArray(n) }.apply {
+    a.forEach { (f, l) ->
+        this[f] = this[f].map { it + 1 }.toIntArray()
+        this.forEach { it[l]++ }
+    }
+}.flatMap { it.toList() }.count { it % 2 == 1 }
 
 
 
