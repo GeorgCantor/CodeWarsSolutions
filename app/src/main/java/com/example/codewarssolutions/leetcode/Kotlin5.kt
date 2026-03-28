@@ -183,7 +183,7 @@ fun oddCells(m: Int, n: Int, a: Array<IntArray>) = Array(m) { IntArray(n) }.appl
         this[f] = this[f].map { it + 1 }.toIntArray()
         this.forEach { it[l]++ }
     }
-}.flatMap { it.toList() }.count { it % 2 == 1 }
+}.sumOf { it.count { it % 2 == 1 } }
 
 
 
