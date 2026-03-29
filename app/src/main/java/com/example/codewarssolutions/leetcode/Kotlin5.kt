@@ -185,6 +185,13 @@ fun oddCells(m: Int, n: Int, a: Array<IntArray>) = Array(m) { IntArray(n) }.appl
     }
 }.sumOf { it.count { it % 2 == 1 } }
 
+// https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-i/
+fun getLongestSubsequence(a: Array<String>, b: IntArray) = buildList {
+    var l = -1
+    a.forEachIndexed { i, s ->
+        if (b[i] != l) add(s); l = b[i]
+    }
+}
 
 
 
