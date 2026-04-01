@@ -193,6 +193,21 @@ fun getLongestSubsequence(a: Array<String>, b: IntArray) = buildList {
     }
 }
 
+// https://leetcode.com/problems/modify-the-matrix/
+fun modifiedMatrix(a: Array<IntArray>) = Array(a.size) { IntArray(a[0].size) }.apply {
+    a.forEachIndexed { i, ar ->
+        ar.forEachIndexed { j, n ->
+            this[i][j] = if (n == -1) {
+                var max = Int.MIN_VALUE
+                a.forEach { if (it[j] > max) max = it[j] }
+                max
+            } else {
+                n
+            }
+        }
+    }
+}
+
 
 
 
