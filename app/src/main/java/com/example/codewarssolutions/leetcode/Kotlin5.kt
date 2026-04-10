@@ -208,6 +208,23 @@ fun modifiedMatrix(a: Array<IntArray>) = Array(a.size) { IntArray(a[0].size) }.a
     }
 }
 
+// https://leetcode.com/problems/latest-time-you-can-obtain-after-replacing-characters/
+fun findLatestTime(s: String): String {
+    val r = Regex(s.replace('?', '.'))
+    val sb = StringBuilder("00:00")
+    (0..11).forEach { h ->
+        val hour = if (h > 9) h.toString() else "0$h"
+        (0..59).forEach { m ->
+            val min = if (m > 9) m.toString() else "0$m"
+            val time = "$hour:$min"
+            if (r.matches(time) && sb.toString() < time) {
+                sb.clear(); sb.append(time)
+            }
+        }
+    }
+    return sb.toString()
+}
+
 
 
 
