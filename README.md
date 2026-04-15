@@ -5,6 +5,7 @@
 <a href="https://leetcode.com/GeorgCantor/" target="blank"><img align="center" src="https://assets.leetcode.com/static_assets/marketing/2023-50.gif" height="220" width="220" /></a>&nbsp;
 <a href="https://leetcode.com/GeorgCantor/" target="blank"><img align="center" src="https://assets.leetcode.com/static_assets/marketing/2024-50.gif" height="220" width="220" /></a>&nbsp;
 <a href="https://leetcode.com/GeorgCantor/" target="blank"><img align="center" src="https://assets.leetcode.com/static_assets/others/25100.gif" height="220" width="220" /></a>&nbsp;
+<a href="https://leetcode.com/GeorgCantor/" target="blank"><img align="center" src="https://assets.leetcode.com/static_assets/others/50.gif" height="220" width="220" /></a>&nbsp;
 <a href="https://leetcode.com/GeorgCantor/" target="blank"><img align="center" src="https://assets.leetcode.com/static_assets/marketing/365.gif" height="220" width="220" /></a>&nbsp;
 <a href="https://leetcode.com/GeorgCantor/" target="blank"><img align="center" src="https://assets.leetcode.com/static_assets/marketing/500_new.gif" height="220" width="220" /></a>&nbsp;
 </a>&nbsp;
