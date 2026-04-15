@@ -225,6 +225,13 @@ fun findLatestTime(s: String): String {
     return sb.toString()
 }
 
+// https://leetcode.com/problems/climbing-stairs/
+fun climbStairs(n: Int) = IntArray(n + 1).also { a ->
+    if (n == 1) return 1; if (n == 2) return 2
+    a[1] = 1; a[2] = 2
+    for (i in 3..n) a[i] = a[i - 1] + a[i - 2]
+}[n]
+
 
 
 
