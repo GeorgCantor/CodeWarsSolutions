@@ -232,6 +232,15 @@ fun climbStairs(n: Int) = IntArray(n + 1).also { a ->
     for (i in 3..n) a[i] = a[i - 1] + a[i - 2]
 }[n]
 
+// https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/
+fun countStudents(a: IntArray, b: IntArray) = a.toMutableList().also { l ->
+    b.forEach { n ->
+        if (l.all { it != n }) return l.size
+        if (l.first() != n) while (l.first() != n) { l.add(l.first()); l.removeAt(0) }
+        l.removeAt(0)
+    }
+}.size
+
 
 
 
