@@ -241,6 +241,9 @@ fun countStudents(a: IntArray, b: IntArray) = a.toMutableList().also { l ->
     }
 }.size
 
+// https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/
+fun minimumPushes(s: String) = s.chunked(8).withIndex().sumOf { (i, w) -> w.length * (i + 1) }
+
 
 
 
