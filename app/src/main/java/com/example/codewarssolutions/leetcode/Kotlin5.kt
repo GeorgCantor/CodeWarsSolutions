@@ -244,7 +244,23 @@ fun countStudents(a: IntArray, b: IntArray) = a.toMutableList().also { l ->
 // https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-i/
 fun minimumPushes(s: String) = s.chunked(8).withIndex().sumOf { (i, w) -> w.length * (i + 1) }
 
-
+// https://leetcode.com/problems/implement-magic-dictionary/
+class MagicDictionary() {
+    val l = mutableListOf<String>()
+    fun buildDict(a: Array<String>) = l.addAll(a)
+    fun search(s: String): Boolean {
+        for (w in l) {
+            if (w.length != s.length) continue
+            var c = 0
+            for (i in w.indices) {
+                if (s[i] != w[i]) ++c
+                if (c > 1) break
+            }
+            if (c == 1) return true
+        }
+        return false
+    }
+}
 
 
 
