@@ -262,6 +262,21 @@ class MagicDictionary() {
     }
 }
 
+// https://leetcode.com/problems/simplify-path/
+fun simplifyPath(s: String) = buildString {
+    val l = s.split("/").filter { it != "." && it != "" }.toMutableList()
+    var i = 0
+    while (i < l.size) {
+        if (l[i] == "..") {
+            l.removeAt(i)
+            if (i > 0) l.removeAt(--i)
+        } else {
+            ++i
+        }
+    }
+    append("/").append(l.joinToString("/"))
+}
+
 
 
 
