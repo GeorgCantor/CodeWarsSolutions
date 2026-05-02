@@ -277,6 +277,24 @@ fun simplifyPath(s: String) = buildString {
     append("/").append(l.joinToString("/"))
 }
 
+// https://leetcode.com/problems/bulls-and-cows/
+fun getHint(s: String, g: String) = buildString {
+    val ar = s.toCharArray()
+    var a = 0; var b = 0
+    g.forEachIndexed { i, c ->
+        if (ar[i] == c) {
+            ++a; ar[i] = ' '
+        } else if (c in ar) {
+            for (j in ar.indices) {
+                if (ar[j] == c && g[j] != c) {
+                    ar[j] = ' '; ++b; break
+                }
+            }
+        }
+    }
+    append("${a}A${b}B")
+}
+
 
 
 
