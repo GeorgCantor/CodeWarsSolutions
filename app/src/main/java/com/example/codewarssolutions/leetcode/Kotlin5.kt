@@ -295,6 +295,18 @@ fun getHint(s: String, g: String) = buildString {
     append("${a}A${b}B")
 }
 
+// https://leetcode.com/problems/compare-version-numbers/
+fun compareVersion(a: String, b: String): Int {
+    val aL = a.split('.').map { it.toInt() }
+    val bL = b.split('.').map { it.toInt() }
+    val max = max(aL.size, bL.size); var i = 0
+    while (i <= max) {
+        if ((aL.getOrNull(i) ?: 0) > (bL.getOrNull(i) ?: 0)) return 1
+        if ((aL.getOrNull(i) ?: 0) < (bL.getOrNull(i++) ?: 0)) return -1
+    }
+    return 0
+}
+
 
 
 
