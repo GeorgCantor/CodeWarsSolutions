@@ -307,6 +307,24 @@ fun compareVersion(a: String, b: String): Int {
     return 0
 }
 
+// https://leetcode.com/problems/maximum-product-of-word-lengths/
+fun maxProduct(a: Array<String>): Int {
+    var max = 0
+    val ar = BooleanArray(26)
+    fun cross(one: String, two: String): Boolean {
+        ar.fill(false)
+        one.forEach { ar[it - 'a'] = true }
+        return two.any { ar[it - 'a'] }
+    }
+    for (i in 0 until a.lastIndex) {
+        for (j in i + 1..a.lastIndex) {
+            if (cross(a[i], a[j])) continue
+            val sum = a[i].length * a[j].length
+            if (sum > max) max = sum
+        }
+    }
+    return max
+}
 
 
 
