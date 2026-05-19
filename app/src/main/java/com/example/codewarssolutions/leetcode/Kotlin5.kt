@@ -326,6 +326,22 @@ fun maxProduct(a: Array<String>): Int {
     return max
 }
 
+// https://leetcode.com/problems/design-add-and-search-words-data-structure/
+class WordDictionary() {
+    val set = mutableSetOf<String>()
+    fun addWord(s: String) = set.add(s)
+    fun search(s: String): Boolean {
+        l@ for (w in set) {
+            if (s.length != w.length) continue
+            for (i in s.indices) {
+                if (s[i] != '.' && s[i] != w[i]) continue@l
+            }
+            return true
+        }
+        return false
+    }
+}
+
 
 
 
