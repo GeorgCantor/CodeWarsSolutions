@@ -342,6 +342,14 @@ class WordDictionary() {
     }
 }
 
+// https://leetcode.com/problems/largest-perimeter-triangle/
+fun largestPerimeter(a: IntArray) = a.sortedDescending().let { s ->
+    for (i in 0 until s.size - 2) {
+        if (s[i + 1] + s[i + 2] > s[i]) return@let s[i + 1] + s[i + 2] + s[i]
+    }
+    0
+}
+
 
 
 
