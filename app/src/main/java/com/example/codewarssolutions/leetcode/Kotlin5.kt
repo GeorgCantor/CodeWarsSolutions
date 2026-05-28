@@ -350,6 +350,20 @@ fun largestPerimeter(a: IntArray) = a.sortedDescending().let { s ->
     0
 }
 
+// https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-i/
+fun minimumCost(a: IntArray): Int {
+    var f = Int.MAX_VALUE
+    var l = Int.MAX_VALUE
+    for (i in 1..a.lastIndex) {
+        val n = a[i]
+        when {
+            n < f -> { l = f; f = n }
+            n < l -> l = n
+        }
+    }
+    return a.first() + f + l
+}
+
 
 
 
