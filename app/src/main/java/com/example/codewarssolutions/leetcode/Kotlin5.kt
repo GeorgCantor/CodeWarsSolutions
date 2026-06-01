@@ -364,6 +364,9 @@ fun minimumCost(a: IntArray): Int {
     return a.first() + f + l
 }
 
+// https://leetcode.com/problems/toggle-light-bulbs/
+fun toggleLightBulbs(l: List<Int>) = l.groupingBy { it }.eachCount().filter { it.value % 2 == 1 }.keys.sorted()
+
 
 
 
