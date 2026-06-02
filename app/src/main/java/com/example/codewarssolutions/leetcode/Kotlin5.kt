@@ -367,6 +367,9 @@ fun minimumCost(a: IntArray): Int {
 // https://leetcode.com/problems/toggle-light-bulbs/
 fun toggleLightBulbs(l: List<Int>) = l.groupingBy { it }.eachCount().filter { it.value % 2 == 1 }.keys.sorted()
 
+// https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/
+fun maxKDistinct(a: IntArray, k: Int) = a.toSet().sortedDescending().take(k)
+
 
 
 
