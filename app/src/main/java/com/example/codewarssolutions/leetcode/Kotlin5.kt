@@ -370,6 +370,32 @@ fun toggleLightBulbs(l: List<Int>) = l.groupingBy { it }.eachCount().filter { it
 // https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/
 fun maxKDistinct(a: IntArray, k: Int) = a.toSet().sortedDescending().take(k)
 
+// https://leetcode.com/problems/decode-string/
+fun decodeString(s: String) = buildString {
+    val ints = ArrayDeque<Int>()
+    val str = ArrayDeque<String>()
+    var n = 0
+    s.forEach {
+        when {
+            it.isDigit() -> n = n * 10 + (it - '0')
+            it == '[' -> {
+                ints.addLast(n)
+                str.addLast(toString())
+                n = 0
+                clear()
+            }
+            it == ']' -> {
+                val repCount = ints.removeLast()
+                val prevStr = str.removeLast()
+                val current = toString()
+                clear()
+                append(prevStr)
+                repeat(repCount) { append(current) }
+            }
+            else -> append(it)
+        }
+    }
+}
 
 
 
