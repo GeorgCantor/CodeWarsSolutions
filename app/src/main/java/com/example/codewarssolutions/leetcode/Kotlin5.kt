@@ -397,6 +397,13 @@ fun decodeString(s: String) = buildString {
     }
 }
 
+// https://leetcode.com/problems/sum-of-values-at-indices-with-k-set-bits/
+fun sumIndicesWithKSetBits(l: List<Int>, k: Int): Int {
+    var c = 0
+    for (i in l.indices) if (i.countOneBits() == k) c += l[i]
+    return c
+}
+
 
 
 
