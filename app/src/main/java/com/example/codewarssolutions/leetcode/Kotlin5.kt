@@ -404,6 +404,17 @@ fun sumIndicesWithKSetBits(l: List<Int>, k: Int): Int {
     return c
 }
 
+// https://leetcode.com/problems/special-positions-in-a-binary-matrix/
+fun numSpecial(mat: Array<IntArray>): Int {
+    var c = 0
+    mat.forEach { a ->
+        a.forEachIndexed { i, n ->
+            if (n == 1 && a.sum() == 1 && mat.sumOf { it[i] } == 1) ++c
+        }
+    }
+    return c
+}
+
 
 
 
