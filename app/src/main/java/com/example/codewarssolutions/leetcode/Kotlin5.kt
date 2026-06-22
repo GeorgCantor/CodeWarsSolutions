@@ -415,6 +415,22 @@ fun numSpecial(mat: Array<IntArray>): Int {
     return c
 }
 
+// https://leetcode.com/problems/largest-local-values-in-a-matrix/
+fun largestLocal(a: Array<IntArray>) = buildList {
+    for (i in 0 until a.lastIndex - 1) {
+        val l = mutableListOf<Int?>()
+        for (j in 0 until a.lastIndex - 1) {
+            val m = arrayOf(
+                a[i][j], a[i][j + 1], a[i][j + 2],
+                a[i + 1][j], a[i + 1][j + 1], a[i + 1][j + 2],
+                a[i + 2][j], a[i + 2][j + 1], a[i + 2][j + 2]
+            ).maxOrNull()
+            l.add(m)
+        }
+        add(l)
+    }
+}
+
 
 
 
