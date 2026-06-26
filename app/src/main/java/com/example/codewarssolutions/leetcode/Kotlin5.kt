@@ -431,6 +431,12 @@ fun largestLocal(a: Array<IntArray>) = buildList {
     }
 }
 
+// https://leetcode.com/problems/find-champion-i/
+fun findChampion(a: Array<IntArray>) = a.withIndex().find {
+    it.value.forEachIndexed { i, n -> if (n == 0 && i != it.index) return@find false }
+    true
+}?.index
+
 
 
 
