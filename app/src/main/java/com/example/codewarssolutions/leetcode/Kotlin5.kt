@@ -437,6 +437,17 @@ fun findChampion(a: Array<IntArray>) = a.withIndex().find {
     true
 }?.index
 
+// https://leetcode.com/problems/ant-on-the-boundary/
+fun returnToBoundaryCount(a: IntArray): Int {
+    var c = 0
+    var t = 0
+    a.forEach {
+        t += it
+        if (t == 0) ++c
+    }
+    return c
+}
+
 
 
 
