@@ -448,6 +448,20 @@ fun returnToBoundaryCount(a: IntArray): Int {
     return c
 }
 
+// https://leetcode.com/problems/score-validator/
+fun scoreValidator(a: Array<String>): IntArray {
+    var sc = 0; var c = 0
+    for (s in a) {
+        if (c == 10) break
+        when (s) {
+            "1", "2", "3", "4", "6" -> sc += s.toInt()
+            "W" -> ++c
+            "WD", "NB" -> ++sc
+        }
+    }
+    return intArrayOf(sc, c)
+}
+
 
 
 
