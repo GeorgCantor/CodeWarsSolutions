@@ -462,6 +462,8 @@ fun scoreValidator(a: Array<String>): IntArray {
     return intArrayOf(sc, c)
 }
 
+// https://leetcode.com/problems/digit-frequency-score/
+fun digitFrequencyScore(n: Int) = n.toString().sumOf { it.digitToInt() }
 
 
 
