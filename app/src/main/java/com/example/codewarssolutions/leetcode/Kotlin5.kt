@@ -465,6 +465,24 @@ fun scoreValidator(a: Array<String>): IntArray {
 // https://leetcode.com/problems/digit-frequency-score/
 fun digitFrequencyScore(n: Int) = n.toString().sumOf { it.digitToInt() }
 
+// https://leetcode.com/problems/multiply-strings/
+fun multiply(a: String, b: String): String {
+    if (a == "0" || b == "0") return "0"
+    val res = IntArray(a.length + b.length)
+    for (i in a.lastIndex downTo 0) {
+        for (j in b.lastIndex downTo 0) {
+            val d1 = a[i] - '0'
+            val d2 = b[j] - '0'
+            val p = d1 * d2 + res[i + j + 1]
+            res[i + j + 1] = p % 10
+            res[i + j] += p / 10
+        }
+    }
+    var ans = res.joinToString("")
+    ans = ans.trimStart('0')
+    return ans.ifEmpty { "0" }
+}
+
 
 
 
