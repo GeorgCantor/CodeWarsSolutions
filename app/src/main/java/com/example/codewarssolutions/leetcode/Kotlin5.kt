@@ -483,6 +483,28 @@ fun multiply(a: String, b: String): String {
     return ans.ifEmpty { "0" }
 }
 
+// https://leetcode.com/problems/palindrome-partitioning/
+fun partition(s: String) = Array(s.length + 1) { mutableListOf<List<String>>() }.apply {
+    fun isP(left: Int, right: Int): Boolean {
+        var l = left; var r = right
+        while (l < r) { if (s[l++] != s[r--]) return false }
+        return true
+    }
+    this[0].add(emptyList())
+    for (i in 1..s.length) {
+        for (j in 0 until i) {
+            if (isP(j, i - 1)) {
+                val p = s.substring(j, i)
+                for (part in this[j]) {
+                    val newP = part.toMutableList()
+                    newP.add(p)
+                    this[i].add(newP)
+                }
+            }
+        }
+    }
+}.last()
+
 
 
 
