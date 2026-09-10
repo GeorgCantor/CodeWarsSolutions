@@ -505,6 +505,18 @@ fun partition(s: String) = Array(s.length + 1) { mutableListOf<List<String>>() }
     }
 }.last()
 
+// https://leetcode.com/problems/remove-k-digits/
+fun removeKdigits(n: String, k: Int) = ArrayDeque<Char>().also { d ->
+    var c = k
+    n.forEach {
+        while (c > 0 && d.isNotEmpty() && d.last() > it) { d.removeLast(); --c }
+        d.addLast(it)
+    }
+    repeat(c) { d.removeLast() }
+    while (d.isNotEmpty() && d.first() == '0') d.removeFirst()
+    if (d.isEmpty()) return "0"
+}.joinToString("")
+
 
 
 
