@@ -517,6 +517,23 @@ fun removeKdigits(n: String, k: Int) = ArrayDeque<Char>().also { d ->
     if (d.isEmpty()) return "0"
 }.joinToString("")
 
+// https://leetcode.com/problems/combination-sum/
+fun combinationSum(a: IntArray, t: Int) = mutableListOf<List<Int>>().apply {
+    val d = ArrayDeque<Pair<List<Int>, Int>>()
+    d.add(listOf<Int>() to 0)
+    while (d.isNotEmpty()) {
+        val (cur, start) = d.removeFirst()
+        val sum = cur.sum()
+        if (sum == t) { add(cur); continue }
+        for (i in start until a.size) {
+            val num = a[i]
+            if (sum + num > t) continue
+            val next = cur + num
+            d.add(next to i)
+        }
+    }
+}
+
 
 
 
