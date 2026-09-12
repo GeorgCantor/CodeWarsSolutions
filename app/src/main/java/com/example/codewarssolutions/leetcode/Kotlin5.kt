@@ -534,6 +534,16 @@ fun combinationSum(a: IntArray, t: Int) = mutableListOf<List<Int>>().apply {
     }
 }
 
+// https://leetcode.com/problems/sort-colors/
+fun sortColors(a: IntArray) {
+    var o = 0; var o1 = 0; var o2 = 0
+    a.forEach { when (it) { 0 -> ++o; 1 -> ++o1; 2 -> ++o2 } }
+    var i = 0
+    repeat(o) { a[i++] = 0 }
+    repeat(o1) { a[i++] = 1 }
+    repeat(o2) { a[i++] = 2 }
+}
+
 
 
 
