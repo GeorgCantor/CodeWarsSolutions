@@ -544,6 +544,23 @@ fun sortColors(a: IntArray) {
     repeat(o2) { a[i++] = 2 }
 }
 
+// https://leetcode.com/problems/find-duplicate-file-in-system/
+fun findDuplicate(a: Array<String>) = buildList {
+    val m = mutableMapOf<String, MutableList<String>>()
+    a.forEach {
+        val l = it.split(" ")
+        val d = l.first()
+        for (i in 1..l.lastIndex) {
+            val s = l[i]
+            val ind = s.indexOf('(')
+            val name = s.substring(0, ind)
+            val cont = s.substring(ind + 1, s.lastIndex)
+            m.getOrPut(cont) { mutableListOf() }.add("$d/$name")
+        }
+    }
+    m.values.forEach { if (it.size > 1) add(it) }
+}
+
 
 
 
