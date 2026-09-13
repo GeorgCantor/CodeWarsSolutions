@@ -561,6 +561,35 @@ fun findDuplicate(a: Array<String>) = buildList {
     m.values.forEach { if (it.size > 1) add(it) }
 }
 
+// https://leetcode.com/problems/evaluate-reverse-polish-notation/
+fun evalRPN(ar: Array<String>) = ArrayDeque<Int>().apply {
+    ar.forEach {
+        when (it) {
+            "+" -> {
+                val a = removeLast()
+                val b = removeLast()
+                addLast(a + b)
+            }
+            "-" -> {
+                val b = removeLast()
+                val a = removeLast()
+                addLast(a - b)
+            }
+            "*" -> {
+                val a = removeLast()
+                val b = removeLast()
+                addLast(a * b)
+            }
+            "/" -> {
+                val b = removeLast()
+                val a = removeLast()
+                addLast(a / b)
+            }
+            else -> addLast(it.toInt())
+        }
+    }
+}.removeLast()
+
 
 
 
