@@ -590,6 +590,19 @@ fun evalRPN(ar: Array<String>) = ArrayDeque<Int>().apply {
     }
 }.removeLast()
 
+// https://leetcode.com/problems/product-of-array-except-self/
+fun productExceptSelf(a: IntArray) = IntArray(a.size).apply {
+    this[0] = 1
+    for (i in 1..a.lastIndex) {
+        this[i] = this[i - 1] * a[i - 1]
+    }
+    var suf = 1
+    for (i in a.lastIndex downTo 0) {
+        this[i] = this[i] * suf
+        suf *= a[i]
+    }
+}
+
 
 
 
