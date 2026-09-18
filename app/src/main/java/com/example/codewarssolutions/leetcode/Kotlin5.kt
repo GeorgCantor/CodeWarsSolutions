@@ -603,6 +603,12 @@ fun productExceptSelf(a: IntArray) = IntArray(a.size).apply {
     }
 }
 
+// https://leetcode.com/problems/queue-reconstruction-by-height/
+fun reconstructQueue(a: Array<IntArray>) = mutableListOf<IntArray>().apply {
+    a.sortWith(compareBy({ -it[0] }, { it[1] }))
+    a.forEach { add(it[1], it) }
+}
+
 
 
 
