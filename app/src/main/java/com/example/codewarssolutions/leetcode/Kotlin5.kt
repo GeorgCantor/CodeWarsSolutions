@@ -609,6 +609,15 @@ fun reconstructQueue(a: Array<IntArray>) = mutableListOf<IntArray>().apply {
     a.forEach { add(it[1], it) }
 }
 
+// https://leetcode.com/problems/number-of-elapsed-seconds-between-two-times/
+fun secondsBetweenTimes(s: String, e: String): Int {
+    fun String.t(): Int {
+        val v = split(":").map { it.toInt() }
+        return (v[0] * 3600) + (v[1] * 60) + v[2]
+    }
+    return e.t() - s.t()
+}
+
 
 
 
